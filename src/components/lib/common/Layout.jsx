@@ -9,29 +9,24 @@ class Layout extends Component {
     }
 
 
+    renderContent() {
+        return (
+            <div id="container">
+
+                <Telescope.components.Newsletter />
+
+                { this.props.children}
+
+            </div>
+        )
+    }
+
+
     render() {
-        const {popoverMenu, didMount, needRefreshHomePage} = this.state;
-
-
         return (
             <div id="web-app-panel">
 
                 <Telescope.components.HeaderContent />
-
-                <Telescope.components.PopoverPosts postsCollection={this.context.messages.postsCollection}/>
-
-                {/*Rendering the popover menus*/}
-                <Telescope.components.AppPopup popoverMenu={popoverMenu}/>
-
-                <Telescope.components.PopoverFlashes flashBox={this.context.messages.flashBox}/>
-
-                <div id="container">
-
-                    <Telescope.components.Newsletter />
-
-                    { this.props.children}
-
-                </div>
 
             </div>
         )
