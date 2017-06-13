@@ -1,7 +1,9 @@
 import Telescope from './config';
 
 // common
-Telescope.registerComponent("Error404",                         require('./common/Error404.js'));
+Telescope.registerComponent("Layout",                           require('./common/Layout.jsx'));
+
+Telescope.registerComponent("Error404",                         require('./common/Error404.jsx'));
 Telescope.registerComponent("App",                              require('./common/App.js'));
 
 
