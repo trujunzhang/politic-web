@@ -1,0 +1,36 @@
+Below you can find the details of your Parse app.
+
+
+App Id
+CwsmGkrIp6SHBB7ERFVQatRwwNyOL7ep0L5DT7rb
+App Name
+politicl-scrapy
+App Description
+Crawled Politicl articles blogs.
+Public API
+This API is PUBLIC
+Parse API Address
+https://parseapi.back4app.com/
+Parse Version
+2.3.7
+Change Version
+MongoDB Database URI
+mongodb://admin:aplwT3OpOvWIeC3ycMhkTvKd@mongodb7.back4app.com:27017/d9e02f450da245519f653c2c4951fe95?ssl=true
+Client Key
+izRQPyrDVjxausvVwAGxu9e4RE2gF7oxTN3orfhe
+Javascript Key
+QpOB4AmY1aPtAiX7tXlTSO4RUubMkysANzaD7lHf
+.NET Key
+cyOKpT1AP4UeUHR5bUObgc5Z78jop2VVyRH5r28q
+REST API Key
+sPSXX1OfpYUzb9PgTyHPFzpE6dsee14XYt3z00wp
+Webhook Key
+0mlLhvVrccj8uTc3xznbs5L1A27z8yRWUFE3PDE2
+File Key
+2cec4f5b-064e-4573-9aff-1e6accf81aa8
+Master Key
+xqYmo65U2DoZDGrSCKrVbiJdjEnWgXgdxw7jI1kF
+Client Class Creation
+Client Class Creation is ALLOWED
+Push Notification from Client
+Push Notification from Client is BLOCKED

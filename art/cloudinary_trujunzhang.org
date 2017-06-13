@@ -1,0 +1,12 @@
+Account Details Download: YML, PY
+Cloud name:
+di3fvexj8
+API Key:
+886131238629743
+API Secret:
+X1baj0k868ACgxU-a6Wobw8OsY8
+Environment variable:
+CLOUDINARY_URL=cloudinary://886131238629743:X1baj0k868ACgxU-a6Wobw8OsY8@di3fvexj8
+Base delivery URL:	http://res.cloudinary.com/di3fvexj8 ▼
+Secure delivery URL:	https://res.cloudinary.com/di3fvexj8 ▼
+API Base URL:	https://api.cloudinary.com/v1_1/di3fvexj8 ▼

@@ -1,0 +1,25 @@
+"CLOUDINARY":{
+        "cloudinaryAPIKey": "898859385545283",
+        "cloudinaryAPISecret": "0D4cT8wmYGEzi6Lz4b0Q2C_r7KM",
+        "cloudinaryFormats": [
+            {
+              "name": "small",
+              "width": 100,
+              "height": 100
+            }
+          ]
+    }
+
+
+Account Details Download: YML, PY
+Cloud name:
+politicl
+API Key:
+898859385545283
+API Secret:
+0D4cT8wmYGEzi6Lz4b0Q2C_r7KM
+Environment variable:
+CLOUDINARY_URL=cloudinary://898859385545283:0D4cT8wmYGEzi6Lz4b0Q2C_r7KM@politicl
+Base delivery URL:	http://res.cloudinary.com/politicl ▼
+Secure delivery URL:	https://res.cloudinary.com/politicl ▼
+API Base URL:	https://api.cloudinary.com/v1_1/politicl ▼
