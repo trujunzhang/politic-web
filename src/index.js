@@ -6,6 +6,8 @@ import {syncHistoryWithStore} from 'react-router-redux'
 import configureStore from './store/configureStore';
 import createRoutes from './routes';
 
+import {IntlProvider, intlReducer} from 'react-intl-redux'
+
 var Parse = require('parse');
 
 Parse.initialize('CwsmGkrIp6SHBB7ERFVQatRwwNyOL7ep0L5DT7rb', 'QpOB4AmY1aPtAiX7tXlTSO4RUubMkysANzaD7lHf');
@@ -22,7 +24,9 @@ const routes = createRoutes(store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router routes={routes} history={history}/>
+        <IntlProvider>
+            <Router routes={routes} history={history}/>
+        </IntlProvider>
     </Provider>,
     document.getElementById('root')
 );
