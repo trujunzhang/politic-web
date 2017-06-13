@@ -10,6 +10,9 @@ Telescope.registerComponent("HeaderContent",                    require('./commo
 Telescope.registerComponent("HeaderContentSearchBar",           require('./common/HeaderContentSearchBar.jsx'));
 // Telescope.registerComponent("HeaderNavigation",                 require('./common/HeaderNavigation.jsx'));
 
+Telescope.registerComponent("Newsletter",                       require('./common/Newsletter.jsx'));
+Telescope.registerComponent("NewsletterButton",                 require('./common/NewsletterButton.jsx'));
+
 
 
 // posts

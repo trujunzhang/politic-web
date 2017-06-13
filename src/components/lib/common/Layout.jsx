@@ -17,7 +17,7 @@ class Layout extends Component {
 
                 <Telescope.components.Newsletter />
 
-                { this.props.children}
+                {/*{ this.props.children}*/}
 
             </div>
         )
@@ -30,7 +30,7 @@ class Layout extends Component {
 
                 <Telescope.components.HeaderContent />
 
-                {/*{this.renderContent()}*/}
+                {this.renderContent()}
 
             </div>
         )

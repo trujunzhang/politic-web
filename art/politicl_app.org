@@ -1,5 +1,8 @@
 * Libraries
 
+** react-intl
+  [https://github.com/yahoo/react-intl]
+
 * Parse Server
 
 ** Cloud Code
