@@ -12,30 +12,31 @@ class Newsletter extends Component {
         this.dismissBanner = this.dismissBanner.bind(this);
 
         this.state = {
-            showBanner: showBanner(context.currentUser)
+            showBanner: true
+            // showBanner(context.currentUser)
         };
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextContext.currentUser) {
-            this.setState({showBanner: showBanner(nextContext.currentUser)});
-        }
+        // if (nextContext.currentUser) {
+        //     this.setState({showBanner: showBanner(nextContext.currentUser)});
+        // }
     }
 
     subscribeEmail(data) {
-        this.context.actions.call("newsletter.addEmail", data.email, (error, result) => {
-            if (error) {
-                console.log(error); // eslint-disable-line
-                this.context.messages.flash(error.message, "error");
-            } else {
-                this.successCallbackSubscription(result);
-            }
-        });
+        // this.context.actions.call("newsletter.addEmail", data.email, (error, result) => {
+        //     if (error) {
+        //         console.log(error); // eslint-disable-line
+        //         this.context.messages.flash(error.message, "error");
+        //     } else {
+        //         this.successCallbackSubscription(result);
+        //     }
+        // });
     }
 
     successCallbackSubscription(result) {
-        this.context.messages.flash(this.context.intl.formatMessage({id: "newsletter.success_message"}), "success");
-        this.dismissBanner();
+        // this.context.messages.flash(this.context.intl.formatMessage({id: "newsletter.success_message"}), "success");
+        // this.dismissBanner();
     }
 
     dismissBanner(e) {
@@ -48,7 +49,7 @@ class Newsletter extends Component {
 
         // set user setting too (if logged in)
         if (this.context.currentUser) {
-            this.context.actions.call('users.setSetting', this.context.currentUser._id, 'newsletter.showBanner', false);
+            // this.context.actions.call('users.setSetting', this.context.currentUser._id, 'newsletter.showBanner', false);
         }
     }
 
@@ -128,11 +129,6 @@ class Newsletter extends Component {
     }
 }
 
-Newsletter.contextTypes = {
-    currentUser: React.PropTypes.object,
-    actions: React.PropTypes.object,
-    messages: React.PropTypes.object
-};
 
 function showBanner(user) {
     return (
