@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, {Component} from 'react';
+import {Link} from 'react-router';
 import './App.css';
 
-const {loadPosts,clientRequestAShipment} = require('../actions');
+const {loadPosts, clientRequestAShipment} = require('../actions');
 
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            name:"wanghao",
+            name: "wanghao",
             posts: props.posts
         }
     }
@@ -26,38 +26,39 @@ class App extends Component {
     }
 
     render() {
-        const {posts}= this.state;
-        if(posts){
-debugger
+        const {posts} = this.state;
+        if (posts) {
+            debugger
         }
 
-    return (
-      <div className="App">
-        <header>
-          <h1><code>Create React App Parse Redux App</code></h1>
-          <p>A somewhat hecomponents/fty boiler plate using create-react-app with a Parse backend</p>
-        </header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
-        </nav>
-        {this.props.children}
-        <footer>
-            <p><a href="https://github.com/zebapy/create-react-app-parse-redux">View on GitHub</a></p>
-            <h1>{this.state.name}</h1>
-            <div>
-                <button
-                    onClick={this.onSaveGameHandler.bind(this)}
-                >save game</button>
+        return (
+            <div className="App">
+                <header>
+                    <h1><code>Create React App Parse Redux App</code></h1>
+                    <p>A somewhat hecomponents/fty boiler plate using create-react-app with a Parse backend</p>
+                </header>
+                <nav>
+                    <Link to="/">Home</Link>
+                    <Link to="/signup">Signup</Link>
+                    <Link to="/login">Login</Link>
+                </nav>
+                {this.props.children}
+                <footer>
+                    <p><a href="https://github.com/zebapy/create-react-app-parse-redux">View on GitHub</a></p>
+                    <h1>{this.state.name}</h1>
+                    <div>
+                        <button
+                            onClick={this.onSaveGameHandler.bind(this)}
+                        >save game
+                        </button>
+                    </div>
+                </footer>
             </div>
-        </footer>
-      </div>
-    );
-  }
+        );
+    }
 
-    onSaveGameHandler(){
-        this.setState({name:"game"});
+    onSaveGameHandler() {
+        this.setState({name: "game"});
 
         const {dispatch} = this.props;
         try {

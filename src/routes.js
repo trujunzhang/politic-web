@@ -1,9 +1,10 @@
-import App from './components/App';
 import Home from './components/Home';
 import SignupContainer from './containers/SignupContainer';
 import LoginContainer from './containers/LoginContainer';
 import DashboardContainer from './containers/DashboardContainer';
 import NotFound from './components/NotFound';
+
+import Telescope from './lib/components';
 
 export function requireAuth(store) {
     return (nextState, replace) => {
@@ -27,7 +28,7 @@ const createRoutes = (store) => {
     const routes = [
         {
             path: '/',
-            component: App,
+            component: Telescope.components.App,
             indexRoute: {
                 component: Home
             },
