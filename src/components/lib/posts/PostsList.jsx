@@ -60,7 +60,7 @@ class PostsList extends Component {
             return (
                 <section className="results_37tfm">
                     {showHeader ? headerView : null}
-                    <Telescope.components.PostsLoading message={loadMoreMessage}/>
+                    <Telescope.components.PostsLoading id={"load.more.hint.posts"}/>
                 </section>
             )
         } else if (!!results && !!results.length) {

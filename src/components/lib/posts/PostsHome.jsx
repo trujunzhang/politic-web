@@ -42,16 +42,16 @@ class PostsHome extends Component {
     }
 
     renderPostList(key) {
-        const query = this.context.messages.lastAction.query,
-            limit = Telescope.settings.get("postsPerPage", 10);
+        // const query = this.context.messages.lastAction.query,
+        //     limit = Telescope.settings.get("postsPerPage", 10);
 
-        const terms = {...query, listId: "posts.list.main", view: 'new', limit: limit};
+        // const terms = {...query, listId: "posts.list.main", view: 'new', limit: limit};
         // const {selector, options} = Posts.parameters.get(terms);
 
-        return(
-            <PostsList>
+        return (
+            <Telescope.components.PostsList>
 
-            </PostsList>
+            </Telescope.components.PostsList>
         )
 
         // return Users.renderWithSideBar(

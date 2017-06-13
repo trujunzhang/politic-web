@@ -32,7 +32,7 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
     return query.find({
         success: (list) => {
-            debugger
+            // debugger
           // Flow can't guarantee {type, list} is a valid action
           dispatch(({type, list}: any));
       },
