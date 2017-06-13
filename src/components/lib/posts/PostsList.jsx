@@ -41,9 +41,6 @@ class PostsList extends Component {
 
         const {posts} = this.state;
 
-
-        const loadMoreMessage = "Load More";//context.intl.formatMessage({id: "load.more.hint.posts"});
-
         const showReady = true;//Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination);
 
         const headerView =
