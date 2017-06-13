@@ -186,3 +186,6 @@ Telescope.strings.en = {
     "load.more.hint.posts": "All good things take time",
     "load.more.hint.messages": "Load more activities",
 };
+
+module.exports = Telescope;
+export default Telescope;

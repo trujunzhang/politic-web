@@ -1,4 +1,5 @@
 import Telescope from '../index';
+import {FormattedMessage, intlShape} from 'react-intl';
 import React, {Component} from 'react';
 import Cookie from 'react-cookie';
 import Users from '../../../lib/users';
@@ -58,7 +59,7 @@ class Newsletter extends Component {
             <div className="news_letter_button_panel">
                 <Telescope.components.NewsletterButton
                     successCallback={() => this.successCallbackSubscription()}
-                    subscribeText={this.context.intl.formatMessage({id: "newsletter.subscribe"})}
+                    subscribeText={this.props.intl.formatMessage({id: "newsletter.subscribe"})}
                     user={this.context.currentUser}
                 />
             </div>
@@ -73,7 +74,7 @@ class Newsletter extends Component {
                         className="field_34Q-8 text_3Wjo0 subtle_1BWOT base_3CbW2"
                         name="email"
                         value=""
-                        placeholder={this.context.intl.formatMessage({id: "newsletter.email"})}
+                        placeholder={this.props.intl.formatMessage({id: "newsletter.email"})}
                         type="email"
                     />
                 </div>
@@ -98,7 +99,7 @@ class Newsletter extends Component {
 
         const {currentUser} = this.context;
         const id = (!!currentUser ? "newsletter.subscribe_prompt_logged" : "newsletter.subscribe_prompt_no_logged");
-        const title = this.context.intl.formatMessage({id: id});
+        const title = this.props.intl.formatMessage({id: id});
 
         //let title = "Get the best articles in your inbox, weekly.";
         //if(!!currentUser){
@@ -141,5 +142,23 @@ function showBanner(user) {
     );
 }
 
-module.exports = Newsletter;
-export default Newsletter;
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import {connect} from 'react-redux'
+
+function select(store) {
+    return {
+        intl: store.intl
+    };
+}
+
+
+/**
+ * Connect the properties
+ */
+module.exports = connect(select)(Newsletter);
+export default connect(select)(Newsletter);

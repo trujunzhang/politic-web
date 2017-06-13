@@ -8,6 +8,8 @@ import createRoutes from './routes';
 
 import {IntlProvider, intlReducer} from 'react-intl-redux'
 
+import Telescope from './lib/en_US';
+
 var Parse = require('parse');
 
 Parse.initialize('CwsmGkrIp6SHBB7ERFVQatRwwNyOL7ep0L5DT7rb', 'QpOB4AmY1aPtAiX7tXlTSO4RUubMkysANzaD7lHf');
@@ -24,7 +26,7 @@ const routes = createRoutes(store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <IntlProvider>
+        <IntlProvider locale="en" messages={Telescope.strings.en}>
             <Router routes={routes} history={history}/>
         </IntlProvider>
     </Provider>,
