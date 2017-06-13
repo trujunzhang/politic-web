@@ -29,7 +29,7 @@ const createRoutes = (store) => {
             path: '/',
             component: Telescope.components.Layout,
             indexRoute: {
-                component: Home
+                component: Telescope.components.PostsHome
             },
             childRoutes: [
                 {

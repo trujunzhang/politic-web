@@ -11,5 +11,11 @@ Telescope.registerComponent("HeaderContentSearchBar",           require('./commo
 // Telescope.registerComponent("HeaderNavigation",                 require('./common/HeaderNavigation.jsx'));
 
 
+
+// posts
+
+Telescope.registerComponent("PostsHome",            require('./posts/PostsHome.jsx'));
+Telescope.registerComponent("PostsList",            require('./posts/PostsList.jsx'));
+
 module.exports = Telescope;
 export default Telescope;

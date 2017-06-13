@@ -16,8 +16,8 @@ export function signup(username, password) {
 }
 
 export function login(username, password) {
-  return {
-    types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
-    promise: api.login(username, password)
-  }
+    return {
+        types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
+        promise: api.login(username, password)
+    }
 }
