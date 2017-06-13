@@ -62,10 +62,6 @@ class PostsListTitle extends Component {
     }
 }
 
-PostsListTitle.contextTypes = {
-    messages: React.PropTypes.object
-};
-
 PostsListTitle.displayName = "PostsListTitle";
 
 module.exports = withRouter(PostsListTitle);

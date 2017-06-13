@@ -25,12 +25,12 @@ class PostsList extends Component {
     render() {
         const {
             results,
-            hasMore,
-            ready,
+            hasMore = false,
+            ready = true,
             count,
-            totalCount,
-            limit,
-            firstPagination = false,
+            totalCount = 100,
+            limit = 10,
+            firstPagination = true,
             loadMore,
             showHeader = false,
             title,
@@ -41,7 +41,7 @@ class PostsList extends Component {
 
         const {posts} = this.state;
 
-        const showReady = true;//Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination);
+        const showReady = Posts.showReady(posts, hasMore, ready, totalCount, limit, firstPagination);
 
         const headerView =
             (<div>

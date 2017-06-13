@@ -49,7 +49,7 @@ class PostsHome extends Component {
         // const {selector, options} = Posts.parameters.get(terms);
 
         return (
-            <Telescope.components.PostsList>
+            <Telescope.components.PostsList showHeader="true" title="wanghao">
 
             </Telescope.components.PostsList>
         )
