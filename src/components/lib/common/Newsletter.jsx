@@ -74,7 +74,7 @@ class Newsletter extends Component {
                         className="field_34Q-8 text_3Wjo0 subtle_1BWOT base_3CbW2"
                         name="email"
                         value=""
-                        placeholder={this.props.intl.formatMessage({id: "newsletter.email"})}
+                        placeholder='Your email'
                         type="email"
                     />
                 </div>
@@ -99,7 +99,7 @@ class Newsletter extends Component {
 
         const {currentUser} = this.context;
         const id = (!!currentUser ? "newsletter.subscribe_prompt_logged" : "newsletter.subscribe_prompt_no_logged");
-        const title = this.props.intl.formatMessage({id: id});
+        // const title = this.props.intl.formatMessage({id: id});
 
         //let title = "Get the best articles in your inbox, weekly.";
         //if(!!currentUser){
@@ -120,7 +120,9 @@ class Newsletter extends Component {
                             <span className="welcomeEmoji_3oUs1 welcome_emoji_icon"/>
                             <span
                                 className="welcome_tPFOL boldText_3B8fa text_3Wjo0 default_tBeAo base_3CbW2">Welcome to Politicl.</span>
-                            <span className="tagline_1UlAa text_3Wjo0 subtle_1BWOT base_3CbW2">{title}</span>
+                            <span className="tagline_1UlAa text_3Wjo0 subtle_1BWOT base_3CbW2">
+                                <FormattedMessage id={id}/>
+                                </span>
                             {currentUser ? this.renderButton() : this.renderForm()}
                         </div>
                     </div>

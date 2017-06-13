@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import {Provider} from 'react-redux'
 import {Router, browserHistory} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
 import configureStore from './store/configureStore';
 import createRoutes from './routes';
-
-import {IntlProvider, intlReducer} from 'react-intl-redux'
-
-import Telescope from './lib/en_US';
+import {IntlProvider, addLocaleData} from 'react-intl' ;
 
 var Parse = require('parse');
 
@@ -23,6 +20,8 @@ const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 const routes = createRoutes(store);
+
+import Telescope from './lib/en_US';
 
 ReactDOM.render(
     <Provider store={store}>
