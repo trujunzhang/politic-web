@@ -6,54 +6,54 @@ import DashboardContainer from './containers/DashboardContainer';
 import NotFound from './components/NotFound';
 
 export function requireAuth(store) {
-  return (nextState, replace) => {
+    return (nextState, replace) => {
 
-    const state = store.getState();
+        const state = store.getState();
 
-    if(!state.auth.isLoggedIn) {
-      replace({
-        pathname: '/login',
-        query: {
-          next: nextState.location.pathname
+        if (!state.auth.isLoggedIn) {
+            replace({
+                pathname: '/login',
+                query: {
+                    next: nextState.location.pathname
+                }
+            });
         }
-      });
-    }
 
-  };
+    };
 }
 
 const createRoutes = (store) => {
 
-  const routes = [
-    {
-      path: '/',
-      component: App,
-      indexRoute: {
-        component: Home
-      },
-      childRoutes: [
+    const routes = [
         {
-          path: 'dashboard',
-          component: DashboardContainer,
-          onEnter: requireAuth(store)
-        },
-        {
-          path: 'signup',
-          component: SignupContainer
-        },
-        {
-          path: 'login',
-          component: LoginContainer
-        },
-        {
-          path: '*',
-          component: NotFound
+            path: '/',
+            component: App,
+            indexRoute: {
+                component: Home
+            },
+            childRoutes: [
+                {
+                    path: 'dashboard',
+                    component: DashboardContainer,
+                    onEnter: requireAuth(store)
+                },
+                {
+                    path: 'signup',
+                    component: SignupContainer
+                },
+                {
+                    path: 'login',
+                    component: LoginContainer
+                },
+                {
+                    path: '*',
+                    component: NotFound
+                }
+            ]
         }
-      ]
-    }
-  ];
+    ];
 
-  return routes;
+    return routes;
 }
 
 export default createRoutes;
