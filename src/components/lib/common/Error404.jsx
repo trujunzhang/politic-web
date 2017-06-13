@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import {withRouter} from 'react-router'
 
 class Error404 extends Component {

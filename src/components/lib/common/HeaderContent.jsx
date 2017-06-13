@@ -27,16 +27,14 @@ class HeaderContent extends Component {
     renderLeft() {
         return (
             <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
-                <a onClick={
-                    (e) => {
-                        // this.context.messages.delayHomePage(this.props.router)
-                    }
-                }
-                   className="siteNav-logo">
+                <a className="siteNav-logo"
+                   onClick={
+                       (e) => {
+                           // this.context.messages.delayHomePage(this.props.router)
+                       }
+                   }>
                 <span className="svgIcon svgIcon--logoNew svgIcon--45px is-flushLeft">
-                    <img id="politicl-logo" width="138" height="32"
-                         src='/packages/public/images/politicl-logo.png'>
-                    </img>
+                    <img id="politicl-logo" width="138" height="32" alt="logo" src='images/politicl-logo.png'/>
               </span>
                 </a>
             </div>
@@ -45,10 +43,9 @@ class HeaderContent extends Component {
 
     renderBookmarkIcon() {
         return (
-            <a
-                onClick={this.onBookmarkClick.bind(this)}
-                className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
-                title="Bookmark this story to read later">
+            <a onClick={this.onBookmarkClick.bind(this)}
+               className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
+               title="Bookmark this story to read later">
                   <span className="button-defaultState">
                       <span className="svgIcon svgIcon--bookmark svgIcon--25px">
                           <svg className="svgIcon-use" width="25" height="25" viewBox="0 0 25 25">

@@ -26,7 +26,7 @@
 const Parse = require('parse');
 
 import type { ThunkAction } from './types';
-import {Post, Topic, Comment} from './objects';
+import {Post} from './objects';
 
 function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
