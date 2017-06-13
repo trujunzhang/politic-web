@@ -16,6 +16,8 @@ Telescope.registerComponent("HeaderContentSearchBar",           require('./commo
 
 Telescope.registerComponent("PostsHome",            require('./posts/PostsHome.jsx'));
 Telescope.registerComponent("PostsList",            require('./posts/PostsList.jsx'));
+Telescope.registerComponent("PostsListTitle",       require('./posts/PostsListTitle.jsx'));
+Telescope.registerComponent("PostsLoading",         require('./posts/PostsLoading.jsx'));
 
 module.exports = Telescope;
 export default Telescope;
