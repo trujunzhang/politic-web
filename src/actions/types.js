@@ -28,10 +28,13 @@ type ParseObject = Object;
 
 export type Action =
     { type: 'LOADED_ABOUT', list: Array<ParseObject> }
-    | { type: 'USER_ROLE_TYPE', tab: 'admin' | 'client' | 'driver' }
-    | { type: 'LOADED_NOTIFICATIONS', list: Array<ParseObject> }
-    | { type: 'LOADED_MAPS', list: Array<ParseObject> }
-    | { type: 'LOADED_SHIPMENTS', list: Array<ParseObject> }
+    | { type: 'LOADED_CACHES', list: Array<ParseObject> }
+    | { type: 'LOADED_HISTORIES', list: Array<ParseObject> }
+    | { type: 'LOADED_POSTS', list: Array<ParseObject> }
+    | { type: 'LOADED_TOPICS', list: Array<ParseObject> }
+    | { type: 'LOADED_FOLDERS', list: Array<ParseObject> }
+    | { type: 'LOADED_COMMENTS', list: Array<ParseObject> }
+    | { type: 'LOADED_MESSAGES', list: Array<ParseObject> }
     | { type: 'SHIPPINGS_STATUS', tab: 'created' | 'ordered' | 'request' }
     | { type: 'LOADED_SHIPPING_TASKS', list: Array<ParseObject> }
     | { type: 'SHIPPING_TASKS_STATUS', tab: 'order' | 'request' | 'accept' | 'decline' | 'assigned' | 'start' | 'end' }

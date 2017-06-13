@@ -22,7 +22,6 @@
  * @flow
  */
 
-
 import type { Action } from '../actions/types';
 
 type Convert<T> = (object: Object) => T;

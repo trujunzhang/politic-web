@@ -1,5 +1,6 @@
 {
+  "passPerPreset": true,
   "presets": [
-    "es2015"
+    "react-native"
   ]
 }

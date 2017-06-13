@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 
-const {loadShippingTasks,clientRequestAShipment} = require('../actions');
+const {loadPosts,clientRequestAShipment} = require('../actions');
 
 
 class App extends Component {
@@ -10,24 +10,24 @@ class App extends Component {
         super(props);
         this.state = {
             name:"wanghao",
-            shippingTasks: props.shippingTasks
+            posts: props.posts
         }
     }
 
     componentWillReceiveProps(nextProps) {
         debugger
         this.setState({
-            shippingTasks: nextProps.shippingTasks
+            posts: nextProps.posts
         })
     }
 
     componentDidMount() {
-        this.props.dispatch(loadShippingTasks());
+        this.props.dispatch(loadPosts());
     }
 
     render() {
-        const {shippingTasks}= this.state;
-        if(shippingTasks){
+        const {posts}= this.state;
+        if(posts){
 debugger
         }
 
@@ -35,7 +35,7 @@ debugger
       <div className="App">
         <header>
           <h1><code>Create React App Parse Redux App</code></h1>
-          <p>A somewhat hefty boiler plate using create-react-app with a Parse backend</p>
+          <p>A somewhat hecomponents/fty boiler plate using create-react-app with a Parse backend</p>
         </header>
         <nav>
           <Link to="/">Home</Link>
@@ -81,7 +81,7 @@ import {connect} from 'react-redux'
 
 function select(store) {
     return {
-        shippingTasks: store.shippingTasks
+        posts: store.posts
     };
 }
 

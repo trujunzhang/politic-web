@@ -23,29 +23,31 @@
  */
 
 
-const Parse = require('parse');
+const createParseReducer = require('./createParseReducer');
 
-import type { ThunkAction } from './types';
-import {Post, Topic, Comment} from './objects';
 
-function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
-  return (dispatch) => {
-    return query.find({
-        success: (list) => {
-            debugger
-          // Flow can't guarantee {type, list} is a valid action
-          dispatch(({type, list}: any));
-      },
-        error: (error)=>{
-            debugger
-        }
-    });
-  };
+export type post = {
+    id: string;
+    url: string;
+    title: string;
+    slug: string;
+    body: string;
+    sourceFrom: string;
+    thumbnailUrl: string;
+};
+
+
+function fromParseObject(map: Object): post {
+    // console.log("after post: " + JSON.stringify(map));
+    return {
+        id: map.id,
+        url: map.get('url'),
+        title: map.get('title'),
+        slug: map.get('slug'),
+        body: map.get('body'),
+        sourceFrom: map.get('sourceFrom'),
+        thumbnailUrl: map.get('thumbnailUrl')
+    };
 }
 
-module.exports = {
-    loadPosts: (): ThunkAction => {
-        var query = new Parse.Query(Post);
-        return loadParseQuery('LOADED_POSTS', query);
-    },
-};
+module.exports = createParseReducer('LOADED_POSTS', fromParseObject);

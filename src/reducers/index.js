@@ -7,8 +7,8 @@ import error from './error';
 const rootReducer = combineReducers({
   auth,
     error,
-    shippingTasks: require('./shippingTasks'),
-    shipments: require('./shipments'),
+    posts: require('./posts'),
+    topics: require('./topics'),
     routing: routerReducer
 });
 

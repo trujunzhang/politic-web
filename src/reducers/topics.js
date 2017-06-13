@@ -22,35 +22,27 @@
  * @flow
  */
 
-
 const createParseReducer = require('./createParseReducer');
 
-
-export type ShippingTaskStatus =
-    'order'
-    | 'request'
-    | 'accept'
-    | 'decline'
-    | 'assigned'
-    | 'start'
-    | 'end'
-    ;
-
-export type ShippingTask = {
+export type Topic = {
     id: string;
-    status: ShippingTaskStatus;
-    shipType: string;
+    name: string;
+    slug: string;
+    status: string;
+    isIgnore: boolean;
+    active: boolean;
 };
 
-
-function fromParseObject(map: Object): ShippingTask {
-    // console.log("after client invite: " + JSON.stringify(map));
-    // console.log("after client invite's shipment: " + JSON.stringify(map.get('shipment')));
+function fromParseObject(map: Object): Topic {
+    // console.log("after Topic: " + JSON.stringify(map));
     return {
         id: map.id,
+        name: map.get('name'),
+        slug: map.get('slug'),
         status: map.get('status'),
-        shipType: map.get('shipType')
+        isIgnore: map.get('isIgnore'),
+        active: map.get('active')
     };
 }
 
-module.exports = createParseReducer('LOADED_SHIPPING_TASKS', fromParseObject);
+module.exports = createParseReducer('LOADED_TOPICS', fromParseObject);

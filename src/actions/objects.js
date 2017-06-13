@@ -23,29 +23,14 @@
  */
 
 
-const createParseReducer = require('./createParseReducer');
+const Parse = require('parse');
 
-export type ShipmentStatus =
-    'created'
-    | 'request'
-    | 'ordered'
-    ;
-
-export type Shipment = {
-    id: string;
-    name: string;
-    status: string;
-    adminUserId: string;
+module.exports = {
+    Cache: Parse.Object.extend('Cache'),
+    History: Parse.Object.extend('History'),
+    Topic: Parse.Object.extend('Topic'),
+    Post: Parse.Object.extend('Post'),
+    Folder: Parse.Object.extend('Folder'),
+    Comment: Parse.Object.extend('Comment'),
+    Message: Parse.Object.extend('Message')
 };
-
-function fromParseObject(map: Object): Shipment {
-    // console.log("after shipment: " + JSON.stringify(map));
-    return {
-        id: map.id,
-        name: map.get('name'),
-        status: map.get('status'),
-        adminUserId: (map.get('adminUser')) ? map.get('adminUser').id : "",
-    };
-}
-
-module.exports = createParseReducer('LOADED_SHIPMENTS', fromParseObject);
