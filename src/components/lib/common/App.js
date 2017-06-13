@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import './App.css';
 
-const {loadPosts, clientRequestAShipment} = require('../actions');
+const {loadPosts, clientRequestAShipment} = require('../../../actions/index');
 
 
 class App extends Component {
@@ -15,7 +14,6 @@ class App extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger
         this.setState({
             posts: nextProps.posts
         })
@@ -28,7 +26,6 @@ class App extends Component {
     render() {
         const {posts} = this.state;
         if (posts) {
-            debugger
         }
 
         return (
