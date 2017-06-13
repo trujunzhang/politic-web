@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import Telescope from '../index';
+import React, {Component} from 'react';
 import {withRouter} from 'react-router'
 
 class HeaderContent extends Component {
@@ -72,12 +73,12 @@ class HeaderContent extends Component {
     }
 
     onMessageButtonClick() {
-        let offset = $(this.refs.messagesButton).offset();
-        let top = offset.top + 14;
-        let left = offset.left + 82;
-        let width = 60;
-        let height = 20;
-        this.context.messages.showPopoverMenu("messagesList", {}, top, left, width, height);
+        // let offset = $(this.refs.messagesButton).offset();
+        // let top = offset.top + 14;
+        // let left = offset.left + 82;
+        // let width = 60;
+        // let height = 20;
+        // this.context.messages.showPopoverMenu("messagesList", {}, top, left, width, height);
     }
 
     renderNotification() {

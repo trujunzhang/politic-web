@@ -1,4 +1,6 @@
-import React, {PropTypes, Component} from 'react';
+import Telescope from '../index';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router'
 
 class Layout extends Component {
     constructor(props, context) {
@@ -27,6 +29,8 @@ class Layout extends Component {
             <div id="web-app-panel">
 
                 <Telescope.components.HeaderContent />
+
+                {/*{this.renderContent()}*/}
 
             </div>
         )
