@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import promise from './promise';
 
+
 const configureStore = () => {
 
   const middleware = [
@@ -15,7 +16,8 @@ const configureStore = () => {
     compose(
       applyMiddleware(...middleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
-    ));
+    )
+  );
 
   return store;
 }
