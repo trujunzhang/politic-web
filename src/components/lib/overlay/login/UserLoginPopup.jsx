@@ -1,4 +1,4 @@
-import Telescope from '../index';
+import Telescope from '../../index';
 import React, {Component} from 'react';
 
 class UserLoginPopup extends Component {

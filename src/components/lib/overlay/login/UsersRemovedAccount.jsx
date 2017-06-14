@@ -1,6 +1,6 @@
 import {intlShape} from 'react-intl';
 import React, {Component} from 'react';
-import Users from '../../../lib/users';
+import Users from '../../../../lib/users';
 import {withRouter} from 'react-router';
 
 class UsersRemovedAccount extends Component {

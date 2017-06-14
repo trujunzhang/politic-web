@@ -1,4 +1,4 @@
-import Telescope from '../index';
+import Telescope from '../../index';
 import {FormattedMessage, intlShape} from 'react-intl';
 import React, {Component} from 'react';
 import Users from 'meteor/nova:users';

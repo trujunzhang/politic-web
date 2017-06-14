@@ -34,5 +34,29 @@ Users.renderWithSideBar = function (children) {
     );
 };
 
+Users.getPopoverMenuArray = function (user, isMobileDevice) {
+    const menuArrays = [];
+    if (!!isMobileDevice) {
+        menuArrays.push([
+            {type: "acticle", link: {pathname: "/", query: {action: "new"}}, title: "Submit an article"},
+            {type: "separator"},
+        ]);
+    }
+    menuArrays.push([
+        {type: "profile", link: Users.getLinkObject("profile", user), title: "MY PROFILE"},
+        {type: "collections", link: Users.getLinkObject("collections", user), title: "MY COLLECTIONS"},
+        {type: "separator"}
+    ]);
+    menuArrays.push([
+        {type: "settings", link: Users.getLinkObject("editing"), title: "SETTINGS"},
+        {type: Users.isAdmin(user) ? "management" : "", link: {pathname: "/management"}, title: "MANAGEMENT"},
+        {type: "separator"}
+    ]);
+    menuArrays.push([
+        {type: "logout", title: "LOGOUT"}
+    ]);
+    return _.flatten(menuArrays);
+};
+
 module.exports = Users;
 export default Users;
