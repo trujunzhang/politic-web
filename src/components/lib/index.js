@@ -71,10 +71,6 @@ Telescope.registerComponent("UsersPopoverMenu",              require('./overlay/
 Telescope.registerComponent("CollectionsResult",              require('./overlay/collections/CollectionsResult.jsx'));
 Telescope.registerComponent("UserCollectionsPopover",         require('./overlay/collections/UserCollectionsPopover.jsx'));
 
-
-Telescope.registerComponent("UserCollectionsPopover",         require('./overlay/login/UserCollectionsPopover.jsx'));
-
-
 Telescope.registerComponent("UserEmailSignIn",                require('./overlay/login/UserEmailSignIn.jsx'));
 Telescope.registerComponent("UserEmailSignUp",                require('./overlay/login/UserEmailSignUp.jsx'));
 Telescope.registerComponent("UserLoginLayout",                require('./overlay/login/UserLoginLayout.jsx'));

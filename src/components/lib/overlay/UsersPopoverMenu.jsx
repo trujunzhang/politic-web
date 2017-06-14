@@ -39,10 +39,10 @@ class UsersPopoverMenu extends Component {
         let left = (comp.left + comp.width / 2) - 75;
 
         let popoverClass = "v-bottom-center";
-        if (left + 150 >= $(window).width()) {
-            popoverClass = "v-bottom-left";
-            left = left - 50;
-        }
+        // if (left + 150 >= $(window).width()) {
+        //     popoverClass = "v-bottom-left";
+        //     left = left - 50;
+        // }
 
         const popover = Users.getCollectionsPopover(left, top, 148, -1, 0, popoverClass);
 
