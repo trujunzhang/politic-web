@@ -17,7 +17,7 @@
       pointer-events: none;
     }
     &.v-panel .modal--content:before, &.v-fullscreen:before {
-      background: url(/packages/public/images/loader-3638d58b829c03562aecc85d014e8040.png) no-repeat;
+      background: url(/images/loader-3638d58b829c03562aecc85d014e8040.png) no-repeat;
       -webkit-animation-name: rotate;
       -moz-animation-name: rotate;
       animation-name: rotate;
@@ -106,13 +106,13 @@
 
 .login-fullscreen {
   text-align: center;
-  background: url('/packages/public/images/politicl-logo.png') top center/ 265px 65px no-repeat;
+  background: url('/images/politicl-logo.png') top center/ 265px 65px no-repeat;
   padding: 90px 10px 50px;
 }
 
 .mobile {
   .login-fullscreen {
-    background: url('/packages/public/images/politicl-logo.png') top center/ 170px 36px no-repeat;
+    background: url('/images/politicl-logo.png') top center/ 170px 36px no-repeat;
     padding: 50px 10px 50px;
   }
 }
