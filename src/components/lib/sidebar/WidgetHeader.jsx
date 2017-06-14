@@ -7,7 +7,7 @@ class WidgetHeader extends Component {
             <div className="header_3GFef">
               <span className="sidebarTitle_25eeI secondaryBoldText_1PBCf secondaryText_PM80d default_tBeAo base_3CbW2">
                   <img className="margin_right4" width="24" height="24"
-                       src="packages/public/images/trending-topics-icon.png"/>
+                       src="images/trending-topics-icon.png"/>
                   TRENDING
               </span>
             </div>
