@@ -98,12 +98,12 @@ class PostsPopularThisWeek extends Component {
         return (
             <div className="posts-day">
                 <Telescope.components.PostsList
-                    showHeader=true
-                    checkReady=true
+                    showHeader={true}
+                    checkReady={true}
                     title="Popular this week"
-                    showClose=true
-                    dismissBanner=this.dismissBanner
-                    limit:10
+                    showClose={true}
+                    dismissBanner={this.dismissBanner}
+                    limit={10}
                 />
             </div>
         )

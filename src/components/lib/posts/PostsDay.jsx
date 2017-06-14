@@ -30,10 +30,10 @@ class PostsDay extends Component {
         return (
             <div className="posts-day">
                 <Telescope.components.PostsList
-                    showHeader=true
-                    checkReady=true
-                    title=title
-                    limit="10"
+                    showHeader={true}
+                    checkReady={true}
+                    title={title}
+                    limit={10}
                 />
             </div>
         )
