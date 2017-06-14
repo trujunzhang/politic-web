@@ -3,6 +3,11 @@
 ** react-intl
   [https://github.com/yahoo/react-intl]
 
+** React.js with sass
+
+*** create-react-app-sass
+  [https://github.com/rickharrison/create-react-app-sass]
+
 * Parse Server
 
 ** Cloud Code
