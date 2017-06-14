@@ -67,7 +67,12 @@ class AppOverlay extends Component {
     render() {
         // const {popoverMenu} = this.props;
         const popoverMenu = {
-            type: "LoginUI"
+            type: "LoginUI",
+            object: {
+                formState: "MAIN",
+                showCloseIcon: true,
+                title: ''
+            }
         };
 
         if (popoverMenu) {

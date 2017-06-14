@@ -7,8 +7,11 @@ class UserLoginPopup extends Component {
         super(props);
 
         const {comp} = this.props;
-        const object = comp.object;
-        const formState = (object["formState"] ? object["formState"] : "MAIN");
+        const {object} = comp;
+        var _formState = "MAIN";
+        if (object && Object.keys(object).indexOf("formState") !== -1) {
+            _formState = object["formState"];
+        }
 
         this.state = this.initialState = {
             titles: {
@@ -16,7 +19,7 @@ class UserLoginPopup extends Component {
                 SIGNIN: "Login to",
                 REGISTER: "Sign up to"
             },
-            formState: formState,
+            formState: _formState,
         };
     }
 
@@ -56,14 +59,10 @@ class UserLoginPopup extends Component {
                 title={formTitle + " " + extTitle}
                 showCloseIcon={showCloseIcon}
                 formState={formState}
-                child={this.renderLoginPanel()}
-            >
-            </Telescope.components.UserLoginLayout>
+                child={this.renderLoginPanel()}/>
         )
     }
 }
 
-
-UserLoginPopup.displayName = "UserLoginPopup";
 
 module.exports = UserLoginPopup;
