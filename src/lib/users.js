@@ -4,6 +4,25 @@ import React from 'react';
 const Users = {};
 
 
+/**
+ * @summary Check if a user has upvoted a document
+ * @param {Object} user
+ * @param {Object} document
+ */
+Users.hasUpvoted = function (user, document) {
+    return user && _.include(document.upvoters, user._id);
+};
+
+/**
+ * @summary Check if a user has downvoted a document
+ * @param {Object} user
+ * @param {Object} document
+ */
+Users.hasDownvoted = function (user, document) {
+    return user && _.include(document.downvoters, user._id);
+};
+
+
 Users.renderWithSideBar = function (children) {
     return (
         <div className="constraintWidth_ZyYbM container_3aBgK">

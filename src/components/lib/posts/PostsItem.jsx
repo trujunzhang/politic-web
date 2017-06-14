@@ -25,6 +25,9 @@ class PostsItem extends Component {
                      onClick={this.onReadMoreClick.bind(this)}>
                     {Posts.getLimitedContent(post.body, 150)}
                 </div>
+
+                <Telescope.components.PostsItemActions {...this.props}/>
+
             </div>
         )
     }
