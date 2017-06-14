@@ -1,8 +1,7 @@
 import Telescope from '../../../../index';
 import React, {Component} from 'react';
 import {FormattedRelative} from 'react-intl';
-import Comments from 'meteor/nova:comments';
-import Messages from 'meteor/nova:messages';
+import Messages from '../../../../lib/users';
 import {withRouter} from 'react-router'
 
 class MessagesCompactList extends Component {

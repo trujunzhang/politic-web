@@ -1,7 +1,6 @@
 import Telescope from '../../index';
 import {FormattedMessage, intlShape} from 'react-intl';
 import React, {Component} from 'react';
-import Users from 'meteor/nova:users';
 
 class UserEmailSignUp extends Component {
 

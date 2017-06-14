@@ -1,8 +1,8 @@
 import Telescope from '../../../../index';
 import React, {Component} from 'react';
-import Messages from 'meteor/nova:messages';
-import Posts from "meteor/nova:posts";
-import Users from "meteor/nova:users";
+import Messages from '../../../../lib/users';
+import Users from "../../../../lib/users";
+
 var Dimensions = require('react-dimensions');
 
 class MessagesListPopover extends Component {
@@ -28,35 +28,28 @@ class MessagesListPopover extends Component {
             listId: "messages.list.popover",
             limit: 10
         };
-        const {selector, options} = Messages.parameters.get(terms);
+        // const {selector, options} = Messages.parameters.get(terms);
 
         const popover = Users.getCollectionsPopover(((comp.left + comp.width / 2) - 456), top, 385, 300, 0);
 
         return (
             <div className={popover.className} style={popover.style}>
-                <Telescope.components.NewsListContainer
-                    collection={Messages}
-                    publication="messages.list"
-                    selector={selector}
-                    options={options}
-                    terms={terms}
-                    joins={Messages.getJoins()}
-                    component={Telescope.components.MessagesCompactList }
-                    cacheSubscription={false}
-                    listId={terms.listId}
-                    limit={terms.limit}
-                />
+                {/*<Telescope.components.NewsListContainer*/}
+                    {/*collection={Messages}*/}
+                    {/*publication="messages.list"*/}
+                    {/*selector={selector}*/}
+                    {/*options={options}*/}
+                    {/*terms={terms}*/}
+                    {/*joins={Messages.getJoins()}*/}
+                    {/*component={Telescope.components.MessagesCompactList }*/}
+                    {/*cacheSubscription={false}*/}
+                    {/*listId={terms.listId}*/}
+                    {/*limit={terms.limit}*/}
+                {/*/>*/}
             </div>
         )
     }
 }
-
-MessagesListPopover.contextTypes = {
-    currentUser: React.PropTypes.object,
-    actions: React.PropTypes.object,
-    events: React.PropTypes.object,
-    messages: React.PropTypes.object
-};
 
 module.exports = Dimensions()(MessagesListPopover);
 export default  Dimensions()(MessagesListPopover);

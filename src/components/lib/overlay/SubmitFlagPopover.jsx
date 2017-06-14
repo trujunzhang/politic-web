@@ -3,7 +3,7 @@ import Flags from '../../../lib/topics';
 import Users from '../../../lib/users';
 import {withRouter} from 'react-router';
 
-import TextareaAutosize from 'react-textarea-autosize';
+// import TextareaAutosize from 'react-textarea-autosize';
 
 class SubmitFlagPopover extends Component {
 
@@ -45,15 +45,15 @@ class SubmitFlagPopover extends Component {
                     </p>
                     {this.state.showError ?
                         <div className="errorMessage_2lxEG">Form can't be blank.</div> : null}
-                    <TextareaAutosize
-                        useCacheForDOMMeasurements
-                        minRows={3}
-                        maxRows={10}
-                        value={this.state.value}
-                        onChange={(e) => {
-                            this.setState({value: e.target.value});
-                        }}
-                        placeholder="Why should this be removed?"/>
+                    {/*<TextareaAutosize*/}
+                        {/*useCacheForDOMMeasurements*/}
+                        {/*minRows={3}*/}
+                        {/*maxRows={10}*/}
+                        {/*value={this.state.value}*/}
+                        {/*onChange={(e) => {*/}
+                            {/*this.setState({value: e.target.value});*/}
+                        {/*}}*/}
+                        {/*placeholder="Why should this be removed?"/>*/}
                     <button
                         disabled={isEventCalling}
                         className="button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d orangeSolidColor_B-2gO solidVariant_2wWrf"
