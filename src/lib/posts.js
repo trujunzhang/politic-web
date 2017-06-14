@@ -1,5 +1,4 @@
-import Telescope from '../components/lib/index';
-import React, {Component} from 'react';
+// import Telescope from '../components/lib/index';
 
 const Posts = {};
 
@@ -42,12 +41,12 @@ Posts.getLimitedContent = function (content, limit) {
 
 
 Posts.getDefaultImageFromType = (post) => {
-    if (post.userId === Telescope.settings.get('scraped_user_id', 'yv57iwi6Zq8jaM7uD')) {
-        const author = post.author;
-        if (!!author) {
-            return 'default/' + author + '.jpg';
-        }
-    }
+    // if (post.userId === Telescope.settings.get('scraped_user_id', 'yv57iwi6Zq8jaM7uD')) {
+    //     const author = post.author;
+    //     if (!!author) {
+    //         return 'default/' + author + '.jpg';
+    //     }
+    // }
 
     return null;
 };
@@ -69,9 +68,9 @@ Posts.getImageFromType = (post) => {
     else if (!thumbnailUrl && !!post.thumbnailUrl) {
         thumbnailUrl = post.thumbnailUrl;
     }
-    if (!!thumbnailUrl) {
-        return thumbnailUrl.indexOf('//') > -1 ? Telescope.utils.addHttp(thumbnailUrl) : Telescope.utils.getSiteUrl() + thumbnailUrl;
-    }
+    // if (!!thumbnailUrl) {
+    //     return thumbnailUrl.indexOf('//') > -1 ? Telescope.utils.addHttp(thumbnailUrl) : Telescope.utils.getSiteUrl() + thumbnailUrl;
+    // }
 
     return Posts.getDefaultImageFromType(post);
 };

@@ -6,7 +6,7 @@ class PostsHomeList extends Component {
     renderNormal() {
         const {results, hasMore, ready, title, showHeader, showClose, dismissBanner, loadMore} = this.props;
         const {currentUser} = null;
-
+        debugger
         return (
             <section className="results_37tfm">
                 <div>
@@ -36,10 +36,6 @@ class PostsHomeList extends Component {
         return this.renderNormal();
     }
 }
-
-PostsHomeList.contextTypes = {
-    messages: React.PropTypes.object,
-};
 
 PostsHomeList.displayName = "PostsHomeList";
 

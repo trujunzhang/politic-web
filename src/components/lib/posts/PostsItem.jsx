@@ -1,7 +1,7 @@
 import Telescope from '../index';
 import React, {Component} from 'react';
 import Posts from "../../../lib/posts";
-import Users from '../../../lib/users';
+// import Users from '../../../lib/users';
 import {withRouter} from 'react-router';
 
 class PostsItem extends Component {
@@ -23,11 +23,8 @@ class PostsItem extends Component {
 
                 <div className="post_description post_description_p"
                      onClick={this.onReadMoreClick.bind(this)}>
-                    {Posts.getLimitedContent(post.excerpt, 150)}
+                    {Posts.getLimitedContent(post.body, 150)}
                 </div>
-
-                {/*<Telescope.components.PostsItemActions {...this.props}/>*/}
-
             </div>
         )
     }
@@ -55,32 +52,14 @@ class PostsItem extends Component {
         return null;
     }
 
-    renderEditAction(postCanEdit) {
-        if (postCanEdit) {
-            const {post} = this.props;
-            return (
-                <Telescope.components.CanDo action="posts.edit.own" document={post}>
-                    <Telescope.components.PostsItemEditActions post={post}/>
-                </Telescope.components.CanDo>
-            )
-        }
-        return null;
-    }
-
     render() {
-        const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
+        const showActionButtons = false;
 
-        const {location, post} = this.props,
-            admin = Users.checkIsAdmin(location, user),
-            showActionButtons = (!!admin || post.status === Posts.config.STATUS_APPROVED),
-            postCanEdit = !!admin;
-
-        const itemDisabled = post.status !== Posts.config.STATUS_APPROVED;
+        const itemDisabled = false;//post.status !== Posts.config.STATUS_APPROVED;
 
         return (
             <li className='postItem_block'>
                 <div disabled={itemDisabled} className="postItem_2pV9v">
-                    {this.renderEditAction(postCanEdit)}
                     <a className="link_3fUGJ" onClick={this.onReadMoreClick.bind(this)}>
                         {this.renderThumbnail()}
                         {this.renderContent(showActionButtons)}
@@ -92,8 +71,8 @@ class PostsItem extends Component {
 
     onReadMoreClick(e) {
         e.preventDefault();
-        const {post} = this.props;
-        const url = post.url;
+        // const {post} = this.props;
+        // const url = post.url;
 
         // Users.openNewBackgroundTab(e.target, url);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormattedMessage, intlShape} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 const PostsLoading = ({id}) => {
     return (

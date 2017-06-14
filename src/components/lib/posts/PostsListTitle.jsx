@@ -8,7 +8,7 @@ class PostsListTitle extends Component {
     }
 
     onRightSortBarClick(title) {
-        const router = this.props.router;
+        // const router = this.props.router;
         // const newQuery = _.clone(router.location.query);
 
         // if (title === "Popular") {
