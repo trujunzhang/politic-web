@@ -11,32 +11,30 @@ class PostsItemActions extends Component {
      * @returns {XML}
      */
     renderSaveRemoveArticleButton() {
-        const {currentUser} = null;
-        const {post} = this.props,
-            isMobileAndPortrait = false,
-            isOwnPost = false,
-            type = (!!currentUser ? this.props.type : "save"),
+        const type = "save",
             event = (type === "save") ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this);
 
-        const leftIcon = (type === "remove") ?
-            (<span className="remove-button fa fa-remove"/>) :
-            (<span>
-                <svg className={isMobileAndPortrait ? "margin_left4" : ""} width="13" height="10" viewBox="0 0 13 10">
-                    <path
-                        d="M9,6 L6,6 L6,7 L9,7 L9,10 L10,10 L10,7 L13,7 L13,6 L10,6 L10,3 L9,3 L9,6 Z M0,0 L8,0 L8,1 L0,1 L0,0 Z M0,3 L8,3 L8,4 L0,4 L0,3 Z M0,6 L5,6 L5,7 L0,7 L0,6 Z"
-                        fill="#FFF">
-                    </path>
-                </svg>
-            </span>
-            );
+        debugger
+
+        // const leftIcon = (type === "remove") ?
+        //     (<span className="remove-button fa fa-remove"/>) :
+        //     (<span>
+        //         <svg className={isMobileAndPortrait ? "margin_left4" : ""} width="13" height="10" viewBox="0 0 13 10">
+        //             <path
+        //                 d="M9,6 L6,6 L6,7 L9,7 L9,10 L10,10 L10,7 L13,7 L13,6 L10,6 L10,3 L9,3 L9,6 Z M0,0 L8,0 L8,1 L0,1 L0,0 Z M0,3 L8,3 L8,4 L0,4 L0,3 Z M0,6 L5,6 L5,7 L0,7 L0,6 Z"
+        //                 fill="#FFF">
+        //             </path>
+        //         </svg>
+        //     </span>
+        //     );
 
         return (
             <span label={type} onClick={event}
                   className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W">
               <div className="buttonContainer_wTYxi">
                     <span className="post-item-event-button">
-                        {leftIcon}
-                        {isMobileAndPortrait ? "" : type}
+                        {/*{leftIcon}*/}
+                        {/*{isMobileAndPortrait ? "" : type}*/}
                     </span>
               </div>
           </span>
