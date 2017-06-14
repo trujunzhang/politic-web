@@ -8,3 +8,5 @@ npm-debug.log*
 public/main.css
 
 src/main.css
+
+build/
