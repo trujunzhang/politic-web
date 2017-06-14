@@ -33,9 +33,9 @@ export type State = {
 };
 
 const initialState = {
-    popType: null;
-    position: {};
-    object: {};
+    popType: null,
+    position: {},
+    object: {}
 };
 
 function user(state: State = initialState, action: Action): State {
