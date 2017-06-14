@@ -8,13 +8,13 @@ class PostsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: props.posts
+            results: props.posts
         }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            posts: nextProps.posts
+            results: nextProps.posts
         })
     }
 
@@ -24,7 +24,6 @@ class PostsList extends Component {
 
     render() {
         const {
-            results,
             hasMore = false,
             ready = true,
             count,
@@ -39,10 +38,9 @@ class PostsList extends Component {
             dismissBanner = null
         } = this.props;
 
-        const {posts} = this.state;
+        const {results} = this.state;
 
-        const showReady = Posts.showReady(posts, hasMore, ready, totalCount, limit, firstPagination);
-
+        const showReady = Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination);
         const headerView =
             (<div>
                 <div className="fullWidthBox_3Dggh box_c4OJj">
@@ -61,6 +59,7 @@ class PostsList extends Component {
                 </section>
             )
         } else if (!!results && !!results.length) {
+            debugger
             return (
                 <Telescope.components.PostsHomeList infinite={infinite} results={results} limit={limit}
                                                     hasMore={hasMore}
