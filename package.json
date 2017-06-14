@@ -3,15 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "nodemon": "^1.10.2",
-    "parse-dashboard": "^1.0.18",
-    "react-scripts": "^0.7.0",
     "babel-eslint": "7.0.0",
     "babel-jest": "~13.0.0",
     "babel-polyfill": "~6.9.1",
     "eslint": "3.8.1",
     "eslint-plugin-react": "6.4.1",
-    "jest-cli": "~13.0.0"
+    "jest-cli": "~13.0.0",
+    "node-sass-chokidar": "0.0.2",
+    "nodemon": "^1.10.2",
+    "parse-dashboard": "^1.0.18",
+    "react-scripts": "^0.7.0"
   },
   "dependencies": {
     "axios": "^0.15.2",
@@ -41,6 +42,8 @@
     "validate.js": "^0.11.1"
   },
   "scripts": {
+    "build-css": "node-sass-chokidar src/stylesheets/main.scss -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "api": "nodemon api/index.js --exec babel-node"

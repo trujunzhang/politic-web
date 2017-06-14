@@ -13,7 +13,7 @@ Parse.initialize('CwsmGkrIp6SHBB7ERFVQatRwwNyOL7ep0L5DT7rb', 'QpOB4AmY1aPtAiX7tX
 
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
-import './index.css';
+import './main.css';
 
 const store = configureStore();
 
