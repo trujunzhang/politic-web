@@ -55,14 +55,16 @@ export type Action =
     | { type: 'APPLY_TOPICS_FILTER', topics: { [key: string]: boolean } }
     | { type: 'CLEAR_FILTER' }
     | { type: 'SWITCH_DAY', day: 1 | 2 }
-    // | { type: 'SWITCH_TAB', tab: 'schedule' | 'my-schedule' | 'map' | 'notifications' | 'info' }
     | { type: 'SWITCH_TAB', tab: 'houseback' | 'box' | 'list' | 'manuser' | 'conversation' }
     | { type: 'TURNED_ON_PUSH_NOTIFICATIONS' }
     | { type: 'REGISTERED_PUSH_NOTIFICATIONS' }
     | { type: 'SKIPPED_PUSH_NOTIFICATIONS' }
     | { type: 'RECEIVED_PUSH_NOTIFICATION', notification: Object }
     | { type: 'SEEN_ALL_NOTIFICATIONS' }
-    | { type: 'RESET_NUXES' }
+    | { type: 'RESET_NUXES' },
+    | { type: 'PUSH_OVERLAY_MODEL' },
+    | { type: 'POP_OVERLAY_MODEL' },
+    | { type: 'GET_OVERLAY_MODEL' },
     ;
 
 

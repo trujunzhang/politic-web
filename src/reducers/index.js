@@ -11,6 +11,8 @@ const rootReducer = combineReducers({
     posts: require('./posts'),
     topics: require('./topics'),
     routing: routerReducer,
+    popModel: require('./popModel'),
+    user: require('./user'),
     auth: require('./auth/authReducer')
 });
 
