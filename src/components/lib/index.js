@@ -62,5 +62,10 @@ Telescope.registerComponent("WidgetAppFollower",   require('./sidebar/widgetapps
 Telescope.registerComponent("WidgetAppFooter",     require('./sidebar/widgetapps/WidgetAppFooter.jsx'));
 Telescope.registerComponent("WidgetMobileApps",    require('./sidebar/widgetapps/WidgetMobileApps.jsx'));
 
+// overlay
+Telescope.registerComponent("AppOverlay",           require('./overlay/AppOverlay.jsx'));
+
+Telescope.registerComponent("AppOverlay",           require('./overlay/AppOverlay.jsx'));
+
 module.exports = Telescope;
 export default Telescope;
