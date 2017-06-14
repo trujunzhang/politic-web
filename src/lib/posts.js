@@ -1,6 +1,16 @@
 // import Telescope from '../components/lib/index';
+import moment from 'moment';
 
 const Posts = {};
+
+
+/**
+ * @summary generate 15 days as the day filter for posts list admin
+ */
+Posts.getDateQueryString = function (date) {
+    return moment(date).format("YYYY-MM-DD");
+};
+
 
 Posts.showReady = function (results, hasMore, ready, totalCount, limit, firstPagination) {
     if (!firstPagination) { // ignoring it, if not the first pagination.

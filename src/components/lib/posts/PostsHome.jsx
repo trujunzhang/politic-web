@@ -48,31 +48,7 @@ class PostsHome extends Component {
         // const terms = {...query, listId: "posts.list.main", view: 'new', limit: limit};
         // const {selector, options} = Posts.parameters.get(terms);
 
-        return (
-            <Telescope.components.PostsList showHeader="true" title="wanghao">
-
-            </Telescope.components.PostsList>
-        )
-
-        // return Users.renderWithSideBar(
-        //     <Telescope.components.NewsListContainer
-        //         collection={Posts}
-        //         publication="posts.list"
-        //         selector={selector}
-        //         options={options}
-        //         terms={terms}
-        //         joins={Posts.getJoins()}
-        //         component={Telescope.components.PostsList}
-        //         componentProps={
-        //             {
-        //                 ...Posts.generatePostListTitle(query),
-        //                 limit: terms.limit,
-        //                 infinite: true
-        //             }
-        //         }
-        //         listId={terms.listId}
-        //         limit={terms.limit}
-        //     />)
+        return Users.renderWithSideBar(<Telescope.components.PostsList showHeader="true" title="wanghao"/>)
     }
 
     render() {
