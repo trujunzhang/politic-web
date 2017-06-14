@@ -31,10 +31,8 @@ class PostsItemActions extends Component {
             );
 
         return (
-            <span
-                className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W"
-                label={type}
-                onClick={event}>
+            <span label={type} onClick={event}
+                  className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W">
               <div className="buttonContainer_wTYxi">
                     <span className="post-item-event-button">
                         {leftIcon}
@@ -105,9 +103,9 @@ class PostsItemActions extends Component {
         return (
             <div className={panelClass} ref="saveButton">
                 <div className="actionButtons_2mJsw">
-                    {/*<Telescope.components.Upvote post={post}/>*/}
-                    {/*<Telescope.components.Downvote post={post}/>*/}
-                    {/*<Telescope.components.PostsCommenters post={post} event={this.popupDetail.bind(this)}/>*/}
+                    <Telescope.components.Upvote post={post}/>
+                    <Telescope.components.Downvote post={post}/>
+                    <Telescope.components.PostsCommenters post={post} event={this.popupDetail.bind(this)}/>
                     <div className="additionalActionButtons_BoErh">
                         {this.renderSaveRemoveArticleButton()}
                     </div>
