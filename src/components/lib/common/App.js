@@ -1,33 +1,23 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-const {loadPosts, clientRequestAShipment} = require('../../../actions/index');
+// const {loadPosts, clientRequestAShipment} = require('../../../actions/index');
 
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: "wanghao",
-            posts: props.posts
-        }
+        this.state = {}
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            posts: nextProps.posts
-        })
     }
 
     componentDidMount() {
-        this.props.dispatch(loadPosts());
+
     }
 
     render() {
-        const {posts} = this.state;
-        if (posts) {
-        }
-
         return (
             <div className="App">
                 <header>
@@ -55,37 +45,24 @@ class App extends Component {
     }
 
     onSaveGameHandler() {
-        this.setState({name: "game"});
-
-        const {dispatch} = this.props;
-        try {
-            dispatch(clientRequestAShipment());
-        } catch (e) {
-            const message = e.message || e;
-            if (message !== 'Timed out' && message !== 'Canceled by user') {
-                console.warn(e);
-            }
-        } finally {
-        }
+        // this.setState({name: "game"});
+        //
+        // const {dispatch} = this.props;
+        // try {
+        //     dispatch(clientRequestAShipment());
+        // } catch (e) {
+        //     const message = e.message || e;
+        //     if (message !== 'Timed out' && message !== 'Canceled by user') {
+        //         console.warn(e);
+        //     }
+        // } finally {
+        // }
     }
-}
-
-/**
- * ## Imports
- *
- * Redux
- */
-import {connect} from 'react-redux'
-
-function select(store) {
-    return {
-        posts: store.posts
-    };
 }
 
 
 /**
  * Connect the properties
  */
-module.exports = connect(select)(App);
-export default connect(select)(App);
+module.exports = App;
+export default App;
