@@ -21,18 +21,12 @@ class UsersPopoverMenu extends Component {
         const {messages} = this.context;
         switch (menu.type) {
             case "logout":
-                router.replace({pathname: '/'});
-                Meteor.logout(function () {
-                    messages.dismissPopoverMenu();
-                    // set cookie
-                    Cookie.save('showBanner', "yes");
-                });
+
                 break;
             case "line":
                 break;
             default:
-                messages.pushRouter(router, menu.link);
-                messages.dismissPopoverMenu();
+
                 break;
         }
     }

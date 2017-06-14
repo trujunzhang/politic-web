@@ -186,13 +186,6 @@ class UserCollectionsPopover extends Component {
     }
 }
 
-UserCollectionsPopover.contextTypes = {
-    actions: React.PropTypes.object,
-    events: React.PropTypes.object,
-    currentUser: React.PropTypes.object,
-    messages: React.PropTypes.object,
-    intl: intlShape
-};
 
 module.exports = withRouter(UserCollectionsPopover);
 export default withRouter(UserCollectionsPopover);
