@@ -11,10 +11,10 @@ class PostsItemActions extends Component {
      * @returns {XML}
      */
     renderSaveRemoveArticleButton() {
-        const {currentUser} = this.context,
-            {post} = this.props,
-            isMobileAndPortrait = Users.isMobileAndPortrait(),
-            isOwnPost = Posts.isCollectedPost(currentUser, post),
+        const {currentUser} = null;
+        const {post} = this.props,
+            isMobileAndPortrait = false,
+            isOwnPost = false,
             type = (!!currentUser ? this.props.type : "save"),
             event = (type === "save") ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this);
 
@@ -69,14 +69,14 @@ class PostsItemActions extends Component {
         const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
 
         const {location, post} = this.props,
-            admin = Users.checkIsAdmin(location, user),
-            showActionButtons = (!!admin || post.status === Posts.config.STATUS_APPROVED);
+            admin = false,
+            showActionButtons = true;
 
-        if (showActionButtons) {
-            return this.renderActionButtons();
-        }
+        // if (showActionButtons) {
+        return this.renderActionButtons();
+        // }
 
-        return this.renderPostStatus();
+        // return this.renderPostStatus();
     }
 
     renderPostStatus() {
@@ -89,7 +89,7 @@ class PostsItemActions extends Component {
                 <div className="associations_2dmvY">
                     <div>
                         <h2 className="heading_woLg1 title_2vHSk subtle_1BWOT base_3CbW2">
-                            {Posts.getPostItemStatusTitle(post.status)}
+                            {/*{Posts.getPostItemStatusTitle(post.status)}*/}
                         </h2>
                     </div>
                 </div>
@@ -105,12 +105,11 @@ class PostsItemActions extends Component {
         return (
             <div className={panelClass} ref="saveButton">
                 <div className="actionButtons_2mJsw">
-                    <Telescope.components.Upvote post={post}/>
-                    <Telescope.components.Downvote post={post}/>
-                    <Telescope.components.PostsCommenters post={post} event={this.popupDetail.bind(this)}/>
+                    {/*<Telescope.components.Upvote post={post}/>*/}
+                    {/*<Telescope.components.Downvote post={post}/>*/}
+                    {/*<Telescope.components.PostsCommenters post={post} event={this.popupDetail.bind(this)}/>*/}
                     <div className="additionalActionButtons_BoErh">
                         {this.renderSaveRemoveArticleButton()}
-                        {/*{this.renderMoreButton()}*/}
                     </div>
                 </div>
                 <Telescope.components.PostsItemTopics
