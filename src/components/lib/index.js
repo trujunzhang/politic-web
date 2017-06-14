@@ -1,5 +1,14 @@
 import Telescope from './config';
 
+// actions
+Telescope.registerComponent("ArticleDownvote",                require('./actions/ArticleDownvote.jsx'));
+Telescope.registerComponent("ArticleUpvote",                  require('./actions/ArticleUpvote.jsx'));
+Telescope.registerComponent("Downvote",                       require('./actions/Downvote.jsx'));
+Telescope.registerComponent("PostsCommenters",                require('./actions/PostsCommenters.jsx'));
+Telescope.registerComponent("RelatedPostDownvote",            require('./actions/RelatedPostDownvote.jsx'));
+Telescope.registerComponent("RelatedPostUpvote",              require('./actions/RelatedPostUpvote.jsx'));
+Telescope.registerComponent("Upvote",                         require('./actions/Upvote.jsx'));
+
 // extensions
 Telescope.registerComponent("AvatarBlurryImage",                require('./extensions/AvatarBlurryImage.jsx'));
 Telescope.registerComponent("BlurryImage",                      require('./extensions/BlurryImage.jsx'));
@@ -7,18 +16,12 @@ Telescope.registerComponent("MailTo",                           require('./exten
 
 // common
 Telescope.registerComponent("Layout",                           require('./common/Layout.jsx'));
-
 Telescope.registerComponent("Error404",                         require('./common/Error404.jsx'));
 Telescope.registerComponent("App",                              require('./common/App.js'));
-
 Telescope.registerComponent("HeaderContent",                    require('./common/HeaderContent.jsx'));
 Telescope.registerComponent("HeaderContentSearchBar",           require('./common/HeaderContentSearchBar.jsx'));
-// Telescope.registerComponent("HeaderNavigation",                 require('./common/HeaderNavigation.jsx'));
-
 Telescope.registerComponent("Newsletter",                       require('./common/Newsletter.jsx'));
 Telescope.registerComponent("NewsletterButton",                 require('./common/NewsletterButton.jsx'));
-
-
 
 // posts
 Telescope.registerComponent("PostsDaily",                 require('./posts/PostsDaily.jsx'));
