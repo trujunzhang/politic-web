@@ -1,5 +1,10 @@
 import Telescope from './config';
 
+// extensions
+Telescope.registerComponent("AvatarBlurryImage",                require('./extensions/AvatarBlurryImage.jsx'));
+Telescope.registerComponent("BlurryImage",                      require('./extensions/BlurryImage.jsx'));
+Telescope.registerComponent("MailTo",                           require('./extensions/MailTo.jsx'));
+
 // common
 Telescope.registerComponent("Layout",                           require('./common/Layout.jsx'));
 
