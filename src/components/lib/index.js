@@ -29,6 +29,8 @@ Telescope.registerComponent("PostsNoResults",       require('./posts/PostsNoResu
 
 // Sidebar
 Telescope.registerComponent("AppSideBar",           require('./sidebar/AppSideBar.jsx'));
+Telescope.registerComponent("WidgetHeader",         require('./sidebar/WidgetHeader.jsx'));
+
 Telescope.registerComponent("Week",                 require('./sidebar/widgetscalendar/Week.jsx'));
 Telescope.registerComponent("WidgetCalendar",       require('./sidebar/widgetscalendar/WidgetCalendar.jsx'));
 
@@ -36,6 +38,16 @@ Telescope.registerComponent("WidgetTopics",         require('./sidebar/widgettop
 
 Telescope.registerComponent("TwitterTimeline",      require('./sidebar/widgettwitter/TwitterTimeline.jsx'));
 Telescope.registerComponent("WidgetTwitter",        require('./sidebar/widgettwitter/WidgetTwitter.jsx'));
+
+Telescope.registerComponent("AppAbout",            require('./sidebar/widgetapps/AppAbout.jsx'));
+Telescope.registerComponent("AppCareers",          require('./sidebar/widgetapps/AppCareers.jsx'));
+Telescope.registerComponent("AppContact",          require('./sidebar/widgetapps/AppContact.jsx'));
+Telescope.registerComponent("AppFooter",           require('./sidebar/widgetapps/AppFooter.jsx'));
+Telescope.registerComponent("AppPrivacy",          require('./sidebar/widgetapps/AppPrivacy.jsx'));
+Telescope.registerComponent("AppTermsOfService",   require('./sidebar/widgetapps/AppTermsOfService.jsx'));
+Telescope.registerComponent("WidgetAppFollower",   require('./sidebar/widgetapps/WidgetAppFollower.jsx'));
+Telescope.registerComponent("WidgetAppFooter",     require('./sidebar/widgetapps/WidgetAppFooter.jsx'));
+Telescope.registerComponent("WidgetMobileApps",    require('./sidebar/widgetapps/WidgetMobileApps.jsx'));
 
 module.exports = Telescope;
 export default Telescope;

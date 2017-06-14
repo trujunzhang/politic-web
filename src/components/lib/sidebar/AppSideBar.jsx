@@ -31,7 +31,7 @@ class AppSideBar extends Component {
 
     renderTrendingTopics() {
         return (
-            <Telescope.components.AppWidgetTopics />
+            <Telescope.components.WidgetTopics />
         )
     }
 

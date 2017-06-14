@@ -14,10 +14,10 @@ class WidgetCalendar extends Component {
         super(props);
 
         let selected = this.props.selected.clone();
-        const before = props.router.location.query.before;
-        if (!!before) {
-            selected = moment(before);
-        }
+        // const before = props.router.location.query.before;
+        // if (!!before) {
+        //     selected = moment(before);
+        // }
         this.state = this.initialState = {
             month: _.clone(selected),
             previousMonthEnable: this.checkIsAfter(selected)
