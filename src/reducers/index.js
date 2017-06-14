@@ -7,7 +7,6 @@ import Telescope from '../lib/en_US';
 const messages = Telescope.strings['en'] || {};
 
 const rootReducer = combineReducers({
-    error,
     posts: require('./posts'),
     topics: require('./topics'),
     routing: routerReducer,
