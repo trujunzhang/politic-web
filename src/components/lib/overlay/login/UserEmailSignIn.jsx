@@ -28,6 +28,10 @@ class UserEmailSignIn extends Component {
     forgotPasswordCallback(email) {
     }
 
+    onForgotPasswordClick() {
+
+    }
+
     renderSignInForm() {
         const {waiting} = this.state;
         return (
