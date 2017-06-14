@@ -1,4 +1,4 @@
-// import Telescope from '../components/lib/index';
+import Telescope from './settings';
 import moment from 'moment';
 
 const Posts = {};
@@ -51,12 +51,12 @@ Posts.getLimitedContent = function (content, limit) {
 
 
 Posts.getDefaultImageFromType = (post) => {
-    // if (post.userId === Telescope.settings.get('scraped_user_id', 'yv57iwi6Zq8jaM7uD')) {
-    //     const author = post.author;
-    //     if (!!author) {
-    //         return 'default/' + author + '.jpg';
-    //     }
-    // }
+    if (post.userId === Telescope.settings.get('scraped_user_id', 'yv57iwi6Zq8jaM7uD')) {
+        const author = post.author;
+        if (!!author) {
+            return 'default/' + author + '.jpg';
+        }
+    }
 
     return null;
 };
@@ -93,6 +93,73 @@ Posts.getThumbnailSet = (post) => {
     const small = Posts.getImageFromType(post);
 
     return {small: small};
+};
+
+
+/**
+ * @summary Convert date to string using moment.js
+ * @param {Object} date
+ */
+Posts.getDailyDateTitle = function (date) {
+    let title = "";
+
+    if (!!date) {
+        let REFERENCE = moment(new Date()); // today
+        let TODAY = REFERENCE.clone().startOf('day');
+        let YESTERDAY = REFERENCE.clone().subtract(1, 'days').startOf('day');
+
+        const momentDate = moment(date);
+        let prefix = "";
+        if (momentDate.isSame(TODAY, 'd')) {
+            title = "Today, " + momentDate.format("MMMM Do");
+        } else if (momentDate.isSame(YESTERDAY, 'd')) {
+            title = "Yesterday, " + momentDate.format("MMMM Do");
+        } else {
+            title = momentDate.format("dddd, MMMM Do");
+        }
+    }
+
+    return title;
+};
+
+/**
+ * @summary statistic topics.
+ */
+Posts.generatePostListTitle = function (query) {
+    let title = null;
+
+    let preTitle = "Articles";
+
+    if (query.query) {
+        title = `${preTitle} in ${query.query}`;
+    }
+    else if (query.from) {
+        title = `${preTitle} in ${query.from}`;
+    }
+    else if (query.author) {
+        title = `${preTitle} in ${query.author}`;
+    } else if (query.userId) {
+        title = `${preTitle} by ${query.title}`;
+    }
+    else if (query.after) {
+        if (query.cat || query.topicId) {
+            title = `${query.title} on ${moment(query.after).format("MMMM Do")}`;
+        } else {
+            title = Posts.getDailyDateTitle(moment(query.after));
+        }
+    } else if (query.cat || query.topicId) {
+        title = `${preTitle} in ${query.title}`;
+    }
+
+    if (query.admin) {
+        if (!title) {
+            let status = query.status;
+            title = `${preTitle} in ${status}`;
+        }
+        title += " [APPROVING]";
+    }
+
+    return {showHeader: !!title, title: title};
 };
 
 

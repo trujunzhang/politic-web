@@ -42,13 +42,16 @@ class PostsHome extends Component {
     }
 
     renderPostList(key) {
+        const {location} = this.props;
         // const query = this.context.messages.lastAction.query,
         //     limit = Telescope.settings.get("postsPerPage", 10);
 
         // const terms = {...query, listId: "posts.list.main", view: 'new', limit: limit};
         // const {selector, options} = Posts.parameters.get(terms);
 
-        return Users.renderWithSideBar(<Telescope.components.PostsList showHeader="true" title="wanghao"/>)
+        return Users.renderWithSideBar(
+            <Telescope.components.PostsList{...Posts.generatePostListTitle(location.query)}/>
+        )
     }
 
     render() {

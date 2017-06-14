@@ -1,4 +1,4 @@
-import Telescope from '../components/lib/index';
+import Telescope from '../components/lib/config';
 
 Telescope.strings.en = {
     "forms.submit": "Submit",
