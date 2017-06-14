@@ -34,6 +34,8 @@ export type post = {
     body: string;
     sourceFrom: string;
     thumbnailUrl: string;
+    userId: string;
+    author: string;
 };
 
 
@@ -46,7 +48,9 @@ function fromParseObject(map: Object): post {
         slug: map.get('slug'),
         body: map.get('body'),
         sourceFrom: map.get('sourceFrom'),
-        thumbnailUrl: map.get('thumbnailUrl')
+        thumbnailUrl: map.get('thumbnailUrl'),
+        userId: map.get('userId'),
+        author: map.get('author')
     };
 }
 
