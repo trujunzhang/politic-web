@@ -9,7 +9,7 @@ Users.renderWithSideBar = function (children) {
         <div className="constraintWidth_ZyYbM container_3aBgK">
             <div className="content_1jnXo">
                 {children}
-                <Telescope.components.AppSideBar/>}
+                <Telescope.components.AppSideBar/>
             </div>
         </div>
     );
