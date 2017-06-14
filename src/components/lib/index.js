@@ -63,9 +63,17 @@ Telescope.registerComponent("WidgetAppFooter",     require('./sidebar/widgetapps
 Telescope.registerComponent("WidgetMobileApps",    require('./sidebar/widgetapps/WidgetMobileApps.jsx'));
 
 // overlay
-Telescope.registerComponent("AppOverlay",           require('./overlay/AppOverlay.jsx'));
+Telescope.registerComponent("AppOverlay",                    require('./overlay/AppOverlay.jsx'));
+Telescope.registerComponent("MoreTagsPopoverMenu",           require('./overlay/MoreTagsPopoverMenu.jsx'));
+Telescope.registerComponent("SubmitFlagPopover",             require('./overlay/SubmitFlagPopover.jsx'));
+Telescope.registerComponent("UsersPopoverMenu",              require('./overlay/UsersPopoverMenu.jsx'));
 
-Telescope.registerComponent("AppOverlay",           require('./overlay/AppOverlay.jsx'));
+Telescope.registerComponent("CollectionsResult",              require('./overlay/collections/CollectionsResult.jsx'));
+Telescope.registerComponent("UserCollectionsPopover",         require('./overlay/collections/UserCollectionsPopover.jsx'));
+
+
+
+
 
 module.exports = Telescope;
 export default Telescope;
