@@ -58,21 +58,13 @@ class PostsList extends Component {
                     <Telescope.components.PostsLoading id={"load.more.hint.posts"}/>
                 </section>
             )
-        } else if (!!results && !!results.length) {
-            debugger
+        } else {
             return (
                 <Telescope.components.PostsHomeList infinite={infinite} results={results} limit={limit}
                                                     hasMore={hasMore}
                                                     ready={ready} title={title} showClose={showClose}
                                                     showHeader={showHeader} dismissBanner={dismissBanner}
                                                     loadMore={loadMore}/>
-            )
-        } else {
-            return (
-                <section className="results_37tfm">
-                    {showHeader ? headerView : null}
-                    <Telescope.components.PostsNoResults relatedList={false}/>
-                </section>
             )
         }
 
