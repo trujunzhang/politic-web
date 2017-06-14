@@ -2,7 +2,6 @@ import Telescope from '../index';
 import React, {Component} from 'react';
 import moment from 'moment';
 import Cookie from 'react-cookie';
-import Posts from "../../lib/posts";
 
 class PostsPopularThisWeek extends Component {
 
@@ -17,17 +16,17 @@ class PostsPopularThisWeek extends Component {
     }
 
     fetchCachedPostIds(today, week) {
-        this.context.actions.call('posts.cached.ids', {
-            view: "best",
-            date: today,
-            after: moment(week).format("YYYY-MM-DD"),
-            before: moment(today).format("YYYY-MM-DD"),
-        }, (error, result) => {
-            if (!!error) {
-            } else {
-                this.setState({isEventCalling: true, cachedIds: result});
-            }
-        });
+        // this.context.actions.call('posts.cached.ids', {
+        //     view: "best",
+        //     date: today,
+        //     after: moment(week).format("YYYY-MM-DD"),
+        //     before: moment(today).format("YYYY-MM-DD"),
+        // }, (error, result) => {
+        //     if (!!error) {
+        //     } else {
+        //         this.setState({isEventCalling: true, cachedIds: result});
+        //     }
+        // });
     }
 
     /**

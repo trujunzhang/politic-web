@@ -1,6 +1,8 @@
 import Telescope from '../index';
 import React, {Component} from 'react';
 
+var _ = require('underscore');
+
 import Cookie from 'react-cookie';
 import moment from 'moment';
 
@@ -9,7 +11,9 @@ class PostsDaily extends Component {
     constructor(props) {
         super(props);
 
-        const showPopularPostsThisWeek = Cookie.load('showPopularPostsThisWeek') !== "no";
+        // const showPopularPostsThisWeek = Cookie.load('showPopularPostsThisWeek') !== "no";
+
+        const showPopularPostsThisWeek = true;
 
         this.state = {days: props.days, showPopularPostsThisWeek: showPopularPostsThisWeek};
     }
@@ -42,16 +46,10 @@ class PostsDaily extends Component {
         const loadMoreDays = this.loadMoreDays.bind(this);
 
         return (
-            <Telescope.components.InfiniteScroll
-                element="div"
-                currentPage={days.length / this.props.increment}
-                hasMore={true}
-                loadMore={loadMoreDays}>
-
+            <div className="results_37tfm">
                 {postsDays}
                 <a className="posts-load-more-days" onClick={loadMoreDays}>Load More Days</a>
-
-            </Telescope.components.InfiniteScroll>
+            </div>
         )
     }
 }
