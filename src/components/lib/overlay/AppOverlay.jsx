@@ -1,5 +1,5 @@
-import Telescope from 'meteor/nova:lib';
-import React, {PropTypes, Component} from 'react';
+import Telescope from '../../../index';
+import React, {Component} from 'react';
 
 const excludeSelectors = [
     // Article's detail page's flag
@@ -36,35 +36,11 @@ class AppOverlay extends Component {
         };
     }
 
-    needCheckClickEvent() {
-        return !($("#popover_for_loginui").length > 0 || $("#user_profile_delete_popover_overlay").length > 0)
-    }
-
     componentDidMount() {
         this.setState({didMount: true});
 
         // const {messages} = this.context;
         const self = this;
-        $(document).bind('click touch', function (event) {
-            //let back = $(event.target).parents().addBack();
-
-            if ($("#show_popover_menu").length > 0) {
-                const needCheckClickEvent = self.needCheckClickEvent();
-                if (!!needCheckClickEvent) {
-                    let isClicked = true;
-                    excludeSelectors.forEach(
-                        function addNumber(selector) {
-                            if ($(event.target).parents().addBack().is(selector)) {
-                                isClicked = false;
-                            }
-                        }
-                    );
-                    if (isClicked) {
-                        // messages.dismissPopoverMenu();
-                    }
-                }
-            }
-        });
     }
 
     renderMenu(popoverMenu) {
@@ -82,6 +58,7 @@ class AppOverlay extends Component {
             case "UserDeleteConfirm":
                 return (<Telescope.components.UsersPopoverDeleteConfirm comp={popoverMenu}/>);
             case "LoginUI":
+                debugger
                 return (<Telescope.components.UserLoginPopup comp={popoverMenu}/>);
             default:
                 return null;
@@ -89,7 +66,11 @@ class AppOverlay extends Component {
     }
 
     render() {
-        const {popoverMenu} = this.props;
+        // const {popoverMenu} = this.props;
+        const popoverMenu = {
+            type: "LoginUI"
+        };
+
         if (popoverMenu) {
             return (
                 <div id="show_popover_menu">

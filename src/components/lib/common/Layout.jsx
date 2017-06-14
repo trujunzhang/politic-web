@@ -30,6 +30,8 @@ class Layout extends Component {
 
                 <Telescope.components.HeaderContent />
 
+                <Telescope.components.AppOverlay />
+
                 {this.renderContent()}
 
             </div>
