@@ -26,7 +26,7 @@ class PostsItem extends Component {
                     {Posts.getLimitedContent(post.excerpt, 150)}
                 </div>
 
-                <Telescope.components.PostsItemActions {...this.props}/>
+                {/*<Telescope.components.PostsItemActions {...this.props}/>*/}
 
             </div>
         )
@@ -103,11 +103,11 @@ class PostsItem extends Component {
     popupDetail(event) {
         event.preventDefault();
 
-        const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
-        const {router, post, location} = this.props;
-        if (post.status === Posts.config.STATUS_APPROVED) {
-            this.context.messages.pushRouterForDetailPage(router, post, Users.checkIsAdmin(location, user));
-        }
+        // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
+        // const {router, post, location} = this.props;
+        // if (post.status === Posts.config.STATUS_APPROVED) {
+        //     this.context.messages.pushRouterForDetailPage(router, post, Users.checkIsAdmin(location, user));
+        // }
 
         event.stopPropagation();
     }

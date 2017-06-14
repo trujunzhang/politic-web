@@ -16,11 +16,16 @@ Telescope.registerComponent("NewsletterButton",                 require('./commo
 
 
 // posts
-
+Telescope.registerComponent("PostsDomain",          require('./posts/PostsDomain.jsx'));
 Telescope.registerComponent("PostsHome",            require('./posts/PostsHome.jsx'));
+Telescope.registerComponent("PostsHomeList",        require('./posts/PostsHomeList.jsx'));
+Telescope.registerComponent("PostsItem",            require('./posts/PostsItem.jsx'));
+Telescope.registerComponent("PostsItemActions",     require('./posts/PostsItemActions.jsx'));
+Telescope.registerComponent("PostsItemEditActions", require('./posts/PostsItemEditActions.jsx'));
 Telescope.registerComponent("PostsList",            require('./posts/PostsList.jsx'));
 Telescope.registerComponent("PostsListTitle",       require('./posts/PostsListTitle.jsx'));
 Telescope.registerComponent("PostsLoading",         require('./posts/PostsLoading.jsx'));
+Telescope.registerComponent("PostsLoadMore",        require('./posts/PostsLoadMore.jsx'));
 
 module.exports = Telescope;
 export default Telescope;
