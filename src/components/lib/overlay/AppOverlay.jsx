@@ -1,4 +1,4 @@
-import Telescope from '../../../index';
+import Telescope from '../index';
 import React, {Component} from 'react';
 
 const excludeSelectors = [
@@ -58,7 +58,6 @@ class AppOverlay extends Component {
             case "UserDeleteConfirm":
                 return (<Telescope.components.UsersPopoverDeleteConfirm comp={popoverMenu}/>);
             case "LoginUI":
-                debugger
                 return (<Telescope.components.UserLoginPopup comp={popoverMenu}/>);
             default:
                 return null;
