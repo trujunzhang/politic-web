@@ -13,7 +13,6 @@ class UsersVerifyEmail extends Component {
     }
 
     componentDidMount() {
-        let router = this.props.router;
     }
 
     render() {

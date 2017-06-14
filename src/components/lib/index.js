@@ -72,7 +72,17 @@ Telescope.registerComponent("CollectionsResult",              require('./overlay
 Telescope.registerComponent("UserCollectionsPopover",         require('./overlay/collections/UserCollectionsPopover.jsx'));
 
 
+Telescope.registerComponent("UserCollectionsPopover",         require('./overlay/login/UserCollectionsPopover.jsx'));
 
+
+Telescope.registerComponent("UserEmailSignIn",                require('./overlay/login/UserEmailSignIn.jsx'));
+Telescope.registerComponent("UserEmailSignUp",                require('./overlay/login/UserEmailSignUp.jsx'));
+Telescope.registerComponent("UserLoginLayout",                require('./overlay/login/UserLoginLayout.jsx'));
+Telescope.registerComponent("UserLoginMain",                  require('./overlay/login/UserLoginMain.jsx'));
+Telescope.registerComponent("UserLoginPopup",                 require('./overlay/login/UserLoginPopup.jsx'));
+Telescope.registerComponent("UsersRemovedAccount",            require('./overlay/login/UsersRemovedAccount.jsx'));
+Telescope.registerComponent("UsersResetPassword",             require('./overlay/login/UsersResetPassword.jsx'));
+Telescope.registerComponent("UsersVerifyEmail",               require('./overlay/login/UsersVerifyEmail.jsx'));
 
 
 module.exports = Telescope;
