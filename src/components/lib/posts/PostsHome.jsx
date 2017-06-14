@@ -55,7 +55,8 @@ class PostsHome extends Component {
     }
 
     render() {
-        return this.renderPostList("");
+        // return this.renderPostList("");
+        return this.renderPostDaily();
     }
 
     renderxxx() {
