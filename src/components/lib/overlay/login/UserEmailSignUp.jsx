@@ -30,7 +30,7 @@ class UserEmailSignUp extends Component {
         // Check whether need to resend a verify email, If the user already sign up with sending verify email.
         this.context.actions.call('check.email.need.verify.users', email, (error, result) => {
             if (!!error) {
-                this.context.messages.showMessage(this, T9n.get(`error.accounts.${error.reason}`) || T9n.get("Unknown error"), 'error');
+                // this.context.messages.showMessage(this, T9n.get(`error.accounts.${error.reason}`) || T9n.get("Unknown error"), 'error');
                 this.setState({waiting: false});
             } else {
                 if (!!result) {
