@@ -1,0 +1,51 @@
+.tcomb_panel {
+
+  textarea:focus, input:focus {
+    outline: none;
+  }
+
+  fieldset {
+    div {
+
+      padding: 0 32px 0;
+      font-size: 16px;
+      text-align: left;
+      color: rgba(0, 0, 0, 0.6);
+
+      label {
+        display: block;
+        padding-top: 10px !important;
+        min-width: 200px;
+        width: 200px;
+      }
+      input {
+        background-size: 16px 18px;
+        background-position: 98% 50%;
+        cursor: auto;
+        border: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0;
+        width: 100%;
+        box-sizing: border-box;
+
+        //.textInput--large
+        font-size: 18px;
+        height: 40px;
+        margin: 10px auto;
+        overflow: hidden;
+        padding: 7px;
+        white-space: nowrap;
+        letter-spacing: 0;
+        font-weight: 300;
+        font-style: normal;
+      }
+
+    }
+
+  }
+}
+
+
+
+
+
