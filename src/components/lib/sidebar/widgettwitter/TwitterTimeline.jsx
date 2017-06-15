@@ -56,5 +56,4 @@ TwitterTimeline.propTypes = {
     limit: PropTypes.number,
 };
 
-module.exports = TwitterTimeline;
 export default TwitterTimeline;

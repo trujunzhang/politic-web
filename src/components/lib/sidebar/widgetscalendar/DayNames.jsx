@@ -20,7 +20,4 @@ class DayNames extends Component {
     }
 }
 
-DayNames.displayName = "DayNames";
-
-module.exports = DayNames;
-    
+export default DayNames

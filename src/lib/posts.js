@@ -163,5 +163,4 @@ Posts.generatePostListTitle = function (query) {
 };
 
 
-module.exports = Posts;
 export default Posts;

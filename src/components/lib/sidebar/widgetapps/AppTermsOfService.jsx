@@ -323,6 +323,5 @@ class AppTermsOfService extends Component {
 
 }
 
-AppTermsOfService.displayName = "AppTermsOfService";
+export default AppTermsOfService
 
-module.exports = AppTermsOfService;

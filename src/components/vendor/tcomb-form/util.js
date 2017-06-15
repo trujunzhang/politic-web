@@ -1,6 +1,6 @@
 import t, { mixin } from 'tcomb-validation'
 
-export function getOptionsOfEnum(type) {
+export function getOptionsOfEnum (type) {
   const enums = type.meta.map
   return Object.keys(enums).map(value => {
     return {
@@ -10,7 +10,7 @@ export function getOptionsOfEnum(type) {
   })
 }
 
-export function getTypeInfo(type) {
+export function getTypeInfo (type) {
   let innerType = type
   let isMaybe = false
   let isSubtype = false
@@ -38,7 +38,7 @@ export function getTypeInfo(type) {
   const getValidationErrorMessage = innerGetValidationErrorMessage ? (value, path, context) => {
     const result = t.validate(value, type, {path, context})
     if (!result.isValid()) {
-      for (let i = 0, len = result.errors.length; i < len; i++ ) {
+      for (let i = 0, len = result.errors.length; i < len; i++) {
         if (t.Function.is(result.errors[i].expected.getValidationErrorMessage)) {
           return result.errors[i].message
         }
@@ -58,23 +58,23 @@ export function getTypeInfo(type) {
 
 // thanks to https://github.com/epeli/underscore.string
 
-function underscored(s) {
+function underscored (s) {
   return s.trim().replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase()
 }
 
-function capitalize(s) {
+function capitalize (s) {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export function humanize(s) {
+export function humanize (s) {
   return capitalize(underscored(s).replace(/_id$/, '').replace(/_/g, ' '))
 }
 
-export function merge(a, b) {
+export function merge (a, b) {
   return mixin(mixin({}, a), b, true)
 }
 
-export function move(arr, fromIndex, toIndex) {
+export function move (arr, fromIndex, toIndex) {
   const element = arr.splice(fromIndex, 1)[0]
   arr.splice(toIndex, 0, element)
   return arr
@@ -82,35 +82,35 @@ export function move(arr, fromIndex, toIndex) {
 
 export class UIDGenerator {
 
-  constructor(seed) {
+  constructor (seed) {
     this.seed = 'tfid-' + seed + '-'
     this.counter = 0
   }
 
-  next() {
+  next () {
     return this.seed + (this.counter++)
   }
 
 }
 
-function containsUnion(type) {
+function containsUnion (type) {
   switch (type.meta.kind) {
-  case 'union' :
-    return true
-  case 'maybe' :
-  case 'subtype' :
-    return containsUnion(type.meta.type)
-  default :
-    return false
+    case 'union' :
+      return true
+    case 'maybe' :
+    case 'subtype' :
+      return containsUnion(type.meta.type)
+    default :
+      return false
   }
 }
 
-function getUnionConcreteType(type, value) {
+function getUnionConcreteType (type, value) {
   const kind = type.meta.kind
   if (kind === 'union') {
     const concreteType = type.dispatch(value)
     if (process.env.NODE_ENV !== 'production') {
-      t.assert(t.isType(concreteType), () => 'Invalid value ' + t.assert.stringify(value) + ' supplied to ' + t.getTypeName(type) + ' (no constructor returned by dispatch)' )
+      t.assert(t.isType(concreteType), () => 'Invalid value ' + t.assert.stringify(value) + ' supplied to ' + t.getTypeName(type) + ' (no constructor returned by dispatch)')
     }
     return concreteType
   } else if (kind === 'maybe') {
@@ -126,22 +126,22 @@ function getUnionConcreteType(type, value) {
   }
 }
 
-export function getTypeFromUnion(type, value) {
+export function getTypeFromUnion (type, value) {
   if (containsUnion(type)) {
     return getUnionConcreteType(type, value)
   }
   return type
 }
 
-function getUnion(type) {
+function getUnion (type) {
   if (type.meta.kind === 'union') {
     return type
   }
   return getUnion(type.meta.type)
 }
 
-function findIndex(arr, element) {
-  for (let i = 0, len = arr.length; i < len; i++ ) {
+function findIndex (arr, element) {
+  for (let i = 0, len = arr.length; i < len; i++) {
     if (arr[i] === element) {
       return i
     }
@@ -149,7 +149,7 @@ function findIndex(arr, element) {
   return -1
 }
 
-export function getBaseComponentOptions(options, defaultOptions, value, type) {
+export function getBaseComponentOptions (options, defaultOptions, value, type) {
   if (t.Nil.is(options)) {
     return defaultOptions
   }
@@ -166,7 +166,7 @@ export function getBaseComponentOptions(options, defaultOptions, value, type) {
   return options
 }
 
-export function getComponentOptions(options, defaultOptions, value, type) {
+export function getComponentOptions (options, defaultOptions, value, type) {
   const opts = getBaseComponentOptions(options, defaultOptions, value, type)
   if (t.Function.is(type.getTcombFormOptions)) {
     return type.getTcombFormOptions(opts)

@@ -156,7 +156,4 @@ class WidgetCalendar extends Component {
 }
 
 
-WidgetCalendar.displayName = "WidgetCalendar";
-
-module.exports = withRouter(WidgetCalendar);
 export default withRouter(WidgetCalendar);

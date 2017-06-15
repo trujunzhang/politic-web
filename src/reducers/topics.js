@@ -22,7 +22,16 @@
  * @flow
  */
 
-const createParseReducer = require('./createParseReducer');
+const createParseReducer = require('./createParseReducer').default
+
+
+/**
+ * The states were interested in
+ */
+const {
+  LOADED_TOPICS
+} = require('../lib/constants').default
+
 
 export type Topic = {
     id: string;
@@ -31,7 +40,7 @@ export type Topic = {
     status: string;
     isIgnore: boolean;
     active: boolean;
-};
+}
 
 function fromParseObject(map: Object): Topic {
     // console.log("after Topic: " + JSON.stringify(map));
@@ -42,7 +51,7 @@ function fromParseObject(map: Object): Topic {
         status: map.get('status'),
         isIgnore: map.get('isIgnore'),
         active: map.get('active')
-    };
+    }
 }
 
-module.exports = createParseReducer('LOADED_TOPICS', fromParseObject);
+export default createParseReducer(LOADED_TOPICS, fromParseObject)

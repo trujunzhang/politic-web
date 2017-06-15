@@ -22,10 +22,12 @@
  * @flow
  */
 
-const parseActions = require('./parse');
-const shipmentActions = require('./shipment');
+const parseActions = require('./parse').default
+const shipmentActions = require('./shipment').default
+const popModelActions = require('./popModel').default
 
-module.exports = {
-    ...parseActions,
-    ...shipmentActions
-};
+export default {
+  ...parseActions,
+  ...shipmentActions,
+  ...popModelActions
+}

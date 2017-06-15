@@ -24,7 +24,7 @@
 
 'use strict';
 
-import type {Action} from '../actions/types';
+import type {Action} from '../actions/types'
 
 export type State = {
     isLoggedIn: boolean;
@@ -84,4 +84,4 @@ function user(state: State = initialState, action: Action): State {
     return state;
 }
 
-module.exports = user;
+export default user

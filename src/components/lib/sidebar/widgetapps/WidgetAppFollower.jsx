@@ -32,6 +32,4 @@ class WidgetAppFollower extends Component {
 
 }
 
-WidgetAppFollower.displayName = "WidgetAppFollower";
-
-module.exports = WidgetAppFollower;
+export default WidgetAppFollower

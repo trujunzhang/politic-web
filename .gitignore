@@ -1,14 +1,15 @@
-node_modules
-.DS_Store
-logs
+.DS_STORE
 *.log
-npm-debug.log*
+node_modules
+dist
+coverage
+.idea/
+.yarn-cache
 
 
-public/main.css
+src/styles/main.css
 
 src/main.css
 
-build/
 
-src/stylesheets/main.css
+build/

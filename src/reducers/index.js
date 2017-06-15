@@ -1,18 +1,18 @@
-import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 
-import error from './error';
+// import error from './error'
 
-import Telescope from '../lib/en_US';
-const messages = Telescope.strings['en'] || {};
+// import Telescope from '../lib/en_US'
+// const messages = Telescope.strings['en'] || {}
 
 const rootReducer = combineReducers({
-    posts: require('./posts'),
-    topics: require('./topics'),
-    routing: routerReducer,
-    popModel: require('./popModel'),
-    user: require('./user'),
-    auth: require('./auth/authReducer')
-});
+  posts: require('./posts').default,
+  topics: require('./topics').default,
+  routing: routerReducer,
+  popModel: require('./popModel').default,
+  user: require('./user').default,
+  auth: require('./auth/authReducer').default
+})
 
-export default rootReducer;
+export default rootReducer

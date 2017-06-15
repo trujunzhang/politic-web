@@ -81,5 +81,4 @@ UsersPopoverMenu.propTypes = {
     user: React.PropTypes.object
 };
 
-module.exports = withRouter(UsersPopoverMenu);
 export default withRouter(UsersPopoverMenu);

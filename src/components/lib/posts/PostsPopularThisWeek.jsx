@@ -115,6 +115,4 @@ PostsPopularThisWeek.propTypes = {
     number: React.PropTypes.number
 };
 
-
-module.exports = PostsPopularThisWeek;
 export default PostsPopularThisWeek;

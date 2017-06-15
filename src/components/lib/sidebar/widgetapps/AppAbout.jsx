@@ -36,12 +36,9 @@ const AppAbout = () => {
           <Telescope.components.AppFooter/>
       </div>
     )
-};
+}
 
-AppAbout.displayName = "AppAbout";
-
-module.exports = AppAbout;
-export default AppAbout;
+export default AppAbout
 
 
 

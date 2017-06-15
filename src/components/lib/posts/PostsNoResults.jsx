@@ -31,7 +31,4 @@ class PostsNoResults extends Component {
     }
 }
 
-PostsNoResults.displayName = "PostsNoResults";
-
-module.exports = withRouter(PostsNoResults);
 export default withRouter(PostsNoResults);

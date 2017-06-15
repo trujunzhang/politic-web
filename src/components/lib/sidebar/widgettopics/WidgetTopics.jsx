@@ -52,7 +52,4 @@ class WidgetTopics extends Component {
 }
 
 
-WidgetTopics.displayName = "WidgetTopics";
-
-module.exports = withRouter(WidgetTopics);
 export default withRouter(WidgetTopics);

@@ -45,5 +45,4 @@ MoreTagsPopoverMenu.propTypes = {
 };
 
 
-module.exports = withRouter(MoreTagsPopoverMenu);
 export default withRouter(MoreTagsPopoverMenu);

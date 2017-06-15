@@ -62,7 +62,5 @@ class PostsListTitle extends Component {
     }
 }
 
-PostsListTitle.displayName = "PostsListTitle";
 
-module.exports = withRouter(PostsListTitle);
 export default withRouter(PostsListTitle);

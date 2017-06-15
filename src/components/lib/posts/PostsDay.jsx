@@ -46,5 +46,4 @@ PostsDay.propTypes = {
     number: React.PropTypes.number
 };
 
-module.exports = withRouter(PostsDay);
 export default withRouter(PostsDay);

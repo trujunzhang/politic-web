@@ -23,10 +23,19 @@
  */
 
 
-const Parse = require('parse');
+const Parse = require('parse')
 
 import type { ThunkAction } from './types';
-import {Post} from './objects';
+
+var Objects = require('./objects').default;
+
+
+/**
+ * The states were interested in
+ */
+const {
+  LOADED_POSTS
+} = require('../lib/constants').default
 
 function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
@@ -43,9 +52,9 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   };
 }
 
-module.exports = {
+export default {
     loadPosts: (): ThunkAction => {
-        var query = new Parse.Query(Post);
-        return loadParseQuery('LOADED_POSTS', query);
-    },
+        var query = new Parse.Query(Objects.Post);
+        return loadParseQuery(LOADED_POSTS, query);
+    }
 };

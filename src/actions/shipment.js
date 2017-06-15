@@ -67,4 +67,4 @@ function clientRequestAShipment(): ThunkAction {
 }
 
 
-module.exports = {clientRequestAShipment};
+export default {clientRequestAShipment};

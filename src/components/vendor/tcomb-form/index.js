@@ -5,4 +5,4 @@ import * as components from './components'
 t.form = components
 t.form.File = t.irreducible('File', x => x instanceof File)
 
-module.exports = t
+export default t

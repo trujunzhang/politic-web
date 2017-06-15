@@ -64,5 +64,4 @@ class App extends Component {
 /**
  * Connect the properties
  */
-module.exports = App;
 export default App;

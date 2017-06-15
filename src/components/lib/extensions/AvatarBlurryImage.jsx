@@ -69,7 +69,4 @@ class AvatarBlurryImage extends Component {
     }
 }
 
-AvatarBlurryImage.displayName = "AvatarBlurryImage";
-
-module.exports = AvatarBlurryImage;
 export default AvatarBlurryImage;

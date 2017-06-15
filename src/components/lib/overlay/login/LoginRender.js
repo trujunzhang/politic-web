@@ -14,192 +14,156 @@ import LoginForm from './LoginForm'
 /**
  * The necessary React components
  */
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 /**
  * The states were interested in
  */
 const {
-    LOGIN,
-    REGISTER,
-    FORGOT_PASSWORD
+  LOGIN,
+  REGISTER,
+  FORGOT_PASSWORD
 } = require('../../../../lib/constants').default
 
+const I18n = require('./Translate').default
 
 class LoginRender extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: {
-                username: this.props.auth.form.fields.username,
-                email: this.props.auth.form.fields.email,
-                password: this.props.auth.form.fields.password,
-                passwordAgain: this.props.auth.form.fields.passwordAgain
-            }
-        }
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: {
+        username: this.props.auth.form.fields.username,
+        email: this.props.auth.form.fields.email,
+        password: this.props.auth.form.fields.password,
+        passwordAgain: this.props.auth.form.fields.passwordAgain
+      }
     }
+  }
 
-    /**
-     * ### componentWillReceiveProps
-     * As the properties are validated they will be set here.
-     */
-    componentWillReceiveProps(nextprops) {
-        this.setState({
-            value: {
-                username: nextprops.auth.form.fields.username,
-                email: nextprops.auth.form.fields.email,
-                password: nextprops.auth.form.fields.password,
-                passwordAgain: nextprops.auth.form.fields.passwordAgain
-            }
-        })
+  /**
+   * ### componentWillReceiveProps
+   * As the properties are validated they will be set here.
+   */
+  componentWillReceiveProps (nextprops) {
+    this.setState({
+      value: {
+        username: nextprops.auth.form.fields.username,
+        email: nextprops.auth.form.fields.email,
+        password: nextprops.auth.form.fields.password,
+        passwordAgain: nextprops.auth.form.fields.passwordAgain
+      }
+    })
+  }
+
+  /**
+   * ### onChange
+   *
+   * As the user enters keys, this is called for each key stroke.
+   * Rather then publish the rules for each of the fields, I find it
+   * better to display the rules required as long as the field doesn't
+   * meet the requirements.
+   * *Note* that the fields are validated by the authReducer
+   */
+  onChange (value) {
+    if (value.username !== '') {
+      this.props.actions.onAuthFormFieldChange('username', value.username)
     }
-
-    /**
-     * ### onChange
-     *
-     * As the user enters keys, this is called for each key stroke.
-     * Rather then publish the rules for each of the fields, I find it
-     * better to display the rules required as long as the field doesn't
-     * meet the requirements.
-     * *Note* that the fields are validated by the authReducer
-     */
-    onChange(value) {
-        if (value.username !== '') {
-            this.props.actions.onAuthFormFieldChange('username', value.username)
-        }
-        if (value.email !== '') {
-            this.props.actions.onAuthFormFieldChange('email', value.email)
-        }
-        if (value.password !== '') {
-            this.props.actions.onAuthFormFieldChange('password', value.password)
-        }
-        if (value.passwordAgain !== '') {
-            this.props.actions.onAuthFormFieldChange('passwordAgain', value.passwordAgain)
-        }
-        this.setState(
-            {value}
-        )
+    if (value.email !== '') {
+      this.props.actions.onAuthFormFieldChange('email', value.email)
     }
-
-    /**
-     *  Get the appropriate message for the current action
-     *  @param messageType FORGOT_PASSWORD, or LOGIN, or REGISTER
-     *  @param actions the action for the message type
-     */
-    getMessage(messageType, actions) {
-        let forgotPassword =
-            <TouchableHighlight
-                onPress={() => {
-                    actions.forgotPasswordState()
-                    // Actions.ForgotPassword()
-                    this.props.toggleEvent('forgotPassword')
-                }}>
-                <Text>{I18n.t('LoginRender.forgot_password')}</Text>
-            </TouchableHighlight>
-
-        let alreadyHaveAccount =
-            <TouchableHighlight
-                onPress={() => {
-                    actions.loginState()
-                    // Actions.Login()
-                    this.props.toggleEvent('signIn')
-                }}>
-                <Text>{I18n.t('LoginRender.already_have_account')}</Text>
-            </TouchableHighlight>
-
-        let register =
-            <TouchableHighlight
-                onPress={() => {
-                    actions.registerState()
-                    // Actions.Register()
-                    this.props.toggleEvent('signUp')
-                }}>
-                <Text>{I18n.t('LoginRender.register')}</Text>
-            </TouchableHighlight>
-
-        switch (messageType) {
-            case FORGOT_PASSWORD:
-                return forgotPassword
-            case LOGIN:
-                return alreadyHaveAccount
-            case REGISTER:
-                return register
-        }
+    if (value.password !== '') {
+      this.props.actions.onAuthFormFieldChange('password', value.password)
     }
-
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
+    if (value.passwordAgain !== '') {
+      this.props.actions.onAuthFormFieldChange('passwordAgain', value.passwordAgain)
     }
+    this.setState(
+      {value}
+    )
+  }
 
-    renderContent() {
-        let self = this
+  /**
+   * ### render
+   * Setup some default presentations and render
+   */
+  render () {
+    return (
+      <div>
+        {this.renderContent()}
+      </div>
+    )
+  }
 
-        var formType = this.props.formType
-        var loginButtonText = this.props.loginButtonText
-        var onButtonPress = this.props.onButtonPress
+  renderForgotPassword () {
+    return (
+      <div className="login-in-left-buttons">
+        <div className="login-via-email">
+          <button
+            onClick={this.props.onForgotPasswordPress}
+            id="button_for_forgot_password"
+            className="button button--primary button--large button--chromeless button--link u-accentColor--buttonNormal u-marginTop15">
+            {'Forgot password?'}
+          </button>
+        </div>
+      </div>
+    )
+  }
 
-        var leftMessageType = this.props.leftMessageType
-        var rightMessageType = this.props.rightMessageType
+  renderContent () {
+    const {formType, footerLink} = this.props
+    const {left, right} = footerLink
 
-        let leftMessage = this.getMessage(leftMessageType, this.props.actions)
-        let rightMessage = this.getMessage(rightMessageType, this.props.actions)
+    return (
+      <div id="user-signin-panel" className="overlay--dark">
 
-        var displayPasswordCheckbox = this.props.displayPasswordCheckbox
-        /**
-         * Toggle the display of the Password and PasswordAgain fields
-         */
-        var passwordCheckbox = <Text />
-        if (displayPasswordCheckbox) {
-            passwordCheckbox =
-                <ItemCheckbox
-                    text={I18n.t('LoginRender.show_password')}
-                    disabled={this.props.auth.form.isFetching}
-                    onCheck={() => {
-                        this.props.actions.onAuthFormFieldChange('showPassword', true)
-                    }}
-                    onUncheck={() => {
-                        this.props.actions.onAuthFormFieldChange('showPassword', false)
-                    }}
-                />
-        }
+        {/*Row 01: Form*/}
+        <LoginForm
+          formType={formType}
+          form={this.props.auth.form}
+          value={this.state.value}
+          onChange={this.onChange.bind(this)}/>
 
-        // display the login / register / change password screens
-        this.errorAlert.checkError(this.props.auth.form.error)
+        {/*Row 02: Button*/}
 
-        return (
-            <View>
-                <View style={styles.inputs}>
-                    <LoginForm
-                        formType={formType}
-                        form={this.props.auth.form}
-                        value={this.state.value}
-                        onChange={self.onChange.bind(self)}/>
-                    {passwordCheckbox}
-                </View>
+        <div className='right_1jQ6K buttonGroup_2NmU8 right_2JztM' id='user-submit-button-panel'>
+          {!!this.props.onForgotPasswordPress ? this.renderForgotPassword() : null}
 
-                <FormButton
-                    isDisabled={!this.props.auth.form.isValid || this.props.auth.form.isFetching}
-                    onPress={onButtonPress}
-                    buttonText={loginButtonText}/>
+          <div className='buttonWithNotice_3bRZb'>
+            <button
+              onClick={this.props.onButtonPress}
+              disabled={!this.props.auth.form.isValid || this.props.auth.form.isFetching}
+              className='button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d orangeSolidColor_B-2gO solidVariant_2wWrf'
+              type='submit'>
+              <div className='buttonContainer_wTYxi'>{this.props.loginButtonText}</div>
+            </button>
+          </div>
+        </div>
 
-                <View >
-                    <View style={styles.forgotContainer}>
-                        {leftMessage}
-                        {rightMessage}
-                    </View>
-                </View>
+        {/*Row 03: Other Links*/}
 
-            </View>
-        )
-    }
+        <div className='login_footer_links light' id='__w2_VNnJBb6_social_signup_links'>
+          {
+            !!left ? (
+              <a onClick={(e) => { this.props.toggleEvent(e, left.tag)}}>
+                {left.title}
+              </a>
+            ) : null
+          }
+
+          <span className='bullet'> · </span>
+          {
+            !!right ? (
+              <a onClick={(e) => {this.props.toggleEvent(e, right.tag)}}>
+                {right.title}
+              </a>
+            ) : null
+          }
+
+        </div>
+
+      </div>
+    )
+  }
 }
 
 /**
@@ -207,16 +171,15 @@ class LoginRender extends Component {
  *
  * Redux
  */
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import * as authActions from '../../../../reducers/auth/authActions'
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(authActions, dispatch)
-    }
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(authActions, dispatch)
+  }
 }
 
 export default connect(null, mapDispatchToProps)(LoginRender)
-module.exports = connect(null, mapDispatchToProps)(LoginRender)

@@ -101,5 +101,4 @@ PostsItem.propTypes = {
 };
 
 
-module.exports = withRouter(PostsItem);
 export default withRouter(PostsItem);

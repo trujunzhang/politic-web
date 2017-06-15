@@ -91,5 +91,4 @@ class MessagesCompactList extends Component {
 }
 
 
-module.exports = withRouter(MessagesCompactList);
 export default withRouter(MessagesCompactList);

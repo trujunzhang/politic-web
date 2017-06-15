@@ -16,6 +16,4 @@ class WidgetTwitter extends Component {
 
 }
 
-WidgetTwitter.displayName = "WidgetTwitter";
-
-module.exports = WidgetTwitter;
+export default WidgetTwitter

@@ -162,5 +162,4 @@ function select(store) {
 /**
  * Connect the properties
  */
-module.exports = connect(select)(Newsletter);
 export default connect(select)(Newsletter);

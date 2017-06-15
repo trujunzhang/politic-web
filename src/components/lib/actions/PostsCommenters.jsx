@@ -21,5 +21,4 @@ const PostsCommenters = ({post, event}) => {
 
 PostsCommenters.displayName = "PostsCommenters";
 
-module.exports = PostsCommenters;
 export default PostsCommenters;

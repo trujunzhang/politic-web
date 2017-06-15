@@ -71,5 +71,4 @@ SubmitFlagPopover.propTypes = {
     user: React.PropTypes.object
 };
 
-module.exports = withRouter(SubmitFlagPopover);
 export default withRouter(SubmitFlagPopover);

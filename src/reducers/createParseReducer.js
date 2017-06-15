@@ -27,7 +27,7 @@ import type { Action } from '../actions/types';
 type Convert<T> = (object: Object) => T;
 type Reducer<T> = (state: ?Array<T>, action: any) => Array<T>;
 
-function createParseReducer<T>(
+export default  function createParseReducer<T>(
   type: string,
   convert: Convert<T>
 ): Reducer<T> {
@@ -40,4 +40,3 @@ function createParseReducer<T>(
   };
 }
 
-module.exports = createParseReducer;

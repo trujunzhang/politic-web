@@ -43,4 +43,4 @@ async function updateInstallation(updates: Object = {}): Promise<void> {
   await installation.save(updates);
 }
 
-module.exports = { currentInstallation, updateInstallation };
+export default { currentInstallation, updateInstallation };

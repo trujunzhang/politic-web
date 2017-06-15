@@ -73,5 +73,5 @@ RelatedPostUpvote.propTypes = {
     post: React.PropTypes.object.isRequired, // the current post
 };
 
-module.exports = RelatedPostUpvote;
+
 export default RelatedPostUpvote;

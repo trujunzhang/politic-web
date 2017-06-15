@@ -7,9 +7,6 @@
  * fails, setting it back to false.
  *
  */
-'use strict'
-
-import {NativeModules} from 'react-native'
 
 /**
  * ## Imports

@@ -30,7 +30,4 @@ class AppFooter extends Component {
     }
 }
 
-AppFooter.displayName = "AppFooter";
-
-module.exports = withRouter(AppFooter);
 export default withRouter(AppFooter);

@@ -18,6 +18,5 @@ const PostsLoading = ({id}) => {
     )
 };
 
-PostsLoading.displayName = "PostsLoading";
 
-module.exports = PostsLoading;
+export default PostsLoading

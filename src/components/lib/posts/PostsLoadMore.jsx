@@ -6,6 +6,5 @@ const PostsLoadMore = ({loadMore, className = "posts-load-more"}) => {
     )
 };
 
-PostsLoadMore.displayName = "PostsLoadMore";
 
-module.exports = PostsLoadMore;
+export default PostsLoadMore;

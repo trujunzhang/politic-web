@@ -1,63 +1,71 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
-    SET_PLATFORM: null,
-    SET_VERSION: null,
+  LOADED_TOPICS: null,
+  LOADED_POSTS: null,
 
+  GET_OVERLAY_MODELS: null,
+  PUSH_OVERLAY_MODEL: null,
+  POP_OVERLAY_MODEL: null,
 
-    ON_LOGIN_STATE_CHANGE: null,
-    LOGOUT: null,
+  SET_PLATFORM: null,
+  SET_VERSION: null,
 
-    ON_AUTH_FORM_FIELD_CHANGE: null,
-    SIGNUP_REQUEST: null,
-    SIGNUP_SUCCESS: null,
-    SIGNUP_FAILURE: null,
+  LOGIN_VIA_SOCIAL: null,
 
-    LOGIN_REQUEST: null,
-    LOGIN_SUCCESS: null,
-    LOGIN_FAILURE: null,
+  ON_LOGIN_STATE_CHANGE: null,
+  LOGOUT: null,
 
-    LOGOUT_REQUEST: null,
-    LOGOUT_SUCCESS: null,
-    LOGOUT_FAILURE: null,
+  ON_AUTH_FORM_FIELD_CHANGE: null,
+  SIGNUP_REQUEST: null,
+  SIGNUP_SUCCESS: null,
+  SIGNUP_FAILURE: null,
 
-    LOGGED_IN: null,
-    LOGGED_OUT: null,
+  LOGIN_REQUEST: null,
+  LOGIN_SUCCESS: null,
+  LOGIN_FAILURE: null,
 
-    SET_SESSION_TOKEN: null,
+  LOGOUT_REQUEST: null,
+  LOGOUT_SUCCESS: null,
+  LOGOUT_FAILURE: null,
 
-    RESET_PASSWORD_REQUEST: null,
-    RESET_PASSWORD_SUCCESS: null,
-    RESET_PASSWORD_FAILURE: null,
+  LOGGED_IN: null,
+  LOGGED_OUT: null,
 
-    GET_PROFILE_REQUEST: null,
-    GET_PROFILE_SUCCESS: null,
-    GET_PROFILE_FAILURE: null,
+  SET_SESSION_TOKEN: null,
 
-    ON_PROFILE_FORM_FIELD_CHANGE: null,
+  RESET_PASSWORD_REQUEST: null,
+  RESET_PASSWORD_SUCCESS: null,
+  RESET_PASSWORD_FAILURE: null,
 
-    PROFILE_UPDATE_REQUEST: null,
-    PROFILE_UPDATE_SUCCESS: null,
-    PROFILE_UPDATE_FAILURE: null,
+  GET_PROFILE_REQUEST: null,
+  GET_PROFILE_SUCCESS: null,
+  GET_PROFILE_FAILURE: null,
 
-    SET_STATE: null,
-    GET_STATE: null,
-    SET_STORE: null,
+  ON_PROFILE_FORM_FIELD_CHANGE: null,
 
-    FORGOT_PASSWORD: null,
-    LOGIN: null,
-    REGISTER: null,
+  PROFILE_UPDATE_REQUEST: null,
+  PROFILE_UPDATE_SUCCESS: null,
+  PROFILE_UPDATE_FAILURE: null,
 
-    ON_SHIPMENT_FORM_FIELD_CHANGE: null,
-    NEW_SHIPMENT: null,
-    NEW_SHIPMENT_REQUEST: null,
-    NEW_SHIPMENT_SUCCESS: null,
-    NEW_SHIPMENT_FAILURE: null,
+  SET_STATE: null,
+  GET_STATE: null,
+  SET_STORE: null,
 
-    GET_SHIPMENTS_REQUEST: null,
-    GET_SHIPMENTS_SUCCESS: null,
-    GET_SHIPMENTS_FAILURE: null,
+  FORGOT_PASSWORD: null,
+  LOGIN: null,
+  REGISTER: null,
 
-    ON_SHIPMENT_SAVED: null
+  ON_SHIPMENT_FORM_FIELD_CHANGE: null,
+  NEW_SHIPMENT: null,
+  NEW_SHIPMENT_REQUEST: null,
+  NEW_SHIPMENT_SUCCESS: null,
+  NEW_SHIPMENT_FAILURE: null,
+
+  GET_SHIPMENTS_REQUEST: null,
+  GET_SHIPMENTS_SUCCESS: null,
+  GET_SHIPMENTS_FAILURE: null,
+
+  ON_SHIPMENT_SAVED: null
 
 })

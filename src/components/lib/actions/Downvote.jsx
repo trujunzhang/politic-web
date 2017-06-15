@@ -80,5 +80,4 @@ Downvote.propTypes = {
     post: React.PropTypes.object.isRequired, // the current post
 };
 
-module.exports = Downvote;
 export default Downvote;

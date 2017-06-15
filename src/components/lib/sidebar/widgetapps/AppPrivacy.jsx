@@ -194,6 +194,5 @@ class AppPrivacy extends Component {
 
 }
 
-AppPrivacy.displayName = "AppPrivacy";
 
-module.exports = AppPrivacy;
+export default AppPrivacy

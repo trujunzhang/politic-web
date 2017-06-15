@@ -29,6 +29,5 @@ class WidgetHeader extends Component {
 
 }
 
-WidgetHeader.displayName = "WidgetHeader";
+export default WidgetHeader
 
-module.exports = WidgetHeader;

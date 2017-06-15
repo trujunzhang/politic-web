@@ -46,5 +46,4 @@ ArticleDownvote.propTypes = {
 };
 
 
-module.exports = ArticleDownvote;
 export default ArticleDownvote;

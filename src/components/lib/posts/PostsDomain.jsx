@@ -33,9 +33,6 @@ class PostsDomain extends Component {
     }
 }
 
-PostsDomain.displayName = "PostsDomain";
-
-module.exports = withRouter(PostsDomain);
 export default withRouter(PostsDomain);
 
 

@@ -31,9 +31,7 @@ const AppContact = () => {
     )
 };
 
-AppContact.displayName = "AppContact";
 
-module.exports = AppContact;
-export default AppContact;
+export default AppContact
 
 

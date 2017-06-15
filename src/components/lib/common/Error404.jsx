@@ -48,6 +48,5 @@ Error404.contextTypes = {
 
 Error404.displayName = "Error404";
 
-module.exports = withRouter(Error404);
 export default withRouter(Error404);
 

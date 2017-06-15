@@ -1,50 +1,37 @@
-import Telescope from '../index';
-import React, {Component} from 'react';
-import {withRouter} from 'react-router'
+import Telescope from '../index'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 
 class Layout extends Component {
-    constructor(props, context) {
-        super(props);
-    }
+  constructor (props, context) {
+    super(props)
+  }
 
-    componentDidMount() {
-    }
+  componentDidMount () {
+  }
 
+  renderContent () {
+    return (
+      <div id='container'>
+        <Telescope.components.Newsletter />
+        { this.props.children}
+      </div>
+    )
+  }
 
-    renderContent() {
-        return (
-            <div id="container">
+  render () {
+    return (
+      <div id='web-app-panel'>
 
-                <Telescope.components.Newsletter />
+        <Telescope.components.HeaderContent />
 
-                { this.props.children}
+        <Telescope.components.AppOverlay />
 
-            </div>
-        )
-    }
+        {this.renderContent()}
 
-
-    render() {
-        return (
-            <div id="web-app-panel">
-
-                <Telescope.components.HeaderContent />
-
-                <Telescope.components.AppOverlay />
-
-                {this.renderContent()}
-
-            </div>
-        )
-
-    }
+      </div>
+    )
+  }
 }
 
-Layout.contextTypes = {
-    messages: React.PropTypes.object
-};
-
-Layout.displayName = "Layout";
-
-module.exports = withRouter(Layout);
-export default withRouter(Layout);
+export default withRouter(Layout)

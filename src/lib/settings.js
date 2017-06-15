@@ -58,5 +58,4 @@ Telescope.settings.get = function (setting, defaultValue) {
     }
 };
 
-module.exports = Telescope;
 export default Telescope;

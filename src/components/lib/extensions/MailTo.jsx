@@ -20,7 +20,5 @@ MailTo.defaultProps = {
     className: "black"
 };
 
-MailTo.displayName = "MailTo";
 
-module.exports = MailTo;
 export default MailTo;

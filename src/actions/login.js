@@ -149,4 +149,4 @@ function logOutWithPrompt(): ThunkAction {
   };
 }
 
-module.exports = {logInWithFacebook, skipLogin, logOut, logOutWithPrompt};
+export default {logInWithFacebook, skipLogin, logOut, logOutWithPrompt};

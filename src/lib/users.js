@@ -102,5 +102,4 @@ Users.checkArticleInFolder = function (postId, folder) {
 };
 
 
-module.exports = Users;
 export default Users;

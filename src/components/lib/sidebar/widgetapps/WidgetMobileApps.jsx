@@ -17,6 +17,4 @@ class WidgetMobileApps extends Component {
 
 }
 
-WidgetMobileApps.displayName = "WidgetMobileApps";
-
-module.exports = WidgetMobileApps;
+export default WidgetMobileApps

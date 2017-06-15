@@ -52,7 +52,5 @@ class Week extends Component {
     }
 }
 
-Week.displayName = "Week";
+export default Week
 
-module.exports = Week;
-    

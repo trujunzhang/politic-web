@@ -23,9 +23,7 @@ const AppCareers = () => {
     )
 };
 
-AppCareers.displayName = "AppCareers";
 
-module.exports = AppCareers;
 export default AppCareers;
 
 

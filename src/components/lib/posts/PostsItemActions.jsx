@@ -206,6 +206,4 @@ PostsItemActions.propTypes = {
     post: React.PropTypes.object.isRequired
 };
 
-
-module.exports = withRouter(PostsItemActions);
 export default withRouter(PostsItemActions);

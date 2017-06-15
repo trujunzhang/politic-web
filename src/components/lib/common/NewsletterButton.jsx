@@ -39,11 +39,4 @@ NewsletterButton.propTypes = {
     user: React.PropTypes.object.isRequired,
 };
 
-NewsletterButton.contextTypes = {
-    currentUser: React.PropTypes.object,
-    messages: React.PropTypes.object,
-    actions: React.PropTypes.object,
-};
-
-module.exports = NewsletterButton;
 export default NewsletterButton;

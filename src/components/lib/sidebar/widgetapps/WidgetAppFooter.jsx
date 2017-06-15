@@ -80,7 +80,4 @@ class WidgetAppFooter extends Component {
     }
 }
 
-WidgetAppFooter.displayName = "WidgetAppFooter";
-
-module.exports = withRouter(WidgetAppFooter);
 export default withRouter(WidgetAppFooter);

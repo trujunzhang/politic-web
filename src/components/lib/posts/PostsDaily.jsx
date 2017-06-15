@@ -64,5 +64,4 @@ PostsDaily.defaultProps = {
     increment: 3
 };
 
-module.exports = PostsDaily;
 export default PostsDaily;

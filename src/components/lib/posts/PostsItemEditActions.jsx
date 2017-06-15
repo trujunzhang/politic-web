@@ -55,6 +55,6 @@ PostsItemEditActions.propTypes = {
     post: React.PropTypes.object.isRequired
 };
 
-module.exports = withRouter(PostsItemEditActions);
+
 export default withRouter(PostsItemEditActions);
- 
+

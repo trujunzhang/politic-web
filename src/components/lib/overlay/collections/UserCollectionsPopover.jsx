@@ -186,6 +186,4 @@ class UserCollectionsPopover extends Component {
     }
 }
 
-
-module.exports = withRouter(UserCollectionsPopover);
 export default withRouter(UserCollectionsPopover);

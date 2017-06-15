@@ -23,7 +23,7 @@
  */
 
 
-const createParseReducer = require('./createParseReducer');
+const createParseReducer = require('./createParseReducer').default
 
 
 export type post = {
@@ -54,4 +54,4 @@ function fromParseObject(map: Object): post {
     };
 }
 
-module.exports = createParseReducer('LOADED_POSTS', fromParseObject);
+export default createParseReducer('LOADED_POSTS', fromParseObject);

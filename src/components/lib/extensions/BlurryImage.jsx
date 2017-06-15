@@ -69,7 +69,4 @@ class BlurryImage extends Component {
 
 }
 
-BlurryImage.displayName = "BlurryImage";
-
-module.exports = BlurryImage;
 export default BlurryImage;

@@ -62,5 +62,4 @@ class AppSideBar extends Component {
 
 }
 
-module.exports = AppSideBar;
 export default AppSideBar;

@@ -41,4 +41,4 @@ function clearFilter(): Action {
   };
 }
 
-module.exports = {applyTopicsFilter, clearFilter};
+export default {applyTopicsFilter, clearFilter};

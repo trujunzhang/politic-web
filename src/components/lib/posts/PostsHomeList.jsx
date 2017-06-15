@@ -42,8 +42,6 @@ class PostsHomeList extends Component {
     }
 }
 
-PostsHomeList.displayName = "PostsHomeList";
 
-module.exports = PostsHomeList;
 export default PostsHomeList;
 

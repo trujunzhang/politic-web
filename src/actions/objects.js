@@ -23,14 +23,14 @@
  */
 
 
-const Parse = require('parse');
+const Parse = require('parse')
 
-module.exports = {
-    Cache: Parse.Object.extend('Cache'),
-    History: Parse.Object.extend('History'),
-    Topic: Parse.Object.extend('Topic'),
-    Post: Parse.Object.extend('Post'),
-    Folder: Parse.Object.extend('Folder'),
-    Comment: Parse.Object.extend('Comment'),
-    Message: Parse.Object.extend('Message')
-};
+export default {
+  Cache: Parse.Object.extend('Cache'),
+  History: Parse.Object.extend('History'),
+  Topic: Parse.Object.extend('Topic'),
+  Post: Parse.Object.extend('Post'),
+  Folder: Parse.Object.extend('Folder'),
+  Comment: Parse.Object.extend('Comment'),
+  Message: Parse.Object.extend('Message')
+}

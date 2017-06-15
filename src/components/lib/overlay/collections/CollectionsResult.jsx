@@ -44,5 +44,4 @@ const CollectionsResult = ({results, ready, onCollectedItemClick, savedPostId}) 
     )
 };
 
-module.exports = CollectionsResult;
 export default CollectionsResult;

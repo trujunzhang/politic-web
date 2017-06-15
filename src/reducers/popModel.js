@@ -26,34 +26,42 @@
 
 import type {Action} from '../actions/types';
 
+
+/**
+ * The states were interested in
+ */
+const {
+  PUSH_OVERLAY_MODEL,
+  POP_OVERLAY_MODEL,
+  GET_OVERLAY_MODELS
+} = require('../lib/constants').default
+
+
 export type State = {
-    popType: string;
-    position: ? object;
-    object: ? object;
+    showOverlay: boolean;
+    currentModel: ? object;
 };
 
 const initialState = {
-    popType: null,
-    position: {},
-    object: {}
+    showOverlay: false,
+    currentModel: null
 };
 
-function user(state: State = initialState, action: Action): State {
-    if (action.type === 'PUSH_OVERLAY_MODEL') {
-        let {id, name, sharedSchedule, roleType} = action.data;
-        if (sharedSchedule === undefined) {
-            sharedSchedule = null;
+function popModel(state: State = initialState, action: Action): State {
+    if (action.type === PUSH_OVERLAY_MODEL) {
+        let { modelType,position, model} = action.data;
+        if(modelType === 'LoginUI'){
+            return {
+                showOverlay: true,
+                currentModel: action.data
+            }
         }
         return {
-            isLoggedIn: true,
-            hasSkippedLogin: false,
-            sharedSchedule,
-            id,
-            name,
-            roleType
+            showOverlay: true,
+            currentModel: action.data
         };
     }
-    if (action.type === 'POP_OVERLAY_MODEL') {
+    if (action.type === POP_OVERLAY_MODEL) {
         return {
             isLoggedIn: false,
             hasSkippedLogin: true,
@@ -63,10 +71,10 @@ function user(state: State = initialState, action: Action): State {
             roleType: null
         };
     }
-    if (action.type === 'GET_OVERLAY_MODEL') {
+    if (action.type === GET_OVERLAY_MODELS) {
         return initialState;
     }
     return state;
 }
 
-module.exports = user;
+export default popModel;

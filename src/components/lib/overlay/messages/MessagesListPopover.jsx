@@ -51,5 +51,4 @@ class MessagesListPopover extends Component {
     }
 }
 
-module.exports = Dimensions()(MessagesListPopover);
 export default  Dimensions()(MessagesListPopover);

@@ -3,15 +3,15 @@
  * @namespace Telescope
  */
 
-const Telescope = {};
+const Telescope = {}
 
-Telescope.VERSION = '0.27.5-nova';
+Telescope.VERSION = '0.27.5-nova'
 
 // ------------------------------------- Config -------------------------------- //
 
 // ------------------------------------- Components -------------------------------- //
 
-Telescope.components = {};
+Telescope.components = {}
 
 Telescope.registerComponent = (name, component) => {
     Telescope.components[name] = component;
@@ -59,4 +59,4 @@ Telescope.headtags = {
     script: []
 };
 
-export default Telescope;
+export default Telescope

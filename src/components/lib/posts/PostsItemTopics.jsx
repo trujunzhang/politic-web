@@ -64,5 +64,5 @@ PostsItemTopics.propTypes = {
     post: React.PropTypes.object.isRequired
 };
 
-module.exports = withRouter(PostsItemTopics);
+
 export default withRouter(PostsItemTopics);

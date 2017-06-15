@@ -43,5 +43,4 @@ ArticleUpvote.propTypes = {
     post: React.PropTypes.object.isRequired, // the current post
 };
 
-module.exports = ArticleUpvote;
 export default ArticleUpvote;

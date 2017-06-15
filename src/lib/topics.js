@@ -4,5 +4,4 @@ var _ = require('underscore');
 const Topics = {};
 
 
-module.exports = Topics;
 export default Topics;
