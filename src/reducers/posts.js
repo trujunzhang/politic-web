@@ -36,28 +36,29 @@ export type Post = {
     thumbnailUrl: string;
     userId: string;
     author: string;
+    cloudinaryUrls: string;
 };
 
 
 export type Topic = {
   id: string;
-name: string;
-slug: string;
-status: string;
-isIgnore: boolean;
-active: boolean;
+  name: string;
+  slug: string;
+  status: string;
+  isIgnore: boolean;
+  active: boolean;
+}
+
+export type Cloudinary = {
+  name: string;
+  url: string;
 }
 
 
-function fromParseTopic(map: Object): Topic {
-  var pic = map.get('speakerPic');
+function fromParseCloudinary(map: Object): Cloudinary {
   return {
-    id: map.id,
     name: map.get('name'),
-    slug: map.get('slug'),
-    status: map.get('status'),
-    isIgnore: map.get('isIgnore'),
-    active: map.get('active')
+    url: map.get('url')
   };
 }
 
@@ -73,7 +74,8 @@ function fromParseObject(map: Object): Post {
         thumbnailUrl: map.get('thumbnailUrl'),
         userId: map.get('userId'),
         author: map.get('author'),
-        topics: (map.get('topics') || []).map(fromParseTopic)
+        topics: (map.get('topics') || []).map(fromParseTopic),
+        cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary)
     };
 }
 

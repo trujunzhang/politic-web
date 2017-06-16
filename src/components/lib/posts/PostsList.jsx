@@ -40,6 +40,8 @@ class PostsList extends Component {
 
     const {results} = this.state
 
+    // debugger
+
     const showReady = Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination)
     const headerView =
       (<div>
