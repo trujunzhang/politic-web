@@ -71,7 +71,7 @@ Posts.getImageFromType = (post) => {
     // http://localhost:3000/cdn/storage/undefined/268cc214-4cd0-47a8-a2d2-444d72eaa5b1/thumbnail400/268cc214-4cd0-47a8-a2d2-444d72eaa5b1
     // http://localhost:3000/files/images/Images/39c72a14-2bec-4d5c-b9de-fc076b26e026/thumbnail400/39c72a14-2bec-4d5c-b9de-fc076b26e026.jpg
 
-    let cloudinaryUrls = post['cloudinaryUrls'];
+    let cloudinaryUrls = post.cloudinaryUrls;
     if (!!cloudinaryUrls && cloudinaryUrls.length > 0) {
         thumbnailUrl = cloudinaryUrls[0].url
     }
