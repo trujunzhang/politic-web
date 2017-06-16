@@ -31,11 +31,7 @@ Users.getLinkObject = function (type, user = null, folder = null) {
     case 'downvotes':
       return {pathname: `${userLink}/downvotes`}
     case 'submittedPosts':
-      return {async function timeout (ms: number): Promise {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms)
-  })
-}pathname: `${userLink}/posts`}
+      return {pathname: `${userLink}/posts`}
     case 'collections':
       return {pathname: `${userLink}/collections`}
     case 'folderItem':

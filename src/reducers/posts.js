@@ -26,6 +26,20 @@
 const createParseReducer = require('./createParseReducer').default
 
 
+export type Cloudinary = {
+  name: string;
+  url: string;
+}
+
+export type Topic = {
+  id: string;
+  name: string;
+  slug: string;
+  status: string;
+  isIgnore: boolean;
+  active: boolean;
+}
+
 export type Post = {
     id: string;
     url: string;
@@ -41,19 +55,20 @@ export type Post = {
 };
 
 
-export type Topic = {
-  id: string;
-  name: string;
-  slug: string;
-  status: string;
-  isIgnore: boolean;
-  active: boolean;
+
+
+function fromParseTopic(map: Object): Topic {
+  var pic = map.get('speakerPic');
+  return {
+    id: map.id,
+    name: map.get('name'),
+    slug: map.get('slug'),
+    status: map.get('status'),
+    isIgnore: map.get('isIgnore'),
+    active: map.get('active')
+  };
 }
 
-export type Cloudinary = {
-  name: string;
-  url: string;
-}
 
 
 function fromParseCloudinary(map: Object): Cloudinary {
