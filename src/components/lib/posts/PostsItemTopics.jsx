@@ -11,20 +11,17 @@ class PostsItemTopics extends Component {
    * @returns {XML}
    */
   render () {
-    const {post} = this.props
-    let topics = post.topics,
-      tagsCount = topics.length,
-      firstTag = tagsCount > 0 ? topics[0] : '',
-      tagsMoreCount = tagsCount > 0 ? tagsCount - 1 : 0
+    let topics = this.props.post.topics,
+      tagsMoreCount = topics.length > 0 ? topics.length - 1 : 0
 
-    if (tagsCount !== 0) {
+    if (topics.length !== 0) {
       return (
         <div className="associations_2dmvY">
           <div>
             <span
               className="button_2I1re smallSize_1da-r secondaryText_PM80d greySolidColor_270pZ solidletiant_2wWrf"
               onClick={this.onTagClick.bind(this)}>
-              <div className="buttonContainer_wTYxi">{firstTag.name}</div>
+              <div className="buttonContainer_wTYxi">{topics[0].name}</div>
             </span>
             {tagsMoreCount === 0 ? null : (
               <span ref="moreTopicsButton"
