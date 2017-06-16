@@ -33,10 +33,9 @@ const createParseReducer = require('./createParseReducer').default
  * The states were interested in
  */
 const {
-    LOADED_POSTS
+  LOADED_POSTS
 } = require('../lib/constants').default
-
 
 const {fromParsePost} = require('./parseModels')
 
-export default createParseReducer(LOADED_POSTS, fromParsePost);
+export default createParseReducer(LOADED_POSTS, fromParsePost)

@@ -24,7 +24,6 @@
 
 const createParseReducer = require('./createParseReducer').default
 
-
 /**
  * The states were interested in
  */
@@ -32,8 +31,6 @@ const {
   LOADED_TOPICS
 } = require('../lib/constants').default
 
-
 const {fromParseTopic} = require('./parseModels')
-
 
 export default createParseReducer(LOADED_TOPICS, fromParseTopic)

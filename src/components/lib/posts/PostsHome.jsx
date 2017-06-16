@@ -50,7 +50,9 @@ class PostsHome extends Component {
     // const {selector, options} = Posts.parameters.get(terms);
 
     return Users.renderWithSideBar(
-      <Telescope.components.PostsList{...Posts.generatePostListTitle(location.query)}/>
+        <Telescope.components.PostsList
+            listId = {"single-list-view"}
+            {...Posts.generatePostListTitle(location.query)}/>
     )
   }
 
