@@ -30,6 +30,8 @@ class UserEmailSignUp extends Component {
 
 
   onButtonPress () {
+    const {dispatch} = this.props;
+
     let username = this.props.auth.form.fields.username;
     let email = this.props.auth.form.fields.email;
     let password = this.props.auth.form.fields.password;
@@ -38,8 +40,8 @@ class UserEmailSignUp extends Component {
 
     try {
       await Promise.race([
-        this.props.dispatch(signUpWithPassword(username, email, password)),
-        timeout(15000),
+        dispatch(signUpWithPassword(signUpWithPassword(username, email, password)),
+        timeout(15000)
       ]);
     } catch (e) {
       this.props.actions.signupFailure(e);
@@ -99,6 +101,12 @@ class UserEmailSignUp extends Component {
       </div>
     )
   }
+}
+
+async function timeout(ms: number): Promise {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Timed out')), ms);
+  });
 }
 
 /**
