@@ -1,6 +1,8 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  NEXT_PAGE: null,
+
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
