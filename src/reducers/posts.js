@@ -26,7 +26,7 @@
 const createParseReducer = require('./createParseReducer').default
 
 
-export type post = {
+export type Post = {
     id: string;
     url: string;
     title: string;
@@ -39,7 +39,29 @@ export type post = {
 };
 
 
-function fromParseObject(map: Object): post {
+export type Topic = {
+  id: string;
+name: string;
+slug: string;
+status: string;
+isIgnore: boolean;
+active: boolean;
+}
+
+
+function fromParseTopic(map: Object): Topic {
+  var pic = map.get('speakerPic');
+  return {
+    id: map.id,
+    name: map.get('name'),
+    slug: map.get('slug'),
+    status: map.get('status'),
+    isIgnore: map.get('isIgnore'),
+    active: map.get('active')
+  };
+}
+
+function fromParseObject(map: Object): Post {
     // console.log("after post: " + JSON.stringify(map));
     return {
         id: map.id,
@@ -50,7 +72,8 @@ function fromParseObject(map: Object): post {
         sourceFrom: map.get('sourceFrom'),
         thumbnailUrl: map.get('thumbnailUrl'),
         userId: map.get('userId'),
-        author: map.get('author')
+        author: map.get('author'),
+        topics: (map.get('topics') || []).map(fromParseTopic)
     };
 }
 
