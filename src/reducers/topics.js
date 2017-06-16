@@ -33,25 +33,7 @@ const {
 } = require('../lib/constants').default
 
 
-export type Topic = {
-    id: string;
-    name: string;
-    slug: string;
-    status: string;
-    isIgnore: boolean;
-    active: boolean;
-}
+const {fromParseTopic} = require('./parseModels')
 
-function fromParseObject(map: Object): Topic {
-    // console.log("after Topic: " + JSON.stringify(map));
-    return {
-        id: map.id,
-        name: map.get('name'),
-        slug: map.get('slug'),
-        status: map.get('status'),
-        isIgnore: map.get('isIgnore'),
-        active: map.get('active')
-    }
-}
 
-export default createParseReducer(LOADED_TOPICS, fromParseObject)
+export default createParseReducer(LOADED_TOPICS, fromParseTopic)
