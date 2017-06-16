@@ -20,8 +20,9 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-'use strict';
+'use strict'
 
-require('cloud/surveys.js');
-require('cloud/friends.js');
-require('cloud/tests.js');
+Parse.Cloud.afterSave('User', function (request, response) {
+
+
+})
