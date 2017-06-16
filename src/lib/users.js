@@ -1,4 +1,4 @@
-import Telescope from '../components/lib/index'
+var Telescope = require('../components/lib/index').default
 import React from 'react'
 let _ = require('underscore')
 let md5 = require('blueimp-md5')
@@ -248,6 +248,7 @@ Users.avatar = {
       gravatarDefault = '404'
     }
 
+    debugger
     let emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user)
     // let secure = true;
     let options = {

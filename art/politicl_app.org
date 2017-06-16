@@ -1,5 +1,8 @@
 * Libraries
 
+** slugify
+  [https://github.com/simov/slugify]
+
 ** react-intl
   [https://github.com/yahoo/react-intl]
 
