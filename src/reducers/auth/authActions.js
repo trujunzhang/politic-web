@@ -14,32 +14,31 @@
  * The actions supported
  */
 const {
-    LOGOUT,
-    REGISTER,
-    LOGIN,
-    FORGOT_PASSWORD,
+  LOGOUT,
+  REGISTER,
+  LOGIN,
+  FORGOT_PASSWORD,
 
-    LOGOUT_REQUEST,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
 
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
 
-    ON_AUTH_FORM_FIELD_CHANGE,
-    SIGNUP_REQUEST,
-    SIGNUP_SUCCESS,
-    SIGNUP_FAILURE,
+  ON_AUTH_FORM_FIELD_CHANGE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 
-    RESET_PASSWORD_REQUEST,
-    RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_FAILURE,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
 
-    SET_STATE
+  SET_STATE
 
 } = require('../../lib/constants').default
-
 
 const _ = require('underscore')
 
@@ -49,81 +48,80 @@ const _ = require('underscore')
  * as in login, register, logout or reset password
  */
 
-export function logoutState() {
-    return {
-        type: LOGOUT
-    }
+export function logoutState () {
+  return {
+    type: LOGOUT
+  }
 }
-export function registerState() {
-    return {
-        type: REGISTER
-    }
-}
-
-export function loginState() {
-    return {
-        type: LOGIN
-    }
+export function registerState () {
+  return {
+    type: REGISTER
+  }
 }
 
-export function forgotPasswordState() {
-    return {
-        type: FORGOT_PASSWORD
-    }
+export function loginState () {
+  return {
+    type: LOGIN
+  }
+}
+
+export function forgotPasswordState () {
+  return {
+    type: FORGOT_PASSWORD
+  }
 }
 
 /**
  * ## Logout actions
  */
-export function logoutRequest() {
-    return {
-        type: LOGOUT_REQUEST
-    }
+export function logoutRequest () {
+  return {
+    type: LOGOUT_REQUEST
+  }
 }
 
-export function logoutSuccess() {
-    return {
-        type: LOGOUT_SUCCESS
-    }
+export function logoutSuccess () {
+  return {
+    type: LOGOUT_SUCCESS
+  }
 }
-export function logoutFailure(error) {
-    return {
-        type: LOGOUT_FAILURE,
-        payload: error
-    }
+export function logoutFailure (error) {
+  return {
+    type: LOGOUT_FAILURE,
+    payload: error
+  }
 }
 
 /**
  * ## onAuthFormFieldChange
  * Set the payload so the reducer can work on it
  */
-export function onAuthFormFieldChange(field, value) {
-    return {
-        type: ON_AUTH_FORM_FIELD_CHANGE,
-        payload: {field: field, value: value}
-    }
+export function onAuthFormFieldChange (field, value) {
+  return {
+    type: ON_AUTH_FORM_FIELD_CHANGE,
+    payload: {field: field, value: value}
+  }
 }
 /**
  * ## Signup actions
  */
-export function signupRequest() {
-    return {
-        type: SIGNUP_REQUEST
-    }
+export function signupRequest () {
+  return {
+    type: SIGNUP_REQUEST
+  }
 }
-export function signupSuccess(json) {
-    return {
-        type: SIGNUP_SUCCESS,
-        payload: json
-    }
+export function signupSuccess (json) {
+  return {
+    type: SIGNUP_SUCCESS,
+    payload: json
+  }
 }
-export function signupFailure(error) {
-    return {
-        type: SIGNUP_FAILURE,
-        payload: error
-    }
+export function signupFailure (error) {
+  return {
+    type: SIGNUP_FAILURE,
+    payload: error
+  }
 }
-
 
 /**
  * ## signup
@@ -137,43 +135,43 @@ export function signupFailure(error) {
  *
  * Otherwise, dispatch the error so the user can see
  */
-export function signup(username, email, password, roleType) {
-    return dispatch => {
-        dispatch(signupRequest())
+export function signup (username, email, password, roleType) {
+  return dispatch => {
+    dispatch(signupRequest())
 
-    }
+  }
 }
 
 /**
  * ## Login actions
  */
-export function resetAuthorForm() {
-    return {
-        type: SET_STATE
-    }
+export function resetAuthorForm () {
+  return {
+    type: SET_STATE
+  }
 }
 
 /**
  * ## Login actions
  */
-export function loginRequest() {
-    return {
-        type: LOGIN_REQUEST
-    }
+export function loginRequest () {
+  return {
+    type: LOGIN_REQUEST
+  }
 }
 
-export function loginSuccess(json) {
-    return {
-        type: LOGIN_SUCCESS,
-        payload: json
-    }
+export function loginSuccess (json) {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: json
+  }
 }
 
-export function loginFailure(error) {
-    return {
-        type: LOGIN_FAILURE,
-        payload: error
-    }
+export function loginFailure (error) {
+  return {
+    type: LOGIN_FAILURE,
+    payload: error
+  }
 }
 /**
  * ## Login
@@ -187,32 +185,32 @@ export function loginFailure(error) {
  * otherwise, dispatch a failure
  */
 
-export function login(username, password) {
-    return dispatch => {
-        dispatch(loginRequest())
-    }
+export function login (username, password) {
+  return dispatch => {
+    dispatch(loginRequest())
+  }
 }
 
 /**
  * ## ResetPassword actions
  */
-export function resetPasswordRequest() {
-    return {
-        type: RESET_PASSWORD_REQUEST
-    }
+export function resetPasswordRequest () {
+  return {
+    type: RESET_PASSWORD_REQUEST
+  }
 }
 
-export function resetPasswordSuccess() {
-    return {
-        type: RESET_PASSWORD_SUCCESS
-    }
+export function resetPasswordSuccess () {
+  return {
+    type: RESET_PASSWORD_SUCCESS
+  }
 }
 
-export function resetPasswordFailure(error) {
-    return {
-        type: RESET_PASSWORD_FAILURE,
-        payload: error
-    }
+export function resetPasswordFailure (error) {
+  return {
+    type: RESET_PASSWORD_FAILURE,
+    payload: error
+  }
 }
 /**
  * ## ResetPassword
@@ -226,9 +224,9 @@ export function resetPasswordFailure(error) {
  * With that enabled, an email can be sent w/ a
  * form for setting the new password.
  */
-export function resetPassword(email) {
-    return dispatch => {
-        dispatch(resetPasswordRequest())
+export function resetPassword (email) {
+  return dispatch => {
+    dispatch(resetPasswordRequest())
 
-    }
+  }
 }
