@@ -11,18 +11,16 @@ const I18n = require('./Translate').default
 
 import LoginRender from './LoginRender'
 
+const {signUpWithPassword} = require('../actions').default
+
 class UserEmailSignUp extends Component {
 
   constructor (props) {
     super(props)
     this.state = this.initialState = {
-      username: '',
-      email: '',
-      password: '',
       formState: 'COMMON',
       // Message
-      message: null,
-      waiting: false
+      message: null
     }
   }
 
@@ -30,102 +28,30 @@ class UserEmailSignUp extends Component {
 
   }
 
-  signUp () {
 
-  }
+  onButtonPress () {
+    let username = this.props.auth.form.fields.username;
+    let email = this.props.auth.form.fields.email;
+    let password = this.props.auth.form.fields.password;
 
-  checkValidEmailCallBack (email, cb) {
+    // this.props.actions.signupRequest();
 
-  }
-
-  SignUpWithOptions (_options) {
-
-  }
-
-  onResendVerificationLinkClick (event) {
-    event.preventDefault()
-  }
-
-  renderSignupForm () {
-    const {waiting} = this.state
-    return (
-      <div id='user-signin-panel' className='overlay--dark'>
-        <div className='overlay-dialog--email'>
-          <div className='overlay-content'>
-            <div className='u-paddingTop10'>Name</div>
-            <div className='inputGroup u-marginBottom0'>
-              <input
-                type='text'
-                name='text'
-                className='textInput textInput--large u-marginBottom0 textInput--underlined textInput--signin js-email'
-                placeholder='Your name'
-                value={this.state.username}
-                onChange={(e) => this.setState({username: e.target.value})}
-              />
-            </div>
-          </div>
-          <div className='overlay-content'>
-            <div className='u-paddingTop10'>Email</div>
-            <div className='inputGroup u-marginBottom0'>
-              <input
-                type='email'
-                name='email'
-                className='textInput textInput--large u-marginBottom0 textInput--underlined textInput--signin js-email'
-                placeholder='yourname@example.com'
-                value={this.state.email}
-                onChange={(e) => this.setState({email: e.target.value})}
-              />
-            </div>
-          </div>
-          <div className='overlay-content'>
-            <div className='u-paddingTop10'>Password</div>
-            <div className='inputGroup u-marginBottom0'>
-              <input
-                type='password'
-                name='password'
-                className='textInput textInput--large u-marginBottom0 textInput--underlined textInput--signin js-password'
-                placeholder='Password'
-                value={this.state.password}
-                onChange={(e) => this.setState({password: e.target.value})}
-              />
-            </div>
-          </div>
-          <div className='right_1jQ6K buttonGroup_2NmU8 right_2JztM' id='user-submit-button-panel'>
-            <div className='buttonWithNotice_3bRZb'>
-              <button
-                onClick={this.signUp.bind(this)}
-                disabled={waiting}
-                className='button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d orangeSolidColor_B-2gO solidVariant_2wWrf'
-                type='submit'>
-                <div className='buttonContainer_wTYxi'>Sign up</div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  renderLoginFooterLinks () {
-    return (
-      <span className='login_footer_links light' id='__w2_VNnJBb6_social_signup_links'>
-              <a id='user_main_link'
-                 onClick={(e) => {
-                   this.props.switchFormState(e, 'MAIN')
-                 }}
-              >
-                  Continue with Facebook and Twitter
-              </a>
-              <span className='bullet'> · </span>
-              <a id='user_login_link'
-                 onClick={(e) => {
-                   this.props.switchFormState(e, 'SIGNIN')
-                 }}
-              >
-                  Login
-              </a>
-          </span>
-    )
+    try {
+      await Promise.race([
+        this.props.dispatch(signUpWithPassword(username, email, password)),
+        timeout(15000),
+      ]);
+    } catch (e) {
+      this.props.actions.signupFailure(e);
+      const message = e.message || e;
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        // alert(message);
+        // console.warn(e);
+      }
+    } finally {
+      // this.props.actions.signupSuccess();
+      this._isMounted && this.setState({isLoading: false});
+    }
   }
 
   renderResult () {
@@ -142,9 +68,6 @@ class UserEmailSignUp extends Component {
     )
   }
 
-  onButtonPress () {
-
-  }
 
   render () {
     let content = null

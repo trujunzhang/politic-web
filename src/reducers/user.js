@@ -29,44 +29,28 @@ import type {Action} from '../actions/types'
 export type State = {
     isLoggedIn: boolean;
     hasSkippedLogin: boolean;
-    sharedSchedule: ?boolean;
     id: ?string;
     name: ?string;
-    roleType: ?string;
+    loginType: ?string;
 };
 
 const initialState = {
     isLoggedIn: false,
     hasSkippedLogin: false,
-    sharedSchedule: null,
     id: null,
     name: null,
-    roleType: null
+    loginType: null
 };
 
 function user(state: State = initialState, action: Action): State {
     if (action.type === 'LOGGED_IN') {
-        let {id, name, sharedSchedule, roleType} = action.data;
-        if (sharedSchedule === undefined) {
-            sharedSchedule = null;
-        }
+        let {id, name,  loginType} = action.data;
         return {
             isLoggedIn: true,
             hasSkippedLogin: false,
-            sharedSchedule,
             id,
             name,
-            roleType
-        };
-    }
-    if (action.type === 'SKIPPED_LOGIN') {
-        return {
-            isLoggedIn: false,
-            hasSkippedLogin: true,
-            sharedSchedule: null,
-            id: null,
-            name: null,
-            roleType: null
+            loginType
         };
     }
     if (action.type === 'LOGGED_OUT') {
@@ -74,12 +58,11 @@ function user(state: State = initialState, action: Action): State {
     }
     if (action.type === 'SET_SHARING') {
         return {
-            ...state,
-            sharedSchedule: action.enabled,
+            ...state
         };
     }
     if (action.type === 'RESET_NUXES') {
-        return {...state, sharedSchedule: null};
+        return {...state};
     }
     return state;
 }

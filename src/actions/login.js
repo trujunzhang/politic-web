@@ -22,50 +22,50 @@
  * @flow
  */
 
-'use strict';
+'use strict'
 
-const Parse = require('parse/react-native');
-const FacebookSDK = require('FacebookSDK');
-const ActionSheetIOS = require('ActionSheetIOS');
-const {Platform} = require('react-native');
-const Alert = require('Alert');
-const {restoreSchedule, loadFriendsSchedules} = require('./schedule');
-const {updateInstallation} = require('./installation');
-const {loadSurveys} = require('./surveys');
+const Parse = require('parse/react-native')
+const FacebookSDK = require('FacebookSDK')
+const ActionSheetIOS = require('ActionSheetIOS')
+const {Platform} = require('react-native')
+const Alert = require('Alert')
+const {restoreSchedule, loadFriendsSchedules} = require('./schedule')
+const {updateInstallation} = require('./installation')
+const {loadSurveys} = require('./surveys')
 
-import type { Action, ThunkAction } from './types';
+import type { Action, ThunkAction } from './types'
 
 async function ParseFacebookLogin(scope): Promise {
   return new Promise((resolve, reject) => {
     Parse.FacebookUtils.logIn(scope, {
       success: resolve,
       error: (user, error) => reject(error && error.error || error),
-    });
-  });
+    })
+  })
 }
 
 async function queryFacebookAPI(path, ...args): Promise {
   return new Promise((resolve, reject) => {
     FacebookSDK.api(path, ...args, (response) => {
       if (response && !response.error) {
-        resolve(response);
+        resolve(response)
       } else {
-        reject(response && response.error);
+        reject(response && response.error)
       }
-    });
-  });
+    })
+  })
 }
 
 async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
-  await ParseFacebookLogin('public_profile,email,user_friends');
-  const profile = await queryFacebookAPI('/me', {fields: 'name,email'});
+  await ParseFacebookLogin('public_profile,email,user_friends')
+  const profile = await queryFacebookAPI('/me', {fields: 'name,email'})
 
-  const user = await Parse.User.currentAsync();
-  user.set('facebook_id', profile.id);
-  user.set('name', profile.name);
-  user.set('email', profile.email);
-  await user.save();
-  await updateInstallation({user});
+  const user = await Parse.User.currentAsync()
+  user.set('facebook_id', profile.id)
+  user.set('name', profile.name)
+  user.set('email', profile.email)
+  await user.save()
+  await updateInstallation({user})
 
   const action = {
     type: 'LOGGED_IN',
@@ -75,52 +75,105 @@ async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
       name: profile.name,
       sharedSchedule: user.get('sharedSchedule'),
     },
-  };
+  }
 
   return Promise.all([
     Promise.resolve(action),
     restoreSchedule(),
-  ]);
+  ])
 }
 
 function logInWithFacebook(source: ?string): ThunkAction {
   return (dispatch) => {
-    const login = _logInWithFacebook(source);
+    const login = _logInWithFacebook(source)
 
     // Loading friends schedules shouldn't block the login process
     login.then(
       (result) => {
-        dispatch(result);
-        dispatch(loadFriendsSchedules());
-        dispatch(loadSurveys());
+        dispatch(result)
+        dispatch(loadFriendsSchedules())
+        dispatch(loadSurveys())
       }
-    );
-    return login;
-  };
+    )
+    return login
+  }
 }
+
+
+async function _signUpWithPassword(username: string, email: string, password: string): Promise<Array<Action>> {
+  const user = new Parse.User()
+  user.set('username', username)
+  user.set('password', password)
+  user.set('email', email)
+
+  let signUpWithPassword = user.signUp({'loginType': 'email'})
+  await signUpWithPassword
+  // await updateInstallation({user})
+
+  var callBackObject = null
+  await signUpWithPassword.then((result) => {
+    callBackObject = result
+    console.log("signup result: " + JSON.stringify(result))
+  })
+
+  console.log("signup callBackObject: " + JSON.stringify(callBackObject))
+
+  const userData = {
+    id: callBackObject.id,
+    name: callBackObject.get("username"),
+    loginType: callBackObject.get("loginType"),
+    sharedSchedule: user.get('sharedSchedule'),
+  }
+
+  console.log("signup userData: " + JSON.stringify(userData))
+
+  const action = {
+    type: 'LOGGED_IN',
+    data: userData
+  }
+
+  return Promise.all([
+    Promise.resolve(action)
+  ])
+}
+
+function signUpWithPassword(username: string, email: string, password: string): ThunkAction {
+  return (dispatch) => {
+    const login = _signUpWithPassword(username, email, password)
+
+    // Loading friends schedules shouldn't block the login process
+    login.then(
+      ([result]) => {
+        dispatch(result)
+      }
+    )
+    return login
+  }
+}
+
 
 function skipLogin(): Action {
   return {
     type: 'SKIPPED_LOGIN',
-  };
+  }
 }
 
 function logOut(): ThunkAction {
   return (dispatch) => {
-    Parse.User.logOut();
-    FacebookSDK.logout();
-    updateInstallation({user: null, channels: []});
+    Parse.User.logOut()
+    FacebookSDK.logout()
+    updateInstallation({user: null, channels: []})
 
     // TODO: Make sure reducers clear their state
     return dispatch({
       type: 'LOGGED_OUT',
-    });
-  };
+    })
+  }
 }
 
 function logOutWithPrompt(): ThunkAction {
   return (dispatch, getState) => {
-    let name = getState().user.name || 'there';
+    let name = getState().user.name || 'there'
 
     if (Platform.OS === 'ios') {
       ActionSheetIOS.showActionSheetWithOptions(
@@ -132,10 +185,10 @@ function logOutWithPrompt(): ThunkAction {
         },
         (buttonIndex) => {
           if (buttonIndex === 0) {
-            dispatch(logOut());
+            dispatch(logOut())
           }
         }
-      );
+      )
     } else {
       Alert.alert(
         `Hi, ${name}`,
@@ -144,9 +197,9 @@ function logOutWithPrompt(): ThunkAction {
           { text: 'Cancel' },
           { text: 'Log out', onPress: () => dispatch(logOut()) },
         ]
-      );
+      )
     }
-  };
+  }
 }
 
-export default {logInWithFacebook, skipLogin, logOut, logOutWithPrompt};
+export default {logInWithFacebook, skipLogin, logOut, logOutWithPrompt,signUpWithPassword}
