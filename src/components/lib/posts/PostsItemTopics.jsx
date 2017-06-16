@@ -47,13 +47,10 @@ class PostsItemTopics extends Component {
   onTagClick (event) {
     event.preventDefault()
 
-    const {post, router} = this.props
-    let topics = post.topics,
-      tagsCount = topics.length,
-      topic = tagsCount > 0 ? topics[0] : null
+    let topics = this.props.post.topics
 
-    if (!!topic) {
-      // this.context.messages.pushForTopic(router, topic)
+    if (topics.length > 0) {
+      // this.context.messages.pushForTopic(router, topics[0])
     }
 
     event.stopPropagation()
