@@ -80,4 +80,7 @@ Telescope.registerComponent('UsersRemovedAccount',            require('./overlay
 Telescope.registerComponent('UsersResetPassword',             require('./overlay/login/UsersResetPassword.jsx').default)
 Telescope.registerComponent('UsersVerifyEmail',               require('./overlay/login/UsersVerifyEmail.jsx').default)
 
+// users
+Telescope.registerComponent('UsersMenu',               require('./users/UsersMenu.jsx').default)
+
 export default Telescope

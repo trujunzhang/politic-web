@@ -32,25 +32,28 @@ export type State = {
     id: ?string;
     name: ?string;
     loginType: ?string;
+    email: ?string;
 };
 
 const initialState = {
-    isLoggedIn: false,
-    hasSkippedLogin: false,
-    id: null,
-    name: null,
-    loginType: null
+  isLoggedIn: false,
+  hasSkippedLogin: false,
+  id: null,
+  name: null,
+  loginType: null,
+  email:null
 };
 
 function user(state: State = initialState, action: Action): State {
     if (action.type === 'LOGGED_IN') {
-        let {id, name,  loginType} = action.data;
+        let {id, name, loginType,email} = action.data;
         return {
-            isLoggedIn: true,
-            hasSkippedLogin: false,
-            id,
-            name,
-            loginType
+          isLoggedIn: true,
+          hasSkippedLogin: false,
+          id,
+          name,
+          loginType,
+          email
         };
     }
     if (action.type === 'LOGGED_OUT') {

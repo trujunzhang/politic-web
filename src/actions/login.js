@@ -113,6 +113,7 @@ async function _signUpWithPassword(username: string, email: string, password: st
     id: callBackObject.id,
     name: callBackObject.get("username"),
     loginType: callBackObject.get("loginType"),
+    email:callBackObject.get("email")
   }
 
   console.log("signup userData: " + JSON.stringify(userData))
