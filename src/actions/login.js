@@ -24,14 +24,9 @@
 
 'use strict'
 
-const Parse = require('parse/react-native')
-const FacebookSDK = require('FacebookSDK')
-const ActionSheetIOS = require('ActionSheetIOS')
-const {Platform} = require('react-native')
-const Alert = require('Alert')
-const {restoreSchedule, loadFriendsSchedules} = require('./schedule')
+const Parse = require('parse')
+// const FacebookSDK = require('FacebookSDK')
 const {updateInstallation} = require('./installation')
-const {loadSurveys} = require('./surveys')
 
 import type { Action, ThunkAction } from './types'
 
@@ -78,8 +73,7 @@ async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
   }
 
   return Promise.all([
-    Promise.resolve(action),
-    restoreSchedule(),
+    Promise.resolve(action)
   ])
 }
 
@@ -91,8 +85,6 @@ function logInWithFacebook(source: ?string): ThunkAction {
     login.then(
       (result) => {
         dispatch(result)
-        dispatch(loadFriendsSchedules())
-        dispatch(loadSurveys())
       }
     )
     return login
@@ -161,7 +153,7 @@ function skipLogin(): Action {
 function logOut(): ThunkAction {
   return (dispatch) => {
     Parse.User.logOut()
-    FacebookSDK.logout()
+    // FacebookSDK.logout()
     updateInstallation({user: null, channels: []})
 
     // TODO: Make sure reducers clear their state
@@ -171,35 +163,4 @@ function logOut(): ThunkAction {
   }
 }
 
-function logOutWithPrompt(): ThunkAction {
-  return (dispatch, getState) => {
-    let name = getState().user.name || 'there'
-
-    if (Platform.OS === 'ios') {
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          title: `Hi, ${name}`,
-          options: ['Log out', 'Cancel'],
-          destructiveButtonIndex: 0,
-          cancelButtonIndex: 1,
-        },
-        (buttonIndex) => {
-          if (buttonIndex === 0) {
-            dispatch(logOut())
-          }
-        }
-      )
-    } else {
-      Alert.alert(
-        `Hi, ${name}`,
-        'Log out from F8?',
-        [
-          { text: 'Cancel' },
-          { text: 'Log out', onPress: () => dispatch(logOut()) },
-        ]
-      )
-    }
-  }
-}
-
-export default {logInWithFacebook, skipLogin, logOut, logOutWithPrompt,signUpWithPassword}
+export default {logInWithFacebook, skipLogin, logOut, signUpWithPassword}

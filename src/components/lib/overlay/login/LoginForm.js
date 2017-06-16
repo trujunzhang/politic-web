@@ -50,7 +50,7 @@ class LoginForm extends Component {
       maxLength: 12,
       editable: !this.props.form.isFetching,
       hasError: this.props.form.fields.usernameHasError,
-      error: this.props.form.fields.usernameErrorMsg
+      error: I18n.t(this.props.form.fields.usernameErrorMsg)
     }
 
     let email = {
@@ -58,7 +58,7 @@ class LoginForm extends Component {
       keyboardType: 'email-address',
       editable: !this.props.form.isFetching,
       hasError: this.props.form.fields.emailHasError,
-      error: this.props.form.fields.emailErrorMsg
+      error: I18n.t(this.props.form.fields.emailErrorMsg)
     }
 
     let secureTextEntry = !this.props.form.fields.showPassword
@@ -69,7 +69,7 @@ class LoginForm extends Component {
       secureTextEntry: secureTextEntry,
       editable: !this.props.form.isFetching,
       hasError: this.props.form.fields.passwordHasError,
-      error: this.props.form.fields.passwordErrorMsg
+      error: I18n.t(this.props.form.fields.passwordErrorMsg)
     }
 
     let passwordAgain = {
@@ -78,7 +78,7 @@ class LoginForm extends Component {
       maxLength: 12,
       editable: !this.props.form.isFetching,
       hasError: this.props.form.fields.passwordAgainHasError,
-      error: this.props.form.fields.passwordAgainErrorMsg
+      error: I18n.t(this.props.form.fields.passwordAgainErrorMsg)
     }
 
     let loginForm

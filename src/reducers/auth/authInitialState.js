@@ -38,7 +38,7 @@ const Form = Record({
     password: 'djzhang@123',
     passwordHasError: false,
     passwordErrorMsg: '',
-    passwordAgain: '',
+    passwordAgain: 'djzhang@123',
     passwordAgainHasError: false,
     passwordAgainErrorMsg: '',
     showPassword: false

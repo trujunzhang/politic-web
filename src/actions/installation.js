@@ -24,17 +24,16 @@
 
 'use strict';
 
-const Platform = require('Platform');
-const Parse = require('parse/react-native');
+const Parse = require('parse');
 
 async function currentInstallation(): Promise<Parse.Installation> {
   const installationId = await Parse._getInstallationId();
   return new Parse.Installation({
     installationId,
     appName: 'F8',
-    deviceType: Platform.OS,
+    deviceType: "browser",
     // TODO: Get this information from the app itself
-    appIdentifier: Platform.OS === 'ios' ? 'com.facebook.f8' : 'com.facebook.f8',
+    appIdentifier: 'com.facebook.f8'
   });
 }
 
