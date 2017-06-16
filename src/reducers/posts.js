@@ -76,7 +76,7 @@ function fromParseCloudinary(map: Object): Cloudinary {
   };
 }
 
-function fromParseObject(map: Object): Post {
+function fromParsePost(map: Object): Post {
     // console.log("after post: " + JSON.stringify(map));
     return {
         id: map.id,
@@ -93,4 +93,4 @@ function fromParseObject(map: Object): Post {
     };
 }
 
-export default createParseReducer('LOADED_POSTS', fromParseObject);
+export default createParseReducer('LOADED_POSTS', fromParsePost);
