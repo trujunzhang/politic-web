@@ -11,7 +11,7 @@ const I18n = require('./Translate').default
 
 import LoginRender from './LoginRender'
 
-const {signUpWithPassword} = require('../actions').default
+const {signUpWithPassword} = require('../../../../actions').default
 
 class UserEmailSignUp extends Component {
 
@@ -29,7 +29,7 @@ class UserEmailSignUp extends Component {
   }
 
 
-  onButtonPress () {
+  async onButtonPress () {
     const {dispatch} = this.props;
 
     let username = this.props.auth.form.fields.username;
@@ -40,11 +40,11 @@ class UserEmailSignUp extends Component {
 
     try {
       await Promise.race([
-        dispatch(signUpWithPassword(signUpWithPassword(username, email, password)),
+        dispatch(signUpWithPassword(username, email, password)),
         timeout(15000)
-      ]);
+      ])
     } catch (e) {
-      this.props.actions.signupFailure(e);
+      //this.props.actions.signupFailure(e);
       const message = e.message || e;
       if (message !== 'Timed out' && message !== 'Canceled by user') {
         // alert(message);
