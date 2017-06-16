@@ -25,6 +25,7 @@
 'use strict';
 
 import type {Action} from '../actions/types'
+var slugify = require('slugify')
 
 export type State = {
     isLoggedIn: boolean;
@@ -33,6 +34,7 @@ export type State = {
     name: ?string;
     loginType: ?string;
     email: ?string;
+    slug: ?string,
 };
 
 const initialState = {
@@ -41,7 +43,8 @@ const initialState = {
   id: null,
   name: null,
   loginType: null,
-  email:null
+  email:null,
+  slug:null
 };
 
 function user(state: State = initialState, action: Action): State {
@@ -53,7 +56,8 @@ function user(state: State = initialState, action: Action): State {
           id,
           name,
           loginType,
-          email
+          email,
+          slug:slugify(name, '_')
         };
     }
     if (action.type === 'LOGGED_OUT') {

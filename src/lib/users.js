@@ -416,7 +416,7 @@ Users.getAvatarObj = function (user) {
     url: Users.avatar.getInitials(user),
     avatarId: user._id,
     title: Users.getDisplayName(user),
-    slug: user.telescope.slug
+    slug: user.slug
   }
 }
 
