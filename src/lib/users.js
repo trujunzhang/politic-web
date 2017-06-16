@@ -1,6 +1,8 @@
 import Telescope from '../components/lib/index'
 import React from 'react'
-var _ = require('underscore')
+let _ = require('underscore')
+let md5 = require('blueimp-md5')
+
 const Users = {}
 
 Users.avatar = {
@@ -40,7 +42,7 @@ Users.avatar = {
     // If a value is set to, 'foo' for example, the resulting CSS classes are prefixed with 'foo'.
     cssClassPrefix: '',
 
-    // This property defines the various image sizes available
+    // This property defines the letious image sizes available
     imageSizes: {
       'large': 80,
       'small': 30,
@@ -92,9 +94,9 @@ Users.avatar = {
   // Get the initials of the user
   getInitials: function (user) {
 
-    var initials = ''
-    var name = ''
-    var parts = []
+    let initials = ''
+    let name = ''
+    let parts = []
 
     if (user && user.profile && user.profile.firstName) {
       initials = user.profile.firstName.charAt(0).toUpperCase()
@@ -133,8 +135,8 @@ Users.avatar = {
     // Default to the currently logged in user, unless otherwise specified.
     if (!user) return null
 
-    var url = ''
-    var defaultUrl, svc
+    let url = ''
+    let defaultUrl, svc
 
     if (user) {
       svc = this.getService(user)
@@ -150,8 +152,8 @@ Users.avatar = {
     // Default to the currently logged in user, unless otherwise specified.
     if (!user) return null
 
-    var url = ''
-    var defaultUrl
+    let url = ''
+    let defaultUrl
 
     if (user) {
       if (svc === 'twitter') {
@@ -194,11 +196,11 @@ Users.avatar = {
   },
 
   getService: function (user) {
-    var services = user && user.services || {}
+    let services = user && user.services || {}
     if (this.getCustomUrl(user)) {
       return 'custom'
     }
-    var service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function (s) {
+    let service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function (s) {
       return !!services[s[0]] && s[1].length && !!services[s[0]][s[1]]
     })
     if (!service)
@@ -217,14 +219,14 @@ Users.avatar = {
   },
 
   getDescendantProp: function (obj, desc) {
-    var arr = desc.split('.')
+    let arr = desc.split('.')
     while (arr.length && (obj = obj[arr.shift()]))
       return obj
   },
 
   getCustomUrl: function (user) {
 
-    var customProp = user && this.options.customImageProperty
+    let customProp = user && this.options.customImageProperty
     if (typeof customProp === 'function') {
       return this.computeUrl(customProp, user)
     } else if (customProp) {
@@ -233,21 +235,21 @@ Users.avatar = {
   },
 
   getGravatarUrl: function (user, defaultUrl) {
-    var gravatarDefault
-    var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank']
+    let gravatarDefault
+    let validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank']
 
     // Initials are shown when Gravatar returns 404.
     if (this.options.fallbackType !== 'initials') {
-      var valid = _.contains(validGravatars, this.options.gravatarDefault)
+      let valid = _.contains(validGravatars, this.options.gravatarDefault)
       gravatarDefault = valid ? this.options.gravatarDefault : defaultUrl
     }
     else {
       gravatarDefault = '404'
     }
 
-    var emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user)
-    // var secure = true;
-    var options = {
+    let emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user)
+    // let secure = true;
+    let options = {
       // NOTE: Gravatar's default option requires a publicly accessible URL,
       // so it won't work when your app is running on localhost and you're
       // using an image with either the standard default image URL or a custom
@@ -262,7 +264,7 @@ Users.avatar = {
 
   // Get the user's email address
   getUserEmail: function (user) {
-    var emails = _.pluck(user.emails, 'address')
+    let emails = _.pluck(user.emails, 'address')
     return emails[0] || null
   },
 
@@ -274,7 +276,7 @@ Users.avatar = {
 
   // Returns the shape class for an avatar
   getShapeClass: function (context) {
-    var valid = ['rounded', 'circle']
+    let valid = ['rounded', 'circle']
     return _.contains(valid, context.shape) ? this.getCssClassPrefix() + '-' + context.shape : ''
   },
 
@@ -288,6 +290,14 @@ Users.avatar = {
     return context.initials || this.getInitials(user)
   }
 
+}
+
+/**
+ * @summary Get a user's email hash
+ * @param {Object} user
+ */
+Users.getEmailHash = function (user) {
+  return md5(user.email)
 }
 
 /**
