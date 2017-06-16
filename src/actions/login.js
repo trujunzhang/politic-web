@@ -67,8 +67,7 @@ async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
     source,
     data: {
       id: profile.id,
-      name: profile.name,
-      sharedSchedule: user.get('sharedSchedule'),
+      name: profile.name
     },
   }
 
@@ -114,7 +113,6 @@ async function _signUpWithPassword(username: string, email: string, password: st
     id: callBackObject.id,
     name: callBackObject.get("username"),
     loginType: callBackObject.get("loginType"),
-    sharedSchedule: user.get('sharedSchedule'),
   }
 
   console.log("signup userData: " + JSON.stringify(userData))

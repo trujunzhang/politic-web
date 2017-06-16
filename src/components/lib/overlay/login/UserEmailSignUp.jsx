@@ -20,7 +20,7 @@ class UserEmailSignUp extends Component {
     this.state = this.initialState = {
       formState: 'COMMON',
       // Message
-      message: null
+      errorMessage: null
     }
   }
 
@@ -28,15 +28,19 @@ class UserEmailSignUp extends Component {
 
   }
 
-
   async onButtonPress () {
-    const {dispatch} = this.props;
+    const {dispatch} = this.props
 
-    let username = this.props.auth.form.fields.username;
-    let email = this.props.auth.form.fields.email;
-    let password = this.props.auth.form.fields.password;
+    let username = this.props.auth.form.fields.username
+    let email = this.props.auth.form.fields.email
+    let password = this.props.auth.form.fields.password
 
-    // this.props.actions.signupRequest();
+    this.setState({errorMessage: null})
+    var errorMessage = null
+
+    this.props.actions.signupRequest()
+
+    debugger
 
     try {
       await Promise.race([
@@ -44,15 +48,19 @@ class UserEmailSignUp extends Component {
         timeout(15000)
       ])
     } catch (e) {
-      //this.props.actions.signupFailure(e);
-      const message = e.message || e;
+      this.props.actions.signupFailure(e)
+      const message = e.message || e
       if (message !== 'Timed out' && message !== 'Canceled by user') {
+        errorMessage = message
         // alert(message);
         // console.warn(e);
       }
     } finally {
-      // this.props.actions.signupSuccess();
-      this._isMounted && this.setState({isLoading: false});
+      if (!!errorMessage) {
+        this.setState({errorMessage: errorMessage})
+      } else {
+        this.props.actions.signupSuccess()
+      }
     }
   }
 
@@ -69,7 +77,6 @@ class UserEmailSignUp extends Component {
       </div>
     )
   }
-
 
   render () {
     let content = null
@@ -95,7 +102,7 @@ class UserEmailSignUp extends Component {
     return (
       <div>
         <span>
-          {!!this.state.message ? <div className='errorMessage_2lxEG'>{this.state.message.message}</div> : null}
+          {!!this.state.errorMessage ? <div className='errorMessage_2lxEG'>{this.state.errorMessage}</div> : null}
           { content }
         </span>
       </div>
@@ -103,10 +110,10 @@ class UserEmailSignUp extends Component {
   }
 }
 
-async function timeout(ms: number): Promise {
+async function timeout (ms: number): Promise {
   return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms);
-  });
+    setTimeout(() => reject(new Error('Timed out')), ms)
+  })
 }
 
 /**

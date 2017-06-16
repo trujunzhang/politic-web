@@ -44,7 +44,7 @@ export type Action =
     | { type: 'LOADED_SESSIONS', list: Array<ParseObject> }
     | { type: 'LOADED_SURVEYS', list: Array<Object> }
     | { type: 'SUBMITTED_SURVEY_ANSWERS', id: string; }
-    | { type: 'LOGGED_IN', source: ?string; data: { id: string; name: string; sharedSchedule: ?boolean; } }
+    | { type: 'LOGGED_IN', source: ?string; data: { id: string; name: string; loginType: string; } }
     | { type: 'LOG_IN_PASSWORD', username: ?string; password: ?string }
     | { type: 'RESTORED_SCHEDULE', list: Array<ParseObject> }
     | { type: 'SKIPPED_LOGIN' }
