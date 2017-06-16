@@ -53,7 +53,6 @@ export type Post = {
 };
 
 function fromParseTopic(map: Object): Topic {
-  var pic = map.get('speakerPic');
   return {
     id: map.id,
     name: map.get('name'),
