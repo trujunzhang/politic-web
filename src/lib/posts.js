@@ -76,13 +76,14 @@ Posts.getImageFromType = (post) => {
         thumbnailUrl = cloudinaryUrls[0].url
     }
     else if (!thumbnailUrl && !!post.thumbnailUrl) {
-        thumbnailUrl = post.thumbnailUrl;
+        //thumbnailUrl = post.thumbnailUrl
     }
-    // if (!!thumbnailUrl) {
+    if (!!thumbnailUrl) {
+        return thumbnailUrl
     //     return thumbnailUrl.indexOf('//') > -1 ? Telescope.utils.addHttp(thumbnailUrl) : Telescope.utils.getSiteUrl() + thumbnailUrl;
-    // }
+     }
 
-    return Posts.getDefaultImageFromType(post);
+    return Posts.getDefaultImageFromType(post)
 };
 
 /**
