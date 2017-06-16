@@ -4,6 +4,8 @@ import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 import { withRouter } from 'react-router'
 
+const {pushModel} = require('../../../actions').default
+
 class PostsItemActions extends Component {
 
   /**
@@ -188,20 +190,37 @@ class PostsItemActions extends Component {
   onMoreTopicsClick (event) {
     event.preventDefault()
 
-    // const {post} = this.props;
-    // let offset = $(this.refs.saveButton).offset();
-    // let top = offset.top;
-    // let left = offset.left;
-    // let width = this.refs.saveButton.offsetWidth;
-    // let height = this.refs.saveButton.offsetHeight;
-    // this.context.messages.showPopoverMenu("moreTopicsList", post.topicsArray.slice(1), top, left, width, height);
+    const {post} = this.props
+    let top = this.refs.saveButton.offsetTop
+    let left = this.refs.saveButton.offsetLeft
+    let width = this.refs.saveButton.offsetWidth
+    let height = this.refs.saveButton.offsetHeight
+
+    this.props.dispatch(pushModel('moreTopicsList', {
+      top: top,
+      left: left,
+      width: width,
+      height: height
+    }, {moreTopics: post.topics.slice(1)}))
+    // this.context.messages.showPopoverMenu("", post.topicsArray.slice(1), top, left, width, height);
 
     event.stopPropagation()
   }
 }
 
-PostsItemActions.propTypes = {
-  post: React.PropTypes.object.isRequired
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+    currentUser: store.user
+  }
 }
 
-export default withRouter(PostsItemActions)
+export default connect(select)(PostsItemActions)
+
