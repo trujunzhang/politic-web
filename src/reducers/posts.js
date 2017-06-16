@@ -8,7 +8,11 @@
  *
  * As with any software that integrates with the Facebook platform, your use
  * of this software is subject to the Facebook Developer Principles and
- * Policies [http://developers.facebook.com/policy/]. This copyright notice
+ * Policies [http://developers.facebook.com/policy/]. This copyright noticasync function timeout (ms: number): Promise {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Timed out')), ms)
+  })
+}e
  * shall be included in all copies or substantial portions of the software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -67,8 +71,8 @@ function fromParseTopic(map: Object): Topic {
 
 function fromParseCloudinary(map: Object): Cloudinary {
   return {
-    name: map.get('name'),
-    url: map.get('url')
+    name: map['name'],
+    url: map['url']
   };
 }
 
