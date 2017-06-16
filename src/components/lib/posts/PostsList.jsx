@@ -79,7 +79,6 @@ class PostsList extends Component {
 
 }
 
-
 /**
  * ## Imports
  *

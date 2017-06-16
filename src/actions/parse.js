@@ -25,9 +25,9 @@
 
 const Parse = require('parse')
 
-import type { ThunkAction } from './types';
+import type { ThunkAction } from './types'
 
-var Objects = require('./objects').default;
+var Objects = require('./objects').default
 
 
 /**
@@ -54,7 +54,7 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
 
 export default {
     loadPosts: (): ThunkAction => {
-        var query = new Parse.Query(Objects.Post);
+        var query = new Parse.Query(Objects.Post).include('topics');
         return loadParseQuery(LOADED_POSTS, query);
     }
 };
