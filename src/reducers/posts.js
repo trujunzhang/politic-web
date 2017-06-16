@@ -50,12 +50,7 @@ export type Post = {
     thumbnailUrl: string;
     userId: string;
     author: string;
-    topics: Array(Topic);
-    cloudinaryUrls: Array(Cloudinary);
 };
-
-
-
 
 function fromParseTopic(map: Object): Topic {
   var pic = map.get('speakerPic');
