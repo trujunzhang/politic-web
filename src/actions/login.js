@@ -101,18 +101,18 @@ async function _logInWithPassword(username: string, password: string): Promise<A
     await loginWithPassword;
     // await updateInstallation({user});
 
-    var profile = null;
+    var callBackObject = null;
     await loginWithPassword.then((result) => {
-        profile = result;
+        callBackObject = result;
         console.log("result: " + JSON.stringify(result));
     });
 
-    console.log("profile: " + JSON.stringify(profile));
+    console.log("callBackObject: " + JSON.stringify(callBackObject));
 
     const userData = {
-        id: profile.id,
-        name: profile.get("username"),
-        loginType: profile.get("loginType"),
+        id: callBackObject.id,
+        name: callBackObject.get("username"),
+        loginType: callBackObject.get("loginType"),
         email:callBackObject.get("email")
     };
 

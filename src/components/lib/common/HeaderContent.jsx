@@ -15,9 +15,9 @@ class HeaderContent extends Component {
   }
 
   componentWillReceiveProps (nextProps, nextContext) {
-    if ((!!nextProps.router.location.query.topicId) || (!nextProps.router.location.query.query)) {
-      this.setState({showSearchForm: false})
-    }
+      //if ((!!nextProps.router.location.query.topicId) || (!nextProps.router.location.query.query)) {
+      //this.setState({showSearchForm: false})
+      //}
   }
 
   onBookmarkClick () {
