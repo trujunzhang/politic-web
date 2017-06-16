@@ -145,10 +145,12 @@ class HeaderContent extends Component {
   }
 
   renderRight () {
-    const {currentUser} = this.props,
+    const {currentUser,isLoggedIn} = this.props,
       isMobileDevice = false, //Users.isMobileDevice(),
       writeClass =
-        currentUser ? 'button button--blue button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32' : 'button button--chromeless u-baseColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32 is-touched'
+          isLoggedIn?
+          'button button--blue button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32'
+          :'button button--chromeless u-baseColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32 is-touched'
 
     //Also change “Write a news” to “Submit an Article”
     //and change the color of the text to blue
@@ -158,7 +160,7 @@ class HeaderContent extends Component {
         <div className="buttonSet">
 
           {/*Show the login/signup button or the submit an article button*/}
-          {!!currentUser ? (
+          {isLoggedIn? (
             <a onClick={(e) => this.context.messages.pushRouter(this.props.router, {
               pathname: '/',
               query: {action: 'new'}
@@ -185,10 +187,10 @@ class HeaderContent extends Component {
           {/*Notification Icon*/}
           {this.renderNotification()}
 
-          {currentUser ? this.renderBookmarkIcon() : null}
+          {isLoggedIn? this.renderBookmarkIcon() : null}
 
           {/*Show the logged user Icon*/}
-          {currentUser ? <Telescope.components.UsersMenu currentUser={currentUser}/> : null}
+          {isLoggedIn? <Telescope.components.UsersMenu currentUser={currentUser}/> : null}
         </div>
       </div>
     )

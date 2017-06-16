@@ -1,6 +1,7 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
-import Users from '../../../lib/users'
+var Users = require('../../../lib/users').default
+import Avatar from 'react-avatar'
 
 class UsersMenu extends Component {
 
@@ -17,7 +18,7 @@ class UsersMenu extends Component {
     const {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser),
       userName = Users.getDisplayName(currentUser)
-
+    debugger
     return (
       <button
         ref="userProfile"
@@ -25,10 +26,7 @@ class UsersMenu extends Component {
         title={userName}
         className="button button--small button--chromeless u-baseColor--buttonNormal is-inSiteNavBar js-userActions"
         onClick={this.popoverUserMenus.bind(this)}>
-        <Telescope.components.UsersBlurryImageAvatar
-          avatarObj={avatarObj}
-          size={32}
-        />
+        <Avatar {...avatarObj.avatar} size="32" round="true"/>
       </button>
     )
   }

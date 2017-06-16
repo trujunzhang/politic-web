@@ -91,6 +91,60 @@ function logInWithFacebook(source: ?string): ThunkAction {
 }
 
 
+
+async function _logInWithPassword(username: string, password: string): Promise<Array<Action>> {
+    const user = new Parse.User();
+    user.set('username', username);
+    user.set('password', password);
+
+    let loginWithPassword = user.logIn();
+    await loginWithPassword;
+    // await updateInstallation({user});
+
+    var profile = null;
+    await loginWithPassword.then((result) => {
+        profile = result;
+        console.log("result: " + JSON.stringify(result));
+    });
+
+    console.log("profile: " + JSON.stringify(profile));
+
+    const userData = {
+        id: profile.id,
+        name: profile.get("username"),
+        loginType: profile.get("loginType"),
+        email:callBackObject.get("email")
+    };
+
+    console.log("userData: " + JSON.stringify(userData));
+
+    const action = {
+        type: 'LOGGED_IN',
+        data: userData
+    };
+
+    return Promise.all([
+        Promise.resolve(action)
+    ]);
+}
+
+function logInWithPassword(username: string, password: string): ThunkAction {
+    return (dispatch) => {
+        const login = _logInWithPassword(username, password);
+
+        // Loading friends schedules shouldn't block the login process
+        login.then(
+            ([result]) => {
+                dispatch(result);
+            }
+        );
+        return login;
+    };
+}
+
+
+
+
 async function _signUpWithPassword(username: string, email: string, password: string): Promise<Array<Action>> {
   const user = new Parse.User()
   user.set('username', username)
@@ -162,4 +216,4 @@ function logOut(): ThunkAction {
   }
 }
 
-export default {logInWithFacebook, skipLogin, logOut, signUpWithPassword}
+export default {logInWithFacebook, logInWithPassword, skipLogin, logOut, signUpWithPassword}

@@ -40,8 +40,6 @@ class UserEmailSignUp extends Component {
 
     this.props.actions.signupRequest()
 
-    debugger
-
     try {
       await Promise.race([
         dispatch(signUpWithPassword(username, email, password)),
