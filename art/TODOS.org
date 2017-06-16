@@ -1,0 +1,3 @@
+* 16/06/2017
+   1. register with email
+   2. load more pagation
