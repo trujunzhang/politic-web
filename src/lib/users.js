@@ -6,6 +6,55 @@ let md5 = require('blueimp-md5')
 const Users = {}
 
 /**
+ * @summary Check if a user is an admin
+ * @param {Object|string} user - The user or their userId
+ */
+Users.isAdmin = function (user) {
+  try {
+    return !!user && !!user.isAdmin
+  } catch (e) {
+    return false // user not logged in
+  }
+}
+
+Users.isAdminById = Users.isAdmin
+
+Users.getLinkObject = function (type, user = null, folder = null) {
+  const userLink = !!user ? `/users/${user.slug}` : null
+  switch (type) {
+    case 'homepage':
+      return {pathname: '/'}
+    case 'editing':
+      return {pathname: '/users/my/edit'}
+    case 'profile':
+      return {pathname: userLink}
+    case 'downvotes':
+      return {pathname: `${userLink}/downvotes`}
+    case 'submittedPosts':
+      return {pathname: `${userLink}/posts`}
+    case 'collections':
+      return {pathname: `${userLink}/collections`}
+    case 'folderItem':
+      return {pathname: `${userLink}/collections/${folder._id}/${folder.name}`}
+  }
+}
+
+Users.checkIsHomepage = function (location) {
+  if (location.pathname === '/') {
+    if (Object.keys(location.query).length === 0) {
+      return true
+    }
+    if (Object.keys(location.query).length === 1 && !!location.query.admin) {
+      return true
+    }
+    if (Object.keys(location.query).length === 1 && !!location.query.orderby) {
+      return true
+    }
+  }
+  return false
+}
+
+/**
  * @summary Get a user's email hash
  * @param {Object} user
  */
@@ -42,28 +91,8 @@ Users.renderWithSideBar = function (children) {
   )
 }
 
-Users.getPopoverMenuArray = function (user, isMobileDevice) {
-  const menuArrays = []
-  if (!!isMobileDevice) {
-    menuArrays.push([
-      {type: 'acticle', link: {pathname: '/', query: {action: 'new'}}, title: 'Submit an article'},
-      {type: 'separator'},
-    ])
-  }
-  menuArrays.push([
-    {type: 'profile', link: Users.getLinkObject('profile', user), title: 'MY PROFILE'},
-    {type: 'collections', link: Users.getLinkObject('collections', user), title: 'MY COLLECTIONS'},
-    {type: 'separator'}
-  ])
-  menuArrays.push([
-    {type: 'settings', link: Users.getLinkObject('editing'), title: 'SETTINGS'},
-    {type: Users.isAdmin(user) ? 'management' : '', link: {pathname: '/management'}, title: 'MANAGEMENT'},
-    {type: 'separator'}
-  ])
-  menuArrays.push([
-    {type: 'logout', title: 'LOGOUT'}
-  ])
-  return _.flatten(menuArrays)
+Users.isMobileDevice = function () {
+  return false
 }
 
 Users.getCollectionsPopover = function (left, top, popWidth, popHeight, offX, defaultClassName = 'v-bottom-left') {
@@ -85,7 +114,7 @@ Users.getPopoverMenuArray = function (user, isMobileDevice) {
   if (!!isMobileDevice) {
     menuArrays.push([
       {type: 'acticle', link: {pathname: '/', query: {action: 'new'}}, title: 'Submit an article'},
-      {type: 'separator'},
+      {type: 'separator'}
     ])
   }
   menuArrays.push([
@@ -127,8 +156,9 @@ Users.getAvatarObj = function (user) {
       return {
         title: Users.getDisplayName(user),
         slug: user.slug,
-        avatarId: user._id,
+        avatarId: user.id,
         avatar: {
+          email: user.email,
           name: Users.getDisplayName(user)
         }
       }

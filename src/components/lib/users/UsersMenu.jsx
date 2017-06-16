@@ -3,22 +3,26 @@ import React, { Component } from 'react'
 var Users = require('../../../lib/users').default
 import Avatar from 'react-avatar'
 
+const {pushModel} = require('../../../actions').default
+
 class UsersMenu extends Component {
 
   popoverUserMenus () {
-    // let button = this.refs.userProfile
-    // let top = button.offsetTop
-    // let left = button.offsetLeft
-    // let width = button.clientWidth
-    // let height = button.clientHeight
-    // this.context.messages.showPopoverMenu('LoggedUserMenu', {}, top, left, width, height)
+    let button = this.refs.userProfile
+    let top = button.offsetTop
+    let left = button.offsetLeft
+    let width = button.clientWidth
+    let height = button.clientHeight
+
+    this.props.dispatch(pushModel('LoggedUserMenu', {top: top, left: left, width: width, height: height}))
+    // this.context.messages.showPopoverMenu('LoggedUserMenu', {}, )
   }
 
   render () {
     const {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser),
       userName = Users.getDisplayName(currentUser)
-    debugger
+
     return (
       <button
         ref="userProfile"
@@ -26,11 +30,19 @@ class UsersMenu extends Component {
         title={userName}
         className="button button--small button--chromeless u-baseColor--buttonNormal is-inSiteNavBar js-userActions"
         onClick={this.popoverUserMenus.bind(this)}>
-        <Avatar {...avatarObj.avatar} size="32" round="true"/>
+        <Avatar {...avatarObj.avatar} size={32} round={true}/>
       </button>
     )
   }
 
 }
 
-export default UsersMenu
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+export default connect()(UsersMenu)
+

@@ -17,8 +17,7 @@ class UsersPopoverMenu extends Component {
   }
 
   onMenuItemClick (menu) {
-    const {router} = this.props
-    const {messages} = this.context
+    //const {router} = this.props
     switch (menu.type) {
       case 'logout':
 
@@ -33,16 +32,17 @@ class UsersPopoverMenu extends Component {
 
   render () {
     const {comp} = this.props,
+      {position} = comp,
       {loggedUserMenu} = this.state
 
-    const top = comp.top + comp.height + 24
-    let left = (comp.left + comp.width / 2) - 75
+    const top = position.top + position.height + 24
+    let left = (position.left + position.width / 2) - 75
 
     let popoverClass = 'v-bottom-center'
-    // if (left + 150 >= $(window).width()) {
-    //     popoverClass = "v-bottom-left";
-    //     left = left - 50;
-    // }
+    if (left + 150 >= window.innerHeight) {
+      popoverClass = 'v-bottom-left'
+      left = left - 50
+    }
 
     const popover = Users.getCollectionsPopover(left, top, 148, -1, 0, popoverClass)
 
@@ -56,16 +56,14 @@ class UsersPopoverMenu extends Component {
             else if (menu.type === 'separator') {
               return (<li key={key} className="list-item list-item--separator"/>)
             }
-            return (
-              <li key={key}
-                  className="option_2XMGo secondaryBoldText_1PBCf secondaryText_PM80d subtle_1BWOT base_3CbW2">
-                <a className="button button--dark button--chromeless u-baseColor--buttonDark"
-                   id={`user_pop_menu_${menu.type}`}
-                   onClick={this.onMenuItemClick.bind(this, menu)}>
-                  {menu.title}
-                </a>
-              </li>
-            )
+            return (<li key={key}
+                        className="option_2XMGo secondaryBoldText_1PBCf secondaryText_PM80d subtle_1BWOT base_3CbW2">
+              <a className="button button--dark button--chromeless u-baseColor--buttonDark"
+                 id={`user_pop_menu_${menu.type}`}
+                 onClick={this.onMenuItemClick.bind(this, menu)}>
+                {menu.title}
+              </a>
+            </li>)
           })}
         </ul>
 
@@ -75,4 +73,19 @@ class UsersPopoverMenu extends Component {
 
 }
 
-export default withRouter(UsersPopoverMenu)
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    currentUser: store.user
+  }
+}
+
+export default connect(select)(UsersPopoverMenu)
+
+

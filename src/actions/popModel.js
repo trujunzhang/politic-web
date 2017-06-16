@@ -34,15 +34,12 @@ const {
   POP_OVERLAY_MODEL
 } = require('../lib/constants').default
 
-function pushModel (modelType:string, position:object=null, model:object={
-    showCloseIcon: true,
-    title: ''
-}): Action {
+function pushModel (modelType:string, position:object=null, model:object=null): Action {
     const data = {
         modelType:modelType,
         position:position,
         model:model
-    };
+    }
 
   // TODO: Make sure reducers clear their state
     return {type:PUSH_OVERLAY_MODEL,data:data}

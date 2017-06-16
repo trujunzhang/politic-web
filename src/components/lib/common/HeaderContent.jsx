@@ -141,7 +141,7 @@ class HeaderContent extends Component {
   }
 
   onLoginIconPress () {
-    this.props.dispatch(pushModel('LoginUI'))
+    this.props.dispatch(pushModel('LoginUI',{},{showCloseIcon: true,title: '' }))
   }
 
   renderRight () {
