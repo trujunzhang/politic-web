@@ -248,7 +248,6 @@ Users.avatar = {
       gravatarDefault = '404'
     }
 
-    debugger
     let emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user)
     // let secure = true;
     let options = {
@@ -408,7 +407,7 @@ Users.getAvatarObj = function (user) {
       url: url,
       avatarId: user._id,
       title: Users.getDisplayName(user),
-      slug: user.telescope.slug
+      slug: user.slug
     }
   }
   return {
