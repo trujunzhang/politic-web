@@ -140,9 +140,9 @@ class HeaderContent extends Component {
     )
   }
 
-    onLoginIconPress(){
-        this.props.dispatch(pushModel('LoginUI'))
-    }
+  onLoginIconPress () {
+    this.props.dispatch(pushModel('LoginUI'))
+  }
 
   renderRight () {
     const {currentUser} = this.context,
@@ -225,7 +225,6 @@ class HeaderContent extends Component {
 
 }
 
-
 /**
  * ## Imports
  *
@@ -233,4 +232,13 @@ class HeaderContent extends Component {
  */
 import { connect } from 'react-redux'
 
-export default connect()(HeaderContent)
+function select (store) {
+  return {
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+    userId: store.user.id,
+    userName: store.user.name,
+    loginType: store.user.loginType,
+  }
+}
+
+export default connect(select)(HeaderContent)
