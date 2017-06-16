@@ -36,7 +36,8 @@ export type Post = {
     thumbnailUrl: string;
     userId: string;
     author: string;
-    cloudinaryUrls: string;
+    topics: Array(Topic);
+    cloudinaryUrls: Array(Cloudinary);
 };
 
 
