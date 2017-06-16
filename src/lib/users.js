@@ -2,6 +2,7 @@ import Telescope from '../components/lib/index'
 import React from 'react'
 let _ = require('underscore')
 let md5 = require('blueimp-md5')
+let Gravatar = require('./gravatar').default
 
 const Users = {}
 
