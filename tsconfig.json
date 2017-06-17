@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+  "jsx": "react",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "outDir": "./build",
+    "preserveConstEnums": true,
+    "compileOnSave": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "es6",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true
+},
+  "exclude": [
+  "node_modules",
+  "build"
+]
+}
