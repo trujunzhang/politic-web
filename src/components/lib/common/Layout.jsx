@@ -17,7 +17,6 @@ class Layout extends Component {
 
   render () {
     if (this.props.location.pathname === '/management') {
-      debugger
     }
     return (
       <div id='web-app-panel'>

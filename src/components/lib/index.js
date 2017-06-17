@@ -92,4 +92,11 @@ Telescope.registerComponent('SubmitAnArticle',                   require('./arti
 // users
 Telescope.registerComponent('UsersMenu',               require('./users/UsersMenu.jsx').default)
 
+// dashboard
+Telescope.registerComponent('AppAdminFooter',                require('./dashboard/AppAdminFooter.jsx').default)
+Telescope.registerComponent('AppAdminHeader',                require('./dashboard/AppAdminHeader.jsx').default)
+Telescope.registerComponent('AppAdminLayout',                require('./dashboard/AppAdminLayout.jsx').default)
+Telescope.registerComponent('AppAdminSidebar',               require('./dashboard/AppAdminSidebar.jsx').default)
+
+
 export default Telescope
