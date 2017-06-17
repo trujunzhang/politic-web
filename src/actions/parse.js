@@ -29,7 +29,7 @@ import type { ThunkAction } from './types'
 
 var Objects = require('./objects').default
 
-const Parameters = require('../parameters').Posts
+const PostsParameters = require('../parameters').Posts
 
 /**
  * The states were interested in
@@ -62,7 +62,11 @@ export default {
   loadPosts: (listTask: Any, listId: string): ThunkAction => {
       const {pageIndex, limit} = listTask
       const skipCount = (pageIndex - 1) * limit
-      var query = new Parse.Query(Objects.Post).include('topics').skip(skipCount).limit(limit)
+      const postQuery = new Parse.Query(Objects.Post)
+      const param = new PostsParameters ()
+      const xxx = param.get()
+      debugger
+      var query = postQuery.include('topics').skip(skipCount).limit(limit)
       return loadParseQuery(LOADED_POSTS, query, listTask, listId)
   }
 }

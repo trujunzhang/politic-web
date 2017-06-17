@@ -4,7 +4,7 @@ export default class PostsParameters {
   }
 
   get () {
-
+ return "wanghao_XXX"
   }
 }
 

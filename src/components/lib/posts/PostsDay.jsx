@@ -12,8 +12,8 @@ class PostsDay extends Component {
         const title = Posts.getDailyDateTitle(date);
         let postsPerPage = (title.indexOf("Today") !== -1) ? 20 : 10;
 
-        const {query} = this.props.router.location;
-        const orderBy = !!query && !!query.orderby ? query.orderby : "Popular";
+        const {query} = this.props.location;
+        const orderBy = (query.orderby || "Popular");
 
         const terms = {
             view: (orderBy === "Popular") ? "best" : "new",
@@ -25,16 +25,14 @@ class PostsDay extends Component {
             listId: `posts.list.${moment(date).format("YYYY-MM-DD")}`
         };
 
-        // const {selector, options} = Posts.parameters.get(terms);
-
         return (
             <div className="posts-day">
                 <Telescope.components.PostsList
+                terms = {terms}
                 listId = {terms.listId}
-                    showHeader={true}
-                    checkReady={true}
-                    title={title}
-                    limit={10}
+                showHeader={true}
+                checkReady={true}
+                title={title}
                 />
             </div>
         )

@@ -33,7 +33,7 @@ class PostsDaily extends Component {
     }
 
     render() {
-        const postsDays = [];
+        let postsDays = [];
         if (this.state.showPopularPostsThisWeek) {
             postsDays.push(<Telescope.components.PostsPopularThisWeek
 key="popular"
@@ -41,6 +41,8 @@ callBack={e => {
                 this.setState({showPopularPostsThisWeek: false})
             }}/>)
         }
+
+        postsDays = [];
         const days = this.getLastNDates(this.state.days);
         days.map((date, index) => {
             postsDays.push(<Telescope.components.PostsDay key={index} date={date} number={index}/>);
@@ -62,7 +64,7 @@ PostsDaily.propTypes = {
 };
 
 PostsDaily.defaultProps = {
-    days: 3,
+    days: 1,
     increment: 3
 };
 
