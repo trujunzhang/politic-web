@@ -19,7 +19,7 @@ class PostsList extends Component {
     this.setState({
       listTask: byListId(nextProps.listContainerTasks, nextProps.listId)
     })
-    debugger
+    // debugger
   }
 
   componentDidMount () {
@@ -29,12 +29,6 @@ class PostsList extends Component {
 
   render () {
     const {
-      hasMore = false,
-      ready = true,
-      count,
-      totalCount = 100,
-      limit = 10,
-      firstPagination = true,
       loadMore,
       showHeader = false,
       title,
@@ -43,11 +37,23 @@ class PostsList extends Component {
       dismissBanner = null
     } = this.props
 
-    const {results} = this.state
+    const {listTask} = this.state
 
-    if (true) {
-      return <div/>
-    }
+    const {
+      results = [],
+      hasMore = false,
+      ready = true,
+      count,
+      totalCount = 100,
+      limit = 10,
+      firstPagination = true,
+    } = listTask
+
+    // debugger
+
+    // if (true) {
+    //   return <div/>
+    // }
 
     const showReady = Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination)
     const headerView =
