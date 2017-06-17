@@ -42,7 +42,17 @@ function byListId (listContainerTasks: Any, listId: string): Record {
     return task.toJS()
   }
 
-  return {}
+  return {
+    id: listId,
+    hasMore: true,
+    ready: true,
+    totalCount: 100,
+    limit: 10,
+    firstPagination: true,
+    pageIndex: 1,
+    isDone: true,
+    results: []
+  }
 }
 
 export default  {byListId}

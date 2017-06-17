@@ -38,24 +38,25 @@ const {
   LOADED_POSTS
 } = require('../lib/constants').default
 
-function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
+function loadParseQuery (type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
     return query.find({
-        success: (list) => {
-            // debugger
-          // Flow can't guarantee {type, list} is a valid action
-          dispatch(({type, list}: any));
+      success: (list) => {
+        // debugger
+        // Flow can't guarantee {type, list} is a valid action
+        dispatch(({type, list}))
       },
-        error: (error)=>{
-            debugger
-        }
-    });
-  };
+      error: (error) => {
+        debugger
+      }
+    })
+  }
 }
 
 export default {
-    loadPosts: (): ThunkAction => {
-        var query = new Parse.Query(Objects.Post).include('topics').limit(10);
-        return loadParseQuery(LOADED_POSTS, query);
-    }
-};
+  loadPosts: (listTask: Any, listId: string): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    var query = new Parse.Query(Objects.Post).include('topics').skip((pageIndex - 1) * limit).limit(limit)
+    return loadParseQuery(LOADED_POSTS, query)
+  }
+}

@@ -22,12 +22,11 @@ class PostsList extends Component {
   }
 
   componentDidMount () {
-    const {listId} = this.props
-    this.props.dispatch(loadPosts())
+    this.loadMore()
   }
 
   loadMore () {
-
+    this.props.dispatch(loadPosts(this.state.listTask, this.props.listId))
   }
 
   render () {

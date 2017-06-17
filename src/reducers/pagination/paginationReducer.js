@@ -58,7 +58,7 @@ function paginationReducer (state: State = initialState, action): State {
       // state.tasks['single-list-view'] = objects
       // debugger
       var pageTask = Map({
-        id: 0,
+        id: 'single-list-view',
         hasMore: true,
         ready: true,
         totalCount: 100,
