@@ -43,27 +43,28 @@ function paginationReducer (state: State = initialState, action): State {
       const {list, listTask, listId} = action.data
       const objects = list.map(fromParsePost)
 
-      var lastTask = state.get(listId)
-      if (!!lastTask) {
-        let lastResults = lastTask.get('results')
+      var nextTask = state.get(listId)
+      if (!!nextTask) {
+        let lastResults = nextTask.get('results')
         let combinedResults = lastResults.concat(objects)
-        lastTask = lastTask.set('results', combinedResults)
+          nextTask = nextTask.set('results', combinedResults)
+              .set('pageIndex', nextTask.get('pageIndex')+1)
         //debugger
       } else {
-        lastTask = Map({
+        nextTask = Map({
           id: listId,
           hasMore: true,
           ready: true,
           totalCount: 100,
           limit: 1,
-          pageIndex: 1,
+          pageIndex: 2,
           firstPagination: false,
           results: objects
         })
       }
 
       let nextState = state
-        .set(listId, lastTask)
+        .set(listId, nextTask)
 
       return nextState
     }
