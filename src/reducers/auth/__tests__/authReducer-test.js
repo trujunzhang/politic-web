@@ -148,7 +148,7 @@ describe('authReducer', () => {
       let next = authReducer(initialState, action)
 
       expect(next.form.state).toBe(FORGOT_PASSWORD)
-      expect(next.form.isValid).toBe(false)
+      expect(next.form.isValid).toBe(true)
     })
     /**
      * #### form is valid with valid email
@@ -223,9 +223,8 @@ describe('authReducer', () => {
         type: LOGIN
       }
       let next = authReducer(initialState, action)
-
       expect(next.form.state).toBe(LOGIN)
-      expect(next.form.isValid).toBe(false)
+      expect(next.form.isValid).toBe(true)
     })
     /**
      * #### form is  valid with valid fields
@@ -317,7 +316,7 @@ describe('authReducer', () => {
       let next = authReducer(initialState, action)
 
       expect(next.form.state).toBe(REGISTER)
-      expect(next.form.isValid).toBe(false)
+      expect(next.form.isValid).toBe(true)
     })
     /**
      * #### form is  valid with valid fields
