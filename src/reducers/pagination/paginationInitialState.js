@@ -22,12 +22,11 @@ const {
  * This Record contains the state of the form and the
  * fields it contains.
  */
-const Form = Record({
+const Pagination = Record({
   state: NEXT_PAGE,
   disabled: false,
   error: null,
-  isValid: false,
-  isFetching: false,
+  isValid: "xxxtrujun",
   listContainer: {}
 })
 
@@ -45,8 +44,7 @@ const ListField = Record({
  * The form is set
  */
 var InitialState = Record({
-  form: new Form(),
-  ListField: ListField
+  pagination: new Pagination()
 })
-export default InitialState
+export default {InitialState, ListField}
 

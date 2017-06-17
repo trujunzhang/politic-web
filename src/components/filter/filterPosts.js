@@ -21,24 +21,22 @@
  *
  * @flow
  */
+'use strict';
 
-import type { Action } from '../actions/types';
+// import type {Shipment} from '../../reducers/pagination/paginationReducer';
 
-type Convert<T> = (object: Object) => T;
-type Reducer<T> = (state: ?Array<T>, action: any) => Array<T>;
+const {Record} = require('immutable')
+import type {Post} from '../../reducers/parseModels';
 
-export default  function createParseReducer<T>(
-  type: string,
-  convert: Convert<T>
-): Reducer<T> {
-  return function(state: ?Array<T>, action: Action): Array<T> {
+function byListId(listContainer: Array<Post>,listId:string): Record {
+    const createdShipments = shipments.filter((item) => item.status === "created");
 
-    debugger
-    if (action.type === type) {
-      // Flow can't guarantee {type, list} is a valid action
-      return (action: any).list.map(convert);
+    const createdShipmentsPickerData = [];
+    for (var i = 0; i < createdShipments.length; i++) {
+        createdShipmentsPickerData.push({key: i, label: createdShipments[i].name, tag: createdShipments[i].id})
     }
-    return state || [];
-  };
+    return createdShipmentsPickerData;
 }
 
+
+module.exports = {getCreatedShipmentsPickerData};

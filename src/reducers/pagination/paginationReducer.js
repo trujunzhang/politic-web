@@ -10,7 +10,7 @@
  * fieldValidation for validating the fields
  * formValidation for setting the form's valid flag
  */
-const InitialState = require('./paginationInitialState').default
+const {InitialState, ListField} = require('./paginationInitialState').default
 
 /**
  * The states were interested in
@@ -20,6 +20,8 @@ const {
   NEXT_PAGE,
   RESET_PAGE
 } = require('../../lib/constants').default
+
+const {fromParsePost} = require('../parseModels')
 
 const initialState = new InitialState()
 
@@ -37,9 +39,12 @@ function paginationReducer (state = initialState, action) {
      * set the form to fetching and clear any errors
      */
     case LOADED_POSTS: {
+      const objects = action.list.map(fromParsePost)
+      debugger
+      const form = state.pagination.isValid
+      debugger
       let nextState = state
-        .setIn(['form', 'isFetching'], true)
-        .setIn(['form', 'error'], null)
+        .setIn(['pagination', 'listContainer', 'results'], objects)
       return nextState
     }
 

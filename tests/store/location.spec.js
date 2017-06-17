@@ -25,14 +25,14 @@ describe('(Internal Module) Location', () => {
       expect(state).to.be.an('object')
       expect(state).to.have.property('pathname')
       expect(state).to.have.property('pathname', '/context.html')
-      state = locationReducer(state, { type: '@@@@@@@' })
+      state = locationReducer(state, {type: '@@@@@@@'})
       expect(state).to.have.property('pathname', '/context.html')
 
-      const locationState = { pathname: '/yup' }
+      const locationState = {pathname: '/yup'}
       state = locationReducer(state, locationChange(locationState))
       expect(state).to.equal(locationState)
       expect(state).to.have.property('pathname', '/yup')
-      state = locationReducer(state, { type: '@@@@@@@' })
+      state = locationReducer(state, {type: '@@@@@@@'})
       expect(state).to.equal(locationState)
       expect(state).to.have.property('pathname', '/yup')
     })
@@ -48,7 +48,7 @@ describe('(Internal Module) Location', () => {
     })
 
     it('Should assign the first argument to the "payload" property.', () => {
-      const locationState = { pathname: '/yup' }
+      const locationState = {pathname: '/yup'}
       expect(locationChange(locationState)).to.have.property('payload', locationState)
     })
 
@@ -63,12 +63,12 @@ describe('(Internal Module) Location', () => {
 
     beforeEach(() => {
       _globalState = {
-        location : locationReducer(undefined, {})
+        location: locationReducer(undefined, {})
       }
       _dispatchSpy = sinon.spy((action) => {
         _globalState = {
           ..._globalState,
-          location : locationReducer(_globalState.location, action)
+          location: locationReducer(_globalState.location, action)
         }
       })
     })
@@ -78,11 +78,11 @@ describe('(Internal Module) Location', () => {
     })
 
     it('Should return a function (is a thunk).', () => {
-      expect(updateLocation({ dispatch: _dispatchSpy })).to.be.a('function')
+      expect(updateLocation({dispatch: _dispatchSpy})).to.be.a('function')
     })
 
     it('Should call dispatch exactly once.', () => {
-      updateLocation({ dispatch: _dispatchSpy })('/')
+      updateLocation({dispatch: _dispatchSpy})('/')
       expect(_dispatchSpy.should.have.been.calledOnce)
     })
   })
