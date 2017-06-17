@@ -12,7 +12,17 @@
  */
 
 
-const {ListContainerTask,ListContainerTaskMap} = require('./paginationInitialState').default
+import type {Action} from '../../actions/types'
+
+
+export type State = {
+  tasks: ?Any;
+};
+
+const initialState = {
+  tasks:{}
+};
+
 
 /**
  * The states were interested in
@@ -25,16 +35,12 @@ const {
 
 const {fromParsePost} = require('../parseModels')
 
-const initialState = new ListContainerTaskMap()
-
 /**
  * ## authReducer function
  * @param {Object} state - initialState
  * @param {Object} action - type and payload
  */
-function paginationReducer (state = initialState, action) {
-  if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
-
+function paginationReducer (state: State = initialState, action): State {
   switch (action.type) {
     /**
      * ### Requests start
@@ -42,11 +48,11 @@ function paginationReducer (state = initialState, action) {
      */
     case LOADED_POSTS: {
       const objects = action.list.map(fromParsePost)
-      debugger
-      const listRecord = new ListRecord({results: objects})
+      // debugger
+      // const listRecord = new ListRecord({results: objects})
       // const form = state.getIn(['pagination'])
-      debugger
-      let nextState = state.set('single-list-view', listRecord)
+      // debugger
+      // let nextState = state.set('single-list-view', listRecord)
       debugger
       return nextState
     }
@@ -68,18 +74,6 @@ function paginationReducer (state = initialState, action) {
 
       var next = state.setIn(['form', 'state'], form.state)
         .setIn(['form', 'disabled'], form.disabled)
-        .setIn(['form', 'error'], form.error)
-        .setIn(['form', 'isValid'], form.isValid)
-        .setIn(['form', 'isFetching'], false)
-        .setIn(['form', 'fields', 'username'], form.fields.username)
-        .setIn(['form', 'fields', 'usernameHasError'], form.fields.usernameHasError)
-        .setIn(['form', 'fields', 'email'], form.fields.email)
-        .setIn(['form', 'fields', 'emailHasError'], form.fields.emailHasError)
-        .setIn(['form', 'fields', 'password'], form.fields.password)
-        .setIn(['form', 'fields', 'passwordHasError'], form.fields.passwordHasError)
-        .setIn(['form', 'fields', 'passwordAgain'], form.fields.passwordAgain)
-        .setIn(['form', 'fields', 'passwordAgainHasError'], form.fields.passwordAgainHasError)
-
       return next
   }
   /**

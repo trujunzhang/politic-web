@@ -34,7 +34,7 @@ export type State = {
     name: ?string;
     loginType: ?string;
     email: ?string;
-    slug: ?string,
+    slug: ?string;
 };
 
 const initialState = {
