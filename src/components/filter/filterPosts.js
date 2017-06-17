@@ -23,14 +23,16 @@
  */
 'use strict'
 
-// import type {Shipment} from '../../reducers/pagination/paginationReducer';
-
-const {Record} = require('immutable')
-import type { Post } from '../../reducers/parseModels'
+const {isImmutable, Map, List, Stack} = require('immutable')
 
 function byListId (listContainerTasks: Any, listId: string, limit: int) {
 
-  let task = listContainerTasks.toJS()[listId]
+  var taskObject = listContainerTasks
+  if (isImmutable(taskObject)) {
+    taskObject = listContainerTasks.toJS()
+  }
+
+  let task = taskObject[listId]
 
   if (!!task) {
     return task
