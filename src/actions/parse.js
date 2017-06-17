@@ -60,8 +60,10 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 
 export default {
   loadPosts: (listTask: Any, listId: string): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    var query = new Parse.Query(Objects.Post).include('topics').skip((pageIndex - 1) * limit).limit(limit)
+      const {pageIndex, limit} = listTask
+      const skipCount = (pageIndex - 1) * limit
+      debugger
+    var query = new Parse.Query(Objects.Post).include('topics').skip(skipCount).limit(limit)
     return loadParseQuery(LOADED_POSTS, query, listTask, listId)
   }
 }
