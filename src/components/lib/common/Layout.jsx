@@ -7,9 +7,6 @@ class Layout extends Component {
     super(props)
   }
 
-  componentDidMount () {
-  }
-
   renderContent () {
     return (
       <div id='container'>

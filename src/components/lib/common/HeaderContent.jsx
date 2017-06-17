@@ -15,9 +15,9 @@ class HeaderContent extends Component {
   }
 
   componentWillReceiveProps (nextProps, nextContext) {
-      //if ((!!nextProps.router.location.query.topicId) || (!nextProps.router.location.query.query)) {
-      //this.setState({showSearchForm: false})
-      //}
+    //if ((!!nextProps.router.location.query.topicId) || (!nextProps.router.location.query.query)) {
+    //this.setState({showSearchForm: false})
+    //}
   }
 
   onBookmarkClick () {
@@ -36,7 +36,7 @@ class HeaderContent extends Component {
              }
            }>
                 <span className="svgIcon svgIcon--logoNew svgIcon--45px is-flushLeft">
-                    <img id="politicl-logo" width="138" height="32" alt="logo" src='images/politicl-logo.png'/>
+                    <img id="politicl-logo" width="138" height="32" alt="logo" src='/images/politicl-logo.png'/>
               </span>
         </a>
       </div>
@@ -141,16 +141,15 @@ class HeaderContent extends Component {
   }
 
   onLoginIconPress () {
-    this.props.dispatch(pushModel('LoginUI',{},{showCloseIcon: true,title: '' }))
+    this.props.dispatch(pushModel('LoginUI', {}, {showCloseIcon: true, title: ''}))
   }
 
   renderRight () {
-    const {currentUser,isLoggedIn} = this.props,
+    const {currentUser, isLoggedIn} = this.props,
       isMobileDevice = false, //Users.isMobileDevice(),
       writeClass =
-          isLoggedIn?
-          'button button--blue button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32'
-          :'button button--chromeless u-baseColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32 is-touched'
+        isLoggedIn ? 'button button--blue button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32'
+          : 'button button--chromeless u-baseColor--buttonNormal is-inSiteNavBar u-sm-hide u-marginRight15 u-lineHeight30 u-height32 is-touched'
 
     //Also change “Write a news” to “Submit an Article”
     //and change the color of the text to blue
@@ -160,7 +159,7 @@ class HeaderContent extends Component {
         <div className="buttonSet">
 
           {/*Show the login/signup button or the submit an article button*/}
-          {isLoggedIn? (
+          {isLoggedIn ? (
             <a onClick={(e) => this.context.messages.pushRouter(this.props.router, {
               pathname: '/',
               query: {action: 'new'}
@@ -187,10 +186,10 @@ class HeaderContent extends Component {
           {/*Notification Icon*/}
           {this.renderNotification()}
 
-          {isLoggedIn? this.renderBookmarkIcon() : null}
+          {isLoggedIn ? this.renderBookmarkIcon() : null}
 
           {/*Show the logged user Icon*/}
-          {isLoggedIn? <Telescope.components.UsersMenu currentUser={currentUser}/> : null}
+          {isLoggedIn ? <Telescope.components.UsersMenu currentUser={currentUser}/> : null}
         </div>
       </div>
     )
