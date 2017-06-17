@@ -12,7 +12,6 @@ class PostsList extends Component {
     this.state = {
       listTask: byListId(props.listContainerTasks, props.listId)
     }
-
   }
 
   componentWillReceiveProps (nextProps) {
@@ -45,8 +44,7 @@ class PostsList extends Component {
     const {
       results = [],
       hasMore = false,
-      ready = true,
-      count,
+      ready = false,
       totalCount = 100,
       limit = 10,
       firstPagination = true,
