@@ -69,7 +69,7 @@ describe('paginationReducer', () => {
       let next = paginationReducer(initialState, action)
 
       expect(next.form.state).toBe(LOADED_POSTS)
-      expect(next.form.isValid).toBe(true)
+      // expect(next.form.listContainer).toBe({})
     })
 
   })// LOADED_POSTS
