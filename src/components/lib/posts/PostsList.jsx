@@ -18,7 +18,7 @@ class PostsList extends Component {
     this.setState({
       listTask: byListId(nextProps.listContainerTasks, nextProps.listId)
     })
-    debugger
+    // debugger
   }
 
   componentDidMount () {
@@ -49,7 +49,7 @@ class PostsList extends Component {
       firstPagination,
     } = listTask
 
-    debugger
+    // debugger
 
     // if (true) {
     //   return <div/>
