@@ -40,23 +40,25 @@ function paginationReducer (state: State = initialState, action): State {
      * set the form to fetching and clear any errors
      */
     case LOADED_POSTS: {
-      const objects = action.list.map(fromParsePost)
+      const {list, listTask, listId} = action.data
+      const objects = list.map(fromParsePost)
 
-      // initialState.get()
+      var lastTask = initialState.get(listId)
+      if (!!lastTask) {
 
-      var pageTask = Map({
-        id: 'single-list-view',
-        hasMore: true,
-        ready: true,
-        totalCount: 100,
-        limit: 10,
-        firstPagination: true,
-        results: objects
-      })
+      } else {
+        lastTask = Map({
+          id: listId,
+          hasMore: true,
+          ready: true,
+          totalCount: 100,
+          limit: 10,
+          firstPagination: true,
+          results: objects
+        })
+      }
 
-      return Object.assign({}, initialState.toJS(), {
-        'single-list-view': pageTask
-      })
+      return Object.assign({}, initialState.toJS(), {listId: lastTask})
     }
 
     case NEXT_PAGE: {
