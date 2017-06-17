@@ -48,7 +48,7 @@ function paginationReducer (state: State = initialState, action): State {
         let lastResults = lastTask.get('results')
         let combinedResults = lastResults.concat(objects)
         lastTask = lastTask.set('results', combinedResults)
-        debugger
+        //debugger
       } else {
         lastTask = Map({
           id: listId,
@@ -57,7 +57,7 @@ function paginationReducer (state: State = initialState, action): State {
           totalCount: 100,
           limit: 1,
           pageIndex: 1,
-          firstPagination: true,
+          firstPagination: false,
           results: objects
         })
       }

@@ -30,7 +30,7 @@ class PostsList extends Component {
     listTask['ready'] = false
     listTask['pageIndex'] = listTask['pageIndex'] + 1
     this.setState({listTask: listTask})
-    // debugger
+     //debugger
     this.props.dispatch(loadPosts(this.state.listTask, this.props.listId))
   }
 
@@ -46,7 +46,7 @@ class PostsList extends Component {
     const {listTask} = this.state
 
     const {
-      results = [],
+      results,
       hasMore,
       ready,
       totalCount,
