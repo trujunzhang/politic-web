@@ -73,13 +73,7 @@ class PostsPopularThisWeek extends Component {
     }
 
     render() {
-        const {isEventCalling} = this.state;
-
-        if (!!isEventCalling) {
-            return this.renderPopularThisWeek();
-        } else {
-            return this.renderLoading();
-        }
+        return this.renderPopularThisWeek();
     }
 
     renderPopularThisWeek() {
@@ -100,6 +94,7 @@ class PostsPopularThisWeek extends Component {
                     showHeader={true}
                     checkReady={true}
                     title="Popular this week"
+                    listId={terms.listId}
                     showClose={true}
                     dismissBanner={this.dismissBanner}
                     limit={10}
