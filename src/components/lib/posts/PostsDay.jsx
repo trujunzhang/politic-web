@@ -30,6 +30,7 @@ class PostsDay extends Component {
         return (
             <div className="posts-day">
                 <Telescope.components.PostsList
+                listId = {terms.listId}
                     showHeader={true}
                     checkReady={true}
                     title={title}

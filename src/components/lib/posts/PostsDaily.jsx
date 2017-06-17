@@ -35,7 +35,9 @@ class PostsDaily extends Component {
     render() {
         const postsDays = [];
         if (this.state.showPopularPostsThisWeek) {
-            postsDays.push(<Telescope.components.PostsPopularThisWeek key={100} callBack={e => {
+            postsDays.push(<Telescope.components.PostsPopularThisWeek
+key="popular"
+callBack={e => {
                 this.setState({showPopularPostsThisWeek: false})
             }}/>)
         }
