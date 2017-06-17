@@ -27,13 +27,13 @@ class HeaderContent extends Component {
 
   renderLeft () {
     return (
-        <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
-            <Link className="siteNav-logo" to="/">
+      <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
+        <Link className="siteNav-logo" to="/">
                 <span className="svgIcon svgIcon--logoNew svgIcon--45px is-flushLeft">
                     <img id="politicl-logo" width="138" height="32" alt="logo" src='/images/politicl-logo.png'/>
                 </span>
-            </Link>
-        </div>
+        </Link>
+      </div>
     )
   }
 
@@ -154,20 +154,10 @@ class HeaderContent extends Component {
 
           {/*Show the login/signup button or the submit an article button*/}
           {isLoggedIn ? (
-            <a onClick={(e) => this.context.messages.pushRouter(this.props.router, {
-              pathname: '/',
-              query: {action: 'new'}
-            })}
-               id="header-submit-an-article"
-               className={writeClass}>
-              Submit an Article
-            </a>
-          )
-            : (
-              <a
-                id="nav_signup_button"
-                onClick={this.onLoginIconPress.bind(this)}
-                className="button button--primary button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-lineHeight30 u-height32 u-marginRight15 is-touched">
+            <Link id="header-submit-an-article" className={writeClass} to="/article/new">Submit an Article</Link>)
+            : (<a id="nav_signup_button"
+                  onClick={this.onLoginIconPress.bind(this)}
+                  className="button button--primary button--chromeless u-accentColor--buttonNormal is-inSiteNavBar u-lineHeight30 u-height32 u-marginRight15 is-touched">
                 {isMobileDevice ? 'Submit & Sign In' : 'Sign in / Sign up'}
               </a>
             )
