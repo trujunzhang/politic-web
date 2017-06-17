@@ -15,13 +15,7 @@ import type { Action } from '../../actions/types'
 
 const {Map} = require('immutable')
 
-export
-type
-State = {
-  tasks: ? Any
-}
-
-const initialState = {}
+const initialState = Map({})
 
 /**
  * The states were interested in
@@ -47,14 +41,9 @@ function paginationReducer (state: State = initialState, action): State {
      */
     case LOADED_POSTS: {
       const objects = action.list.map(fromParsePost)
-      // debugger
-      // const listRecord = new ListRecord({results: objects})
-      // const form = state.getIn(['pagination'])
-      // debugger
-      // let nextState = state.set('single-list-view', listRecord)
-      // debugger
-      // state.tasks['single-list-view'] = objects
-      // debugger
+
+      // initialState.get()
+
       var pageTask = Map({
         id: 'single-list-view',
         hasMore: true,
@@ -65,13 +54,9 @@ function paginationReducer (state: State = initialState, action): State {
         results: objects
       })
 
-      return Object.assign({}, initialState, {
+      return Object.assign({}, initialState.toJS(), {
         'single-list-view': pageTask
       })
-
-      // return {
-      //   tasks: {'single-list-view': pageTask}
-      // }
     }
 
     case NEXT_PAGE: {
