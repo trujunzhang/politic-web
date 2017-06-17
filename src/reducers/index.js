@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   popModel: require('./popModel').default,
   user: require('./user').default,
   auth: require('./auth/authReducer').default,
-  listContainer: require('./pagination/paginationReducer').default
+  listContainerTasks: require('./pagination/paginationReducer').default
 })
 
 export default rootReducer

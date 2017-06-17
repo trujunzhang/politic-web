@@ -3,19 +3,23 @@ import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
 const {loadPosts} = require('../../../actions/index').default
 
+const {byListId} = require('../../filter/filterPosts').default
+
 class PostsList extends Component {
 
   constructor (props) {
     super(props)
     this.state = {
-      results: props.posts
+      listTask: byListId(props.listContainerTasks, props.listId)
     }
+
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      results: nextProps.posts
+      listTask: byListId(nextProps.listContainerTasks, nextProps.listId)
     })
+    debugger
   }
 
   componentDidMount () {
@@ -40,8 +44,6 @@ class PostsList extends Component {
     } = this.props
 
     const {results} = this.state
-
-    // debugger
 
     if (true) {
       return <div/>
@@ -95,7 +97,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    posts: store.listContainer
+    listContainerTasks: store.listContainerTasks
   }
 }
 

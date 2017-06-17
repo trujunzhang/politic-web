@@ -11,18 +11,17 @@
  * formValidation for setting the form's valid flag
  */
 
+import type { Action } from '../../actions/types'
 
-import type {Action} from '../../actions/types'
-
-
-export type State = {
-  tasks: ?Any;
-};
+export
+type
+State = {
+  tasks: ? Any
+}
 
 const initialState = {
-  tasks:{}
-};
-
+  tasks: {'single-list-view': []}
+}
 
 /**
  * The states were interested in
@@ -53,8 +52,12 @@ function paginationReducer (state: State = initialState, action): State {
       // const form = state.getIn(['pagination'])
       // debugger
       // let nextState = state.set('single-list-view', listRecord)
-      debugger
-      return nextState
+      // debugger
+      // state.tasks['single-list-view'] = objects
+      // debugger
+      return {
+        tasks: {'single-list-view': objects}
+      }
     }
 
     case NEXT_PAGE: {

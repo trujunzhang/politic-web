@@ -21,22 +21,23 @@
  *
  * @flow
  */
-'use strict';
+'use strict'
 
 // import type {Shipment} from '../../reducers/pagination/paginationReducer';
 
 const {Record} = require('immutable')
-import type {Post} from '../../reducers/parseModels';
+import type { Post } from '../../reducers/parseModels'
 
-function byListId(listContainer: Array<Post>,listId:string): Record {
-    const createdShipments = shipments.filter((item) => item.status === "created");
+function byListId (listContainerTasks: Any, listId: string): Record {
+  // const createdShipments = shipments.filter((item) => item.status === 'created')
 
-    const createdShipmentsPickerData = [];
-    for (var i = 0; i < createdShipments.length; i++) {
-        createdShipmentsPickerData.push({key: i, label: createdShipments[i].name, tag: createdShipments[i].id})
-    }
-    return createdShipmentsPickerData;
+  // const createdShipmentsPickerData = []
+  // for (var i = 0; i < createdShipments.length; i++) {
+  //   createdShipmentsPickerData.push({key: i, label: createdShipments[i].name, tag: createdShipments[i].id})
+  // }
+  let results = listContainerTasks.tasks[listId]
+  debugger
+  return {results: listContainerTasks.tasks[listId]}
 }
 
-
-module.exports = {getCreatedShipmentsPickerData};
+export default  {byListId}
