@@ -1,0 +1,2 @@
+* Redux and Immutable.js Take Center Stage
+  [https://www.ackmanndickenson.com/2015/11/17/blog-redux-and-immutable-js-take-center-stage/]
