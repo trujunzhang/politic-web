@@ -21,9 +21,7 @@ State = {
   tasks: ? Any
 }
 
-const initialState = {
-  tasks: {}
-}
+const initialState = {}
 
 /**
  * The states were interested in
@@ -66,9 +64,14 @@ function paginationReducer (state: State = initialState, action): State {
         firstPagination: true,
         results: objects
       })
-      return {
-        tasks: {'single-list-view': pageTask}
-      }
+
+      return Object.assign({}, initialState, {
+        'single-list-view': pageTask
+      })
+
+      // return {
+      //   tasks: {'single-list-view': pageTask}
+      // }
     }
 
     case NEXT_PAGE: {
