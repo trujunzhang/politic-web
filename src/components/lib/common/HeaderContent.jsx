@@ -1,7 +1,6 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-
+import { Link } from 'react-router'
 const {pushModel} = require('../../../actions').default
 
 class HeaderContent extends Component {
@@ -28,18 +27,13 @@ class HeaderContent extends Component {
 
   renderLeft () {
     return (
-      <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
-        <a className="siteNav-logo"
-           onClick={
-             (e) => {
-               // this.context.messages.delayHomePage(this.props.router)
-             }
-           }>
+        <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
+            <Link className="siteNav-logo" to="/">
                 <span className="svgIcon svgIcon--logoNew svgIcon--45px is-flushLeft">
                     <img id="politicl-logo" width="138" height="32" alt="logo" src='/images/politicl-logo.png'/>
-              </span>
-        </a>
-      </div>
+                </span>
+            </Link>
+        </div>
     )
   }
 
