@@ -14,17 +14,23 @@ export default class PostsParameters {
             var startOfDay = mAfter.startOf('day');
 
             // from the start of the date (inclusive)
-            this.query.greaterThanOrEqualTo('createdAt', startOfDay.toDate());
+            this.query.greaterThanOrEqualTo('postedAt', startOfDay.toDate());
 
 
             var mBefore = moment(terms.before, "YYYY-MM-DD");
             var endOfDay = mBefore.endOf('day');
 
             // till the start of tomorrow (non-inclusive)
-            this.query.lessThan('createdAt', endOfDay.toDate());
-        } 
+            this.query.lessThan('postedAt', endOfDay.toDate());
+        }
 
+        if(terms.from){
+            this.query.equalTo('sourceFrom', terms.from);
+        }
 
+        if(terms.author){
+            this.query.equalTo('author', terms.author);
+        }
 
         return this
     }

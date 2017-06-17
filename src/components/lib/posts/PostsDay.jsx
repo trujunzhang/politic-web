@@ -33,6 +33,7 @@ class PostsDay extends Component {
                 showHeader={true}
                 checkReady={true}
                 title={title}
+                limit={terms.limit}
                 />
             </div>
         )
