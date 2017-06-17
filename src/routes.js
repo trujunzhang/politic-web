@@ -31,18 +31,18 @@ const createRoutes = (store) => {
       childRoutes: [
         {
           // http://localhost:3000/from/thehindu.com
-          path: '/from/(:domain)',
+          path: 'from/(:domain)',
           component: Telescope.components.PostsHome,
         },
         {
           // http://localhost:3000/article/new
-          path: '/article/new',
+          path: 'article/new',
           component: Telescope.components.SubmitAnArticle,
         },
         {
-          path: 'dashboard',
+          // http://localhost:3000/management
+          path: 'management',
           component: Telescope.components.PostsHome,
-          onEnter: requireAuth(store)
         },
         {
           path: 'signup',
