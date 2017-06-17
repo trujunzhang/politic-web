@@ -1,2 +1,7 @@
-* Redux and Immutable.js Take Center Stage
+* Redux
+
+** Redux and Immutable.js Take Center Stage
   [https://www.ackmanndickenson.com/2015/11/17/blog-redux-and-immutable-js-take-center-stage/]
+
+** The React.js Way: Flux Architecture with Immutable.js
+  [https://blog.risingstack.com/the-react-js-way-flux-architecture-with-immutable-js/]

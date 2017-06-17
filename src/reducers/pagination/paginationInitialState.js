@@ -12,7 +12,7 @@
 /**
  * ## Import
  */
-const {Record} = require('immutable')
+const {Record, OrderedMap} = require('immutable')
 const {
   NEXT_PAGE
 } = require('../../lib/constants').default
@@ -26,11 +26,11 @@ const Pagination = Record({
   state: NEXT_PAGE,
   disabled: false,
   error: null,
-  isValid: "xxxtrujun",
-  listContainer: {}
+  isValid: 'xxxtrujun',
+  listContainer: OrderedMap({})
 })
 
-const ListField = Record({
+const ListRecord = Record({
   hasMore: true,
   totalCount: 0,
   firstPagination: true,
@@ -46,5 +46,5 @@ const ListField = Record({
 var InitialState = Record({
   pagination: new Pagination()
 })
-export default {InitialState, ListField}
+export default {InitialState, ListRecord}
 
