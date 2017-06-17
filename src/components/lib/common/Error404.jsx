@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
 
 import { Link } from 'react-router'
 
@@ -22,7 +21,7 @@ class Error404 extends Component {
           className="u-floatLeft u-alignMiddle u-height120 u-paddingLeft20 u-xs-paddingLeft0 js-errorMessage">
           <div className="u-alignBlock u-textColorDarker">
             <h2 className="u-uiTextBold u-fontSizeLarger u-xs-fontSizeBase">
-              We can't find that page.
+              {'We can\'t find that page.'}
             </h2>
             <div className="u-uiTextRegular u-fontSizeBase u-textColorNormal">
               {'Use the search option or go back to our '}
@@ -37,14 +36,5 @@ class Error404 extends Component {
   }
 }
 
-Error404.contextTypes = {
-  actions: React.PropTypes.object,
-  events: React.PropTypes.object,
-  currentUser: React.PropTypes.object,
-  messages: React.PropTypes.object
-}
-
-Error404.displayName = 'Error404'
-
-export default withRouter(Error404)
+export default Error404
 
