@@ -18,7 +18,7 @@ class PostsList extends Component {
     this.setState({
       listTask: byListId(nextProps.listContainerTasks, nextProps.listId)
     })
-    // debugger
+    debugger
   }
 
   componentDidMount () {
@@ -42,14 +42,14 @@ class PostsList extends Component {
 
     const {
       results = [],
-      hasMore = false,
-      ready = false,
-      totalCount = 100,
-      limit = 10,
-      firstPagination = true,
+      hasMore,
+      ready,
+      totalCount,
+      limit,
+      firstPagination,
     } = listTask
 
-    // debugger
+    debugger
 
     // if (true) {
     //   return <div/>

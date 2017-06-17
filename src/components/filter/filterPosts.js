@@ -29,13 +29,8 @@ const {Record} = require('immutable')
 import type { Post } from '../../reducers/parseModels'
 
 function byListId (listContainerTasks: Any, listId: string) {
-  // const createdShipments = shipments.filter((item) => item.status === 'created')
 
-  // const createdShipmentsPickerData = []
-  // for (var i = 0; i < createdShipments.length; i++) {
-  //   createdShipmentsPickerData.push({key: i, label: createdShipments[i].name, tag: createdShipments[i].id})
-  // }
-  let task = listContainerTasks[listId]
+  let task = listContainerTasks.toJS()[listId]
 
   if (!!task) {
     return task.toJS()

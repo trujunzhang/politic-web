@@ -58,7 +58,10 @@ function paginationReducer (state: State = initialState, action): State {
         })
       }
 
-      return Object.assign({}, initialState.toJS(), {listId: lastTask})
+      let nextState = state
+        .set(listId, lastTask)
+
+      return nextState
     }
 
     case NEXT_PAGE: {
