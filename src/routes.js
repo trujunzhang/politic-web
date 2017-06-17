@@ -26,12 +26,27 @@ const createRoutes = (store) => {
     {
       path: '/',
       component: Telescope.components.Layout,
-      indexRoute: Telescope.components.PostsHome
-      // indexRoute: Home
+      indexRoute: Telescope.components.PostsHome,
+
+      childRoutes: [
+        {
+          path: 'dashboard',
+          component: Telescope.components.PostsHome,
+          onEnter: requireAuth(store)
+        },
+        {
+          path: 'signup',
+          component: Telescope.components.PostsHome
+        },
+        {
+          path: '*',
+          component: Telescope.components.Error404
+        }
+      ]
     }
   ]
 
-  return routes
+  return routes[0]
 }
 
 export default createRoutes
