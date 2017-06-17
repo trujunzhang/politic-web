@@ -4,8 +4,9 @@ export default class PostsParameters {
   }
 
   get () {
- return "wanghao_XXX"
+      return "wanghao_XXX"+ this.terms.limit
   }
+
 }
 
 

@@ -28,7 +28,7 @@ class PostsList extends Component {
       const nextListTask = this.state.listTask
       nextListTask['ready'] = false
       this.setState({listTask: nextListTask})
-      this.props.dispatch(loadPosts(nextListTask, this.props.listId))
+      this.props.dispatch(loadPosts(nextListTask, this.props.listId,this.props.terms))
   }
 
   render () {

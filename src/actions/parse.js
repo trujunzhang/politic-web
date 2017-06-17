@@ -59,11 +59,11 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 }
 
 export default {
-  loadPosts: (listTask: Any, listId: string): ThunkAction => {
+    loadPosts: (listTask: Any, listId: string, terms: Any): ThunkAction => {
       const {pageIndex, limit} = listTask
       const skipCount = (pageIndex - 1) * limit
       const postQuery = new Parse.Query(Objects.Post)
-      const param = new PostsParameters ()
+      const param = new PostsParameters (terms)
       const xxx = param.get()
       debugger
       var query = postQuery.include('topics').skip(skipCount).limit(limit)
