@@ -1,7 +1,7 @@
 import React from 'react'
 import Immutable from 'immutable'
 
-const {Map} = require('immutable')
+import { List, Map } from 'immutable'
 
 describe('(Layout) PageLayout', () => {
   it('renders as a <div>', () => {
@@ -24,7 +24,22 @@ describe('(Layout) PageLayout', () => {
 
     const initialState = new TaskMap()
 
-    initialState.merge(newTasks.map((task) => new Task(task)))
+    // initialState.merge(newTasks.map((task) => new Task(task)))
+
+  })
+
+  it('renders as a <div>', () => {
+
+    const dummyTodos = List([
+      Map({id: 0, isDone: true, text: 'make components'}),
+      Map({id: 1, isDone: false, text: 'design actions'}),
+      Map({id: 2, isDone: false, text: 'implement reducer'}),
+      Map({id: 3, isDone: false, text: 'connect components'})
+    ])
+
+    const newTodos = dummyTodos.push(Map({id: 0, isDone: true, text: 'make components'}))
+
+    debugger
 
   })
 
