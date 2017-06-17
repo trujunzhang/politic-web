@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import promise from './promise'
 import { updateLocation } from './location'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 const createStore = (initialState = {}) => {
   // ======================================================
@@ -14,7 +15,7 @@ const createStore = (initialState = {}) => {
   // ======================================================
   // Store Enhancers
   // ======================================================
-  const enhancers = []
+  const enhancers = [autoRehydrate()]// add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)
   let composeEnhancers = compose
 
   if (__DEV__) {
@@ -45,6 +46,9 @@ const createStore = (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+
+  // begin periodically persisting the store
+  persistStore(store)
 
   return store
 }
