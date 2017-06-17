@@ -13,38 +13,26 @@
  * ## Import
  */
 const {Record, OrderedMap} = require('immutable')
-const {
-  NEXT_PAGE
-} = require('../../lib/constants').default
 
-/**
- * ## Form
- * This Record contains the state of the form and the
- * fields it contains.
- */
-const Pagination = Record({
-  state: NEXT_PAGE,
-  disabled: false,
-  error: null,
-  isValid: 'xxxtrujun',
-  listContainer: OrderedMap({})
+
+
+const PaginationRecord = Record({
+    id: null,
+    done: false,
+    label: '',
+    results: []
 })
 
-const ListRecord = Record({
-  hasMore: true,
-  totalCount: 0,
-  firstPagination: true,
-  limit: 10,
-  increment: 10,
-  results: []
-})
+class ListContainerTask extends PaginationRecord {
+    isDone() {
+        return this.get('done');
+    }
 
-/**
- * ## InitialState
- * The form is set
- */
-var InitialState = Record({
-  pagination: new Pagination()
-})
-export default {InitialState, ListRecord}
+    getResult() {
+        return this.get('results') || [];
+    }
+}
 
+const ListContainerTaskMap = OrderedMap;
+
+export default {ListContainerTask,ListContainerTaskMap};

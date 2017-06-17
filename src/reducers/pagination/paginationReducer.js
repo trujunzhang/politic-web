@@ -10,7 +10,9 @@
  * fieldValidation for validating the fields
  * formValidation for setting the form's valid flag
  */
-const {InitialState, ListRecord} = require('./paginationInitialState').default
+
+
+const {ListContainerTask,ListContainerTaskMap} = require('./paginationInitialState').default
 
 /**
  * The states were interested in
@@ -23,7 +25,7 @@ const {
 
 const {fromParsePost} = require('../parseModels')
 
-const initialState = new InitialState()
+const initialState = new ListContainerTaskMap()
 
 /**
  * ## authReducer function
