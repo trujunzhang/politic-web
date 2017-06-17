@@ -63,10 +63,10 @@ class PostsItem extends Component {
     return (
       <li className='postItem_block'>
         <div disabled={itemDisabled} className="postItem_2pV9v">
-          <a className="link_3fUGJ" onClick={this.onReadMoreClick.bind(this)}>
+          <div className="link_3fUGJ" onClick={this.onReadMoreClick.bind(this)}>
             {this.renderThumbnail()}
             {this.renderContent(showActionButtons)}
-          </a>
+          </div>
         </div>
       </li>
     )
