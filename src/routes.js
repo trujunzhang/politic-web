@@ -30,6 +30,11 @@ const createRoutes = (store) => {
 
       childRoutes: [
         {
+          // http://localhost:3000/from/thehindu.com
+          path: 'from/:domain',
+          component: Telescope.components.PostsHome,
+        },
+        {
           path: 'dashboard',
           component: Telescope.components.PostsHome,
           onEnter: requireAuth(store)
