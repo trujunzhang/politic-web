@@ -33,7 +33,7 @@ function byListId (listContainerTasks: Any, listId: string) {
   let task = listContainerTasks.toJS()[listId]
 
   if (!!task) {
-    return task.toJS()
+    return task
   }
 
   return {
