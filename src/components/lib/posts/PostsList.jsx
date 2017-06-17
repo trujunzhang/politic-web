@@ -26,6 +26,11 @@ class PostsList extends Component {
   }
 
   loadMore () {
+    const {listTask} = this.state
+    listTask['ready'] = false
+    listTask['pageIndex'] = listTask['pageIndex'] + 1
+    this.setState({listTask: listTask})
+    // debugger
     this.props.dispatch(loadPosts(this.state.listTask, this.props.listId))
   }
 

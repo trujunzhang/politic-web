@@ -56,6 +56,7 @@ function paginationReducer (state: State = initialState, action): State {
           ready: true,
           totalCount: 100,
           limit: 10,
+          pageIndex: 1,
           firstPagination: true,
           results: objects
         })

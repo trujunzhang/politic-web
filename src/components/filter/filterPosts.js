@@ -43,7 +43,7 @@ function byListId (listContainerTasks: Any, listId: string) {
     totalCount: 100,
     limit: 10,
     firstPagination: true,
-    pageIndex: 1,
+    pageIndex: 0,
     results: []
   }
 }
