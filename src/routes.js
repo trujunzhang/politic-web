@@ -34,6 +34,12 @@ const createRoutes = (store) => {
           path: '/from/(:domain)',
           component: Telescope.components.PostsHome,
         },
+          {
+              // http://localhost:3000/article/new
+              path: '/article/new'
+              component: Telescope.components.PostsHome,
+          },
+
         {
           path: 'dashboard',
           component: Telescope.components.PostsHome,
