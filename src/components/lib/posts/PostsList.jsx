@@ -27,9 +27,12 @@ class PostsList extends Component {
     this.props.dispatch(loadPosts())
   }
 
+  loadMore () {
+
+  }
+
   render () {
     const {
-      loadMore,
       showHeader = false,
       title,
       showClose = false,
@@ -86,7 +89,7 @@ class PostsList extends Component {
           showClose={showClose}
           showHeader={showHeader}
           dismissBanner={dismissBanner}
-          loadMore={loadMore}/>
+          loadMore={this.loadMore.bind(this)}/>
       )
     }
 

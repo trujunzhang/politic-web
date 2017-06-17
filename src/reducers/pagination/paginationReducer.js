@@ -22,7 +22,7 @@ State = {
 }
 
 const initialState = {
-  tasks: {'single-list-view': []}
+  tasks: {}
 }
 
 /**

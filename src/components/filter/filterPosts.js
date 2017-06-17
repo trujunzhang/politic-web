@@ -35,9 +35,14 @@ function byListId (listContainerTasks: Any, listId: string): Record {
   // for (var i = 0; i < createdShipments.length; i++) {
   //   createdShipmentsPickerData.push({key: i, label: createdShipments[i].name, tag: createdShipments[i].id})
   // }
-  let results = listContainerTasks.tasks[listId]
-  // debugger
-  return listContainerTasks.tasks[listId].toJS()
+  let task = listContainerTasks.tasks[listId]
+  debugger
+
+  if (!!task) {
+    return task.toJS()
+  }
+
+  return {}
 }
 
 export default  {byListId}
