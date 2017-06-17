@@ -13,15 +13,13 @@
 
 import type { Action } from '../../actions/types'
 
-export
-type
-State = {
-  tasks: ? Any
-}
+import Immutable from 'immutable'
 
-const initialState = {
-  tasks: {'single-list-view': []}
-}
+const TaskMap = Immutable.OrderedMap
+
+const TaskRecord = Map({})
+
+const initialState = new TaskMap()
 
 /**
  * The states were interested in
@@ -47,14 +45,7 @@ function paginationReducer (state: State = initialState, action): State {
      */
     case LOADED_POSTS: {
       const objects = action.list.map(fromParsePost)
-      // debugger
-      // const listRecord = new ListRecord({results: objects})
-      // const form = state.getIn(['pagination'])
-      // debugger
-      // let nextState = state.set('single-list-view', listRecord)
-      // debugger
-      // state.tasks['single-list-view'] = objects
-      // debugger
+
       return {
         tasks: {'single-list-view': objects}
       }

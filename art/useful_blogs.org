@@ -9,3 +9,5 @@
 ** How to Build a Todo App Using React, Redux, and Immutable.js
   [https://www.sitepoint.com/how-to-build-a-todo-app-using-react-redux-and-immutable-js/]
 
+** Now you can use immuable-js methods in your reducers, such as get and set.
+  [https://coderwall.com/p/tzxh1a/updating-your-redux-app-to-use-immutablejs]
