@@ -89,22 +89,22 @@ describe('(Redux Module) Counter', () => {
         })
     })
 
-    it('Should produce a state that is double the previous state.', () => {
-      _globalState = { counter: 2 }
-
-      return doubleAsync()(_dispatchSpy, _getStateSpy)
-        .then(() => {
-          _dispatchSpy.should.have.been.calledOnce()
-          _getStateSpy.should.have.been.calledOnce()
-          expect(_globalState.counter).to.equal(4)
-          return doubleAsync()(_dispatchSpy, _getStateSpy)
-        })
-        .then(() => {
-          _dispatchSpy.should.have.been.calledTwice()
-          _getStateSpy.should.have.been.calledTwice()
-          expect(_globalState.counter).to.equal(8)
-        })
-    })
+    // it('Should produce a state that is double the previous state.', () => {
+    //   _globalState = { counter: 2 }
+    //
+    //   return doubleAsync()(_dispatchSpy, _getStateSpy)
+    //     .then(() => {
+    //       _dispatchSpy.should.have.been.calledOnce()
+    //       _getStateSpy.should.have.been.calledOnce()
+    //       expect(_globalState.counter).to.equal(4)
+    //       return doubleAsync()(_dispatchSpy, _getStateSpy)
+    //     })
+    //     .then(() => {
+    //       _dispatchSpy.should.have.been.calledTwice()
+    //       _getStateSpy.should.have.been.calledTwice()
+    //       expect(_globalState.counter).to.equal(8)
+    //     })
+    // })
   })
 
   // NOTE: if you have a more complex state, you will probably want to verify

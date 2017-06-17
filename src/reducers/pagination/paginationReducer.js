@@ -41,10 +41,11 @@ function paginationReducer (state = initialState, action) {
     case LOADED_POSTS: {
       const objects = action.list.map(fromParsePost)
       debugger
-      const form = state.getIn(['pagination','isValid'])
+      const listRecord = new ListRecord({results: objects})
+      // const form = state.getIn(['pagination'])
       debugger
-      let nextState = state
-        .setIn(['pagination', 'listContainer', 'results'], objects)
+      let nextState = state.set('single-list-view', listRecord)
+      debugger
       return nextState
     }
 
