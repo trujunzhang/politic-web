@@ -29,6 +29,7 @@ import type { ThunkAction } from './types'
 
 var Objects = require('./objects').default
 
+const Parameters = require('../parameters').Posts
 
 /**
  * The states were interested in
@@ -54,7 +55,7 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
 
 export default {
     loadPosts: (): ThunkAction => {
-        var query = new Parse.Query(Objects.Post).include('topics');
+        var query = new Parse.Query(Objects.Post).include('topics').limit(10);
         return loadParseQuery(LOADED_POSTS, query);
     }
 };

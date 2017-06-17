@@ -19,6 +19,7 @@ class PostsList extends Component {
   }
 
   componentDidMount () {
+    const {listId} = this.props
     this.props.dispatch(loadPosts())
   }
 
