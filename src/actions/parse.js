@@ -38,16 +38,17 @@ const {
   LOADED_POSTS
 } = require('../lib/constants').default
 
-function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string): ThunkAction {
+function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
     return query.find({
       success: (list) => {
         // debugger
         // Flow can't guarantee {type, list} is a valid action
         const data = {
-          list: list,
-          listTask: listTask,
-          listId: listId
+            list: list,
+            listTask: listTask,
+            listId: listId,
+            limit: limit
         }
         dispatch(({type, data}))
       },
@@ -60,13 +61,16 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 
 export default {
     loadPosts: (listTask: Any, listId: string, terms: Any): ThunkAction => {
-      const {pageIndex, limit} = listTask
-      const skipCount = (pageIndex - 1) * limit
-      const postQuery = new Parse.Query(Objects.Post)
-      const param = new PostsParameters (terms)
-      const xxx = param.get()
-      debugger
-      var query = postQuery.include('topics').skip(skipCount).limit(limit)
-      return loadParseQuery(LOADED_POSTS, query, listTask, listId)
+        const {pageIndex, limit} = listTask
+        const skipCount = (pageIndex - 1) * limit
+
+        var postQuery = new Parse.Query(Objects.Post).include('topics')
+
+        const param = new PostsParameters (postQuery)
+        postQuery = param.addParameters(terms).end()
+
+        var query = postQuery.skip(skipCount).limit(limit)
+
+        return loadParseQuery(LOADED_POSTS, query, listTask, listId, limit)
   }
 }

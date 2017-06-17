@@ -28,7 +28,7 @@
 const {Record} = require('immutable')
 import type { Post } from '../../reducers/parseModels'
 
-function byListId (listContainerTasks: Any, listId: string) {
+function byListId (listContainerTasks: Any, listId: string, limit: int) {
 
   let task = listContainerTasks.toJS()[listId]
 
@@ -40,8 +40,8 @@ function byListId (listContainerTasks: Any, listId: string) {
     id: listId,
     hasMore: true,
     ready: false,
-    totalCount: 100,
-    limit: 1,
+    totalCount: 0,
+    limit: limit,
     firstPagination: true,
     pageIndex: 1,
     results: []

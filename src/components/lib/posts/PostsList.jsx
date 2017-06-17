@@ -10,13 +10,13 @@ class PostsList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      listTask: byListId(props.listContainerTasks, props.listId)
+      listTask: byListId(props.listContainerTasks, props.listId, props.limit)
     }
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      listTask: byListId(nextProps.listContainerTasks, nextProps.listId)
+      listTask: byListId(nextProps.listContainerTasks, nextProps.listId, nextProps.limit)
     })
   }
 
