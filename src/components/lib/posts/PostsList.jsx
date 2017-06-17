@@ -91,7 +91,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    posts: store.posts
+    posts: store.listContainer
   }
 }
 
