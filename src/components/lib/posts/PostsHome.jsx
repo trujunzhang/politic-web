@@ -2,7 +2,6 @@ import Telescope from '../index'
 import React, { Component } from 'react'
 import Users from '../../../lib/users'
 import Posts from '../../../lib/posts'
-import { withRouter } from 'react-router'
 
 let md5 = require('blueimp-md5')
 
@@ -42,27 +41,33 @@ class PostsHome extends Component {
   }
 
   renderPostList (key) {
-    const {location} = this.props
+      const {params} = this.props,
     // const query = this.context.messages.lastAction.query,
-    //     limit = Telescope.settings.get("postsPerPage", 10);
+         limit = Telescope.settings.get("postsPerPage", 10);
 
-    // const terms = {...query, listId: "posts.list.main", view: 'new', limit: limit};
+     const terms = {...params, listId: "posts.list.main", view: 'new', limit: limit};
     // const {selector, options} = Posts.parameters.get(terms);
 
+      //debugger
+
     return Users.renderWithSideBar(
-      <Telescope.components.PostsList
+        <Telescope.components.PostsList
+        limit={limit}
+        terms = {terms}
         listId={'single-list-view'}
-        {...Posts.generatePostListTitle(location.query)}/>
+        {...Posts.generatePostListTitle(params)}/>
     )
   }
 
-  render () {
+    render () {
+        const {params} = this.props
+        const paramsLength= Object.keys(params).length
 
-    const {location} = this.props
-    debugger
+        if(paramsLength>0){
+            return this.renderPostList('')
+        }
 
-    //return this.renderPostList('')
-    return this.renderPostDaily()
+        return this.renderPostDaily()
   }
 
   renderxxx () {
@@ -122,6 +127,4 @@ class PostsHome extends Component {
   }
 }
 
-export default {
-  component: withRouter(PostsHome)
-}
+export default PostsHome

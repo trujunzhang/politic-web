@@ -134,8 +134,8 @@ Posts.generatePostListTitle = function (query) {
     if (query.query) {
         title = `${preTitle} in ${query.query}`;
     }
-    else if (query.from) {
-        title = `${preTitle} in ${query.from}`;
+    else if (query.domain) {
+        title = `${preTitle} in ${query.domain}`;
     }
     else if (query.author) {
         title = `${preTitle} in ${query.author}`;

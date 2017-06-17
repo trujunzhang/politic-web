@@ -24,8 +24,8 @@ export default class PostsParameters {
             this.query.lessThan('postedAt', endOfDay.toDate());
         }
 
-        if(terms.from){
-            this.query.equalTo('sourceFrom', terms.from);
+        if(terms.domain){
+            this.query.equalTo('sourceFrom', terms.domain);
         }
 
         if(terms.author){

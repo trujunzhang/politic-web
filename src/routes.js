@@ -24,9 +24,9 @@ export function requireAuth (store) {
 const createRoutes = (store) => {
   const routes = [
     {
-      path: '/',
-      component: Telescope.components.Layout,
-      indexRoute: Telescope.components.PostsHome,
+        path: '/',
+        component: Telescope.components.Layout,
+        indexRoute: {component:Telescope.components.PostsHome},
 
       childRoutes: [
         {

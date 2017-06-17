@@ -17,7 +17,6 @@ class Layout extends Component {
 
 
     render () {
-        debugger
         return (
             <div id='web-app-panel'>
                 <Telescope.components.HeaderContent />
