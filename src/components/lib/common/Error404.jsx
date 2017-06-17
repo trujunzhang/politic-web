@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import { Link } from 'react-router'
 
-class Error404 extends Component {
+const Error404 = () => {
 
-  render () {
-
-    return (
-      <div className="container u-maxWidth920 u-marginTop180 u-xs-marginTop50 u-clearfix">
-        <div className="u-floatLeft ">
+  return (
+    <div className="container u-maxWidth920 u-marginTop180 u-xs-marginTop50 u-clearfix">
+      <div className="u-floatLeft ">
                   <span className="svgIcon svgIcon--error404 svgIcon--120px u-textColorLighter">
                       <svg className="svgIcon-use" width="120" height="120">
                           <path
@@ -16,25 +13,22 @@ class Error404 extends Component {
                           </path>
                       </svg>
                   </span>
-        </div>
-        <div
-          className="u-floatLeft u-alignMiddle u-height120 u-paddingLeft20 u-xs-paddingLeft0 js-errorMessage">
-          <div className="u-alignBlock u-textColorDarker">
-            <h2 className="u-uiTextBold u-fontSizeLarger u-xs-fontSizeBase">
-              {'We can\'t find that page.'}
-            </h2>
-            <div className="u-uiTextRegular u-fontSizeBase u-textColorNormal">
-              {'Use the search option or go back to our '}
-              <Link className="link--underline" to="/">homepage</Link>
-              {'.'}
-            </div>
+      </div>
+      <div
+        className="u-floatLeft u-alignMiddle u-height120 u-paddingLeft20 u-xs-paddingLeft0 js-errorMessage">
+        <div className="u-alignBlock u-textColorDarker">
+          <h2 className="u-uiTextBold u-fontSizeLarger u-xs-fontSizeBase">{'We can\'t find that page.'}</h2>
+          <div className="u-uiTextRegular u-fontSizeBase u-textColorNormal">
+            {'Use the search option or go back to our '}
+            <Link className="link--underline" to="/">homepage</Link>
+            {'.'}
           </div>
         </div>
       </div>
-
-    )
-  }
+    </div>
+  )
 }
 
 export default Error404
+
 
