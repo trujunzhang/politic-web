@@ -108,10 +108,7 @@ class AppAdminPostsList extends Component {
       query = location.query || {},
       postStatus = Posts.getPostStatus(item, ( query.status || 'all'))
 
-    if (query.status === 'trash') {
-      return (<strong>{item.title}</strong>)
-    }
-    return (
+    return (query.status === 'trash') ? (<strong>{item.title}</strong>) : (
       <strong>
         <a className="row-title">{item.title}</a>
         {postStatus.length === 0 ? null : ' — ' }
@@ -122,10 +119,6 @@ class AppAdminPostsList extends Component {
         )))}
       </strong>
     )
-  }
-
-  renderTitleActionButton () {
-    return (<Link className="page-title-action" to="/article/new">Add New</Link>)
   }
 
   customRowRender (row, item, index) {
@@ -167,10 +160,12 @@ class AppAdminPostsList extends Component {
       draftCount: (props.draftCount || 0),
     }
 
+    const renderTitleActionButton = (<Link className="page-title-action" to="/article/new">Add New</Link>)
+
     return (
       <Telescope.components.AdminTables
         data={data}
-        renderTitleActionButton={this.renderTitleActionButton.bind(this)}
+        renderTitleActionButton={renderTitleActionButton}
         renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
         renderRowsEditAll={this.renderRowsEditAll.bind(this)}
         tableCount={Posts.getTotalCount(this.props, this.props.location.query.status)}
