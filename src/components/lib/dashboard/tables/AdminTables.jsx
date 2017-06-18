@@ -68,6 +68,15 @@ class AdminTables extends Component {
     if (customRender) {
       return this.props.customRowRender(row, item, index)
     }
+    switch (field) {
+      case 'date':
+        const updatedAt = moment(item.postedAt).format('YYYY/MM/DD')
+        return (
+          <td key={index} className="date column-date">Last Modified<br/>
+            <abbr title={updatedAt}>{updatedAt}</abbr>
+          </td>
+        )
+    }
     return (
       <td key={index} className={`${row.tag} column-${row.tag}`}>
         {item[row.field]}

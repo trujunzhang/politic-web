@@ -124,10 +124,6 @@ class AppAdminPostsList extends Component {
     return (<Link className="page-title-action" to="/article/new">Add New</Link>)
   }
 
-  renderWithTopics (item, index) {
-    return (<Telescope.components.AdminTablesTopicsColumn key={index}/>)
-  }
-
   customRowRender (row, item, index) {
     const {name, tag, field, isText} = row
     switch (tag) {
@@ -138,6 +134,8 @@ class AppAdminPostsList extends Component {
             <Telescope.components.AppAdminPostItemAction post={item}/>
           </td>
         )
+      case 'topics':
+        return (<Telescope.components.AdminTablesTopicsColumn key={index} results={item.topics}/>)
     }
   }
 
@@ -152,7 +150,8 @@ class AppAdminPostsList extends Component {
         {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true, customRender: true},
         {name: 'Source Name', field: 'sourceFrom', tag: 'source'},
         {name: 'Curator', field: 'author', tag: 'curator'},
-        // {name: 'Date', field: 'date', tag: 'date', sort: true}
+        {name: 'Topics', field: 'withTopics', tag: 'topics', customRender: true},
+        {name: 'Date', field: 'date', tag: 'date', sort: true}
       ]
     }
     const countsProps = {
