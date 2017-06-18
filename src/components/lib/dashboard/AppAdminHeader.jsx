@@ -1,6 +1,6 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
-import Users from 'meteor/nova:users'
+import Users from '../../../lib/users'
 import moment from 'moment'
 
 class AppAdminHeader extends Component {
@@ -43,17 +43,7 @@ class AppAdminHeader extends Component {
         <a className="dropdown-toggle">
           <div className="row">
             <div className="col-lg-4">
-              {avatarUrl ? <Telescope.components.AvatarBlurryImage
-                imageId={currentUser._id}
-                containerClass={'avatar'}
-                imageClass={'avatar-image avatar-image--icon'}
-                imageSet={{small: avatarUrl, large: avatarUrl}}
-                imageWidth={32}
-                imageHeight={32}
-                imageTitle={name}
-                isAvatar={true}
-              /> : <img width="32" height="32"
-                        src="https://secure.gravatar.com/avatar/73e98f841e600f79ace2b600244cecc7?size=200&default=mm"/>}
+              <Telescope.components.UsersMenu currentUser={currentUser}/>
             </div>
             <div className="col-lg-8">
               <span className="hidden-xs">{name}</span>
@@ -264,5 +254,18 @@ class AppAdminHeader extends Component {
   }
 }
 
-module.exports = AppAdminHeader
-export default AppAdminHeader
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+    currentUser: store.user
+  }
+}
+
+export default connect(select)(AppAdminHeader)
