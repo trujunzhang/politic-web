@@ -4,15 +4,9 @@
  * The reducer for all the actions from the various log states
  */
 'use strict'
-/**
- * ## Imports
- * The InitialState for dashboard
- * fieldValidation for validating the fields
- * formValidation for setting the form's valid flag
- */
-const InitialState = require('./dashboardInitialState').default
-const fieldValidation = require('../../lib/fieldValidation').default
-const formValidation = require('./dashboardFormValidation').default
+
+
+import type { Action } from '../../actions/types'
 
 /**
  * ## Dashboard actions
@@ -24,13 +18,29 @@ const {
 
 const {fromParsePost} = require('../parseModels')
 
-const initialState = new InitialState()
+
+const {Map} = require('immutable')
+
+
+const initialState = Map({
+    results: [],
+    pageIndex: 1,
+    limit: 10,
+    editAll: false,
+    editAllIds: [],
+    editSingle: false,
+    editSingleId: '',
+    checkAll: false,
+    checkIds: {},
+    countKeys: {}
+})
+
 /**
  * ## dashboardReducer function
  * @param {Object} state - initialState
  * @param {Object} action - type and payload
  */
-function dashboardReducer (state = initialState, action) {
+function dashboardReducer (state = initialState, action): State {
   // if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
 
   switch (action.type) {
@@ -38,18 +48,16 @@ function dashboardReducer (state = initialState, action) {
      * ### Requests start
      * set the form to fetching and clear any errors
      */
-    case DASHBOARD_LOADED_POSTS: {
+  case DASHBOARD_LOADED_POSTS: {
+      console.log('Dashboard loaded posts: ')
+
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
 
-      var nextTask = state.get(listId)
-
-        debugger
       let nextState = state
-        .setIn(['table', 'pageIndex'], listTask.pageIndex + 1)
-        .setIn(['table', 'results'], objects)
+          .set('pageIndex', listTask.pageIndex + 1)
+          .set('results', objects)
 
-        debugger
       return nextState
     }
 
@@ -64,24 +72,15 @@ function dashboardReducer (state = initialState, action) {
 
       var next = state.setIn(['form', 'state'], form.state)
         .setIn(['form', 'disabled'], form.disabled)
-        .setIn(['form', 'error'], form.error)
-        .setIn(['form', 'isValid'], form.isValid)
-        .setIn(['form', 'isFetching'], false)
-        .setIn(['form', 'fields', 'username'], form.fields.username)
-        .setIn(['form', 'fields', 'usernameHasError'], form.fields.usernameHasError)
-        .setIn(['form', 'fields', 'email'], form.fields.email)
-        .setIn(['form', 'fields', 'emailHasError'], form.fields.emailHasError)
-        .setIn(['form', 'fields', 'password'], form.fields.password)
-        .setIn(['form', 'fields', 'passwordHasError'], form.fields.passwordHasError)
-        .setIn(['form', 'fields', 'passwordAgain'], form.fields.passwordAgain)
-        .setIn(['form', 'fields', 'passwordAgainHasError'], form.fields.passwordAgainHasError)
 
       return next
   }
+
+
   /**
    * ## Default
    */
-  return state
+    return state
 }
 
 export default dashboardReducer

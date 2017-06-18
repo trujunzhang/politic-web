@@ -28,15 +28,15 @@ class AppAdminPostsList extends Component {
   }
 
   loadMore () {
-    const {location} = this.props,
+      const {location} = this.props,
       terms = {
         ...location.query,
         listId: 'admin.posts.list',
         limit: 10
       }
 
-    const nextDashboard = this.props.dashboard
-    this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
+      const nextDashboard = this.props.dashboard.toJS()
+      this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
   }
 
   onDateSelectorChange (event) {
@@ -193,13 +193,9 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    dashboard: store.dashboard.table
+      dashboard: store.dashboard
   }
 }
-
-/**
- * Connect the properties
- */
 
 export default connect(select)(AppAdminPostsList)
 

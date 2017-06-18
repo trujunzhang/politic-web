@@ -7,11 +7,15 @@ class AdminTables extends Component {
   constructor (props, context) {
     super(props)
 
-    this.state = this.initialState = {}
+    this.state = {
+      dashboard: props.dashboard
+    }
   }
 
   componentWillReceiveProps (nextProps) {
-
+    this.state = {
+      dashboard: nextProps.dashboard
+    }
   }
 
   onCheckRowChanged (id, value) {
@@ -84,11 +88,12 @@ class AdminTables extends Component {
     )
   }
 
-  renderTableRows () {
-    const {data, results} = this.props,
-      {checkIds} = this.state,
+  renderTableRows (results) {
+    const {data} = this.props,
       {hasEditSingle, hasEditAll, tableType} = data,
-      items = (!!results && results.length > 0 ) ? results : []
+      {checkIds} = this.state,
+      items = results
+
     if (items.length === 0) {
       return (
         <tbody id="the-list">
@@ -208,17 +213,19 @@ class AdminTables extends Component {
   }
 
   renderTable () {
-    const {data, results} = this.props,
-      {tableType} = data
+      const {data} = this.props,
+            {dashboard} = this.state,
+            results = dashboard.results || [],
+            {tableType} = data
 
-    // console.log('render table: ' + results.length)
+    console.log('render table: ' + results.length)
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
         <thead>
         {this.renderTableHeaderFooter()}
         </thead>
-        {!this.props.ready ? this.renderLoading() : this.renderTableRows()}
+        {!this.props.ready ? this.renderLoading() : this.renderTableRows(results)}
         <tfoot>
         {this.renderTableHeaderFooter()}
         </tfoot>
@@ -272,4 +279,21 @@ class AdminTables extends Component {
   }
 }
 
-export default AdminTables
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    dashboard: store.dashboard
+  }
+}
+
+/**
+ * Connect the properties
+ */
+
+export default connect(select)(AdminTables)
