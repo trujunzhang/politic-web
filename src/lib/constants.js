@@ -1,6 +1,12 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  POSTS_OVERLAY_PUSH: null,
+  POSTS_OVERLAY_POP: null,
+  POSTS_OVERLAY_EMPTY: null,
+  POSTS_OVERLAY_BACKWARD: null,
+  POSTS_OVERLAY_FORWARD: null,
+
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
   DASHBOARD_EDIT_SINGLE_ROW_CANCEL: null,

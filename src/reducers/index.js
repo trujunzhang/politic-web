@@ -7,14 +7,15 @@ import { routerReducer } from 'react-router-redux'
 // const messages = Telescope.strings['en'] || {}
 
 const rootReducer = combineReducers({
-    // posts: require('./posts').default,
-    // topics: require('./topics').default,
-    routing: routerReducer,
-    popModel: require('./popModel').default,
-    user: require('./user').default,
-    auth: require('./auth/authReducer').default,
-    dashboard: require('./dashboard/dashboardReducer').default,
-    listContainerTasks: require('./pagination/paginationReducer').default
+  // posts: require('./posts').default,
+  // topics: require('./topics').default,
+  routing: routerReducer,
+  popModel: require('./popModel').default,
+  postsOverlay: require('./postsOverlay').default,
+  user: require('./user').default,
+  auth: require('./auth/authReducer').default,
+  dashboard: require('./dashboard/dashboardReducer').default,
+  listContainerTasks: require('./pagination/paginationReducer').default
 })
 
 export default rootReducer
