@@ -239,14 +239,15 @@ class AdminTables extends Component {
 
   renderTable () {
     const {data} = this.props,
-      {tableType} = data
+      {tableType} = data,
+      {dashboard} = this.state
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
         <thead>
         {this.renderTableHeaderFooter()}
         </thead>
-        {!ready ? this.renderLoading() : this.renderTableRows()}
+        {!dashboard.ready ? this.renderLoading() : this.renderTableRows()}
         <tfoot>
         {this.renderTableHeaderFooter()}
         </tfoot>
