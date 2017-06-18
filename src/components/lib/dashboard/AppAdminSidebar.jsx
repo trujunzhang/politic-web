@@ -3,17 +3,12 @@ import React, { Component } from 'react'
 
 class AppAdminSidebar extends Component {
 
-  onSidebarMenuClick (type) {
-    // this.context.messages.appManagement.pushAdminSidebar(this.props.router, type)
-  }
-
-  renderAppItemsMenu () {
-
+  render () {
     const {location} = this.props,
       pathname = location.pathname || '',
       type = pathname.replace('/management/', '')
 
-    const menus = [
+    const menus1 = [
       {title: 'Dashboard', icon: 'fa fa-dashboard', tag: ''},
       {title: 'Posts', icon: 'fa fa-edit', tag: 'posts'},
       {title: 'Topics', icon: 'fa fa-tasks', tag: 'topics'},
@@ -26,51 +21,35 @@ class AppAdminSidebar extends Component {
       {title: 'Settings', icon: 'wp-menu-image dashicons-before dashicons-admin-settings', tag: 'settings'},
     ]
 
-    return (
-      <ul className="sidebar-menu" id="adminmenu">
-        {menus.map((item, index) =>
-          <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
-            <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
-              <i className={item.icon}/>
-              <span>{item.title}</span>
-            </a>
-          </li>
-        )}
-      </ul>
-    )
-  }
-
-  renderCrawlerItemsMenu () {
-    const {location} = this.props,
-      pathname = location.pathname || '',
-      type = pathname.replace('/management/', '')
-
-    const menus = [
+    const menus2 = [
       {title: 'Caches', icon: 'fa fa-th', tag: 'caches'},
       {title: 'History', icon: 'fa fa-history', tag: 'history'},
       {title: 'Scrapyd', icon: 'fa fa-tasks', tag: 'scrapyd'}
     ]
 
     return (
-      <ul className="sidebar-menu" id="adminmenu">
-        {menus.map((item, index) =>
-          <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
-            <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
-              <i className={item.icon}/>
-              <span>{item.title}</span>
-            </a>
-          </li>
-        )}
-      </ul>
-    )
-  }
-
-  render () {
-    return (
       <aside className="main-sidebar">
         <section className="sidebar admin-sidebar">
-          {this.renderAppItemsMenu()}
-          {this.renderCrawlerItemsMenu()}
+          <ul className="sidebar-menu" id="adminmenu">
+            {menus1.map((item, index) =>
+              <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+                <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+                  <i className={item.icon}/>
+                  <span>{item.title}</span>
+                </a>
+              </li>
+            )}
+          </ul>
+          <ul className="sidebar-menu" id="adminmenu">
+            {menus2.map((item, index) =>
+              <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+                <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+                  <i className={item.icon}/>
+                  <span>{item.title}</span>
+                </a>
+              </li>
+            )}
+          </ul>
         </section>
       </aside>
     )
