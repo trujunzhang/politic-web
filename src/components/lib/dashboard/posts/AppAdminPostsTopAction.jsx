@@ -40,38 +40,35 @@ class AppAdminPostsTopAction extends Component {
     const rows = [
       {title: 'All', status: 'all', count: allCount},
       {title: 'Published', status: 'publish', count: (this.props.publishCount || 0)},
-      {title: 'Pending', status: 'pending', count: (this.props.pendingCount || 0)},
-      {title: 'Rejected', status: 'reject', count: (this.props.rejectedCount || 0)},
+      {title: 'Pending', status: 'pending', count: (this.props.pendingCount || 20)},
+      {title: 'Rejected', status: 'reject', count: (this.props.rejectedCount || 30)},
       {title: 'Drafts', status: 'draft', count: (this.props.draftCount || 0)},
       {title: 'Trash', status: 'trash', count: trashCount},
     ]
 
-    const countRows = []
+    const location = this.props.location || {},
+      query = location.query || {},
+      queryStatus = query.status || 'all'
+
+    var length = 0
     _.forEach(rows, function (row) {
       if (row.count !== 0 || row.title === 'All') {
-        countRows.push(row)
+        length++
       }
     })
 
-    let length = countRows.length
-    const location = this.props.location || {},
-      query = location.query || {}
-
-    let queryStatus = query.status || 'all'
-    const statusRows = []
-    for (let i = 0; i < length; i++) {
-      const row = countRows[i]
-      statusRows.push(
-        <li key={i} className={row.status}>
-          <a className={queryStatus === row.status ? 'current' : ''}>
-            {row.title + ' '}
-            <span className="count">{'(' + numeral(row.count).format('0,0') + ')' }</span>
-          </a>
-          {(i < length - 1 ) ? <span>{' |'}</span> : null  }
-        </li>)
-    }
-
-    return statusRows
+    return rows.map((item, index) => {
+      if (item.count !== 0 || item.title === 'All') {
+        return (
+          <li key={index} className={item.status}>
+            <a className={queryStatus === item.status ? 'current' : ''}>
+              {item.title + ' '}
+              <span className="count">{'(' + numeral(item.count).format('0,0') + ')' }</span>
+            </a>
+            {(index < length - 1 ) ? <span>{' |'}</span> : null  }
+          </li>)
+      }
+    })
   }
 
   render () {
