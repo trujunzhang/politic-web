@@ -51,7 +51,11 @@ const createStore = (initialState = {}) => {
   }
 
   // begin periodically persisting the store
-  persistStore(store)
+  // persistStore(store)
+
+  persistStore(store, {whitelist: ['user']}, () => {
+    console.log('rehydration complete')
+  })
 
   return store
 }
