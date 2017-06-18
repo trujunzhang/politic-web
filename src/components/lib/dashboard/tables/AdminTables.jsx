@@ -8,11 +8,9 @@ class AdminTables extends Component {
     super(props)
 
     const {selectAll, rows} = props.data
-    const _rowState = selectAll ? context.messages.appManagement.resetSelectRowState(props.results) : []
     this.state = this.initialState = {
       // select all
       checkAll: false,
-      rowState: _rowState,
       checkIds: [],
       // Pagination
       postsPerPage: 10
@@ -28,14 +26,10 @@ class AdminTables extends Component {
 
   onCheckRowChanged (id, value) {
     const {rowState, checkAll} = this.state
-
-    const obj = this.context.messages.appManagement.checkRow(id, value, this.props.results, rowState, checkAll)
-    this.setState(obj)
   }
 
   toggleCheckAll () {
-    let obj = this.context.messages.appManagement.getCheckedAllIds(this.props.results, (!this.state.checkAll))
-    this.setState(obj)
+
   }
 
   renderTableHeaderFooter () {
@@ -140,7 +134,7 @@ class AdminTables extends Component {
   }
 
   onRowClick (tag, value) {
-    this.context.messages.appManagement.appendQuery(this.props.router, tag, value)
+    // this.context.messages.appManagement.appendQuery(this.props.router, tag, value)
   }
 
   generateRowBody (item, rowIndex) {
@@ -256,8 +250,8 @@ class AdminTables extends Component {
   }
 
   onTopActionBarEventClick () {
-    this.resetTable()
-    this.props.toggleEvent()
+    // this.resetTable()
+    // this.props.toggleEvent()
   }
 
   resetTable () {
