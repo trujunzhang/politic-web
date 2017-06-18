@@ -137,8 +137,13 @@ export function signupFailure (error) {
  */
 export function signup (username, email, password, roleType) {
   return dispatch => {
-    dispatch(signupRequest())
+    dispatch(deleteTokenRequestSuccess())
+  }
+}
 
+export function deleteTokenRequestSuccess () {
+  return {
+    type: DELETE_TOKEN_SUCCESS
   }
 }
 
@@ -227,6 +232,5 @@ export function resetPasswordFailure (error) {
 export function resetPassword (email) {
   return dispatch => {
     dispatch(resetPasswordRequest())
-
   }
 }
