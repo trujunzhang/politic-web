@@ -7,7 +7,7 @@ class AppAdminPostsList extends Component {
   constructor (props) {
     super(props)
 
-    const {location} = this.props,
+    const {location} = props,
       query = location.query || {}
 
     const dateSelectors = Posts.getDateSelectors()
@@ -121,6 +121,7 @@ class AppAdminPostsList extends Component {
   }
 
   render () {
+    const props = this.props
     const data = {
       selectAll: true,
       hasEditSingle: true,
@@ -145,14 +146,12 @@ class AppAdminPostsList extends Component {
     return (
       <Telescope.components.AdminTables
         data={data}
-        onCheckIdsChanged={this.onCheckIdsChanged.bind(this)}
         renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
         renderTitleActionButton={this.renderTitleActionButton.bind(this)}
         renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
         renderRowsEditAll={this.renderRowsEditAll.bind(this)}
         tableCount={Posts.getTotalCount(this.props, this.props.location.query.status)}
         componentLeftActionBar={Telescope.components.AppAdminPostsAction}
-        onLeftActionBarEventClick={this.listActionEvent.bind(this)}
         renderFilter={this.renderFilter.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminPostsTopAction}
         countsProps={countsProps}

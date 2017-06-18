@@ -10,13 +10,16 @@ class AppAdminLayout extends Component {
 
     switch (type) {
       case 'posts':
-        return <Telescope.components.AppAdminPostsList key="posts" terms={
-          {
-            ...location.query,
-            listId: 'admin.posts.list',
-            limit: 10
-          }
-        }/>
+        return <Telescope.components.AppAdminPostsList
+          location={location}
+          key="posts"
+          terms={
+            {
+              ...location.query,
+              listId: 'admin.posts.list',
+              limit: 10
+            }
+          }/>
       case 'categories':
         return <Telescope.components.AppAdminCategories key="categories"/>
       case 'topics':

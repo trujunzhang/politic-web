@@ -292,4 +292,33 @@ Posts.generatePostListTitle = function (query) {
   return {showHeader: !!title, title: title}
 }
 
+Posts.getTotalCount = (props, status) => {
+  let count = 0
+  switch (status) {
+    case 'publish':
+      count = props.publishCount
+      break
+    case 'flag':
+      count = props.flaggedCount
+      break
+    case 'pending':
+      count = props.pendingCount
+      break
+    case 'reject':
+      count = props.rejectedCount
+      break
+    case 'draft':
+      count = props.draftCount
+      break
+    case 'trash':
+      count = props.trashCount
+      break
+    default:
+      count = props.allCount
+      break
+  }
+
+  return count
+}
+
 export default Posts
