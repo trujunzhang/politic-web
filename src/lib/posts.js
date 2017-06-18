@@ -338,4 +338,84 @@ Posts.getSelectedPosts = (results, checkIds) => {
   })
 }
 
+Posts.generateTwitterShareLink = function (post) {
+
+  const twitterVia = Telescope.settings.get('twitterAccount', 'Getpoliticl')
+  const splits = []
+  splits.push('url=' + post.url)
+  splits.push('via=' + twitterVia)
+  splits.push('text=' + post.title)
+
+  return 'https://twitter.com/share?' + splits.join('&')
+}
+
+/**
+ *
+ * https://www.facebook.com/dialog/share?
+ * app_id=1549529981961270&href=http://scruby.site/?postId=hHMiCtoJkHEN56tQB&title=a-snapdragon-835-powered-windows-10-device-isn-t-far-away&quote=
+ *
+ */
+Posts.generateFacebookShareLink = function (post) {
+  //splits.push("u=" + post.url);
+  let facebookId = Telescope.settings.get('FACEBOOK_APP_ID')
+  const splits = []
+  splits.push('app_id=' + facebookId)
+  splits.push('href=' + post.url)
+  splits.push('quote=')
+  return 'https://www.facebook.com/dialog/share?' + splits.join('&')
+}
+
+Posts.generatePostPageUrl = function (router) {
+  const prefix = Telescope.utils.getSiteUrl()
+  const postId = router.location.query.postId
+  return `${prefix}/?postId=${postId}`
+}
+
+Posts.generateCommentTwitterShareLink = function (router, comment) {
+
+  //href="https://twitter.com/share?
+  //url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&
+  //via=twitterdev&
+  //related=twitterapi%2Ctwitter&
+  //hashtags=example%2Cdemo&
+  //text=custom%20share%20text"
+
+  //$(location).attr('href');
+
+  const twitterVia = Telescope.settings.get('twitterAccount', 'Getpoliticl')
+
+  const url = Posts.generatePostPageUrl(router)
+  const userName = Users.getDisplayName(comment.user)
+  let text = comment.body
+  text = '\"' + text.substring(0, 50) + '...\"' + ' — ' + userName
+
+  const splits = []
+  splits.push('via=' + twitterVia)
+  splits.push('url=' + url)
+  splits.push('text=' + text)
+  return 'https://twitter.com/share?' + splits.join('&')
+}
+
+Posts.generateCommentFacebookShareLink = function (router, comment) {
+  //https://www.facebook.com/dialog/feed?
+  //  app_id=1389892087910588
+  //  &redirect_uri=https://scotch.io
+  //  &link=https://scotch.io
+  //  &picture=http://placekitten.com/500/500
+  //  &caption=This%20is%20the%20caption
+  //  &description=This%20is%20the%20description
+
+  let facebookId = Telescope.settings.get('FACEBOOK_APP_ID')
+  const url = Posts.generatePostPageUrl(router)
+  let text = comment.body
+
+  const splits = []
+
+  splits.push('app_id=' + facebookId)
+  splits.push('href=' + url)
+  splits.push('quote=' + text)
+
+  return 'https://www.facebook.com/dialog/share?' + splits.join('&')
+}
+
 export default Posts

@@ -5,6 +5,11 @@ Telescope.registerComponent('ArticleDownvote',                require('./actions
 Telescope.registerComponent('ArticleUpvote',                  require('./actions/ArticleUpvote.jsx').default)
 Telescope.registerComponent('Downvote',                       require('./actions/Downvote.jsx').default)
 Telescope.registerComponent('PostsCommenters',                require('./actions/PostsCommenters.jsx').default)
+
+
+Telescope.registerComponent('PostsReadMore',                  require('./actions/PostsReadMore.jsx').default)
+Telescope.registerComponent('PostsSingleHeaderRight',         require('./actions/PostsSingleHeaderRight.jsx').default)
+
 Telescope.registerComponent('RelatedPostDownvote',            require('./actions/RelatedPostDownvote.jsx').default)
 Telescope.registerComponent('RelatedPostUpvote',              require('./actions/RelatedPostUpvote.jsx').default)
 Telescope.registerComponent('Upvote',                         require('./actions/Upvote.jsx').default)

@@ -184,4 +184,22 @@ Users.getDisplayName = function (user) {
   }
 }
 
+/**
+ * Check the post is for the backend admins.
+ * @param location
+ * @param user
+ * @returns {boolean}
+ */
+Users.checkIsAdmin = function (location, user) {
+  // Dashboard UI(for admin)
+  let {admin} = location.query
+  if (!admin || !user) {
+    return false
+  }
+  else if (!!admin && user.isAdmin) {
+    return true
+  }
+  return false
+}
+
 export default Users
