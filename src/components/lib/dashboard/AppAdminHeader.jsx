@@ -2,6 +2,7 @@ import Telescope from '../index'
 import React, { Component } from 'react'
 import Users from '../../../lib/users'
 import moment from 'moment'
+import { Link } from 'react-router'
 
 class AppAdminHeader extends Component {
   constructor (props) {
@@ -24,12 +25,12 @@ class AppAdminHeader extends Component {
   }
 
   onToggleSidebarIconClick () {
-    if (this.state.isOpenSidebar) {
-      $('#admin-dashboard').removeClass('hold-transition skin-blue sidebar-mini').addClass('skin-blue sidebar-mini sidebar-collapse')
-    } else {
-      $('#admin-dashboard').removeClass('skin-blue sidebar-mini sidebar-collapse').addClass('hold-transition skin-blue sidebar-mini')
-    }
-    this.setState({isOpenSidebar: !this.state.isOpenSidebar})
+    // if (this.state.isOpenSidebar) {
+    //   $('#admin-dashboard').removeClass('hold-transition skin-blue sidebar-mini').addClass('skin-blue sidebar-mini sidebar-collapse')
+    // } else {
+    //   $('#admin-dashboard').removeClass('skin-blue sidebar-mini sidebar-collapse').addClass('hold-transition skin-blue sidebar-mini')
+    // }
+    // this.setState({isOpenSidebar: !this.state.isOpenSidebar})
   }
 
   renderLoggedUser () {
@@ -83,12 +84,9 @@ class AppAdminHeader extends Component {
     return (
       <ul id="wp-admin-bar-root-default" className="ab-top-menu">
         <li id="wp-admin-bar-site-name" className="menupop">
-          <a onClick={(e) => {
-            this.context.messages.pushRouter(this.props.router, {pathname: '/'})
-          }}
-             className="ab-item">
-            Politicl
-          </a>
+          <Link className="ab-item" to="/">
+            {'Politicl'}
+          </Link>
         </li>
         <li id="wp-admin-bar-comments">
           <a className="ab-item"
@@ -96,15 +94,15 @@ class AppAdminHeader extends Component {
                this.context.messages.appManagement.pushAdminSidebar(this.props.router, 'comments')
              }}
           >
-                      <span className="ab-icon">
-                      </span>
+            <span className="ab-icon">
+            </span>
             <span id="ab-awaiting-mod"
                   className="ab-label awaiting-mod pending-count count-1">
                           1
-                      </span>
+            </span>
             <span className="screen-reader-text">
-                          1 comment awaiting moderation
-                      </span>
+              1 comment awaiting moderation
+            </span>
           </a>
         </li>
       </ul>
