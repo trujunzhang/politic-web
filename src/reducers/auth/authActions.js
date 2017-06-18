@@ -231,6 +231,6 @@ export function resetPasswordFailure (error) {
  */
 export function resetPassword (email) {
   return dispatch => {
-    dispatch(resetPasswordRequest())
+    return dispatch(resetPasswordRequest())
   }
 }

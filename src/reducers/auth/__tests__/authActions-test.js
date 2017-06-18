@@ -173,18 +173,4 @@ describe('authActions', () => {
         expect(store.getActions()).toEqual(expectedActions)
       })
   })
-
-  it('should deleteSessionToken', () => {
-    const expectedActions = [
-      {type: DELETE_TOKEN_REQUEST},
-      {type: DELETE_TOKEN_SUCCESS}
-    ]
-
-    const store = mockStore({})
-
-    return store.dispatch(actions.deleteSessionToken())
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
-  })
 })
