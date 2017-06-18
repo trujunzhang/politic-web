@@ -110,7 +110,6 @@ Posts.getDateQueryString = function (date) {
 }
 
 Posts.getPostStatus = (post, state) => {
-  debugger
   let statusArray = []
   let postStatus = Posts.config.STATUS_CHECKING[post.status]
   if (state.toLowerCase() !== postStatus.toLowerCase()) {
