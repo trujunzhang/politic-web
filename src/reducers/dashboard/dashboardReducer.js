@@ -20,7 +20,7 @@ const {fromParsePost} = require('../parseModels')
 
 const {Map} = require('immutable')
 
-const initialState = Map({
+const initialState = {
   results: [],
   pageIndex: 1,
   limit: 10,
@@ -32,7 +32,7 @@ const initialState = Map({
   checkAll: false,
   checkRows: {},
   countKeys: {}
-})
+}
 
 /**
  * ## dashboardReducer function
@@ -53,27 +53,41 @@ function dashboardReducer (state = initialState, action): State {
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
 
-      let nextState = state
-        .set('pageIndex', listTask.pageIndex + 1)
-        .set('ready', true)
-        .set('results', objects)
+      // let nextState = state
+      //   .set('pageIndex', listTask.pageIndex + 1)
+      //   .set('ready', true)
+      //   .set('results',)
 
-      return nextState
+      return {
+        results: objects,
+        pageIndex: listTask.pageIndex + 1,
+        limit: state.limit,
+        ready: true,
+        editAll: false,
+        editAllIds: [],
+        editSingle: false,
+        editSingleId: '',
+        checkAll: false,
+        checkRows: {},
+        countKeys: {}
+      }
     }
 
     case TOGGLE_TABLE_ROW_CHECKBOX: {
       const itemId = action.payload
 
-      const checkRows = state.get('checkRows'),
+      const checkRows = state['checkRows'],
         checkKeys = Object.keys(checkRows),
         checked = (checkKeys.indexOf(itemId) !== -1)
 
       checkRows[itemId] = !checked
 
-      let nextState = state
-        .set('checkRows', checkRows)
+      // let nextState = state
+      //   .set('checkRows', checkRows)
 
-      return nextState
+      // console.log(JSON.stringify(nextState))
+
+      return {...state, 'checkRows': checkRows}
     }
 
 
