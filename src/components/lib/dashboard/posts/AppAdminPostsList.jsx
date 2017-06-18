@@ -75,19 +75,6 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  renderRowsEditSingle (item) {
-    return (<Telescope.components.AppAdminPostsEditSingle key={item.id} item={item}/>)
-  }
-
-  renderRowsEditAll (results, checkIds, onCheckRowChanged) {
-    return (
-      <Telescope.components.AppAdminPostsEditAll
-        key="editall"
-        checkRow={onCheckRowChanged}
-        posts={Posts.getSelectedPosts(results, checkIds)}/>
-    )
-  }
-
   renderTitle (item) {
     const {location} = this.props,
       query = location.query || {},
@@ -149,8 +136,16 @@ class AppAdminPostsList extends Component {
       <Telescope.components.AdminTables
         data={data}
         renderTitleActionButton={() => {return (<Link className="page-title-action" to="/article/new">Add New</Link>)}}
-        renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
-        renderRowsEditAll={this.renderRowsEditAll.bind(this)}
+        renderRowsEditSingle={(item) => {
+          return (<Telescope.components.AppAdminPostsEditSingle key={item.id} item={item}/>)
+        }}
+        renderRowsEditAll={(results, checkIds, onCheckRowChanged) => {
+          return (
+            <Telescope.components.AppAdminPostsEditAll
+              key="editall" checkRow={onCheckRowChanged}
+              posts={Posts.getSelectedPosts(results, checkIds)}/>
+          )
+        }}
         tableCount={Posts.getTotalCount(this.props, this.props.location.query.status)}
         componentLeftActionBar={Telescope.components.AppAdminPostsAction}
         renderFilter={this.renderFilter.bind(this)}
