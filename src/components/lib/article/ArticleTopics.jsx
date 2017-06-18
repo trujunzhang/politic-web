@@ -41,7 +41,7 @@ class ArticleTopics extends Component {
   }
 
   getOptions (topics) {
-    debugger
+    //debugger
     return topics.map((item, index) => {
       return {value: item._id, label: item.name}
     })

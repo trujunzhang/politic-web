@@ -6,6 +6,7 @@
 'use strict'
 
 import type { Action } from '../../actions/types'
+import update from 'immutability-helper'
 
 /**
  * ## Dashboard actions
@@ -14,6 +15,7 @@ const {
   DASHBOARD_LOADED_POSTS,
   RESET_DASHBOARD,
   TOGGLE_TABLE_ROW_CHECKBOX,
+  TOGGLE_TABLE_ROW_ALL_CHECKBOXS,
   DASHBOARD_EDIT_ALL_ROWS,
   DASHBOARD_EDIT_SINGLE_ROW
 } = require('../../lib/constants').default
@@ -84,21 +86,24 @@ function dashboardReducer (state = initialState, action): State {
 
       checkRows[itemId] = !checked
 
-      return {...state, 'checkRows': checkRows}
+        return Object.assign({}, state, {
+            checkRows: checkRows
+        })
     }
+
+    // case TOGGLE_TABLE_ROW_ALL_CHECKBOXS: {
+    //
+    // }
 
     case DASHBOARD_EDIT_ALL_ROWS: {
       return {...state, 'checkRows': checkRows}
     }
 
     case  DASHBOARD_EDIT_SINGLE_ROW: {
-
-      const itemId = action.payload
-      return {
-        ...state,
-        editSingle: true,
-        editSingleId: itemId,
-      }
+        return Object.assign({}, state, {
+            editSingle: true,
+            editSingleId: action.payload
+        })
     }
 
 
