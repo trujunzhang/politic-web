@@ -42,12 +42,12 @@ const createRoutes = (store) => {
         {
           // http://localhost:3000/management
           path: 'management',
-          component: Telescope.components.PostsHome,
+          component: Telescope.components.AppAdminLayout,
           childRoutes: [
             {
               // http://localhost:3000/management/posts
               path: 'posts',
-              component: Telescope.components.Error404,
+              component: Telescope.components.AppAdminPostsList,
             }
           ]
         },

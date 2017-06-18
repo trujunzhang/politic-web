@@ -48,31 +48,28 @@ class AppAdminLayout extends Component {
 
   render () {
     return (
-      <div id="admin-dashboard" className="hold-transition skin-blue sidebar-mini">
-        <div className="wrapper">
-          <Telescope.components.AppAdminHeader />
+      <div className="wrapper">
+        <Telescope.components.AppAdminHeader />
+        <Telescope.components.AppAdminSidebar location={this.props}/>
 
-          <Telescope.components.AppAdminSidebar location={this.props}/>
+        <div className="content-wrapper admin-content">
 
-          <div className="content-wrapper admin-content">
+          <div id="wpcontent">
+            <div id="wpbody" role="main">
 
-            <div id="wpcontent">
-              <div id="wpbody" role="main">
-
-                <div id="wpbody-content">
-                  {this.renderChildren()}
-                </div>
+              <div id="wpbody-content">
+                { this.props.children}
               </div>
-
             </div>
-          </div>
 
-          <Telescope.components.AppAdminFooter />
+          </div>
         </div>
+
+        <Telescope.components.AppAdminFooter />
       </div>
     )
-
   }
+
 }
 
 export default AppAdminLayout
