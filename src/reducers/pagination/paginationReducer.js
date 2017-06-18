@@ -40,32 +40,32 @@ function paginationReducer (state: State = initialState, action): State {
      * set the form to fetching and clear any errors
      */
     case LOADED_POSTS: {
-        const {list, listTask, listId, limit} = action.data
-        const objects = list.map(fromParsePost)
+      const {list, listTask, listId, limit} = action.data
+      const objects = list.map(fromParsePost)
 
-        var nextTask = state.get(listId)
-        if (!!nextTask) {
-            let lastResults = nextTask.get('results')
-            let combinedResults = lastResults.concat(objects)
-            nextTask = nextTask.set('results', combinedResults)
-                .set('pageIndex', nextTask.get('pageIndex')+1)
-        } else {
-            nextTask = Map({
-                id: listId,
-                hasMore: true,
-                ready: true,
-                totalCount: 100,
-                limit: limit,
-                pageIndex: 2,
-                firstPagination: false,
-                results: objects
-            })
-        }
+      var nextTask = state.get(listId)
+      if (!!nextTask) {
+        let lastResults = nextTask.get('results')
+        let combinedResults = lastResults.concat(objects)
+        nextTask = nextTask.set('results', combinedResults)
+          .set('pageIndex', nextTask.get('pageIndex') + 1)
+      } else {
+        nextTask = Map({
+          id: listId,
+          hasMore: true,
+          ready: true,
+          totalCount: 100,
+          limit: limit,
+          pageIndex: 2,
+          firstPagination: false,
+          results: objects
+        })
+      }
 
-        let nextState = state
-            .set(listId, nextTask)
+      let nextState = state
+        .set(listId, nextTask)
 
-        return nextState
+      return nextState
     }
 
     case NEXT_PAGE: {
