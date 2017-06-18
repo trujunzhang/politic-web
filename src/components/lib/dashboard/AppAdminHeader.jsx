@@ -109,31 +109,6 @@ class AppAdminHeader extends Component {
     )
   }
 
-  renderNew () {
-    return (
-      <li id="wp-admin-bar-new-content" className="menupop">
-        <a className="ab-item"
-        >
-                  <span className="ab-icon">
-                  </span>
-          <span className="ab-label">
-                     New
-                  </span>
-        </a>
-        <div className="ab-sub-wrapper">
-          <ul id="wp-admin-bar-new-content-default" className="ab-submenu">
-            <li id="wp-admin-bar-new-post">
-              <a className="ab-item" href="http://localhost:8444/wp-admin/post-new.php">Post</a>
-            </li>
-            <li id="wp-admin-bar-new-user">
-              <a className="ab-item" href="http://localhost:8444/wp-admin/user-new.php">User</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-    )
-  }
-
   renderAdminbarRight () {
     const {router} = this.props,
       {currentUser} = this.context,
@@ -144,21 +119,12 @@ class AppAdminHeader extends Component {
     const myAccountClass = 'menupop with-avatar' + (my_account_hover ? ' hover' : '')
     return (
       <ul id="wp-admin-bar-top-secondary" className="ab-top-secondary ab-top-menu">
-        <li id="wp-admin-bar-my-account" className={myAccountClass}
-            onMouseOut={(e) => {
-              this.setState({my_account_hover: false})
-            }
-            }
-            onMouseOver={(e) => {
-              this.setState({my_account_hover: true})
-            }
-            }
-        >
+        <li onMouseOut={(e) => this.setState({my_account_hover: false})}
+            onMouseOver={(e) => this.setState({my_account_hover: true})}
+            id="wp-admin-bar-my-account" className={myAccountClass}>
           <a className="ab-item">
             {'Howdy, ' + name}
-            <img alt=""
-                 src={avatarUrl}
-                 className="avatar avatar-26 photo" height="26" width="26"/>
+            <img alt="" src={avatarUrl} className="avatar avatar-26 photo" height="26" width="26"/>
           </a>
           <div className="ab-sub-wrapper">
             <ul id="wp-admin-bar-user-actions" className="ab-submenu">
@@ -177,19 +143,13 @@ class AppAdminHeader extends Component {
               </li>
               <li id="wp-admin-bar-edit-profile">
                 <a className="ab-item"
-                   onClick={(e) => {
-                     this.context.messages.pushRouter(this.props.router, Users.getLinkObject('editing'))
-                   }}>
+                   onClick={(e) => { this.context.messages.pushRouter(this.props.router, Users.getLinkObject('editing'))}}>
                   Edit My Profile
                 </a>
               </li>
               <li id="wp-admin-bar-logout">
                 <a className="ab-item"
-                   onClick={(e) => {
-                     Meteor.logout(function () {
-                       router.replace({pathname: '/'})
-                     })
-                   }}>
+                   onClick={(e) => { Meteor.logout(function () {router.replace({pathname: '/'})})}}>
                   Log Out
                 </a>
               </li>
@@ -213,41 +173,6 @@ class AppAdminHeader extends Component {
     )
   }
 
-  renderxxx () {
-
-    return (
-      <header className="main-header">
-        <a
-          onClick={(e) => {
-            this.context.messages.pushRouter(this.props.router, {pathname: '/'})
-          }}
-          className="logo">
-                    <span className="logo-mini">
-                        <svg id="logo-mini-icon" width="26" height="26" viewBox="0 0 40 40">
-                              <g fill="none">
-                                  <path d="M40 20c0 11.046-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0s20 8.954 20 20"
-                                        fill="#0a9fda"/>
-                                  <path
-                                    d="M22.667 20H17v-6h5.667c1.656 0 3 1.343 3 3s-1.344 3-3 3m0-10H13v20h4v-6h5.667c3.866 0 7-3.134 7-7s-3.134-7-7-7"
-                                    fill="#FFF"/>
-                              </g>
-                          </svg>
-                    </span>
-          <span className="logo-lg">
-                      <span className="svgIcon svgIcon--logoNew svgIcon--45px is-flushLeft">
-                          <img id="politicl-logo" width="68" height="22"
-                               src="/packages/public/images/politicl-logo-white.png"/>
-                      </span>
-                    </span>
-        </a>
-        <nav className="navbar navbar-static-top">
-          {this.renderToggleSidebarIcon()}
-
-          <Telescope.components.AppAdminHeaderUser/>
-        </nav>
-      </header>
-    )
-  }
 }
 
 /**
