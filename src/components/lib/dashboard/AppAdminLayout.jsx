@@ -13,6 +13,7 @@ class AppAdminLayout extends Component {
         return <Telescope.components.AppAdminPostsList
           location={location}
           key="posts"
+          listId: 'admin.posts.list'
           terms={
             {
               ...location.query,

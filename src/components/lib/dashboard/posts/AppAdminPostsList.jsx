@@ -4,6 +4,10 @@ import Posts from '../../../../lib/posts'
 
 const {loadPosts} = require('../../../../actions').default
 
+const {
+  DASHBOARD_LOADED_POSTS
+} = require('../../../../lib/constants').default
+
 class AppAdminPostsList extends Component {
 
   constructor (props) {
@@ -17,6 +21,17 @@ class AppAdminPostsList extends Component {
       dateSelector: query.date || '0',
       dateSelectors: dateSelectors
     }
+
+    this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
+  }
+
+  componentDidMount () {
+    this.loadMore()
+  }
+
+  loadMore () {
+    const nextDashboard = this.props.dashboard
+    this.props.dispatch(loadPosts(nextDashboard, this.props.listId, this.props.terms, DASHBOARD_LOADED_POSTS))
   }
 
   onDateSelectorChange (event) {
