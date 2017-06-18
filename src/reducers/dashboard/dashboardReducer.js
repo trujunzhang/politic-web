@@ -44,10 +44,12 @@ function dashboardReducer (state = initialState, action) {
 
       var nextTask = state.get(listId)
 
+        debugger
       let nextState = state
         .setIn(['table', 'pageIndex'], listTask.pageIndex + 1)
         .setIn(['table', 'results'], objects)
 
+        debugger
       return nextState
     }
 

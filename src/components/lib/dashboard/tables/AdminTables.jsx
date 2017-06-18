@@ -7,21 +7,11 @@ class AdminTables extends Component {
   constructor (props, context) {
     super(props)
 
-    const {selectAll, rows} = props.data
-    this.state = this.initialState = {
-      // select all
-      checkAll: false,
-      checkIds: [],
-      // Pagination
-      postsPerPage: 10
-    }
+    this.state = this.initialState = {}
   }
 
   componentWillReceiveProps (nextProps) {
-    const {selectAll, rows} = nextProps.data
-    if (selectAll) {
-      // this.setState({rowState: this.context.messages.appManagement.resetSelectRowState(nextProps.results, this.state.checkIds)})
-    }
+
   }
 
   onCheckRowChanged (id, value) {
