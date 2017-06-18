@@ -13,89 +13,54 @@ class AppAdminSidebar extends Component {
       pathname = location.pathname || '',
       type = pathname.replace('/management/', '')
 
-    debugger
+    const menus = [
+      {title: 'Dashboard', icon: 'fa fa-dashboard', tag: ''},
+      {title: 'Posts', icon: 'fa fa-edit', tag: 'posts'},
+      {title: 'Topics', icon: 'fa fa-tasks', tag: 'topics'},
+
+      {title: 'Reported Posts', icon: 'fa fa-th', tag: 'flags'},
+      {title: 'Uploaded Images', icon: 'fa fa-th', tag: 'images'},
+      {title: 'Comments', icon: 'fa fa-comments', tag: 'comments'},
+
+      {title: 'Users', icon: 'fa fa-users', tag: 'users'},
+      {title: 'Settings', icon: 'wp-menu-image dashicons-before dashicons-admin-settings', tag: 'settings'},
+    ]
 
     return (
       <ul className="sidebar-menu" id="adminmenu">
-        {/*<li className="header">MAIN NAVIGATION</li>*/}
-        <li className={'treeview ' + (!type ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, '')}>
-            <i className="fa fa-dashboard"/>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        {/*post sub menu*/}
-        <li className={'treeview ' + (type === 'posts' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'posts')}>
-            <i className="fa fa-edit"/>
-            <span>Posts</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'topics' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'topics')}>
-            <i className="fa fa-edit"/>
-            <span>Topics</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'flags' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'flags')}>
-            <i className="fa fa-th"/>
-            <span>Reported Posts</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'images' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'images')}>
-            <i className="fa fa-th"/>
-            <span>Uploaded Images</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'comments' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'comments')}>
-            <i className="fa fa-comments"/>
-            <span>Comments</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'users' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'users')}>
-            <i className="fa fa-users"/>
-            <span>Users</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'settings' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'settings')}>
-            <i className="wp-menu-image dashicons-before dashicons-admin-settings"/>
-            <span>Settings</span>
-          </a>
-        </li>
+        {menus.map((item, index) =>
+          <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+            <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+              <i className={item.icon}/>
+              <span>{item.title}</span>
+            </a>
+          </li>
+        )}
       </ul>
     )
   }
 
   renderCrawlerItemsMenu () {
-    const {location} = this.props
-    const type = location.query || ''
+    const {location} = this.props,
+      pathname = location.pathname || '',
+      type = pathname.replace('/management/', '')
+
+    const menus = [
+      {title: 'Caches', icon: 'fa fa-th', tag: 'caches'},
+      {title: 'History', icon: 'fa fa-history', tag: 'history'},
+      {title: 'Scrapyd', icon: 'fa fa-tasks', tag: 'scrapyd'}
+    ]
 
     return (
       <ul className="sidebar-menu" id="adminmenu">
-        {/*<li className="header">Scraper Items</li>*/}
-        <li className={'treeview ' + (type === 'caches' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'caches')}>
-            <i className="fa fa-th"/>
-            <span>Caches</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'history' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'history')}>
-            <i className="fa fa-history"/>
-            <span>History</span>
-          </a>
-        </li>
-        <li className={'treeview ' + (type === 'scrapyd' ? 'active' : '')}>
-          <a onClick={this.onSidebarMenuClick.bind(this, 'scrapyd')}>
-            <i className="fa fa-tasks"/>
-            <span>Scrapyd</span>
-          </a>
-        </li>
+        {menus.map((item, index) =>
+          <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+            <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+              <i className={item.icon}/>
+              <span>{item.title}</span>
+            </a>
+          </li>
+        )}
       </ul>
     )
   }
