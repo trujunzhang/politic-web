@@ -8,17 +8,7 @@ class AdminTables extends Component {
 
   constructor (props, context) {
     super(props)
-
-    // this.state = {
-    //   dashboard: convertToObject(props.dashboard)
-    // }
   }
-
-  // componentWillReceiveProps (nextProps) {
-  //   this.state = {
-  //     dashboard: convertToObject(nextProps.dashboard)
-  //   }
-  // }
 
   onCheckRowChanged (id, value) {
     this.props.actions.toggleCheckbox(id)
