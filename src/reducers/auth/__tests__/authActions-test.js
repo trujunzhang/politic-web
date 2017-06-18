@@ -159,18 +159,4 @@ describe('authActions', () => {
     })
   })
 
-  it('should resetPassword', () => {
-    const expectedActions = [
-      {type: RESET_PASSWORD_REQUEST},
-      {type: LOGIN},
-      {type: RESET_PASSWORD_SUCCESS}
-    ]
-
-    const store = mockStore({})
-
-    return store.dispatch(actions.resetPassword('email'))
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
-  })
 })
