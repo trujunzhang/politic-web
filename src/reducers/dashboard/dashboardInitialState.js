@@ -22,26 +22,21 @@ const {
  * This Record contains the state of the form and the
  * fields it contains.
  */
-const Form = Record({
-  state: REGISTER,
+const Table = Record({
   disabled: false,
   error: null,
   isValid: false,
   isFetching: false,
-  fields: new (Record({
-    username: 'trujunzhang',
-    usernameHasError: false,
-    usernameErrorMsg: '',
-    email: 'trujunzhang@gmail.com',
-    emailHasError: false,
-    emailErrorMsg: '',
-    password: 'djzhang@123',
-    passwordHasError: false,
-    passwordErrorMsg: '',
-    passwordAgain: 'djzhang@123',
-    passwordAgainHasError: false,
-    passwordAgainErrorMsg: '',
-    showPassword: false
+  postsPerPage: 10,
+  results: [],
+  data: new (Record({
+    editAll: false,
+    editAllIds: [],
+    editSingle: false,
+    editSingleId: '',
+    checkAll: false,
+    checkIds: {},
+    countKeys: {}
   }))()
 })
 
@@ -50,7 +45,7 @@ const Form = Record({
  * The form is set
  */
 var InitialState = Record({
-  form: new Form()
+  table: new Table()
 })
 export default InitialState
 
