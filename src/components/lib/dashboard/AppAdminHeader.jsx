@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Users from '../../../lib/users'
 import moment from 'moment'
 import { Link } from 'react-router'
+import Avatar from 'react-avatar'
 
 class AppAdminHeader extends Component {
   constructor (props) {
@@ -110,34 +111,29 @@ class AppAdminHeader extends Component {
   }
 
   renderAdminbarRight () {
-    const {router} = this.props,
-      {currentUser} = this.context,
+    const {currentUser} = this.props,
+      avatarObj = Users.getAvatarObj(currentUser),
       {my_account_hover} = this.state,
-      name = Users.getDisplayName(currentUser),
-      avatarUrl = ''
+      name = Users.getDisplayName(currentUser)
 
     const myAccountClass = 'menupop with-avatar' + (my_account_hover ? ' hover' : '')
     return (
-      <ul id="wp-admin-bar-top-secondary" className="ab-top-secondary ab-top-menu">
+      <ul id="wp-admin-bar-top-secondary" className="ab-top-secondary ab-top-menu margin_left8">
         <li onMouseOut={(e) => this.setState({my_account_hover: false})}
             onMouseOver={(e) => this.setState({my_account_hover: true})}
             id="wp-admin-bar-my-account" className={myAccountClass}>
           <a className="ab-item">
             {'Howdy, ' + name}
-            <img alt="" src={avatarUrl} className="avatar avatar-26 photo" height="26" width="26"/>
+            <Avatar {...avatarObj.avatar} size={26} round={true}/>
           </a>
           <div className="ab-sub-wrapper">
             <ul id="wp-admin-bar-user-actions" className="ab-submenu">
               <li id="wp-admin-bar-user-info">
                 <a className="ab-item" onClick={(e) => {
                   // user profile
-                  this.context.messages.pushRouter(this.props.router, Users.getLinkObject('profile', currentUser))
+                  // this.context.messages.pushRouter(this.props.router, Users.getLinkObject('profile', currentUser))
                 }}>
-                  <img alt=""
-                       src={avatarUrl}
-                       className="avatar avatar-64 photo"
-                       height="64"
-                       width="64"/>
+                  <Avatar className="avatar avatar-64 photo" {...avatarObj.avatar} size={64} round={false}/>
                   <span className="display-name">{name}</span>
                 </a>
               </li>
