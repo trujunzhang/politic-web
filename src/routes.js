@@ -43,6 +43,13 @@ const createRoutes = (store) => {
           // http://localhost:3000/management
           path: 'management',
           component: Telescope.components.PostsHome,
+          childRoutes: [
+            {
+              // http://localhost:3000/management/posts
+              path: 'posts',
+              component: Telescope.components.Error404,
+            }
+          ]
         },
         {
           path: 'signup',
