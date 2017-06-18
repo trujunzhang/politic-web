@@ -46,6 +46,13 @@ Telescope.registerComponent('PostsLoadMore',              require('./posts/Posts
 Telescope.registerComponent('PostsNoResults',             require('./posts/PostsNoResults.jsx').default)
 Telescope.registerComponent('PostsPopularThisWeek',       require('./posts/PostsPopularThisWeek.jsx').default)
 
+// postsoverlay
+Telescope.registerComponent('PopoverPostsLayout',                 require('./postsoverlay/PopoverPostsLayout.jsx').default)
+
+// postsoverlay(page)
+Telescope.registerComponent('PostsPage',                          require('./postsoverlay/page/PostsPage.jsx').default)
+Telescope.registerComponent('PostsSingleHeader',                  require('./postsoverlay/page/PostsSingleHeader.jsx').default)
+
 // Sidebar
 Telescope.registerComponent('AppSideBar',           require('./sidebar/AppSideBar.jsx').default)
 Telescope.registerComponent('WidgetHeader',         require('./sidebar/WidgetHeader.jsx').default)
