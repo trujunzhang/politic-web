@@ -41,15 +41,13 @@ const {
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
+    var totalCount = -1
     query.count({
       success: function (count) {
-        debugger
-        c += 1
-        console.log('success')
+        totalCount = count
       },
       error: function (error) {
         debugger
-        c += 1
         console.log('failure')
       }
     })
@@ -62,7 +60,8 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
           list: list,
           listTask: listTask,
           listId: listId,
-          limit: limit
+          limit: limit,
+          totalCount: totalCount
         }
         dispatch(({type, data}))
       },

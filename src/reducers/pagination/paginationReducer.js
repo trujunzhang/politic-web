@@ -40,21 +40,20 @@ function paginationReducer (state: State = initialState, action): State {
      * set the form to fetching and clear any errors
      */
     case LOADED_POSTS: {
-      const {list, listTask, listId, limit} = action.data
+      const {list, listTask, listId, limit, totalCount} = action.data
       const objects = list.map(fromParsePost)
 
       var nextTask = state.get(listId)
       if (!!nextTask) {
-        let lastResults = nextTask.get('results')
-        let combinedResults = lastResults.concat(objects)
-        nextTask = nextTask.set('results', combinedResults)
-          .set('pageIndex', nextTask.get('pageIndex') + 1)
+        nextTask = nextTask.set('results', nextTask.get('results').concat(objects))
+          .set('pageIndex', listTask.pageIndex + 1)
+          .set('totalCount', totalCount)
       } else {
         nextTask = Map({
           id: listId,
           hasMore: true,
           ready: true,
-          totalCount: 100,
+          totalCount: totalCount,
           limit: limit,
           pageIndex: 2,
           firstPagination: false,
