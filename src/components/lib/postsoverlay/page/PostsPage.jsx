@@ -2,7 +2,6 @@ import Telescope from '../../../../lib'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
-import { observer } from 'mobx-react'
 
 class PostsPage extends Component {
 
