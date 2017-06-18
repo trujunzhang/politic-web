@@ -79,18 +79,13 @@ class AppAdminPostsList extends Component {
     return (<Telescope.components.AppAdminPostsEditSingle key="editsingle" item={item}/>)
   }
 
-  renderRowsEditAll (checkIds, onCheckRowChanged) {
-    if (this.state.editAll) {
+  renderRowsEditAll (results,checkIds, onCheckRowChanged) {
       return (
         <Telescope.components.AppAdminPostsEditAll
           key="editall"
-          onBulkEditCancelClick={this.onBulkEditCancelClick.bind(this)}
-          editAllHook={this.onBulkEditAllHook.bind(this)}
           checkRow={onCheckRowChanged}
-          posts={this.context.messages.appManagement.getSelectedPosts(this.props.results, checkIds)}/>
+          posts={Posts.getSelectedPosts(results, checkIds)}/>
       )
-    }
-    return null
   }
 
   renderTitle (item) {

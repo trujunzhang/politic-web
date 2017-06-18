@@ -106,11 +106,11 @@ class AdminTables extends Component {
   }
 
   renderTableRows () {
-    const {data} = this.props,
+    const {data,renderRowsEditAll} = this.props,
       {canEditSingle, canEditAll, tableType} = data,
       {dashboard} = this.state,
-      {editAll, editAllIds, editSingle, editSingleId} = dashboard,
-      items = dashboard.results || []
+      {editAll, editAllIds, editSingle, editSingleId,results} = dashboard,
+      items = results || []
 
     if (items.length === 0) {
       return (
@@ -133,14 +133,15 @@ class AdminTables extends Component {
         return this.generateRowBody(item, rowIndex)
       }
     })
-    const {renderRowsEditAll} = this.props,
-      editAllBlock = (canEditAll ? renderRowsEditAll([], this.onCheckRowChanged.bind(this)) : null)
-    return (
-      <tbody id="the-list">
-      {editAllBlock }
-      {rows}
-      </tbody>
-    )
+
+      const editAllBlock = (canEditAll && editAll? renderRowsEditAll(results,editAllIds, this.onCheckRowChanged.bind(this)) : null)
+
+      return (
+          <tbody id="the-list">
+              {editAllBlock }
+              {rows}
+          </tbody>
+      )
   }
 
   renderLoading () {
