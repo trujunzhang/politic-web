@@ -119,17 +119,6 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  renderRowTitleWithAction (item, index) {
-    return (
-      <td key={index} className="title column-title has-row-actions column-primary page-title">
-        {this.renderTitle(item)}
-        <Telescope.components.AppAdminPostItemAction
-          actionEvent={this.onRowItemActionEventClick.bind(this)}
-          post={item}/>
-      </td>
-    )
-  }
-
   renderTitleActionButton () {
 
   }
@@ -144,7 +133,7 @@ class AppAdminPostsList extends Component {
       case 'title':
         return (
           <td key={index} className="title column-title has-row-actions column-primary page-title">
-            {/*{this.renderTitle(item)}*/}
+            {this.renderTitle(item)}
             <Telescope.components.AppAdminPostItemAction post={item}/>
           </td>
         )
