@@ -16,7 +16,7 @@ class Layout extends Component {
   }
 
   render () {
-    if (this.props.location.pathname === '/management') {
+    if (this.props.location.pathname.indexOf('/management') !== -1) {
       return (
         <Telescope.components.AppAdminLayout location={this.props}/>
       )
