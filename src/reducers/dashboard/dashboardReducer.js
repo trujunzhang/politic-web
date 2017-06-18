@@ -1,12 +1,12 @@
 /**
- * # authReducer.js
+ * # dashboardReducer.js
  *
  * The reducer for all the actions from the various log states
  */
 'use strict'
 /**
  * ## Imports
- * The InitialState for auth
+ * The InitialState for dashboard
  * fieldValidation for validating the fields
  * formValidation for setting the form's valid flag
  */
@@ -15,7 +15,7 @@ const fieldValidation = require('../../lib/fieldValidation').default
 const formValidation = require('./dashboardFormValidation').default
 
 /**
- * ## Auth actions
+ * ## Dashboard actions
  */
 const {
   DASHBOARD_LOADED_POSTS,
@@ -24,13 +24,14 @@ const {
 
 const initialState = new InitialState()
 /**
- * ## authReducer function
+ * ## dashboardReducer function
  * @param {Object} state - initialState
  * @param {Object} action - type and payload
  */
-function authReducer (state = initialState, action) {
-  if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
+function dashboardReducer (state = initialState, action) {
+  // if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
 
+  debugger
   switch (action.type) {
     /**
      * ### Requests start
@@ -82,4 +83,4 @@ function authReducer (state = initialState, action) {
   return state
 }
 
-export default authReducer
+export default dashboardReducer

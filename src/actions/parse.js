@@ -35,7 +35,8 @@ const PostsParameters = require('../parameters').Posts
  * The states were interested in
  */
 const {
-  LOADED_POSTS
+  LOADED_POSTS,
+  DASHBOARD_LOADED_POSTS
 } = require('../lib/constants').default
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
