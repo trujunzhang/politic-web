@@ -155,7 +155,6 @@ class AppAdminPostsList extends Component {
         renderFilter={this.renderFilter.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminPostsTopAction}
         countsProps={countsProps}
-        toggleEvent={this.onToggleEvent.bind(this)}
 
         { ...this.props}/>
     )
