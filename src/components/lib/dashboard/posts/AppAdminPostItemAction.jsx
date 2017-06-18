@@ -49,7 +49,10 @@ class AppAdminPostItemAction extends Component {
   }
 
   render () {
-    const status = this.props.location.query.status
+    const {location} = this.props,
+      query = location.query || {},
+      status = query.status || ''
+
     switch (status) {
       case 'trash':
         return (

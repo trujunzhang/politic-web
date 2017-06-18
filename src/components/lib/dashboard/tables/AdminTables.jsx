@@ -63,7 +63,11 @@ class AdminTables extends Component {
   }
 
   generateRow (row, item, index) {
-    const {name, tag, field, isText} = row
+    const {name, tag, field, isText} = row,
+      customRender = row.customRender || false
+    if (customRender) {
+      return this.props.customRowRender(row, item, index)
+    }
     return (
       <td key={index} className={`${row.tag} column-${row.tag}`}>
         {item[row.field]}
@@ -79,14 +83,13 @@ class AdminTables extends Component {
     const {data} = this.props,
       {selectAll, rows} = data
 
-    const rowItems = rows.map((row, index) => {
-      return this.generateRow(row, item, index)
-    })
     return (
       <tr key={item._id}
           className="iedit author-other level-0 type-post status-draft format-standard has-post-thumbnail hentry category-all-reads tag-article-208 tag-cauvery-basin tag-cauvery-dispute tag-cauvery-water-disputes-tribunal tag-dipak-misra tag-houses-of-legislature tag-inter-state-river-water-disputes-act tag-karnataka tag-rules-of-procedure tag-supreme-court tag-tamil-nadu tag-uday-umesh-lalit">
         {selectAll ? this.generateRowHeader(item._id, rowIndex) : null}
-        {rowItems}
+        {rows.map((row, index) => {
+          return this.generateRow(row, item, index)
+        })}
       </tr>
     )
   }

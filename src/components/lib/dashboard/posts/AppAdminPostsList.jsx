@@ -131,16 +131,24 @@ class AppAdminPostsList extends Component {
   }
 
   renderTitleActionButton () {
-    return (
-      <a onClick={(e) => this.context.messages.pushRouter(this.props.router, {
-        pathname: '/',
-        query: {action: 'new'}
-      })} className="page-title-action">Add New</a>
-    )
+
   }
 
   renderWithTopics (item, index) {
     return (<Telescope.components.AdminTablesTopicsColumn key={index}/>)
+  }
+
+  customRowRender (row, item, index) {
+    const {name, tag, field, isText} = row
+    switch (tag) {
+      case 'title':
+        return (
+          <td key={index} className="title column-title has-row-actions column-primary page-title">
+            {/*{this.renderTitle(item)}*/}
+            <Telescope.components.AppAdminPostItemAction post={item}/>
+          </td>
+        )
+    }
   }
 
   render () {
@@ -151,7 +159,7 @@ class AppAdminPostsList extends Component {
       hasEditAll: true,
       tableType: 'Posts',
       rows: [
-        // {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true},
+        {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true, customRender: true},
         {name: 'Source Name', field: 'sourceFrom', tag: 'source'},
         {name: 'Curator', field: 'author', tag: 'curator'},
         // {name: 'Date', field: 'date', tag: 'date', sort: true}
@@ -169,7 +177,6 @@ class AppAdminPostsList extends Component {
     return (
       <Telescope.components.AdminTables
         data={data}
-        renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
         renderTitleActionButton={this.renderTitleActionButton.bind(this)}
         renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
         renderRowsEditAll={this.renderRowsEditAll.bind(this)}
@@ -178,7 +185,7 @@ class AppAdminPostsList extends Component {
         renderFilter={this.renderFilter.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminPostsTopAction}
         countsProps={countsProps}
-
+        customRowRender={this.customRowRender.bind(this)}
       />
     )
   }
