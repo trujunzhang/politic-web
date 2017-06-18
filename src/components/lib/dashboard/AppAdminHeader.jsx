@@ -41,7 +41,7 @@ class AppAdminHeader extends Component {
       {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser) || {},
       avatar = avatarObj.avatar || {},
-      name = avatar.title
+      name = avatarObj.title || ''
 
     const myAccountClass = 'menupop with-avatar' + (my_account_hover ? ' hover' : '')
     return (

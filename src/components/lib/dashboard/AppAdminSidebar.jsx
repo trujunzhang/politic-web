@@ -38,7 +38,7 @@ class AppAdminSidebar extends Component {
         <section className="sidebar admin-sidebar">
           <ul className="sidebar-menu" id="adminmenu">
             {menus1.map((item, index) =>
-              <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+              <li key={item.tag} className={'treeview ' + (type === item.tag ? 'active' : '')}>
                 <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
@@ -48,7 +48,7 @@ class AppAdminSidebar extends Component {
           </ul>
           <ul className="sidebar-menu" id="adminmenu">
             {menus2.map((item, index) =>
-              <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
+              <li key={item.tag} className={'treeview ' + (type === item.tag ? 'active' : '')}>
                 <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
