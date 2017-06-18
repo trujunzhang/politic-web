@@ -22,6 +22,8 @@ const {
   RESET_DASHBOARD
 } = require('../../lib/constants').default
 
+const {fromParsePost} = require('../parseModels')
+
 const initialState = new InitialState()
 /**
  * ## dashboardReducer function
@@ -31,23 +33,20 @@ const initialState = new InitialState()
 function dashboardReducer (state = initialState, action) {
   // if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
 
-  debugger
   switch (action.type) {
     /**
      * ### Requests start
      * set the form to fetching and clear any errors
      */
     case DASHBOARD_LOADED_POSTS: {
-      debugger
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
-
-      debugger
 
       var nextTask = state.get(listId)
 
       let nextState = state
-        .set(listId, nextTask)
+        .setIn(['table', 'pageIndex'], listTask.pageIndex + 1)
+        .setIn(['table', 'results'], objects)
 
       return nextState
     }
