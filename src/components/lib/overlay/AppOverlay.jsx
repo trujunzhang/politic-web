@@ -1,6 +1,8 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
 
+const {popModel} = require('../../../actions').default
+
 const excludeSelectors = [
   // Article's detail page's flag
   '#submit-flag-form',
@@ -31,6 +33,8 @@ class AppOverlay extends Component {
 
   constructor (props, context) {
     super(props)
+
+    props.dispatch(popModel())
 
     this.state = this.initialState = {
       popModel: props.popModel
