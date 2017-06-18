@@ -1,8 +1,6 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
-import Posts from 'meteor/nova:posts'
-import Topics from 'meteor/nova:topics'
-import Users from 'meteor/nova:users'
+import Posts from '../../../../lib/posts'
 
 class AppAdminPostsList extends Component {
 
@@ -12,12 +10,6 @@ class AppAdminPostsList extends Component {
     const dateSelectors = Posts.getDateSelectors()
     this.state = this.initialState = {
       dateSelector: this.props.location.query.date ? this.props.location.query.date : '0',
-      // Edit
-      editAll: false,
-      editAllCallBack: null,
-      editSingle: false,
-      editSingleId: '',
-      // common
       dateSelectors: dateSelectors
     }
   }
@@ -25,7 +17,7 @@ class AppAdminPostsList extends Component {
   onDateSelectorChange (event) {
     let value = event.target.value
     this.setState({dateSelector: value})
-    this.context.messages.appManagement.appendQuery(this.props.router, 'date', value)
+    // this.context.messages.appManagement.appendQuery(this.props.router, 'date', value)
   }
 
   renderFilter () {
@@ -46,7 +38,6 @@ class AppAdminPostsList extends Component {
         <input type="submit"
                name="filter_action"
                id="post-query-submit"
-               onClick={(e) => Users.openNewWindow('/', {..._.clone(this.props.location.query), admin: true})}
                className="button"
                value="Pending Approval"/>
       </div>
@@ -91,13 +82,11 @@ class AppAdminPostsList extends Component {
     }
     return (
       <strong>
-        <a onClick={(e) => { Users.openNewWindow('/', {postId: item._id, admin: true})}}
-           className="row-title">{item.title}
-        </a>
+        <a className="row-title">{item.title}</a>
         {postStatus.length === 0 ? null : ' — ' }
         {(postStatus.length === 0 ? null : (postStatus.map((status, index) =>
           <span key={index} className="post-state">
-                      {status + (index < postStatus.length - 1 ? ', ' : '')}
+            {status + (index < postStatus.length - 1 ? ', ' : '')}
           </span>
         )))}
       </strong>
@@ -125,21 +114,7 @@ class AppAdminPostsList extends Component {
   }
 
   renderWithTopics (item, index) {
-    const terms = {listId: 'admin.posts.topics.array', include: item.topics}
-    const {selector, options} = Topics.parameters.get(terms)
-
-    return (
-      <Telescope.components.NewsListContainer
-        key={index}
-        collection={Topics}
-        publication="admin.posts.topics.array"
-        selector={selector}
-        options={options}
-        terms={terms}
-        component={Telescope.components.AdminTablesTopicsColumn}
-        listId={terms.listId}
-      />
-    )
+    return (<Telescope.components.AdminTablesTopicsColumn key={index}/>)
   }
 
   render () {
@@ -152,18 +127,23 @@ class AppAdminPostsList extends Component {
         {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true},
         {name: 'Source Name', field: 'sourceFrom', tag: 'source'},
         {name: 'Curator', field: 'author', tag: 'curator'},
-        {name: 'Topics', field: 'withTopics', tag: 'topics'},
-        {name: 'Comments', field: '', tag: 'comments', sort: true,},
         {name: 'Date', field: 'date', tag: 'date', sort: true}
       ]
     }
-    const countsProps = this.context.messages.appManagement.getAllPostsCountsProps(this.props)
+    const countsProps = {
+      allCount: (props.allCount || 0),
+      trashCount: (props.trashCount || 0),
+      publishCount: (props.publishCount || 0),
+      pendingCount: (props.pendingCount || 0),
+      rejectedCount: (props.rejectedCount || 0),
+      draftCount: (props.draftCount || 0),
+    }
+
     return (
       <Telescope.components.AdminTables
         data={data}
         onCheckIdsChanged={this.onCheckIdsChanged.bind(this)}
         renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
-        renderWithTopics={this.renderWithTopics.bind(this)}
         renderTitleActionButton={this.renderTitleActionButton.bind(this)}
         renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
         renderRowsEditAll={this.renderRowsEditAll.bind(this)}
