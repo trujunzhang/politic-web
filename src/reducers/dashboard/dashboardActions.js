@@ -29,7 +29,6 @@ const _ = require('underscore')
  */
 
 export function toggleCheckbox (itemId) {
-  debugger
   return {
     type: TOGGLE_TABLE_ROW_CHECKBOX,
     payload: itemId

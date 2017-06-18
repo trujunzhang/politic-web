@@ -62,9 +62,18 @@ function dashboardReducer (state = initialState, action): State {
     }
 
     case TOGGLE_TABLE_ROW_CHECKBOX: {
+      const itemId = action.payload
 
-      debugger
+      const checkRows = state.get('checkRows'),
+        checkKeys = Object.keys(checkRows),
+        checked = (checkKeys.indexOf(itemId) !== -1)
 
+      checkRows[itemId] = !checked
+
+      let nextState = state
+        .set('checkRows', checkRows)
+
+      return nextState
     }
 
 
