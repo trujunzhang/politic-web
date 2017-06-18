@@ -13,7 +13,9 @@ import type { Action } from '../../actions/types'
 const {
   DASHBOARD_LOADED_POSTS,
   RESET_DASHBOARD,
-  TOGGLE_TABLE_ROW_CHECKBOX
+  TOGGLE_TABLE_ROW_CHECKBOX,
+  DASHBOARD_EDIT_ALL_ROWS,
+  DASHBOARD_EDIT_SINGLE_ROW
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -83,6 +85,19 @@ function dashboardReducer (state = initialState, action): State {
       checkRows[itemId] = !checked
 
       return {...state, 'checkRows': checkRows}
+    }
+
+    case DASHBOARD_EDIT_ALL_ROWS: {
+      return {...state, 'checkRows': checkRows}
+    }
+
+    case  DASHBOARD_EDIT_SINGLE_ROW: {
+      const itemId = action.payload
+      return {
+        ...state,
+        editSingle: true,
+        editSingleId: itemId,
+      }
     }
 
 
