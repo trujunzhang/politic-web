@@ -2,6 +2,8 @@ import Telescope from '../../index'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 
+var _ = require('underscore')
+
 class AppAdminPostsEditSingle extends Component {
 
   constructor (props) {
@@ -16,7 +18,7 @@ class AppAdminPostsEditSingle extends Component {
       // detail
       title: item.title || '',
       slug: item.slug || '',
-      postedAt: item.postedAt || new date()
+      postedAt: item.postedAt || new Date()
     }
   }
 

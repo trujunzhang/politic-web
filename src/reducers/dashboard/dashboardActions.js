@@ -37,7 +37,6 @@ export function toggleCheckbox (itemId) {
 }
 
 export function editSingleRow (itemId) {
-  debugger
   return {
     type: DASHBOARD_EDIT_SINGLE_ROW,
     payload: itemId

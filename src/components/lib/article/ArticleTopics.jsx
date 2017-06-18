@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Topics from '../../../lib/topics'
 
 import Select from 'react-select'
+var _ = require('underscore')
 
 class ArticleTopics extends Component {
 
@@ -40,16 +41,13 @@ class ArticleTopics extends Component {
   }
 
   getOptions (topicsArray) {
-    let options = []
-
-    _.forEach(topicsArray, function (item) {
-      options.push({value: item._id, label: item.name})
+    return topicsArray.map((item, index) => {
+      return {value: item._id, label: item.name}
     })
-    return options
   }
 
   promptTextCreator (label) {
-    return 'Create Topic "' + label + '"'
+    return `Create Topic "${label}"`
   }
 
   render () {
