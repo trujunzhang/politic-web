@@ -1,5 +1,6 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class AppAdminSidebar extends Component {
 
@@ -9,16 +10,21 @@ class AppAdminSidebar extends Component {
       type = pathname.replace('/management/', '')
 
     const menus1 = [
-      {title: 'Dashboard', icon: 'fa fa-dashboard', tag: ''},
-      {title: 'Posts', icon: 'fa fa-edit', tag: 'posts'},
-      {title: 'Topics', icon: 'fa fa-tasks', tag: 'topics'},
+      {title: 'Dashboard', icon: 'fa fa-dashboard', tag: '', link: ''},
+      {title: 'Posts', icon: 'fa fa-edit', tag: 'posts', link: '/posts'},
+      {title: 'Topics', icon: 'fa fa-tasks', tag: 'topics', link: '/topics'},
 
-      {title: 'Reported Posts', icon: 'fa fa-th', tag: 'flags'},
-      {title: 'Uploaded Images', icon: 'fa fa-th', tag: 'images'},
-      {title: 'Comments', icon: 'fa fa-comments', tag: 'comments'},
+      {title: 'Reported Posts', icon: 'fa fa-th', tag: 'flags', link: '/flags'},
+      {title: 'Uploaded Images', icon: 'fa fa-th', tag: 'images', link: '/images'},
+      {title: 'Comments', icon: 'fa fa-comments', tag: 'comments', link: '/comments'},
 
-      {title: 'Users', icon: 'fa fa-users', tag: 'users'},
-      {title: 'Settings', icon: 'wp-menu-image dashicons-before dashicons-admin-settings', tag: 'settings'},
+      {title: 'Users', icon: 'fa fa-users', tag: 'users', link: '/users'},
+      {
+        title: 'Settings',
+        icon: 'wp-menu-image dashicons-before dashicons-admin-settings',
+        tag: 'settings',
+        link: '/settings'
+      },
     ]
 
     const menus2 = [
@@ -33,20 +39,20 @@ class AppAdminSidebar extends Component {
           <ul className="sidebar-menu" id="adminmenu">
             {menus1.map((item, index) =>
               <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
-                <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+                <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </li>
             )}
           </ul>
           <ul className="sidebar-menu" id="adminmenu">
             {menus2.map((item, index) =>
               <li className={'treeview ' + (type === item.tag ? 'active' : '')}>
-                <a onClick={this.onSidebarMenuClick.bind(this, item.tag)}>
+                <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </li>
             )}
           </ul>
