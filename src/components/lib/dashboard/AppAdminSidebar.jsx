@@ -8,6 +8,8 @@ class AppAdminSidebar extends Component {
   }
 
   renderAppItemsMenu () {
+    debugger
+
     const {location} = this.props
     const type = location.query || ''
 
