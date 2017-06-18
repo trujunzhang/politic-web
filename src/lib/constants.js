@@ -2,6 +2,7 @@ import keyMirror from 'key-mirror'
 
 export default keyMirror({
   DASHBOARD_LOADED_POSTS: null,
+  RESET_DASHBOARD: null,
 
   NEXT_PAGE: null,
   RESET_PAGE: null,

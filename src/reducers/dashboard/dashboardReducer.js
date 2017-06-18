@@ -18,7 +18,8 @@ const formValidation = require('./dashboardFormValidation').default
  * ## Auth actions
  */
 const {
-  DASHBOARD_LOADED_POSTS
+  DASHBOARD_LOADED_POSTS,
+  RESET_DASHBOARD
 } = require('../../lib/constants').default
 
 const initialState = new InitialState()
@@ -49,19 +50,13 @@ function authReducer (state = initialState, action) {
       return nextState
     }
 
-    /**
-     * ### Requests start
-     * set the form to fetching and clear any errors
-     */
-    case SIGNUP_REQUEST:
-
 
     /**
      * ### Hot Loading support
      *
      * Set all the field values from the payload
      */
-    case SET_STATE:
+    case RESET_DASHBOARD:
       var form = JSON.parse(action.payload).auth.form
 
       var next = state.setIn(['form', 'state'], form.state)
