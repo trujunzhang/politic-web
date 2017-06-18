@@ -39,24 +39,9 @@ function authReducer (state = initialState, action) {
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
 
+      debugger
+
       var nextTask = state.get(listId)
-      if (!!nextTask) {
-        let lastResults = nextTask.get('results')
-        let combinedResults = lastResults.concat(objects)
-        nextTask = nextTask.set('results', combinedResults)
-          .set('pageIndex', nextTask.get('pageIndex') + 1)
-      } else {
-        nextTask = Map({
-          id: listId,
-          hasMore: true,
-          ready: true,
-          totalCount: 100,
-          limit: limit,
-          pageIndex: 2,
-          firstPagination: false,
-          results: objects
-        })
-      }
 
       let nextState = state
         .set(listId, nextTask)
