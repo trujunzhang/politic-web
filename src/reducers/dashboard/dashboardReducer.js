@@ -92,6 +92,8 @@ function dashboardReducer (state = initialState, action): State {
     }
 
     case  DASHBOARD_EDIT_SINGLE_ROW: {
+      debugger
+
       const itemId = action.payload
       return {
         ...state,

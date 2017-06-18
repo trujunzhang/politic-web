@@ -91,5 +91,5 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(mapDispatchToProps)(AppAdminPostItemAction)
+export default connect(null, mapDispatchToProps)(AppAdminPostItemAction)
 
