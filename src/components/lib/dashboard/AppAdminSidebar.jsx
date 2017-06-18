@@ -8,10 +8,12 @@ class AppAdminSidebar extends Component {
   }
 
   renderAppItemsMenu () {
-    debugger
 
-    const {location} = this.props
-    const type = location.query || ''
+    const {location} = this.props,
+      pathname = location.pathname || '',
+      type = pathname.replace('/management/', '')
+
+    debugger
 
     return (
       <ul className="sidebar-menu" id="adminmenu">
