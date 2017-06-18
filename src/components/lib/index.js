@@ -101,4 +101,14 @@ Telescope.registerComponent('AppAdminSidebar',               require('./dashboar
 // dashboard(default)
 Telescope.registerComponent('AppAdminDashboard',               require('./dashboard/default/AppAdminDashboard.jsx').default)
 
+// dashboard(tables)
+Telescope.registerComponent('AdminTables',                        require('./dashboard/tables/AdminTables.jsx').default)
+Telescope.registerComponent('AdminTablesCommentsColumn',          require('./dashboard/tables/AdminTablesCommentsColumn.jsx').default)
+Telescope.registerComponent('AdminTablesCommonColumn',            require('./dashboard/tables/AdminTablesCommonColumn.jsx').default)
+Telescope.registerComponent('AdminTablesRow',                     require('./dashboard/tables/AdminTablesRow.jsx').default)
+Telescope.registerComponent('AdminTablesTH',                      require('./dashboard/tables/AdminTablesTH.jsx').default)
+Telescope.registerComponent('AdminTablesTopicsColumn',            require('./dashboard/tables/AdminTablesTopicsColumn.jsx').default)
+
+
+
 export default Telescope
