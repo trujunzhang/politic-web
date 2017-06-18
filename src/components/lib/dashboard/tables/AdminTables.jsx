@@ -2,20 +2,24 @@ import Telescope from '../../index'
 import React, { Component } from 'react'
 import moment from 'moment'
 
+var {convertToObject} = require('../../../../lib/utils')
+
 class AdminTables extends Component {
 
   constructor (props, context) {
     super(props)
 
     this.state = {
-      dashboard: props.dashboard
+      dashboard: convertToObject(props.dashboard)
     }
   }
 
   componentWillReceiveProps (nextProps) {
     this.state = {
-      dashboard: nextProps.dashboard
+      dashboard: convertToObject(nextProps.dashboard)
     }
+
+    console.log('Receive table: ')
   }
 
   onCheckRowChanged (id, value) {
@@ -204,12 +208,23 @@ class AdminTables extends Component {
   }
 
   render () {
-    const {renderLeftBar} = this.props
-    if (typeof  renderLeftBar === 'undefined') {
-      return this.renderNormal()
-    } else {
-      return this.renderTwoColumns()
-    }
+    return this.renderNormal()
+  }
+
+  renderNormal () {
+    const {renderTableCustomTitle} = this.props
+    return (
+      <div className="wrap" id="admin-posts-ui">
+
+        {renderTableCustomTitle ? renderTableCustomTitle() : this.renderTitle()}
+
+        {this.renderTopbar()}
+
+        {this.renderToolbar()}
+        {this.renderTable()}
+        {this.renderToolbar('bottom')}
+      </div>
+    )
   }
 
   renderTable () {
@@ -222,13 +237,13 @@ class AdminTables extends Component {
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
-        <thead>
-        {this.renderTableHeaderFooter()}
-        </thead>
-        {!this.props.ready ? this.renderLoading() : this.renderTableRows(results)}
-        <tfoot>
-        {this.renderTableHeaderFooter()}
-        </tfoot>
+        {/*<thead>*/}
+        {/*{this.renderTableHeaderFooter()}*/}
+        {/*</thead>*/}
+        {/*{!this.props.ready ? this.renderLoading() : this.renderTableRows(results)}*/}
+        {/*<tfoot>*/}
+        {/*{this.renderTableHeaderFooter()}*/}
+        {/*</tfoot>*/}
       </table>
     )
   }
@@ -262,21 +277,6 @@ class AdminTables extends Component {
     )
   }
 
-  renderNormal () {
-    const {renderTableCustomTitle} = this.props
-    return (
-      <div className="wrap" id="admin-posts-ui">
-
-        {renderTableCustomTitle ? renderTableCustomTitle() : this.renderTitle()}
-
-        {this.renderTopbar()}
-
-        {this.renderToolbar()}
-        {this.renderTable()}
-        {this.renderToolbar('bottom')}
-      </div>
-    )
-  }
 }
 
 /**
