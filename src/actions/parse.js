@@ -41,6 +41,19 @@ const {
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
+    query.count({
+      success: function (count) {
+        debugger
+        c += 1
+        console.log('success')
+      },
+      error: function (error) {
+        debugger
+        c += 1
+        console.log('failure')
+      }
+    })
+
     return query.find({
       success: (list) => {
         // debugger

@@ -1,0 +1,2 @@
+* Parse Query
+  [http://parseplatform.org/Parse-SDK-JS/api/classes/Parse.Query.html]
