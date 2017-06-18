@@ -41,34 +41,39 @@ const {
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
-    var totalCount = -1
-    query.count({
+    var queryFind = (() => {
+      return query.find({
+        success: (list) => {
+          // debugger
+          // Flow can't guarantee {type, list} is a valid action
+          const data = {
+            list: list,
+            listTask: listTask,
+            listId: listId,
+            limit: limit,
+            totalCount: totalCount
+          }
+          dispatch(({type, data}))
+        },
+        error: (error) => {
+          debugger
+        }
+      })
+    })
+
+    var totalCount = 0
+    return query.count({
       success: function (count) {
         totalCount = count
+        queryFind()
       },
       error: function (error) {
+        queryFind()
         debugger
         console.log('failure')
       }
     })
 
-    return query.find({
-      success: (list) => {
-        // debugger
-        // Flow can't guarantee {type, list} is a valid action
-        const data = {
-          list: list,
-          listTask: listTask,
-          listId: listId,
-          limit: limit,
-          totalCount: totalCount
-        }
-        dispatch(({type, data}))
-      },
-      error: (error) => {
-        debugger
-      }
-    })
   }
 }
 

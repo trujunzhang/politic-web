@@ -73,7 +73,7 @@ class PostsList extends Component {
           <Telescope.components.PostsLoading id={'load.more.hint.posts'}/>
         </section>
       )
-    } else {
+    } else if (!!results && !!results.length) {
       return (
         <Telescope.components.PostsHomeList
           infinite={infinite}
@@ -86,8 +86,14 @@ class PostsList extends Component {
           dismissBanner={dismissBanner}
           loadMore={this.loadMore.bind(this)}/>
       )
+    } else {
+      return (
+        <section className="results_37tfm">
+          {showHeader ? headerView : null}
+          <Telescope.components.PostsNoResults relatedList={false}/>
+        </section>
+      )
     }
-
   }
 
 }

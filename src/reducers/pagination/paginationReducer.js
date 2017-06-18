@@ -42,7 +42,7 @@ function paginationReducer (state: State = initialState, action): State {
     case LOADED_POSTS: {
       const {list, listTask, listId, limit, totalCount} = action.data
       const objects = list.map(fromParsePost)
-
+      // debugger
       var nextTask = state.get(listId)
       if (!!nextTask) {
         nextTask = nextTask.set('results', nextTask.get('results').concat(objects))
@@ -55,7 +55,7 @@ function paginationReducer (state: State = initialState, action): State {
           ready: true,
           totalCount: totalCount,
           limit: limit,
-          pageIndex: 2,
+          pageIndex: listTask.pageIndex + 1,
           firstPagination: false,
           results: objects
         })
