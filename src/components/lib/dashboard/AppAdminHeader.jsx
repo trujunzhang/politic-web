@@ -37,10 +37,11 @@ class AppAdminHeader extends Component {
   }
 
   renderRight () {
-    const {currentUser} = this.props,
+    const {my_account_hover} = this.state,
+      {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser),
-      {my_account_hover} = this.state,
-      name = Users.getDisplayName(currentUser)
+      avatar = avatarObj.avatar || {},
+      name = avatar.title
 
     const myAccountClass = 'menupop with-avatar' + (my_account_hover ? ' hover' : '')
     return (
@@ -50,7 +51,7 @@ class AppAdminHeader extends Component {
             id="wp-admin-bar-my-account" className={myAccountClass}>
           <a className="ab-item">
             {'Howdy, ' + name}
-            <Avatar {...avatarObj.avatar} size={26} round={true}/>
+            <Avatar {...avatar} size={26} round={true}/>
           </a>
           <div className="ab-sub-wrapper">
             <ul id="wp-admin-bar-user-actions" className="ab-submenu">
@@ -59,7 +60,7 @@ class AppAdminHeader extends Component {
                   // user profile
                   // this.context.messages.pushRouter(this.props.router, Users.getLinkObject('profile', currentUser))
                 }}>
-                  <Avatar className="avatar avatar-64 photo" {...avatarObj.avatar} size={64} round={false}/>
+                  <Avatar className="avatar avatar-64 photo" {...avatar} size={64} round={false}/>
                   <span className="display-name">{name}</span>
                 </a>
               </li>
