@@ -7,7 +7,7 @@ class AppAdminSidebar extends Component {
   render () {
     const {location} = this.props,
       pathname = location.pathname || '',
-      type = pathname.replace('/management/', '')
+      type = pathname.replace('/management', '').replace('/', '')
 
     const menus1 = [
       {title: 'Dashboard', icon: 'fa fa-dashboard', tag: '', link: ''},
