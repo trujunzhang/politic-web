@@ -82,11 +82,6 @@ function dashboardReducer (state = initialState, action): State {
 
       checkRows[itemId] = !checked
 
-      // let nextState = state
-      //   .set('checkRows', checkRows)
-
-      // console.log(JSON.stringify(nextState))
-
       return {...state, 'checkRows': checkRows}
     }
 
