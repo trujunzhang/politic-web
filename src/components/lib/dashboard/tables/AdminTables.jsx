@@ -18,8 +18,6 @@ class AdminTables extends Component {
     this.state = {
       dashboard: convertToObject(nextProps.dashboard)
     }
-
-    console.log('Receive table: ')
   }
 
   onCheckRowChanged (id, value) {
@@ -27,15 +25,15 @@ class AdminTables extends Component {
   }
 
   toggleCheckAll () {
-
+    debugger
   }
 
   renderTableHeaderFooter () {
     const {data} = this.props,
-      {selectAll, rows} = data
+      {canSelectAllRows, rows} = data
     return (
       <tr>
-        {!!selectAll ? (
+        {!!canSelectAllRows ? (
           <td id="cb" className="manage-column column-cb check-column">
             <label className="screen-reader-text">Select All</label>
             <input id="cb-select-all-1" type="checkbox" onChange={this.toggleCheckAll.bind(this)}
@@ -48,8 +46,12 @@ class AdminTables extends Component {
     )
   }
 
-  generateRowHeader (itemId, rowIndex) {
-    const checked = (!!this.state.rowState) ? this.state.rowState[rowIndex].checked : false
+    generateRowHeader (itemId, rowIndex) {
+        const {dashboard} = this.state,
+              {checkRows} = dashboard,
+              checkKeys = Object.keys(checkRows)
+
+    const checked = (checkKeys.indexOf(itemId) !== -1)
     return (
       <th key="header" scope="row" className="check-column">
         <label className="screen-reader-text">{`Select ${this.props.data.tableType}` }</label>
@@ -90,12 +92,12 @@ class AdminTables extends Component {
 
   generateRowBody (item, rowIndex) {
     const {data} = this.props,
-      {selectAll, rows} = data
+      {canSelectAllRows, rows} = data
 
     return (
-      <tr key={item._id}
+      <tr key={item.id}
           className="iedit author-other level-0 type-post status-draft format-standard has-post-thumbnail hentry category-all-reads tag-article-208 tag-cauvery-basin tag-cauvery-dispute tag-cauvery-water-disputes-tribunal tag-dipak-misra tag-houses-of-legislature tag-inter-state-river-water-disputes-act tag-karnataka tag-rules-of-procedure tag-supreme-court tag-tamil-nadu tag-uday-umesh-lalit">
-        {selectAll ? this.generateRowHeader(item._id, rowIndex) : null}
+        {canSelectAllRows ? this.generateRowHeader(item.id, rowIndex) : null}
         {rows.map((row, index) => {
           return this.generateRow(row, item, index)
         })}

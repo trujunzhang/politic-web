@@ -139,7 +139,7 @@ class AppAdminPostsList extends Component {
   render () {
     const props = this.props
     const data = {
-      selectAll: true,
+      canSelectAllRows: true,
       hasEditSingle: true,
       hasEditAll: true,
       tableType: 'Posts',

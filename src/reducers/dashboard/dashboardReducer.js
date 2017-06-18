@@ -29,7 +29,7 @@ const initialState = Map({
   editSingle: false,
   editSingleId: '',
   checkAll: false,
-  checkIds: {},
+  checkRows: {},
   countKeys: {}
 })
 
