@@ -45,10 +45,10 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
         // debugger
         // Flow can't guarantee {type, list} is a valid action
         const data = {
-            list: list,
-            listTask: listTask,
-            listId: listId,
-            limit: limit
+          list: list,
+          listTask: listTask,
+          listId: listId,
+          limit: limit
         }
         dispatch(({type, data}))
       },
@@ -60,17 +60,17 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 }
 
 export default {
-    loadPosts: (listTask: Any, listId: string, terms: Any): ThunkAction => {
-        const {pageIndex, limit} = listTask
-        const skipCount = (pageIndex - 1) * limit
+  loadPosts: (listTask: Any, listId: string, terms: Any): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    const skipCount = (pageIndex - 1) * limit
 
-        var postQuery = new Parse.Query(Objects.Post).include('topics')
+    var postQuery = new Parse.Query(Objects.Post).include('topics')
 
-        const param = new PostsParameters (postQuery)
-        postQuery = param.addParameters(terms).end()
+    const param = new PostsParameters(postQuery)
+    postQuery = param.addParameters(terms).end()
 
-        var query = postQuery.skip(skipCount).limit(limit)
+    var query = postQuery.skip(skipCount).limit(limit)
 
-        return loadParseQuery(LOADED_POSTS, query, listTask, listId, limit)
+    return loadParseQuery(LOADED_POSTS, query, listTask, listId, limit)
   }
 }
