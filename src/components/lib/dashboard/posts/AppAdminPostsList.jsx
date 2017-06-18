@@ -21,8 +21,6 @@ class AppAdminPostsList extends Component {
       dateSelector: query.date || '0',
       dateSelectors: dateSelectors
     }
-
-    this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
   }
 
   componentDidMount () {
@@ -31,7 +29,7 @@ class AppAdminPostsList extends Component {
 
   loadMore () {
     const nextDashboard = this.props.dashboard
-    this.props.dispatch(loadPosts(nextDashboard, this.props.listId, this.props.terms, DASHBOARD_LOADED_POSTS))
+    this.props.dispatch(loadPosts(nextDashboard.toJS(), this.props.listId, this.props.terms, DASHBOARD_LOADED_POSTS))
   }
 
   onDateSelectorChange (event) {
@@ -188,7 +186,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    dashboard: store.dashboard
+    dashboard: store.dashboard.table
   }
 }
 
