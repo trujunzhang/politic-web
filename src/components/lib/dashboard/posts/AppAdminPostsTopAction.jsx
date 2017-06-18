@@ -100,4 +100,28 @@ class AppAdminPostsTopAction extends Component {
 
 }
 
-export default AppAdminPostsTopAction
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+import { bindActionCreators } from 'redux'
+
+import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
+
+function select (store) {
+  return {
+    dashboard: store.dashboard
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(dashboardActions, dispatch)
+  }
+}
+
+export default connect(select, mapDispatchToProps)(AppAdminPostsTopAction)
+
