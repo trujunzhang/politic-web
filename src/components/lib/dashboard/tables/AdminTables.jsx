@@ -21,9 +21,7 @@ class AdminTables extends Component {
   }
 
   onCheckRowChanged (id, value) {
-    const {rowState, checkAll} = this.state
-
-    this.props.actions.loginRequest()
+    this.props.actions.toggleCheckbox(id)
   }
 
   toggleCheckAll () {
