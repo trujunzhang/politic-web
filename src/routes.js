@@ -43,6 +43,7 @@ const createRoutes = (store) => {
           // http://localhost:3000/management
           path: 'management',
           component: Telescope.components.AppAdminLayout,
+          indexRoute: {component: Telescope.components.AppAdminDashboard},
           childRoutes: [
             {
               // http://localhost:3000/management/posts
