@@ -19,10 +19,7 @@ class AppAdminPostsAction extends Component {
   }
 
   onActionApplyClick () {
-    let self = this
-    this.props.actionEvent(this.state.actionType, function (error, result) {
-      self.setState({actionType: 'action'})
-    })
+
   }
 
   renderRowAction () {

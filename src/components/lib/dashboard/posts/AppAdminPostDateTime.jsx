@@ -149,7 +149,4 @@ class AppAdminPostDateTime extends Component {
   }
 }
 
-AppAdminPostDateTime.displayName = 'AppAdminPostDateTime'
-
-module.exports = AppAdminPostDateTime
 export default AppAdminPostDateTime

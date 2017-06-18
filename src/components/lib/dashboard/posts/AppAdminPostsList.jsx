@@ -53,61 +53,6 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  onRowItemActionEventClick (type, post) {
-    let self = this
-    this.listActionEvent(type, [post._id], post, function (error, result) {
-      self.onToggleEvent()
-    })
-  }
-
-  listActionEvent (type, itemIds, post, cb) {
-    switch (type) {
-      case 'bulk-edit':
-        if (itemIds.length > 0) {
-          this.setState({editAll: true, editAllCallBack: cb, editSingle: false, editSingleId: ''})
-        }
-        break
-      case 'edit':
-        Users.openNewWindow('/', {action: 'edit', editId: post._id, admin: true})
-        break
-      case 'quick_edit':
-        this.setState({editAll: false, editAllCallBack: null, editSingle: true, editSingleId: post._id})
-        break
-      case 'preview':
-        Users.openNewWindow('/', {postId: post._id, admin: true})
-        break
-      case 'trash':
-        this.context.actions.call('posts.move.to.trash', itemIds, cb)
-        break
-      case 'restore':
-        this.context.actions.call('posts.restore.to.last.status', itemIds, cb)
-        break
-      case 'delete_permanently':
-        const deleteFolderConfirm = 'Are you sure you want to delete this post? There is no way back. This is a path without return! Be brave?'
-        if (window.confirm(deleteFolderConfirm)) {
-          this.context.actions.call('posts.delete.permanently', itemIds, cb)
-        }
-        break
-    }
-  }
-
-  onBulkEditAllHook (error, result) {
-    this.state.editAllCallBack(error, result)
-    this.setState({editAll: false, editAllCallBack: null})
-  }
-
-  onBulkEditCancelClick () {
-    this.setState({editAll: false})
-  }
-
-  onSingleEditCancelClick (error, result) {
-    this.setState({editSingle: false, editSingleId: ''})
-  }
-
-  onSingleEditHook () {
-    this.setState({editSingle: false, editSingleId: ''})
-  }
-
   renderRowsEditSingle (rows, item) {
     if (this.state.editSingle && this.state.editSingleId === item._id) {
       rows.push(
@@ -136,14 +81,6 @@ class AppAdminPostsList extends Component {
     return null
   }
 
-  onToggleEvent () {
-    if (!!this.state.editAllCallBack) {
-      this.state.editAllCallBack(null, null)
-    }
-
-    this.setState({editAll: false, editAllCallBack: null, editSingle: false, editSingleId: '', dateSelector: '0'})
-  }
-
   renderTitle (item) {
     const {router} = this.props,
       {query} = router.location,
@@ -154,16 +91,14 @@ class AppAdminPostsList extends Component {
     }
     return (
       <strong>
-        <a onClick={(e) => {
-          Users.openNewWindow('/', {postId: item._id, admin: true})
-        }}
+        <a onClick={(e) => { Users.openNewWindow('/', {postId: item._id, admin: true})}}
            className="row-title">{item.title}
         </a>
         {postStatus.length === 0 ? null : ' — ' }
         {(postStatus.length === 0 ? null : (postStatus.map((status, index) =>
           <span key={index} className="post-state">
                       {status + (index < postStatus.length - 1 ? ', ' : '')}
-                  </span>
+          </span>
         )))}
       </strong>
     )
@@ -178,10 +113,6 @@ class AppAdminPostsList extends Component {
           post={item}/>
       </td>
     )
-  }
-
-  onCheckIdsChanged (checkIds) {
-    this.setState({checkIds: checkIds})
   }
 
   renderTitleActionButton () {

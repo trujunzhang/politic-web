@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class AppAdminPostItemAction extends Component {
 
   onActionApplyClick (actionType) {
-    this.props.actionEvent(actionType, this.props.post)
+
   }
 
   renderRowAction () {
