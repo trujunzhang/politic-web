@@ -22,6 +22,8 @@ class AdminTables extends Component {
 
   onCheckRowChanged (id, value) {
     const {rowState, checkAll} = this.state
+
+    this.dispatch()
   }
 
   toggleCheckAll () {
@@ -46,10 +48,10 @@ class AdminTables extends Component {
     )
   }
 
-    generateRowHeader (itemId, rowIndex) {
-        const {dashboard} = this.state,
-              {checkRows} = dashboard,
-              checkKeys = Object.keys(checkRows)
+  generateRowHeader (itemId, rowIndex) {
+    const {dashboard} = this.state,
+      {checkRows} = dashboard,
+      checkKeys = Object.keys(checkRows)
 
     const checked = (checkKeys.indexOf(itemId) !== -1)
     return (
