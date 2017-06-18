@@ -7,9 +7,12 @@ class AppAdminPostsList extends Component {
   constructor (props) {
     super(props)
 
+    const {location} = this.props,
+      query = location.query || {}
+
     const dateSelectors = Posts.getDateSelectors()
     this.state = this.initialState = {
-      dateSelector: this.props.location.query.date ? this.props.location.query.date : '0',
+      dateSelector: query.date || '0',
       dateSelectors: dateSelectors
     }
   }
@@ -73,9 +76,9 @@ class AppAdminPostsList extends Component {
   }
 
   renderTitle (item) {
-    const {router} = this.props,
-      {query} = router.location,
-      postStatus = Posts.getPostStatus(item, (!!query.status ? query.status : 'all'))
+    const {location} = this.props,
+      query = location.query || {},
+      postStatus = Posts.getPostStatus(item, ( query.status || 'all'))
 
     if (query.status === 'trash') {
       return (<strong>{item.title}</strong>)
