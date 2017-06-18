@@ -128,10 +128,10 @@ class AppAdminPostsList extends Component {
       hasEditAll: true,
       tableType: 'Posts',
       rows: [
-        {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true},
+        // {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true},
         {name: 'Source Name', field: 'sourceFrom', tag: 'source'},
         {name: 'Curator', field: 'author', tag: 'curator'},
-        {name: 'Date', field: 'date', tag: 'date', sort: true}
+        // {name: 'Date', field: 'date', tag: 'date', sort: true}
       ]
     }
     const countsProps = {

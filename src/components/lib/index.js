@@ -108,6 +108,7 @@ Telescope.registerComponent('AdminTablesCommonColumn',            require('./das
 Telescope.registerComponent('AdminTablesRow',                     require('./dashboard/tables/AdminTablesRow.jsx').default)
 Telescope.registerComponent('AdminTablesTH',                      require('./dashboard/tables/AdminTablesTH.jsx').default)
 Telescope.registerComponent('AdminTablesTopicsColumn',            require('./dashboard/tables/AdminTablesTopicsColumn.jsx').default)
+Telescope.registerComponent('PaginationContainer',                require('./dashboard/tables/PaginationContainer.jsx').default)
 
 // dashboard(posts)
 Telescope.registerComponent('AppAdminPostDateTime',                require('./dashboard/posts/AppAdminPostDateTime.jsx').default)

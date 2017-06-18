@@ -20,7 +20,7 @@ class AdminTables extends Component {
   componentWillReceiveProps (nextProps) {
     const {selectAll, rows} = nextProps.data
     if (selectAll) {
-      this.setState({rowState: this.context.messages.appManagement.resetSelectRowState(nextProps.results, this.state.checkIds)})
+      // this.setState({rowState: this.context.messages.appManagement.resetSelectRowState(nextProps.results, this.state.checkIds)})
     }
   }
 
@@ -66,71 +66,11 @@ class AdminTables extends Component {
 
   generateRow (row, item, index) {
     const {name, tag, field, isText} = row
-    if (!!isText) {
-      return (
-        <td key={index} className={`${row.tag} column-${row.tag}`}>
-          {item[row.field]}
-        </td>
-      )
-    }
-    switch (field) {
-      case 'withImage':
-        return this.props.renderRowForImage(item, index)
-      case 'withTopics':
-        return this.props.renderWithTopics(item, index)
-      case 'withScrapedPosts':
-        return this.props.renderForScrapedPosts(item, index)
-      case 'withUrlFrom':
-        return this.props.renderForUrlFrom(item, index)
-      case 'withRoleType':
-        return this.props.renderRowForRoleType(item, index)
-      case 'withLoginType':
-        return this.props.renderRowForLoginType(item, index)
-      case 'withMessagesCount':
-        return this.props.renderRowForMessagesCount(item, index)
-      case 'withPostsCount':
-        return this.props.renderRowForPostsCount(item, index)
-      case 'withInResponse':
-        return this.props.renderRowForResponse(item, index)
-      case 'withAuthor':
-        return this.props.renderRowForAuthor(item, index)
-      case 'withAction':
-        return this.props.renderRowForTitleWithAction(item, index)
-      case 'withCount':
-        return this.props.renderRowForCount(item, index)
-      case 'withPostAuthor':
-        return this.props.renderRowForPostAuthor(item, index)
-      case 'withReporter':
-        return this.props.renderRowForReporter(item, index)
-      case 'date':
-        const updatedAt = moment(item.postedAt).format('YYYY/MM/DD')
-        return (
-          <td key={index} className="date column-date">
-            Last Modified<br/>
-            <abbr title={updatedAt}>{updatedAt}</abbr>
-          </td>
-        )
-    }
-
-    switch (name) {
-      case 'Comments':
-        return (
-          <Telescope.components.AdminTablesCommentsColumn key={index} post={item}/>
-        )
-      case 'reason':
-        return (
-          <td key={index} className={`${row.tag} column-${row.tag}`}>
-            {item[row.field]}
-          </td>
-        )
-      default:
-        return (
-          <td key={index} className={`${row.tag} column-${row.tag}`}>
-            <a onClick={this.onRowClick.bind(this, row.tag, item[row.field])}>{item[row.field]}</a>
-          </td>
-        )
-    }
-
+    return (
+      <td key={index} className={`${row.tag} column-${row.tag}`}>
+        {item[row.field]}
+      </td>
+    )
   }
 
   onRowClick (tag, value) {
@@ -200,9 +140,8 @@ class AdminTables extends Component {
       <tr>
         <td>
           <div className="admin-table-loading">
-                        <span className="loading_2hQxH subtle_1BWOT"><div className={'post-loadmore-spinner'}><span>Loading</span><div
-                          className="bounce1"/><div className="bounce2"/><div className="bounce3"/></div></span>
-          </div>
+            <span className="loading_2hQxH subtle_1BWOT"><div className={'post-loadmore-spinner'}><span>Loading</span><div
+              className="bounce1"/><div className="bounce2"/><div className="bounce3"/></div></span></div>
         </td>
       </tr>
       </tbody>
