@@ -160,12 +160,10 @@ class AppAdminPostsList extends Component {
       draftCount: (props.draftCount || 0),
     }
 
-    const renderTitleActionButton = (<Link className="page-title-action" to="/article/new">Add New</Link>)
-
     return (
       <Telescope.components.AdminTables
         data={data}
-        renderTitleActionButton={renderTitleActionButton}
+        renderTitleActionButton={() => {return (<Link className="page-title-action" to="/article/new">Add New</Link>)}}
         renderRowsEditSingle={this.renderRowsEditSingle.bind(this)}
         renderRowsEditAll={this.renderRowsEditAll.bind(this)}
         tableCount={Posts.getTotalCount(this.props, this.props.location.query.status)}
