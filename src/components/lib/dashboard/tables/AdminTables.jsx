@@ -230,6 +230,7 @@ class AdminTables extends Component {
   renderTable () {
     const {data} = this.props,
       {dashboard} = this.state,
+      {ready} = dashboard,
       results = dashboard.results || [],
       {tableType} = data
 
@@ -237,13 +238,13 @@ class AdminTables extends Component {
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
-        {/*<thead>*/}
-        {/*{this.renderTableHeaderFooter()}*/}
-        {/*</thead>*/}
-        {/*{!this.props.ready ? this.renderLoading() : this.renderTableRows(results)}*/}
-        {/*<tfoot>*/}
-        {/*{this.renderTableHeaderFooter()}*/}
-        {/*</tfoot>*/}
+        <thead>
+        {this.renderTableHeaderFooter()}
+        </thead>
+        {!ready ? this.renderLoading() : this.renderTableRows(results)}
+        <tfoot>
+        {this.renderTableHeaderFooter()}
+        </tfoot>
       </table>
     )
   }

@@ -5,7 +5,6 @@
  */
 'use strict'
 
-
 import type { Action } from '../../actions/types'
 
 /**
@@ -18,21 +17,20 @@ const {
 
 const {fromParsePost} = require('../parseModels')
 
-
 const {Map} = require('immutable')
 
-
 const initialState = Map({
-    results: [],
-    pageIndex: 1,
-    limit: 10,
-    editAll: false,
-    editAllIds: [],
-    editSingle: false,
-    editSingleId: '',
-    checkAll: false,
-    checkIds: {},
-    countKeys: {}
+  results: [],
+  pageIndex: 1,
+  limit: 10,
+  ready: false,
+  editAll: false,
+  editAllIds: [],
+  editSingle: false,
+  editSingleId: '',
+  checkAll: false,
+  checkIds: {},
+  countKeys: {}
 })
 
 /**
@@ -48,15 +46,16 @@ function dashboardReducer (state = initialState, action): State {
      * ### Requests start
      * set the form to fetching and clear any errors
      */
-  case DASHBOARD_LOADED_POSTS: {
+    case DASHBOARD_LOADED_POSTS: {
       console.log('Dashboard loaded posts: ')
 
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
 
       let nextState = state
-          .set('pageIndex', listTask.pageIndex + 1)
-          .set('results', objects)
+        .set('pageIndex', listTask.pageIndex + 1)
+        .set('ready', true)
+        .set('results', objects)
 
       return nextState
     }
@@ -76,11 +75,10 @@ function dashboardReducer (state = initialState, action): State {
       return next
   }
 
-
   /**
    * ## Default
    */
-    return state
+  return state
 }
 
 export default dashboardReducer
