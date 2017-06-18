@@ -1,6 +1,7 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
+import { Link } from 'react-router'
 
 const {loadPosts} = require('../../../../actions').default
 
@@ -120,7 +121,7 @@ class AppAdminPostsList extends Component {
   }
 
   renderTitleActionButton () {
-
+    return (<Link className="page-title-action" to="/article/new">Add New</Link>)
   }
 
   renderWithTopics (item, index) {
