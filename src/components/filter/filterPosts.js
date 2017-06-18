@@ -23,14 +23,11 @@
  */
 'use strict'
 
-const {isImmutable, Map, List, Stack} = require('immutable')
+var {convertToObject} = require('../../lib/utils')
 
 function byListId (listContainerTasks: Any, listId: string, limit: int) {
 
-  var taskObject = listContainerTasks
-  if (isImmutable(taskObject)) {
-    taskObject = listContainerTasks.toJS()
-  }
+  var taskObject = convertToObject(listContainerTasks)
 
   let task = taskObject[listId]
 

@@ -8,6 +8,8 @@ const {
   DASHBOARD_LOADED_POSTS
 } = require('../../../../lib/constants').default
 
+var {convertToObject} = require('../../../../lib/utils')
+
 class AppAdminPostsList extends Component {
 
   constructor (props) {
@@ -28,15 +30,15 @@ class AppAdminPostsList extends Component {
   }
 
   loadMore () {
-      const {location} = this.props,
+    const {location} = this.props,
       terms = {
         ...location.query,
         listId: 'admin.posts.list',
         limit: 10
       }
-
-      const nextDashboard = this.props.dashboard.toJS()
-      this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
+    debugger
+    const nextDashboard = convertToObject(this.props.dashboard)
+    this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
   }
 
   onDateSelectorChange (event) {
@@ -178,7 +180,7 @@ class AppAdminPostsList extends Component {
         componentTopActionBar={Telescope.components.AppAdminPostsTopAction}
         countsProps={countsProps}
 
-        { ...this.props}/>
+      />
     )
   }
 
@@ -193,7 +195,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-      dashboard: store.dashboard
+    dashboard: store.dashboard
   }
 }
 

@@ -213,10 +213,10 @@ class AdminTables extends Component {
   }
 
   renderTable () {
-      const {data} = this.props,
-            {dashboard} = this.state,
-            results = dashboard.results || [],
-            {tableType} = data
+    const {data} = this.props,
+      {dashboard} = this.state,
+      results = dashboard.results || [],
+      {tableType} = data
 
     console.log('render table: ' + results.length)
 
