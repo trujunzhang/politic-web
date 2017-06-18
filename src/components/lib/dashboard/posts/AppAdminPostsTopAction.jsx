@@ -1,6 +1,8 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
 
+const {loadPosts} = require('../../../../actions').default
+
 let _ = require('underscore')
 let numeral = require('numeral')
 
@@ -15,6 +17,10 @@ class AppAdminPostsTopAction extends Component {
     this.state = this.initialState = {
       query: query.query || ''
     }
+  }
+
+  componentDidMount () {
+    // this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
   }
 
   onSearchChange (e) {

@@ -73,5 +73,20 @@ export default {
     var query = postQuery.skip(skipCount).limit(limit)
 
     return loadParseQuery(type, query, listTask, listId, limit)
+  },
+
+  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    const skipCount = (pageIndex - 1) * limit
+
+    var postQuery = new Parse.Query(Objects.Post).include('topics')
+
+    const param = new PostsParameters(postQuery)
+    postQuery = param.addParameters(terms).end()
+
+    var query = postQuery.skip(skipCount).limit(limit)
+
+    return loadParseQuery(type, query, listTask, listId, limit)
   }
+
 }
