@@ -17,6 +17,9 @@ class Layout extends Component {
 
   render () {
     if (this.props.location.pathname === '/management') {
+      return (
+        <Telescope.components.AppAdminLayout location={this.props}/>
+      )
     }
     return (
       <div id='web-app-panel'>

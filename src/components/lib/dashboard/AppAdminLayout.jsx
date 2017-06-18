@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 
 class AppAdminLayout extends Component {
   renderChildren () {
-    const {type} = this.props.location.query
+    const {location} = this.props
+    const type = location.query || ''
 
     switch (type) {
       case 'posts':
@@ -29,28 +30,13 @@ class AppAdminLayout extends Component {
       case 'scrapyd':
         return <Telescope.components.AppAdminScrapyd key="scrapyd"/>
       default:
-        return (
-          <Telescope.components.SatisticContainer
-            key="statistic"
-            publication="admin.app.statistic"
-            listId={'app.statistic'}
-            countKeys={[
-              'postsCount',
-              'usersCount',
-              'commentsCount'
-            ]}
-            component={Telescope.components.AppAdminDashboard}
-          />
-        )
+        return (<Telescope.components.AppAdminDashboard/>)
     }
   }
 
   render () {
     return (
       <div id="admin-dashboard" className="hold-transition skin-blue sidebar-mini">
-        <Telescope.components.HeadTags googleAnalytics={true} showDrift={false}/>
-
-        <Telescope.components.PopoverFlashes flashBox={this.context.messages.flashBox}/>
         <div className="wrapper">
           <Telescope.components.AppAdminHeader />
 
