@@ -72,14 +72,11 @@ class AppAdminPostsTopAction extends Component {
   }
 
   render () {
-
-    const statusRows = this.getStatusRows()
-
     return (
       <div className="top-action-panel">
         <div className="col-sm-8">
           <ul className="subsubsub">
-            {statusRows}
+            {this.getStatusRows()}
           </ul>
         </div>
         <div className="col-sm-4">
