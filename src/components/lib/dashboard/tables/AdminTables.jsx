@@ -219,10 +219,6 @@ class AdminTables extends Component {
   }
 
   render () {
-    return this.renderNormal()
-  }
-
-  renderNormal () {
     const {renderTableCustomTitle} = this.props
     return (
       <div className="wrap" id="admin-posts-ui">
@@ -255,36 +251,6 @@ class AdminTables extends Component {
       </table>
     )
   }
-
-  renderTwoColumns () {
-    const {renderLeftBar} = this.props
-    return (
-      <div className="wrap" id="admin-posts-ui">
-        {this.renderTitle()}
-        <div className="wp-clearfix">
-          {this.renderTopbar()}
-        </div>
-
-        <div id="col-container" className="wp-clearfix">
-          <div id="col-left">
-            <div className="col-wrap margin_top10">
-              {renderLeftBar()}
-            </div>
-          </div>
-          <div id="col-right">
-            <div className="col-wrap">
-              <div id="posts-filter" method="post">
-                {this.renderToolbar()}
-                {this.renderTable()}
-                {this.renderToolbar('bottom')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
 }
 
 /**
