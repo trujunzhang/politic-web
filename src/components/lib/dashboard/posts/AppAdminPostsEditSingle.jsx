@@ -10,8 +10,6 @@ class AppAdminPostsEditSingle extends Component {
     super(props)
     let {item} = props
     this.state = this.initialState = {
-      // Topics
-      topicsArray: item.topicsArray || [],
       topics: item.topics || [],
       // Status
       status: -1,
@@ -36,7 +34,6 @@ class AppAdminPostsEditSingle extends Component {
       slug: this.state.slug,
       postedAt: this.state.postedAt,
       topics: this.state.topics,
-      topicsArray: this.state.topicsArray,
       status: parseInt(this.state.status)
     }
   }
@@ -108,8 +105,8 @@ class AppAdminPostsEditSingle extends Component {
     )
   }
 
-  onTopicsChange (topics, topicsArray) {
-    this.setState({topicsArray: topicsArray, topics: topics})
+  onTopicsChange (topics) {
+    this.setState({topics: topics})
   }
 
   renderTags () {
@@ -121,7 +118,6 @@ class AppAdminPostsEditSingle extends Component {
         <div className="group_1nlHj text_3Wjo0 default_tBeAo base_3CbW2">
           <Telescope.components.ArticleTopics
             topics={this.state.topics}
-            topicsArray={this.state.topicsArray}
             onTopicsChange={this.onTopicsChange.bind(this)}
           />
         </div>

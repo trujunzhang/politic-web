@@ -8,10 +8,10 @@ var _ = require('underscore')
 class ArticleTopics extends Component {
 
   handleMultiChange (options) {
-    const {topicsArray, topics} = this.props,
-      updatedState = Topics.updateTopicsState(topics, topicsArray, options)
+    const {topics} = this.props
+    // updatedState = Topics.updateTopicsState(topics, topicsArray, options)
 
-    this.props.onTopicsChange(updatedState.topics, updatedState.topicsArray)
+    // this.props.onTopicsChange(updatedState.topics, updatedState.topicsArray)
   }
 
   fetchSuggestionTopics (input, callback) {
@@ -40,8 +40,9 @@ class ArticleTopics extends Component {
     })
   }
 
-  getOptions (topicsArray) {
-    return topicsArray.map((item, index) => {
+  getOptions (topics) {
+    debugger
+    return topics.map((item, index) => {
       return {value: item._id, label: item.name}
     })
   }
@@ -51,8 +52,8 @@ class ArticleTopics extends Component {
   }
 
   render () {
-    const {topicsArray, topics} = this.props,
-      options = this.getOptions(topicsArray)
+    const {topics} = this.props,
+      options = this.getOptions(topics)
 
     return (
       <Select.AsyncCreatable
