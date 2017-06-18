@@ -4,11 +4,12 @@ import React, { Component } from 'react'
 class AppAdminLayout extends Component {
   renderChildren () {
     const {location} = this.props
-    const type = location.query || ''
     const pathname = location.pathname || ''
+    const type = pathname.replace('/management', '')
 
     switch (type) {
       case 'posts':
+        debugger
         return <Telescope.components.AppAdminPosts key="posts"/>
       case 'categories':
         return <Telescope.components.AppAdminCategories key="categories"/>

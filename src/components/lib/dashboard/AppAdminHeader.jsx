@@ -39,7 +39,7 @@ class AppAdminHeader extends Component {
   renderRight () {
     const {my_account_hover} = this.state,
       {currentUser} = this.props,
-      avatarObj = Users.getAvatarObj(currentUser),
+      avatarObj = Users.getAvatarObj(currentUser) || {},
       avatar = avatarObj.avatar || {},
       name = avatar.title
 
