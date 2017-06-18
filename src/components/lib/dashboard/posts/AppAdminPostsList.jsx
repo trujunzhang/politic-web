@@ -75,18 +75,8 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  renderRowsEditSingle (rows, item) {
-    if (this.state.editSingle && this.state.editSingleId === item._id) {
-      rows.push(
-        <Telescope.components.AppAdminPostsEditSingle
-          key="editsingle"
-          onEditSingleCancelClick={this.onSingleEditCancelClick.bind(this)}
-          editSingleHook={this.onSingleEditHook.bind(this)}
-          post={item}/>
-      )
-      return true
-    }
-    return false
+  renderRowsEditSingle (item) {
+    return (<Telescope.components.AppAdminPostsEditSingle key="editsingle" item={item}/>)
   }
 
   renderRowsEditAll (checkIds, onCheckRowChanged) {
@@ -128,7 +118,7 @@ class AppAdminPostsList extends Component {
         return (
           <td key={index} className="title column-title has-row-actions column-primary page-title">
             {this.renderTitle(item)}
-            <Telescope.components.AppAdminPostItemAction post={item}/>
+            <Telescope.components.AppAdminPostItemAction item={item}/>
           </td>
         )
       case 'topics':
@@ -140,8 +130,8 @@ class AppAdminPostsList extends Component {
     const props = this.props
     const data = {
       canSelectAllRows: true,
-      hasEditSingle: true,
-      hasEditAll: true,
+      canEditSingle: true,
+      canEditAll: true,
       tableType: 'Posts',
       rows: [
         {name: 'Title', field: 'withAction', tag: 'title', sort: true, primary: true, customRender: true},

@@ -16,8 +16,9 @@
 const {
   DASHBOARD_LOADED_POSTS,
   RESET_DASHBOARD,
-  TOGGLE_TABLE_ROW_CHECKBOX
-
+  TOGGLE_TABLE_ROW_CHECKBOX,
+  DASHBOARD_EDIT_ALL_ROWS,
+  DASHBOARD_EDIT_SINGLE_ROW
 } = require('../../lib/constants').default
 
 const _ = require('underscore')
@@ -31,6 +32,13 @@ const _ = require('underscore')
 export function toggleCheckbox (itemId) {
   return {
     type: TOGGLE_TABLE_ROW_CHECKBOX,
+    payload: itemId
+  }
+}
+
+export function editSingleRow (itemId) {
+  return {
+    type: DASHBOARD_EDIT_SINGLE_ROW,
     payload: itemId
   }
 }

@@ -105,11 +105,12 @@ class AdminTables extends Component {
     )
   }
 
-  renderTableRows (results) {
+  renderTableRows () {
     const {data} = this.props,
-      {hasEditSingle, hasEditAll, tableType} = data,
-      {checkIds} = this.state,
-      items = results
+      {canEditSingle, canEditAll, tableType} = data,
+      {dashboard} = this.state,
+      {editAll, editAllIds, editSingle, editSingleId} = dashboard,
+      items = dashboard.results || []
 
     if (items.length === 0) {
       return (
@@ -125,19 +126,15 @@ class AdminTables extends Component {
       )
     }
 
-    let rows = []
-
-    items.map((item, rowIndex) => {
-      let haveEdit = false
-      if (hasEditSingle) {
-        haveEdit = this.props.renderRowsEditSingle(rows, item)
-      }
-      if (!haveEdit) {
-        rows.push(this.generateRowBody(item, rowIndex))
+    let rows = items.map((item, rowIndex) => {
+      if (canEditSingle && editSingle && editSingleId === item.id) {
+        return this.props.renderRowsEditSingle(item)
+      } else {
+        return this.generateRowBody(item, rowIndex)
       }
     })
     const {renderRowsEditAll} = this.props,
-      editAllBlock = (hasEditAll ? renderRowsEditAll(checkIds, this.onCheckRowChanged.bind(this)) : null)
+      editAllBlock = (canEditAll ? renderRowsEditAll([], this.onCheckRowChanged.bind(this)) : null)
     return (
       <tbody id="the-list">
       {editAllBlock }
@@ -242,19 +239,14 @@ class AdminTables extends Component {
 
   renderTable () {
     const {data} = this.props,
-      {dashboard} = this.state,
-      {ready} = dashboard,
-      results = dashboard.results || [],
       {tableType} = data
-
-    console.log('render table: ' + results.length)
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
         <thead>
         {this.renderTableHeaderFooter()}
         </thead>
-        {!ready ? this.renderLoading() : this.renderTableRows(results)}
+        {!ready ? this.renderLoading() : this.renderTableRows()}
         <tfoot>
         {this.renderTableHeaderFooter()}
         </tfoot>

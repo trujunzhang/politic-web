@@ -321,4 +321,14 @@ Posts.getTotalCount = (props, status) => {
   return count
 }
 
+Posts.getNormalPostStatusSet = () => {
+  return [
+    {value: -1, title: '— No Change —'},
+    {value: Posts.config.STATUS_APPROVED, title: 'Published'},
+    {value: Posts.config.STATUS_PENDING, title: 'Pending Review'},
+    {value: Posts.config.STATUS_REJECTED, title: 'Rejected'},
+    {value: Posts.config.STATUS_SPAM, title: 'Draft'}
+  ]
+}
+
 export default Posts

@@ -4,6 +4,13 @@ import React, { Component } from 'react'
 class AppAdminPostItemAction extends Component {
 
   onActionApplyClick (actionType) {
+    const {item} = this.props
+
+    switch (actionType) {
+      case 'edit': {
+        this.props.actions.editSingleRow(item.id)
+      }
+    }
 
   }
 
@@ -67,4 +74,22 @@ class AppAdminPostItemAction extends Component {
 
 }
 
-export default AppAdminPostItemAction
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+import { bindActionCreators } from 'redux'
+
+import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(dashboardActions, dispatch)
+  }
+}
+
+export default connect(mapDispatchToProps)(AppAdminPostItemAction)
+

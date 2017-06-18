@@ -6,43 +6,37 @@ class AppAdminPostsEditSingle extends Component {
 
   constructor (props) {
     super(props)
-    let post = props.post
+    let {item} = props
     this.state = this.initialState = {
-      // Categories
-      categories: post.categories ? post.categories : [],
       // Topics
-      topicsArray: post.topicsArray ? post.topicsArray : [],
-      topics: post.topics ? post.topics : [],
+      topicsArray: item.topicsArray || [],
+      topics: item.topics || [],
       // Status
       status: -1,
       // detail
-      title: post.title ? post.title : '',
-      slug: post.slug ? post.slug : '',
-      postedAt: post.postedAt ? post.postedAt : new date()
+      title: item.title || '',
+      slug: item.slug || '',
+      postedAt: item.postedAt || new date()
     }
+  }
+
+  onEditSingleCancelClick () {
+
   }
 
   onBulkUpdateSubmitClick () {
     if (this.state.title === '' || this.state.slug === '') {
       return
     }
-    const {post} = this.props
+    const {item} = this.props
     const modifier = {
       title: this.state.title,
       slug: this.state.slug,
       postedAt: this.state.postedAt,
-      categories: this.state.categories,
       topics: this.state.topics,
       topicsArray: this.state.topicsArray,
       status: parseInt(this.state.status)
     }
-    this.context.actions.call('posts.single.edit', [post._id], modifier, (error, result) => {
-      this.props.editSingleHook(error, result)
-    })
-  }
-
-  onCatSelectorGroupChange (categories) {
-    this.setState({categories: categories})
   }
 
   renderPostDetail () {
@@ -97,31 +91,6 @@ class AppAdminPostsEditSingle extends Component {
         callBack={this.onPostedAtHook.bind(this)}
         postedAt={postedAt}
       />
-    )
-  }
-
-  renderCategories () {
-    return (
-      <fieldset className="inline-edit-col-center inline-edit-categories">
-        <div className="inline-edit-col">
-
-          <span className="title inline-edit-categories-label">Categories</span>
-
-          <Telescope.components.AdminListContainer
-            collection={Categories}
-            limit={0}
-            component={Telescope.components.AppAdminEditCategories}
-            componentProps={
-              {
-                categories: this.state.categories,
-                onChange: this.onCatSelectorGroupChange.bind(this)
-              }
-            }
-            listId={'admin.posts.edit.categories.list'}
-          />
-
-        </div>
-      </fieldset>
     )
   }
 
@@ -226,9 +195,6 @@ class AppAdminPostsEditSingle extends Component {
 
           {this.renderPostDetail()}
 
-          {/*Categories(TODO:03/02/2017 Issue 61: Disable Categories)*/}
-          {/*{this.renderCategories()}*/}
-
           <fieldset className="inline-edit-col-right">
 
             {this.renderTags()}
@@ -249,7 +215,7 @@ class AppAdminPostsEditSingle extends Component {
             <p className="submit inline-edit-save">
               <button
                 type="button"
-                onClick={this.props.onEditSingleCancelClick}
+                onClick={this.onEditSingleCancelClick.bind(this)}
                 className="button-secondary cancel alignleft">Cancel
               </button>
               <input
