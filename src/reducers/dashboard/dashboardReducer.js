@@ -12,7 +12,8 @@ import type { Action } from '../../actions/types'
  */
 const {
   DASHBOARD_LOADED_POSTS,
-  RESET_DASHBOARD
+  RESET_DASHBOARD,
+  TOGGLE_TABLE_ROW_CHECKBOX
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -58,6 +59,12 @@ function dashboardReducer (state = initialState, action): State {
         .set('results', objects)
 
       return nextState
+    }
+
+    case TOGGLE_TABLE_ROW_CHECKBOX: {
+
+      debugger
+
     }
 
 

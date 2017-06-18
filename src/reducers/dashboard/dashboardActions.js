@@ -28,10 +28,11 @@ const _ = require('underscore')
  * as in login, register, logout or reset password
  */
 
-export function signupSuccess (json) {
+export function toggleCheckbox (itemId) {
+  debugger
   return {
-    type: SIGNUP_SUCCESS,
-    payload: json
+    type: TOGGLE_TABLE_ROW_CHECKBOX,
+    payload: itemId
   }
 }
 

@@ -23,7 +23,7 @@ class AdminTables extends Component {
   onCheckRowChanged (id, value) {
     const {rowState, checkAll} = this.state
 
-    this.dispatch()
+    this.props.actions.loginRequest()
   }
 
   toggleCheckAll () {
@@ -302,14 +302,21 @@ class AdminTables extends Component {
  */
 import { connect } from 'react-redux'
 
+import { bindActionCreators } from 'redux'
+
+import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
+
 function select (store) {
   return {
     dashboard: store.dashboard
   }
 }
 
-/**
- * Connect the properties
- */
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(dashboardActions, dispatch)
+  }
+}
 
-export default connect(select)(AdminTables)
+export default connect(select, mapDispatchToProps)(AdminTables)
+
