@@ -79,9 +79,8 @@ class AdminTables extends Component {
     const {data} = this.props,
       {selectAll, rows} = data
 
-    const rowItems = []
-    rows.map((row, index) => {
-      rowItems.push(this.generateRow(row, item, index))
+    const rowItems = rows.map((row, index) => {
+      return this.generateRow(row, item, index)
     })
     return (
       <tr key={item._id}

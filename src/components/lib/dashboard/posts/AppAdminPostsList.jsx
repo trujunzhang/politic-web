@@ -36,9 +36,6 @@ class AppAdminPostsList extends Component {
         listId: 'admin.posts.list',
         limit: 10
       }
-
-    // debugger
-
     const nextDashboard = convertToObject(this.props.dashboard)
     this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
   }
