@@ -148,7 +148,14 @@ Users.checkArticleInFolder = function (postId, folder) {
 {/*<Avatar size="100" facebook-id="invalidfacebookusername" src="http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3" />*/}
 Users.getAvatarObj = function (user) {
   if (!user) {
-    return {haveAvatar: false, url: null, avatarId: -1, title: '', slug: ''}
+    return {
+      title: '',
+      slug: '',
+      avatarId: '',
+      avatar: {
+        name: ''
+      }
+    }
   }
   const {loginType} = user
   switch (loginType) {
