@@ -37,6 +37,7 @@ function authReducer (state = initialState, action) {
      * set the form to fetching and clear any errors
      */
     case DASHBOARD_LOADED_POSTS: {
+      debugger
       const {list, listTask, listId, limit} = action.data
       const objects = list.map(fromParsePost)
 
