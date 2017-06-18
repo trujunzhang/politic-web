@@ -6,11 +6,14 @@ import promise from './promise'
 import { updateLocation } from './location'
 import { persistStore, autoRehydrate } from 'redux-persist'
 
+// Logger with default options
+import logger from 'redux-logger'
+
 const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, promise]
+  const middleware = [thunk, promise, logger]
 
   // ======================================================
   // Store Enhancers
