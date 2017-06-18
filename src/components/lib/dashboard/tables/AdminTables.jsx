@@ -180,12 +180,12 @@ class AdminTables extends Component {
   }
 
   onLeftActionBarEventClick (type, cb) {
-    const checkedIds = this.context.messages.appManagement.getCheckedIds(this.state.rowState)
+    // const checkedIds = this.context.messages.appManagement.getCheckedIds(this.state.rowState)
     const self = this
-    this.props.onLeftActionBarEventClick(type, checkedIds, null, function (error, result) {
-      self.resetTable()
-      cb(error, result)
-    })
+    // this.props.onLeftActionBarEventClick(type, checkedIds, null, function (error, result) {
+    //   self.resetTable()
+    //   cb(error, result)
+    // })
   }
 
   onTopActionBarEventClick () {
@@ -194,8 +194,8 @@ class AdminTables extends Component {
   }
 
   resetTable () {
-    let rowState = this.context.messages.appManagement.resetSelectRowState(this.props.results, [])
-    this.setState({checkAll: false, checkIds: [], rowState: rowState})
+    // let rowState = this.context.messages.appManagement.resetSelectRowState(this.props.results, [])
+    // this.setState({checkAll: false, checkIds: [], rowState: rowState})
   }
 
   renderTopbar () {

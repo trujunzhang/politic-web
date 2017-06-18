@@ -97,6 +97,7 @@ Telescope.registerComponent('AppAdminFooter',                require('./dashboar
 Telescope.registerComponent('AppAdminHeader',                require('./dashboard/AppAdminHeader.jsx').default)
 Telescope.registerComponent('AppAdminLayout',                require('./dashboard/AppAdminLayout.jsx').default)
 Telescope.registerComponent('AppAdminSidebar',               require('./dashboard/AppAdminSidebar.jsx').default)
+Telescope.registerComponent('AppSearchTitle',                require('./dashboard/AppSearchTitle').default)
 
 // dashboard(default)
 Telescope.registerComponent('AppAdminDashboard',               require('./dashboard/default/AppAdminDashboard.jsx').default)
