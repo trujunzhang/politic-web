@@ -331,12 +331,11 @@ Posts.getNormalPostStatusSet = () => {
   ]
 }
 
-Posts.getSelectedPosts(results, checkIds) {
-    return const selectedPosts = results.map((item,index)=>{
-        if (checkIds.indexOf(item.id) !== -1)
-            return post;
-    })
+Posts.getSelectedPosts = (results, checkIds) => {
+  return results.map((item, index) => {
+    if (checkIds.indexOf(item.id) !== -1)
+      return post
+  })
 }
-
 
 export default Posts

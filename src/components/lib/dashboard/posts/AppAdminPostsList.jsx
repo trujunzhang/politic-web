@@ -79,13 +79,13 @@ class AppAdminPostsList extends Component {
     return (<Telescope.components.AppAdminPostsEditSingle key="editsingle" item={item}/>)
   }
 
-  renderRowsEditAll (results,checkIds, onCheckRowChanged) {
-      return (
-        <Telescope.components.AppAdminPostsEditAll
-          key="editall"
-          checkRow={onCheckRowChanged}
-          posts={Posts.getSelectedPosts(results, checkIds)}/>
-      )
+  renderRowsEditAll (results, checkIds, onCheckRowChanged) {
+    return (
+      <Telescope.components.AppAdminPostsEditAll
+        key="editall"
+        checkRow={onCheckRowChanged}
+        posts={Posts.getSelectedPosts(results, checkIds)}/>
+    )
   }
 
   renderTitle (item) {
