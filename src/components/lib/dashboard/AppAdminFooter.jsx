@@ -9,7 +9,7 @@ class AppAdminFooter extends Component {
     return (
       <footer className="main-footer">
         <div className="pull-right hidden-xs">
-          <b>Version</b> 2.4.7
+          <b>Version</b> 3.0.1
         </div>
         <strong>{'Copyright © ' + year + ' '}</strong> All rights reserved.
       </footer>

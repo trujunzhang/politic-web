@@ -9,16 +9,16 @@ class AdminTables extends Component {
   constructor (props, context) {
     super(props)
 
-    this.state = {
-      dashboard: convertToObject(props.dashboard)
-    }
+    // this.state = {
+    //   dashboard: convertToObject(props.dashboard)
+    // }
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.state = {
-      dashboard: convertToObject(nextProps.dashboard)
-    }
-  }
+  // componentWillReceiveProps (nextProps) {
+  //   this.state = {
+  //     dashboard: convertToObject(nextProps.dashboard)
+  //   }
+  // }
 
   onCheckRowChanged (id, value) {
     this.props.actions.toggleCheckbox(id)
@@ -30,14 +30,14 @@ class AdminTables extends Component {
 
   renderTableHeaderFooter () {
     const {data} = this.props,
-      {canSelectAllRows, rows} = data
+      {canSelectAllRows, rows} = data,
+      checkAll = false
     return (
       <tr>
         {!!canSelectAllRows ? (
           <td id="cb" className="manage-column column-cb check-column">
             <label className="screen-reader-text">Select All</label>
-            <input id="cb-select-all-1" type="checkbox" onChange={this.toggleCheckAll.bind(this)}
-                   checked={this.state.checkAll}/>
+            <input id="cb-select-all-1" type="checkbox" onChange={this.toggleCheckAll.bind(this)} checked={checkAll}/>
           </td>) : null}
         {rows.map((row, index) => {
           return (<Telescope.components.AdminTablesTH key={index} row={row}/>)
@@ -47,7 +47,7 @@ class AdminTables extends Component {
   }
 
   generateRowHeader (itemId, rowIndex) {
-    const {dashboard} = this.state,
+    const {dashboard} = this.props,
       {checkRows} = dashboard,
       checkKeys = Object.keys(checkRows)
 
@@ -108,7 +108,7 @@ class AdminTables extends Component {
   renderTableRows () {
     const {data, renderRowsEditAll} = this.props,
       {canEditSingle, canEditAll, tableType} = data,
-      {dashboard} = this.state,
+      {dashboard} = this.props,
       {editAll, editAllIds, editSingle, editSingleId, results} = dashboard,
       items = results || []
 
@@ -237,7 +237,7 @@ class AdminTables extends Component {
   renderTable () {
     const {data} = this.props,
       {tableType} = data,
-      {dashboard} = this.state
+      {dashboard} = this.props
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
