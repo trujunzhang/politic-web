@@ -1,6 +1,7 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  TOGGLE_TABLE_ROW_CHECKBOX:null,
   DASHBOARD_LOADED_POSTS: null,
   RESET_DASHBOARD: null,
 
