@@ -86,24 +86,24 @@ function dashboardReducer (state = initialState, action): State {
 
       checkRows[itemId] = !checked
 
-        return Object.assign({}, state, {
-            checkRows: checkRows
-        })
+      return Object.assign({}, state, {
+        checkRows: checkRows
+      })
     }
 
     // case TOGGLE_TABLE_ROW_ALL_CHECKBOXS: {
     //
     // }
 
-    case DASHBOARD_EDIT_ALL_ROWS: {
-      return {...state, 'checkRows': checkRows}
-    }
+    // case DASHBOARD_EDIT_ALL_ROWS: {
+    //   return {...state, 'checkRows': checkRows}
+    // }
 
     case  DASHBOARD_EDIT_SINGLE_ROW: {
-        return Object.assign({}, state, {
-            editSingle: true,
-            editSingleId: action.payload
-        })
+      return Object.assign({}, state, {
+        editSingle: true,
+        editSingleId: action.payload
+      })
     }
 
 
