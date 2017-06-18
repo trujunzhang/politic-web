@@ -109,6 +109,14 @@ Telescope.registerComponent('AdminTablesRow',                     require('./das
 Telescope.registerComponent('AdminTablesTH',                      require('./dashboard/tables/AdminTablesTH.jsx').default)
 Telescope.registerComponent('AdminTablesTopicsColumn',            require('./dashboard/tables/AdminTablesTopicsColumn.jsx').default)
 
+// dashboard(posts)
+Telescope.registerComponent('AppAdminPostDateTime',                require('./dashboard/posts/AppAdminPostDateTime.jsx').default)
+Telescope.registerComponent('AppAdminPostItemAction',              require('./dashboard/posts/AppAdminPostItemAction.jsx').default)
+Telescope.registerComponent('AppAdminPostsAction',                 require('./dashboard/posts/AppAdminPostsAction.jsx').default)
+Telescope.registerComponent('AppAdminPostsEditAll',                require('./dashboard/posts/AppAdminPostsEditAll.jsx').default)
+Telescope.registerComponent('AppAdminPostsEditSingle',             require('./dashboard/posts/AppAdminPostsEditSingle.jsx').default)
+Telescope.registerComponent('AppAdminPostsList',                   require('./dashboard/posts/AppAdminPostsList.jsx').default)
+Telescope.registerComponent('AppAdminPostsTopAction',              require('./dashboard/posts/AppAdminPostsTopAction.jsx').default)
 
 
 export default Telescope
