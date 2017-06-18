@@ -1,6 +1,6 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
-import Users from '../../../lib/users'
+var Users = require('../../../lib/users').default
 import { Link } from 'react-router'
 import Avatar from 'react-avatar'
 

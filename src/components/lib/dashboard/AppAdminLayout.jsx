@@ -5,6 +5,7 @@ class AppAdminLayout extends Component {
   renderChildren () {
     const {location} = this.props
     const type = location.query || ''
+    const pathname = location.pathname || ''
 
     switch (type) {
       case 'posts':
