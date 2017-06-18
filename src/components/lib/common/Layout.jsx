@@ -18,7 +18,26 @@ class Layout extends Component {
   render () {
     if (this.props.location.pathname.indexOf('/management') !== -1) {
       return (
-        <Telescope.components.AppAdminLayout location={this.props.location}/>
+        <div id="admin-dashboard" className="hold-transition skin-blue sidebar-mini">
+          <div className="wrapper">
+            <Telescope.components.AppAdminHeader />
+            <Telescope.components.AppAdminSidebar location={this.props}/>
+            <div className="content-wrapper admin-content">
+
+              <div id="wpcontent">
+                <div id="wpbody" role="main">
+
+                  <div id="wpbody-content">
+                    { this.props.children}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <Telescope.components.AppAdminFooter />
+          </div>
+        </div>
       )
     }
     return (
