@@ -18,25 +18,7 @@ const formValidation = require('./dashboardFormValidation').default
  * ## Auth actions
  */
 const {
-
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE,
-
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-
-  ON_AUTH_FORM_FIELD_CHANGE,
-  SIGNUP_REQUEST,
-  SIGNUP_SUCCESS,
-  SIGNUP_FAILURE,
-
-  RESET_PASSWORD_REQUEST,
-  RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_FAILURE,
-
-  SET_STATE
+  DASHBOARD_LOADED_POSTS
 } = require('../../lib/constants').default
 
 const initialState = new InitialState()
@@ -49,6 +31,39 @@ function authReducer (state = initialState, action) {
   if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
 
   switch (action.type) {
+    /**
+     * ### Requests start
+     * set the form to fetching and clear any errors
+     */
+    case DASHBOARD_LOADED_POSTS: {
+      const {list, listTask, listId, limit} = action.data
+      const objects = list.map(fromParsePost)
+
+      var nextTask = state.get(listId)
+      if (!!nextTask) {
+        let lastResults = nextTask.get('results')
+        let combinedResults = lastResults.concat(objects)
+        nextTask = nextTask.set('results', combinedResults)
+          .set('pageIndex', nextTask.get('pageIndex') + 1)
+      } else {
+        nextTask = Map({
+          id: listId,
+          hasMore: true,
+          ready: true,
+          totalCount: 100,
+          limit: limit,
+          pageIndex: 2,
+          firstPagination: false,
+          results: objects
+        })
+      }
+
+      let nextState = state
+        .set(listId, nextTask)
+
+      return nextState
+    }
+
     /**
      * ### Requests start
      * set the form to fetching and clear any errors

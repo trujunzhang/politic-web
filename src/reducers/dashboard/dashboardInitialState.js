@@ -27,8 +27,9 @@ const Table = Record({
   error: null,
   isValid: false,
   isFetching: false,
-  postsPerPage: 10,
   results: [],
+  pageIndex: 1,
+  limit: 10,
   data: new (Record({
     editAll: false,
     editAllIds: [],
