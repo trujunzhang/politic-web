@@ -1,6 +1,6 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
-import Posts from 'meteor/nova:posts'
+import Posts from '../../../../lib/posts'
 
 class AppAdminPostsEditSingle extends Component {
 

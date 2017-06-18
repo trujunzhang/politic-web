@@ -1,5 +1,5 @@
 import Telescope from '../../index'
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import moment from 'moment'
 
 class AppAdminPostDateTime extends Component {
@@ -82,7 +82,7 @@ class AppAdminPostDateTime extends Component {
     ]
     let currentMonth = this.state.month
     _.forEach(monthTemp, function (item, index) {
-      if (item.value == currentMonth) {
+      if (item.value === currentMonth) {
         months.push(<option key={index} value={item.value} selected="selected">{item.title}</option>)
       } else {
         months.push(<option key={index} value={item.value}>{item.title}</option>)

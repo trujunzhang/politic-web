@@ -1,5 +1,5 @@
 import Telescope from '../../index'
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 
 let numeral = require('numeral')
 
@@ -25,9 +25,9 @@ class AppAdminPostsTopAction extends Component {
   }
 
   onTopActionStatusClick (status) {
-    this.setState({query: ''})
-    this.props.toggleEvent()
-    this.context.messages.appManagement.pushAdminFilterStatus(this.props.router, 'posts', status)
+    // this.setState({query: ''})
+    // this.props.toggleEvent()
+    // this.context.messages.appManagement.pushAdminFilterStatus(this.props.router, 'posts', status)
   }
 
   getStatusRows () {
@@ -35,10 +35,10 @@ class AppAdminPostsTopAction extends Component {
     let trashCount = (this.props.trashCount ? this.props.trashCount : 0)
     const rows = [
       {title: 'All', status: 'all', count: allCount},
-      {title: 'Published', status: 'publish', count: (this.props.publishCount ? this.props.publishCount : 0)},
-      {title: 'Pending', status: 'pending', count: (this.props.pendingCount ? this.props.pendingCount : 0)},
-      {title: 'Rejected', status: 'reject', count: (this.props.rejectedCount ? this.props.rejectedCount : 0)},
-      {title: 'Drafts', status: 'draft', count: (this.props.draftCount ? this.props.draftCount : 0)},
+      {title: 'Published', status: 'publish', count: (this.props.publishCount || 0)},
+      {title: 'Pending', status: 'pending', count: (this.props.pendingCount || 0)},
+      {title: 'Rejected', status: 'reject', count: (this.props.rejectedCount || 0)},
+      {title: 'Drafts', status: 'draft', count: (this.props.draftCount || 0)},
       {title: 'Trash', status: 'trash', count: trashCount},
     ]
 
@@ -61,8 +61,8 @@ class AppAdminPostsTopAction extends Component {
              onClick={this.onTopActionStatusClick.bind(this, row.status)}>
             {row.title + ' '}
             <span className="count">
-                          {'(' + numeral(row.count).format('0,0') + ')' }
-                      </span>
+              {'(' + numeral(row.count).format('0,0') + ')' }
+            </span>
           </a>
           {(i < length - 1 ) ? <span>{' |'}</span> : null  }
         </li>)
