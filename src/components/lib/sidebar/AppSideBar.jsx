@@ -1,6 +1,6 @@
-import Telescope from '../index';
-import React, {Component} from 'react';
-import moment from 'moment';
+import Telescope from '../index'
+import React, { Component } from 'react'
+import moment from 'moment'
 
 /**
  * Make day wise groups on category pages, remove calendar widget from tag and source pages
@@ -9,57 +9,57 @@ import moment from 'moment';
  */
 class AppSideBar extends Component {
 
-    /**
-     * A: Make day wise groups on category pages, remove calendar widget from tag and source pages
-     *    So calendar will only show on “Homepage” and “Category” page
-     *
-     * @returns {XML}
-     */
-    renderWidgetCalendar() {
-        return (
-            <Telescope.components.WidgetCalendar selected={moment().startOf("day")}/>
-        )
-    }
+  /**
+   * A: Make day wise groups on category pages, remove calendar widget from tag and source pages
+   *    So calendar will only show on “Homepage” and “Category” page
+   *
+   * @returns {XML}
+   */
+  renderWidgetCalendar () {
+    return (
+      <Telescope.components.WidgetCalendar selected={moment().startOf('day')}/>
+    )
+  }
 
-    renderProduction() {
-        return (
-            <div>
-                <Telescope.components.WidgetTwitter />
-            </div>
-        )
-    }
+  renderProduction () {
+    return (
+      <div>
+        <Telescope.components.WidgetTwitter />
+      </div>
+    )
+  }
 
-    renderTrendingTopics() {
-        return (
-            <Telescope.components.WidgetTopics />
-        )
-    }
+  renderTrendingTopics () {
+    return (
+      <Telescope.components.WidgetTopics />
+    )
+  }
 
-    /**
-     * Remove Download App image from sidebar
-     * Sidebar widgets location -
-     * 1. Trending Topics on top,
-     * 2. then calendar,
-     * 3. The follow us on social media,
-     * 4.twitter stream and footer links
-     * @returns {XML}
-     */
-    render() {
-        const production = process.env.NODE_ENV === "production";
+  /**
+   * Remove Download App image from sidebar
+   * Sidebar widgets location -
+   * 1. Trending Topics on top,
+   * 2. then calendar,
+   * 3. The follow us on social media,
+   * 4.twitter stream and footer links
+   * @returns {XML}
+   */
+  render () {
+    const production = process.env.NODE_ENV === 'production'
 
-        return (
-            <div className="sidebar_Y2LGQ">
+    return (
+      <div className="sidebar_Y2LGQ">
 
-                {this.renderTrendingTopics()}
-                {this.renderWidgetCalendar()}
+        {this.renderTrendingTopics()}
+        {this.renderWidgetCalendar()}
 
-                <Telescope.components.WidgetAppFollower/>
-                {production || true ? this.renderProduction() : null}
-                <Telescope.components.WidgetAppFooter />
-            </div>
-        )
-    }
+        <Telescope.components.WidgetAppFollower/>
+        {production || true ? this.renderProduction() : null}
+        <Telescope.components.WidgetAppFooter />
+      </div>
+    )
+  }
 
 }
 
-export default AppSideBar;
+export default AppSideBar

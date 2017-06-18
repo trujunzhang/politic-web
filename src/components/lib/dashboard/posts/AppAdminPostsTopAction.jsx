@@ -63,12 +63,9 @@ class AppAdminPostsTopAction extends Component {
       const row = countRows[i]
       statusRows.push(
         <li key={i} className={row.status}>
-          <a className={queryStatus === row.status ? 'current' : ''}
-             onClick={this.onTopActionStatusClick.bind(this, row.status)}>
+          <a className={queryStatus === row.status ? 'current' : ''}>
             {row.title + ' '}
-            <span className="count">
-              {'(' + numeral(row.count).format('0,0') + ')' }
-            </span>
+            <span className="count">{'(' + numeral(row.count).format('0,0') + ')' }</span>
           </a>
           {(i < length - 1 ) ? <span>{' |'}</span> : null  }
         </li>)

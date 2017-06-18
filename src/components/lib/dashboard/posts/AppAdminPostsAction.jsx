@@ -61,7 +61,9 @@ class AppAdminPostsAction extends Component {
   }
 
   render () {
-    const {status} = this.props.location.query
+    const location = this.props.location || {},
+      query = location.query || {}
+    let status = query.status || 'all'
 
     switch (status) {
       case 'trash':
