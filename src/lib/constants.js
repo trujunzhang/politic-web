@@ -3,7 +3,10 @@ import keyMirror from 'key-mirror'
 export default keyMirror({
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
+
   TOGGLE_TABLE_ROW_CHECKBOX: null,
+  TOGGLE_TABLE_ROW_ALL_CHECKBOXS: null,
+
   DASHBOARD_LOADED_POSTS: null,
   RESET_DASHBOARD: null,
 

@@ -25,7 +25,7 @@ class AdminTables extends Component {
   }
 
   toggleCheckAll () {
-    debugger
+    this.props.actions.toggleAllCheckbox()
   }
 
   renderTableHeaderFooter () {
