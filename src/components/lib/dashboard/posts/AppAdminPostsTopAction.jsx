@@ -1,6 +1,7 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
 
+let _ = require('underscore')
 let numeral = require('numeral')
 
 class AppAdminPostsTopAction extends Component {
@@ -8,8 +9,11 @@ class AppAdminPostsTopAction extends Component {
   constructor (props) {
     super(props)
 
+    const location = props.location || {},
+      query = location.query || {}
+
     this.state = this.initialState = {
-      query: this.props.location.query.query ? this.props.location.query.query : ''
+      query: query.query || ''
     }
   }
 
@@ -17,11 +21,11 @@ class AppAdminPostsTopAction extends Component {
     let value = e.target.value
     this.setState({query: value})
 
-    const appManagement = this.context.messages.appManagement
-    const router = this.props.router
-    this.context.messages.delayEvent(function () {
-      appManagement.appendQuery(router, 'query', value)
-    }, 400)
+    // const appManagement = this.context.messages.appManagement
+    // const router = this.props.router
+    // this.context.messages.delayEvent(function () {
+    //   appManagement.appendQuery(router, 'query', value)
+    // }, 400)
   }
 
   onTopActionStatusClick (status) {
@@ -31,8 +35,8 @@ class AppAdminPostsTopAction extends Component {
   }
 
   getStatusRows () {
-    let allCount = (this.props.allCount ? this.props.allCount : 0)
-    let trashCount = (this.props.trashCount ? this.props.trashCount : 0)
+    let allCount = (this.props.allCount || 0)
+    let trashCount = (this.props.trashCount || 0)
     const rows = [
       {title: 'All', status: 'all', count: allCount},
       {title: 'Published', status: 'publish', count: (this.props.publishCount || 0)},
@@ -50,8 +54,10 @@ class AppAdminPostsTopAction extends Component {
     })
 
     let length = countRows.length
+    const location = this.props.location || {},
+      query = location.query || {}
 
-    let queryStatus = !!this.props.router.location.query.status ? this.props.router.location.query.status : 'all'
+    let queryStatus = query.status || 'all'
     const statusRows = []
     for (let i = 0; i < length; i++) {
       const row = countRows[i]
