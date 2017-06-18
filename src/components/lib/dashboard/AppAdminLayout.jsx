@@ -8,11 +8,15 @@ class AppAdminLayout extends Component {
     const pathname = location.pathname || ''
     const type = pathname.replace('/management/', '')
 
-    console.log('admin type: ' + type)
-
     switch (type) {
       case 'posts':
-        return <Telescope.components.AppAdminPosts key="posts"/>
+        return <Telescope.components.AppAdminPostsList key="posts" terms={
+          {
+            ...location.query,
+            listId: 'admin.posts.list',
+            limit: 10
+          }
+        }/>
       case 'categories':
         return <Telescope.components.AppAdminCategories key="categories"/>
       case 'topics':
