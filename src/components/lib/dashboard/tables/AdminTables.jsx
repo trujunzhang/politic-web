@@ -178,11 +178,6 @@ class AdminTables extends Component {
     // })
   }
 
-  onTopActionBarEventClick () {
-    // this.resetTable()
-    // this.props.toggleEvent()
-  }
-
   resetTable () {
     // let rowState = this.context.messages.appManagement.resetSelectRowState(this.props.results, [])
     // this.setState({checkAll: false, checkIds: [], rowState: rowState})
@@ -190,7 +185,7 @@ class AdminTables extends Component {
 
   renderTopbar () {
     const Component = this.props.componentTopActionBar
-    return (<Component {...this.props.countsProps} toggleEvent={this.onTopActionBarEventClick.bind(this)}/>)
+    return (<Component {...this.props.countsProps} />)
   }
 
   renderTitle () {
@@ -215,6 +210,8 @@ class AdminTables extends Component {
   renderTable () {
     const {data, results} = this.props,
       {tableType} = data
+
+    // console.log('render table: ' + results.length)
 
     return (
       <table className="wp-list-table widefat fixed striped posts" id={tableType.toLowerCase()}>
