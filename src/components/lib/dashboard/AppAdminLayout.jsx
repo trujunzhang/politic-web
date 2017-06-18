@@ -40,7 +40,7 @@ class AppAdminLayout extends Component {
         <div className="wrapper">
           <Telescope.components.AppAdminHeader />
 
-          <Telescope.components.AppAdminSidebar />
+          <Telescope.components.AppAdminSidebar location={this.props}/>
 
           <div className="content-wrapper admin-content">
 

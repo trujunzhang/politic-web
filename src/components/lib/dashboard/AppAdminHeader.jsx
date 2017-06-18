@@ -13,14 +13,14 @@ class AppAdminHeader extends Component {
   }
 
   componentDidMount () {
-    $('#right-user-menu').hover(
-      function () {
-        $(this).addClass('open')
-      },
-      function () {
-        $(this).removeClass('open')
-      }
-    )
+    // $('#right-user-menu').hover(
+    //   function () {
+    //     $(this).addClass('open')
+    //   },
+    //   function () {
+    //     $(this).removeClass('open')
+    //   }
+    // )
   }
 
   onToggleSidebarIconClick () {
@@ -33,10 +33,8 @@ class AppAdminHeader extends Component {
   }
 
   renderLoggedUser () {
-    const {currentUser} = this.context
+    const {currentUser} = this.props
     const name = Users.getDisplayName(currentUser)
-    const avatarUrl = Users.avatar.getUrl(currentUser)
-    const updatedAt = moment(currentUser.postedAt).format('YYYY/MM/DD')
 
     return (
       <li className="dropdown user user-menu" id="right-user-menu">
@@ -143,7 +141,7 @@ class AppAdminHeader extends Component {
       {currentUser} = this.context,
       {my_account_hover} = this.state,
       name = Users.getDisplayName(currentUser),
-      avatarUrl = Users.avatar.getUrl(currentUser)
+      avatarUrl = ''
 
     const myAccountClass = 'menupop with-avatar' + (my_account_hover ? ' hover' : '')
     return (

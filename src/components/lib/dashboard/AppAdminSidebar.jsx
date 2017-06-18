@@ -4,26 +4,13 @@ import React, { Component } from 'react'
 class AppAdminSidebar extends Component {
 
   onSidebarMenuClick (type) {
-    this.context.messages.appManagement.pushAdminSidebar(this.props.router, type)
-  }
-
-  renderPostSubmenu () {
-    const {type} = this.props.router.location.query
-    return (
-      <li className={'treeview ' + (type === 'posts' ? 'active' : '')}>
-        <a onClick={this.onSidebarMenuClick.bind(this, 'posts')}>
-          <i className="fa fa-edit"/>
-          <span>Posts</span>
-          <span className="pull-right-container">
-                      <i className="fa fa-angle-left pull-right"/>
-          </span>
-        </a>
-      </li>
-    )
+    // this.context.messages.appManagement.pushAdminSidebar(this.props.router, type)
   }
 
   renderAppItemsMenu () {
-    const {type} = this.props.router.location.query
+    const {location} = this.props
+    const type = location.query || ''
+
     return (
       <ul className="sidebar-menu" id="adminmenu">
         {/*<li className="header">MAIN NAVIGATION</li>*/}
@@ -81,7 +68,9 @@ class AppAdminSidebar extends Component {
   }
 
   renderCrawlerItemsMenu () {
-    const {type} = this.props.router.location.query
+    const {location} = this.props
+    const type = location.query || ''
+
     return (
       <ul className="sidebar-menu" id="adminmenu">
         {/*<li className="header">Scraper Items</li>*/}
@@ -108,7 +97,6 @@ class AppAdminSidebar extends Component {
   }
 
   render () {
-
     return (
       <aside className="main-sidebar">
         <section className="sidebar admin-sidebar">
