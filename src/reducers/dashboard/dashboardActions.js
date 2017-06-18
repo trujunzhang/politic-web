@@ -19,7 +19,8 @@ const {
   TOGGLE_TABLE_ROW_CHECKBOX,
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS,
   DASHBOARD_EDIT_ALL_ROWS,
-  DASHBOARD_EDIT_SINGLE_ROW
+  DASHBOARD_EDIT_SINGLE_ROW,
+  DASHBOARD_EDIT_SINGLE_ROW_CANCEL
 } = require('../../lib/constants').default
 
 const _ = require('underscore')
@@ -47,6 +48,12 @@ export function editSingleRow (itemId) {
   return {
     type: DASHBOARD_EDIT_SINGLE_ROW,
     payload: itemId
+  }
+}
+
+export function cancelEditSingleRow () {
+  return {
+    type: DASHBOARD_EDIT_SINGLE_ROW_CANCEL,
   }
 }
 

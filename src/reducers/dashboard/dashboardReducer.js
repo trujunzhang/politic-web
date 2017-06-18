@@ -17,7 +17,8 @@ const {
   TOGGLE_TABLE_ROW_CHECKBOX,
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS,
   DASHBOARD_EDIT_ALL_ROWS,
-  DASHBOARD_EDIT_SINGLE_ROW
+  DASHBOARD_EDIT_SINGLE_ROW,
+  DASHBOARD_EDIT_SINGLE_ROW_CANCEL
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -103,6 +104,13 @@ function dashboardReducer (state = initialState, action): State {
       return Object.assign({}, state, {
         editSingle: true,
         editSingleId: action.payload
+      })
+    }
+
+    case DASHBOARD_EDIT_SINGLE_ROW_CANCEL: {
+      return Object.assign({}, state, {
+        editSingle: false,
+        editSingleId: ''
       })
     }
 

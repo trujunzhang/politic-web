@@ -3,6 +3,7 @@ import keyMirror from 'key-mirror'
 export default keyMirror({
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
+  DASHBOARD_EDIT_SINGLE_ROW_CANCEL: null,
 
   TOGGLE_TABLE_ROW_CHECKBOX: null,
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS: null,

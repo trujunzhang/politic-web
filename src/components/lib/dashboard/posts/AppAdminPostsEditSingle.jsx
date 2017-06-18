@@ -21,7 +21,7 @@ class AppAdminPostsEditSingle extends Component {
   }
 
   onEditSingleCancelClick () {
-
+    this.props.actions.cancelEditSingleRow()
   }
 
   onBulkUpdateSubmitClick () {
@@ -233,4 +233,23 @@ class AppAdminPostsEditSingle extends Component {
   }
 }
 
-export default AppAdminPostsEditSingle
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+import { bindActionCreators } from 'redux'
+
+import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(dashboardActions, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AppAdminPostsEditSingle)
+
+
