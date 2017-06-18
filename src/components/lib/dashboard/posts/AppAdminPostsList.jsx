@@ -44,7 +44,11 @@ class AppAdminPostsList extends Component {
   onDateSelectorChange (event) {
     let value = event.target.value
     this.setState({dateSelector: value})
-    // this.context.messages.appManagement.appendQuery(this.props.router, 'date', value)
+
+    const {router, location} = this.props,
+      {pathname, query} = location,
+      nextQuery = {...query, data: value}
+    router.push({pathname: pathname, query: nextQuery})
   }
 
   renderFilter () {
