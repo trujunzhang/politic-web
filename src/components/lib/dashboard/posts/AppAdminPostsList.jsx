@@ -28,8 +28,15 @@ class AppAdminPostsList extends Component {
   }
 
   loadMore () {
-    // const nextDashboard = this.props.dashboard
-    // this.props.dispatch(loadPosts(nextDashboard, this.props.listId, this.props.terms, DASHBOARD_LOADED_POSTS))
+    const {location} = this.props,
+      terms = {
+        ...location.query,
+        listId: 'admin.posts.list',
+        limit: 10
+      }
+
+    const nextDashboard = this.props.dashboard
+    this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
   }
 
   onDateSelectorChange (event) {
