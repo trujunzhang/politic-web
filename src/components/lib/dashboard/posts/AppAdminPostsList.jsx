@@ -2,6 +2,8 @@ import Telescope from '../../index'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 
+const {loadPosts} = require('../../../../actions').default
+
 class AppAdminPostsList extends Component {
 
   constructor (props) {
@@ -162,4 +164,22 @@ class AppAdminPostsList extends Component {
 
 }
 
-export default AppAdminPostsList
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    dashboard: store.dashboard
+  }
+}
+
+/**
+ * Connect the properties
+ */
+
+export default connect(select)(AppAdminPostsList)
+

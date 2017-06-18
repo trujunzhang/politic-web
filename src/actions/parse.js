@@ -60,7 +60,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 }
 
 export default {
-  loadPosts: (listTask: Any, listId: string, terms: Any): ThunkAction => {
+  loadPosts: (type: string = LOADED_POSTS, listTask: Any, listId: string, terms: Any): ThunkAction => {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 

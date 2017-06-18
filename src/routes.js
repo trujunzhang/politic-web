@@ -1,4 +1,4 @@
-let Telescope = require('./components/lib/index').default
+let Telescope = require('./components/lib').default
 
 import CoreLayout from './layouts/PageLayout/PageLayout'
 
