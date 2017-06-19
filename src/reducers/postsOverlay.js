@@ -38,32 +38,30 @@ const {
   LOADED_POSTS_PAGE
 } = require('../lib/constants').default
 
+const {fromParsePost} = require('./parseModels')
+
 const initialState = {
-  showOverlay: false,
-  currentModel: null
+  isFetching: true,
+  currentModel: null,
+  pages: []
 }
 
 function postsOverlay (state: State = initialState, action: Action): State {
   if (action.type === LOADED_POSTS_PAGE) {
     let {objectId, object} = action.data
-    debugger
+    let model = fromParsePost(object)
     return {
-      showOverlay: true,
-      currentModel: action.data
+      isFetching: false,
+      currentModel: {objectId: object, model: model},
+      pages: {objectId: model}
     }
   }
 
   if (action.type === POSTS_OVERLAY_PUSH) {
-    let {modelType, position, model} = action.data
-    if (modelType === 'LoginUI') {
-      return {
-        showOverlay: true,
-        currentModel: action.data
-      }
-    }
     return {
-      showOverlay: true,
-      currentModel: action.data
+      isFetching: true,
+      currentModel: null,
+      pages: []
     }
   }
 

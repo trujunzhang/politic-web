@@ -81,8 +81,8 @@ class PostsPage extends Component {
               id="user-menu"
               className="button button--small button--chromeless u-baseColor--buttonNormal is-inSiteNavBar js-userActions">
         {/*<Telescope.components.UsersBlurryImageAvatar*/}
-          {/*avatarObj={Users.getAvatarObj(curator)}*/}
-          {/*size={32}/>*/}
+        {/*avatarObj={Users.getAvatarObj(curator)}*/}
+        {/*size={32}/>*/}
       </button>
     )
   }
@@ -153,23 +153,4 @@ class PostsPage extends Component {
     )
   }
 }
-
-/**
- * ## Imports
- *
- * Redux
- */
-import { connect } from 'react-redux'
-
-function select (store) {
-  return {
-    postsOverlay: store.postsOverlay
-  }
-}
-
-/**
- * Connect the properties
- */
-
-export default connect(select)(PostsPage)
 
