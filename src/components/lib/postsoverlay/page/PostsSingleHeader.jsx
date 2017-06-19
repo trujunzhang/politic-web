@@ -1,4 +1,4 @@
-import Telescope from '../../../../lib'
+import Telescope from '../../../lib'
 import React, { Component } from 'react'
 import { FormattedMessage, FormattedRelative } from 'react-intl'
 import Posts from '../../../../lib/posts'
