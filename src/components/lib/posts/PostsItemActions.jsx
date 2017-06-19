@@ -93,7 +93,7 @@ class PostsItemActions extends Component {
     )
   }
 
-  popupDetail (e) {
+  onPopupDetailPress (e) {
     e.preventDefault()
 
     // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
