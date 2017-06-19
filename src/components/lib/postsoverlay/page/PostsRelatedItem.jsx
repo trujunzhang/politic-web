@@ -4,25 +4,6 @@ import Posts from '../../../../lib/posts'
 
 class PostsRelatedItem extends Component {
 
-  renderThumbnail (imageSet) {
-    const {post} = this.props
-    return (
-      <div className="thumbnail_2Blny">
-        <div className="post-thumbnail related-thumbnail" onClick={this.onRelatedPostClick.bind(this)}>
-          <a className="container_22rD3 related-thumbnail">
-            <Telescope.components.BlurryImage
-              imageId={post._id + '-thumbnail'}
-              containerClass={'container__Ql6q lazyLoadContainer_3KgZD'}
-              imageClass={'post-list-thumbnail'}
-              imageSet={imageSet}
-              imageTitle={post.title}
-            />
-          </a>
-        </div>
-      </div>
-    )
-  }
-
   renderVotesSection () {
     const {post} = this.props
     return (
@@ -37,14 +18,38 @@ class PostsRelatedItem extends Component {
     )
   }
 
-  render () {
+  renderThumbnail () {
     const {post} = this.props,
       imageSet = Posts.getThumbnailSet(post)
+
+    if (imageSet.small) {
+      return (
+        <div className="thumbnail_2Blny">
+          <div className="post-thumbnail related-thumbnail" onClick={this.onRelatedPostClick.bind(this)}>
+            <a className="container_22rD3 related-thumbnail">
+              <Telescope.components.BlurryImage
+                imageId={post._id + '-thumbnail'}
+                containerClass={'container__Ql6q lazyLoadContainer_3KgZD'}
+                imageClass={'post-list-thumbnail'}
+                imageSet={imageSet}
+                imageTitle={post.title}
+              />
+            </a>
+          </div>
+        </div>
+      )
+    }
+
+    return null
+  }
+
+  render () {
+    const {post} = this.props
 
     return (
       <div className="link_2Cj8i">
         <div className="side_3fRtk related-left-panel">
-          {!!imageSet.small ? this.renderThumbnail(imageSet) : null}
+          {this.renderThumbnail()}
           {this.renderVotesSection()}
         </div>
         <a onClick={this.onRelatedPostClick.bind(this)}>
