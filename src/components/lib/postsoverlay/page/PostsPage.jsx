@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
-const {loadPostPage} = require('../../../../actions').default
-
 class PostsPage extends Component {
 
   constructor (props) {
@@ -17,7 +15,6 @@ class PostsPage extends Component {
   }
 
   componentDidMount () {
-    // this.props.dispatch(loadPostPage('GLp0BQ8hJD'))
   }
 
   onFlagClick () {
@@ -88,7 +85,8 @@ class PostsPage extends Component {
   }
 
   renderCuratorSection () {
-    let curator = this.props.user,
+    const {post} = this.props,
+      curator = post.user || {},
       displayName = Users.getDisplayName(curator)
 
     // 18/12/2016
@@ -127,7 +125,7 @@ class PostsPage extends Component {
           {/*middle left*/}
           <Telescope.components.PostDetail post={post}/>
           {/*Curator*/}
-          {this.renderCuratorSection()}
+          {/*{this.renderCuratorSection()}*/}
           {/*comments*/}
           <Telescope.components.PostsCommentsThread document={post}/>
         </main>
@@ -154,3 +152,5 @@ class PostsPage extends Component {
   }
 }
 
+
+export default PostsPage
