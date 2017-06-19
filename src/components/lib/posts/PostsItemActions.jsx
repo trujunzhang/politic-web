@@ -14,7 +14,7 @@ class PostsItemActions extends Component {
   renderSaveRemoveArticleButton () {
     const type = 'save',
       isMobileAndPortrait = false,
-      e = (type === 'save') ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this)
+      event = (type === 'save') ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this)
 
     const leftIcon = (type === 'remove') ? (<span className="remove-button fa fa-remove"/>) : (<span>
         <svg className={isMobileAndPortrait ? 'margin_left4' : ''} width="13" height="10" viewBox="0 0 13 10">
@@ -27,10 +27,10 @@ class PostsItemActions extends Component {
     )
 
     return (
-      <span label={type} onClick={e}
+      <span label={type} onClick={event}
             className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W">
         <div className="buttonContainer_wTYxi">
-          <span className="post-item-e-button">
+          <span className="post-item-event-button">
             {leftIcon}
             {/*{isMobileAndPortrait ? "" : type}*/}
           </span>
@@ -93,8 +93,8 @@ class PostsItemActions extends Component {
     )
   }
 
-  onPopupDetailPress (e) {
-    e.preDefault()
+  popupDetail (e) {
+    e.preventDefault()
 
     // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
     // let {router, location, post} = this.props,
@@ -108,7 +108,7 @@ class PostsItemActions extends Component {
   }
 
   onSaveButtonClick (e) {
-    e.preDefault()
+    e.preventDefault()
 
     // const {post} = this.props;
     // const {currentUser} = this.context;
@@ -137,7 +137,7 @@ class PostsItemActions extends Component {
   }
 
   onRemoveButtonClick (e) {
-    e.preDefault()
+    e.preventDefault()
 
     // const {post} = this.props;
     // let {folder} = this.props;
@@ -158,7 +158,7 @@ class PostsItemActions extends Component {
   }
 
   onMoreTopicsClick (e) {
-    e.preDefault()
+    e.preventDefault()
 
     let clientRect = this.refs.saveButton.getBoundingClientRect()
     this.props.dispatch(pushModel('moreTopicsList', {
