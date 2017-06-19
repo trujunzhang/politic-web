@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
+const {popModel} = require('../../../actions').default
+
 /**
  * A: Remove “THE-VIEWSPAPER” from there
  * B: YES
@@ -12,10 +14,14 @@ class PostsDomain extends Component {
   onDomainClick (event) {
     event.preventDefault()
 
-    const {post, router} = this.props
+    const {post, router} = this.props,
+      domain = (post.sourceFrom || '').replace('www.', '')
+
+    this.props.dispatch(popModel())
+    
     router.push({
-      pathname: '/',
-      query: {from: post.sourceFrom}
+      pathname: `/from/${domain}`,
+      query: {}
     })
 
     event.stopPropagation()
@@ -35,6 +41,13 @@ class PostsDomain extends Component {
   }
 }
 
-export default withRouter(PostsDomain)
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+export default withRouter(connect()(PostsDomain))
 
 
