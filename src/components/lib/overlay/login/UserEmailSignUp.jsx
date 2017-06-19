@@ -11,7 +11,7 @@ const I18n = require('./Translate').default
 
 import LoginRender from './LoginRender'
 
-const {signUpWithPassword, popModel} = require('../../../../actions').default
+const {signUpWithPassword, dismissPopModel} = require('../../../../actions').default
 
 class UserEmailSignUp extends Component {
 
@@ -57,7 +57,7 @@ class UserEmailSignUp extends Component {
       if (!!errorMessage) {
         this.setState({errorMessage: errorMessage})
       } else {
-        this.props.dispatch(popModel())
+        this.props.dispatch(dismissPopModel())
         this.props.actions.signupSuccess()
       }
     }

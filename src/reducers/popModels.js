@@ -31,9 +31,8 @@ import type {Action} from '../actions/types';
  * The states were interested in
  */
 const {
-  PUSH_OVERLAY_MODEL,
-  POP_OVERLAY_MODEL,
-  GET_OVERLAY_MODELS
+  OVERLAY_MODEL_PUSH,
+  OVERLAY_MODEL_DISMISS
 } = require('../lib/constants').default
 
 
@@ -48,7 +47,7 @@ const initialState = {
 };
 
 function popModels(state: State = initialState, action: Action): State {
-    if (action.type === PUSH_OVERLAY_MODEL) {
+    if (action.type === OVERLAY_MODEL_PUSH) {
         let { modelType,position, model} = action.data;
         if(modelType === 'LoginUI'){
             return {
@@ -61,7 +60,7 @@ function popModels(state: State = initialState, action: Action): State {
             currentModel: action.data
         };
     }
-    if (action.type === POP_OVERLAY_MODEL) {
+    if (action.type === OVERLAY_MODEL_DISMISS) {
         return {
             isLoggedIn: false,
             hasSkippedLogin: true,
@@ -71,9 +70,7 @@ function popModels(state: State = initialState, action: Action): State {
             roleType: null
         };
     }
-    if (action.type === GET_OVERLAY_MODELS) {
-        return initialState;
-    }
+
     return state;
 }
 

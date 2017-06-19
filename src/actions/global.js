@@ -30,9 +30,9 @@ import type { Action, ThunkAction } from './types'
  * The states were interested in
  */
 const {
-  PUSH_OVERLAY_MODEL,
-  POP_OVERLAY_MODEL,
-  OVERLAY_DISMISS
+  OVERLAY_MODEL_PUSH,
+  OVERLAY_MODEL_DISMISS,
+  OVERLAY_POSTS_DISMISS
 } = require('../lib/constants').default
 
 function pushModel (modelType: string, position: object = null, model: object = null): Action {
@@ -43,15 +43,15 @@ function pushModel (modelType: string, position: object = null, model: object = 
   }
 
   // TODO: Make sure reducers clear their state
-  return {type: PUSH_OVERLAY_MODEL, data: data}
+  return {type: OVERLAY_MODEL_PUSH, data: data}
 }
 
-function popModel (): Action {
-  return {type: POP_OVERLAY_MODEL}
+function dismissPopModel (): Action {
+  return {type: OVERLAY_MODEL_DISMISS}
 }
 
 function resetOverlayPosts (): Action {
-  return {type: OVERLAY_DISMISS}
+  return {type: OVERLAY_POSTS_DISMISS}
 }
 
-export default {pushModel, popModel}
+export default {pushModel, dismissPopModel}

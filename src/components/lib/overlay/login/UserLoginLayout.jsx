@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-const {popModel} = require('../../../../actions').default
+const {dismissPopModel} = require('../../../../actions').default
 
 class UserLoginLayout extends Component {
 
   onClosePress (e) {
     e.preventDefault()
 
-    this.props.dispatch(popModel())
+    this.props.dispatch(dismissPopModel())
   }
 
   renderCloseIcon () {

@@ -1,9 +1,8 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
-  GET_OVERLAY_MODELS: null,
-  PUSH_OVERLAY_MODEL: null,
-  POP_OVERLAY_MODEL: null,
+  OVERLAY_MODEL_PUSH: null,
+  OVERLAY_MODEL_DISMISS: null,
 
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
@@ -21,7 +20,7 @@ export default keyMirror({
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
-  OVERLAY_DISMISS: null,
+  OVERLAY_POSTS_DISMISS: null,
   OVERLAY_POSTS_PUSH: null,
   OVERLAY_POSTS_POP: null,
   OVERLAY_POSTS_EMPTY: null,

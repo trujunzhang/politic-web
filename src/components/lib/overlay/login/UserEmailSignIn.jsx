@@ -13,7 +13,7 @@ const {
 
 const I18n = require('./Translate').default
 
-const {logInWithPassword, popModel} = require('../../../../actions').default
+const {logInWithPassword, dismissPopModel} = require('../../../../actions').default
 
 class UserEmailSignIn extends Component {
 
@@ -54,7 +54,7 @@ class UserEmailSignIn extends Component {
       if (!!errorMessage) {
         this.setState({errorMessage: errorMessage})
       } else {
-        this.props.dispatch(popModel())
+        this.props.dispatch(dismissPopModel())
         this.props.actions.loginSuccess()
       }
     }

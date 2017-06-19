@@ -62,8 +62,8 @@ export type Action =
     | { type: 'RECEIVED_PUSH_NOTIFICATION', notification: Object }
     | { type: 'SEEN_ALL_NOTIFICATIONS' }
     | { type: 'RESET_NUXES' },
-    | { type: 'PUSH_OVERLAY_MODEL' },
-    | { type: 'POP_OVERLAY_MODEL' },
+    | { type: 'OVERLAY_MODEL_PUSH' },
+    | { type: 'OVERLAY_MODEL_DISMISS' },
     | { type: 'GET_OVERLAY_MODEL' },
     ;
 

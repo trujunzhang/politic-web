@@ -20,14 +20,14 @@ history.listen((location) => {
   // analyticsService.track(location.pathname)
 })
 
-const {popModel} = require('./actions').default
+const {dismissPopModel} = require('./actions').default
 
 /**
  * Callback function handling frontend route changes.
  * https://github.com/reactGo/reactGo/blob/master/app/client.jsx
  */
 function onUpdate () {
-  store.dispatch(popModel())
+  store.dispatch(dismissPopModel())
 }
 
 // Render Setup
