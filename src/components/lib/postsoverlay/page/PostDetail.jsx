@@ -49,7 +49,7 @@ class PostDetail extends Component {
 
   render () {
     const {post} = this.props
-    let html = post.htmlBody
+    let html = post.body
     if (html) {
       html = '<p>' + html.replace('\n' + '\n', '</p><p>') + '...</p>'
     }
