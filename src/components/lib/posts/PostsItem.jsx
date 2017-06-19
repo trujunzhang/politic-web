@@ -92,8 +92,4 @@ class PostsItem extends Component {
 
 }
 
-PostsItem.propTypes = {
-  post: React.PropTypes.object.isRequired
-}
-
 export default withRouter(PostsItem)

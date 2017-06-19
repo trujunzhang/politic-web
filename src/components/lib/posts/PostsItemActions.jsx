@@ -2,7 +2,6 @@ import Telescope from '../index'
 import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
-import { withRouter } from 'react-router'
 
 const {pushModel} = require('../../../actions').default
 
@@ -18,25 +17,25 @@ class PostsItemActions extends Component {
       event = (type === 'save') ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this)
 
     const leftIcon = (type === 'remove') ? (<span className="remove-button fa fa-remove"/>) : (<span>
-                <svg className={isMobileAndPortrait ? 'margin_left4' : ''} width="13" height="10" viewBox="0 0 13 10">
-                  <path
-                    d="M9,6 L6,6 L6,7 L9,7 L9,10 L10,10 L10,7 L13,7 L13,6 L10,6 L10,3 L9,3 L9,6 Z M0,0 L8,0 L8,1 L0,1 L0,0 Z M0,3 L8,3 L8,4 L0,4 L0,3 Z M0,6 L5,6 L5,7 L0,7 L0,6 Z"
-                    fill="#FFF">
-                  </path>
-                </svg>
-            </span>
+        <svg className={isMobileAndPortrait ? 'margin_left4' : ''} width="13" height="10" viewBox="0 0 13 10">
+          <path
+            d="M9,6 L6,6 L6,7 L9,7 L9,10 L10,10 L10,7 L13,7 L13,6 L10,6 L10,3 L9,3 L9,6 Z M0,0 L8,0 L8,1 L0,1 L0,0 Z M0,3 L8,3 L8,4 L0,4 L0,3 Z M0,6 L5,6 L5,7 L0,7 L0,6 Z"
+            fill="#FFF">
+          </path>
+        </svg>
+      </span>
     )
 
     return (
       <span label={type} onClick={event}
             className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W">
-              <div className="buttonContainer_wTYxi">
-                    <span className="post-item-event-button">
-                        {leftIcon}
-                      {/*{isMobileAndPortrait ? "" : type}*/}
-                    </span>
-              </div>
+        <div className="buttonContainer_wTYxi">
+          <span className="post-item-event-button">
+            {leftIcon}
+            {/*{isMobileAndPortrait ? "" : type}*/}
           </span>
+        </div>
+      </span>
     )
   }
 
@@ -47,16 +46,16 @@ class PostsItemActions extends Component {
       <span id="posts_item_read_more_button"
             className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W"
             onClick={this.onReadMoreClick.bind(this)}>
-              <div className="buttonContainer_wTYxi">
-                  <span>
-                      <svg width="10" height="10" viewBox="0 0 10 10">
-                          <path
-                            d="M5.9816,1.0418 L8.2136,1.0418 L3.8976,5.3578 L4.6426,6.1018 L8.9586,1.7858 L8.9586,4.0188 L9.9996,4.0188 L9.9996,0.5208 C9.9996,0.2228 9.7766,-0.0002 9.4786,-0.0002 L5.9816,-0.0002 L5.9816,1.0418 Z M9,9 L1,9 L1,1 L3.97833252,1 L3.97833252,0 L0.51,0 C0.228,0 0,0.228 0,0.51 L0,9.49 C0,9.772 0.228,10 0.51,10 L9.49,10 C9.772,10 10,9.772 10,9.49 L10,6.02606201 L9,6.02606201 L9,9 Z"
-                            fill="#FFF"/>
-                      </svg>
-                  </span>
-              </div>
+        <div className="buttonContainer_wTYxi">
+          <span>
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path
+                d="M5.9816,1.0418 L8.2136,1.0418 L3.8976,5.3578 L4.6426,6.1018 L8.9586,1.7858 L8.9586,4.0188 L9.9996,4.0188 L9.9996,0.5208 C9.9996,0.2228 9.7766,-0.0002 9.4786,-0.0002 L5.9816,-0.0002 L5.9816,1.0418 Z M9,9 L1,9 L1,1 L3.97833252,1 L3.97833252,0 L0.51,0 C0.228,0 0,0.228 0,0.51 L0,9.49 C0,9.772 0.228,10 0.51,10 L9.49,10 C9.772,10 10,9.772 10,9.49 L10,6.02606201 L9,6.02606201 L9,9 Z"
+                fill="#FFF"/>
+            </svg>
           </span>
+        </div>
+      </span>
     )
   }
 
