@@ -33,6 +33,7 @@ const {
   OVERLAY_MODEL_PUSH,
   OVERLAY_MODEL_DISMISS,
   OVERLAY_DETAILS_POSTS_DISMISS,
+  OVERLAY_DETAILS_POSTS_PUSH,
   LIST_VIEW_RESET_ALL_POSTS
 } = require('../lib/constants').default
 
@@ -51,7 +52,7 @@ function dismissPopModel (): Action {
   return {type: OVERLAY_MODEL_DISMISS}
 }
 
-function resetOverlayPosts (): Action {
+function resetOverlayDetailedPosts (): Action {
   return {type: OVERLAY_DETAILS_POSTS_DISMISS}
 }
 
@@ -59,4 +60,4 @@ function resetPostsDaily (): Action {
   return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
-export default {pushModel, dismissPopModel, resetOverlayPosts, resetPostsDaily}
+export default {pushModel, dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily}
