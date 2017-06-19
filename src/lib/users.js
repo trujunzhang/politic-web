@@ -202,4 +202,8 @@ Users.checkIsAdmin = function (location, user) {
   return false
 }
 
+Users.openNewBackgroundTab = (element, url) => {
+  window.open(url)
+}
+
 export default Users

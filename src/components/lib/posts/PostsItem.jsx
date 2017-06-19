@@ -1,7 +1,7 @@
 import Telescope from '../index'
 import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
-// import Users from '../../../lib/users';
+import Users from '../../../lib/users'
 import { withRouter } from 'react-router'
 
 class PostsItem extends Component {
@@ -21,8 +21,7 @@ class PostsItem extends Component {
           <Telescope.components.PostsDomain post={post} domainClass=""/>
         </div>
 
-        <div className="post_description post_description_p"
-             onClick={this.onReadMoreClick.bind(this)}>
+        <div className="post_description post_description_p" onClick={this.onReadMoreClick.bind(this)}>
           {Posts.getLimitedContent(post.body, 150)}
         </div>
 
@@ -59,7 +58,6 @@ class PostsItem extends Component {
 
   render () {
     const showActionButtons = false
-
     const itemDisabled = false//post.status !== Posts.config.STATUS_APPROVED;
 
     return (
@@ -76,10 +74,11 @@ class PostsItem extends Component {
 
   onReadMoreClick (e) {
     e.preventDefault()
-    // const {post} = this.props;
-    // const url = post.url;
 
-    // Users.openNewBackgroundTab(e.target, url);
+    const {post} = this.props
+    const url = post.url
+
+    Users.openNewBackgroundTab(e.target, url)
 
     e.stopPropagation()
   }
