@@ -206,4 +206,41 @@ Users.openNewBackgroundTab = (element, url) => {
   window.open(url)
 }
 
+/**
+ * ("http://localhost:3000/image/upload/cover/k6ikrrYh9y5ZDvzvR.jpg")
+ * @param user
+ * @returns {*}
+ */
+Users.getUserCoverUrl = (user) => {
+  let coverUrls = user.coverUrls || []
+  if (!!coverUrls && coverUrls.length > 0) {
+    return coverUrls[0].url
+  }
+  return null 
+}
+
+/**
+ * @summary Get a user's Twitter name
+ * @param {Object} user
+ */
+Users.getTwitterName = function (user) {
+  // return twitter name provided by user, or else the one used for twitter login
+  if (typeof user !== 'undefined') {
+    return ''
+  }
+  return null
+}
+
+/**
+ * @summary Get a user's display name (not unique, can take special characters and spaces)
+ * @param {Object} user
+ */
+Users.getBio = function (user) {
+  if (typeof user === 'undefined') {
+    return ''
+  } else {
+    return ''
+  }
+}
+
 export default Users

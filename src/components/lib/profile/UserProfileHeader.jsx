@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 
+import Avatar from 'react-avatar'
+
 import { withRouter } from 'react-router'
 
 class UserProfileHeader extends Component {
@@ -63,8 +65,7 @@ class UserProfileHeader extends Component {
 
   render () {
     const {currentUser} = this.props
-    const avatarUrl = Users.avatar.getUrl(currentUser),
-      avatar = avatarUrl ? <img height="140" width="140" src={avatarUrl}/> : '',
+    const avatarObj = Users.getAvatarObj(currentUser),
       bio = Users.getBio(currentUser),
       twitterName = Users.getTwitterName(currentUser),
       coverImage = Users.getUserCoverUrl(currentUser)
@@ -78,7 +79,7 @@ class UserProfileHeader extends Component {
                         <span className="user-image image_1r8-2 v-big">
                             <div className="container_22rD3 user-image--image user-image-size">
                                 <div className="container__Ql6q lazyLoadContainer_3KgZD">
-                                    {avatar}
+                                    <Avatar {...avatarObj.avatar} size={140} round={false}/>
                                 </div>
                             </div>
                         </span>

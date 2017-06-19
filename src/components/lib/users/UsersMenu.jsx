@@ -21,7 +21,7 @@ class UsersMenu extends Component {
   render () {
     const {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser),
-      userName = Users.getDisplayName(currentUser)
+      userName = avatarObj.title
 
     return (
       <button
