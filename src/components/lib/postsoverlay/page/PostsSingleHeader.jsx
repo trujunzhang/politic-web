@@ -89,7 +89,7 @@ class PostsSingleHeader extends Component {
             <span className="secondaryText_PM80d inverse_1CN6F base_3CbW2">
               <time className="margin_left6">
                 {/*2 months ago*/}
-                <FormattedRelative value={post.createdAt}/>
+                <FormattedRelative value={post.postedAt}/>
               </time>
             </span>
           </div>
