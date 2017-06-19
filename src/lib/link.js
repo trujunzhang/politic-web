@@ -20,6 +20,11 @@ export function showDetailedPagePath (router, post) {
   router.push(obj)
 }
 
+export function cleanUpQuery (router) {
+  const {location} = router
+  const obj = {pathname: location.pathname, query: {}}
+  router.push(obj)
+}
 
 
 

@@ -2,6 +2,7 @@ import Telescope from '../../lib'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
+var {cleanUpQuery} = require('../../../lib/link')
 const {resetOverlayDetailedPosts} = require('../../../actions').default
 
 class PopoverPostsLayout extends Component {
@@ -21,6 +22,7 @@ class PopoverPostsLayout extends Component {
   closingMultipleOverlayArticles (e) {
     e.preventDefault()
 
+    cleanUpQuery(this.props.router)
     this.props.dispatch(resetOverlayDetailedPosts())
 
     // router.replace({pathname: pathname})
