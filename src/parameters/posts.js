@@ -7,7 +7,13 @@ export default class PostsParameters {
   }
 
   addParameters (terms: Any) {
-    if (terms.before && terms.after) {
+    if (terms.related) { // related posts
+debugger
+      this.query.notContainedIn('objectId', terms.related.id)
+      this.query.equalTo('author', terms.related.author)
+    }
+
+    if (terms.before && terms.after) { // Calendar posts
 
       var mAfter = moment(terms.after, 'YYYY-MM-DD')
       var startOfDay = mAfter.startOf('day')

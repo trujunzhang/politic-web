@@ -35,7 +35,8 @@ const {
   POSTS_OVERLAY_EMPTY,
   POSTS_OVERLAY_BACKWARD,
   POSTS_OVERLAY_FORWARD,
-  LOADED_POSTS_PAGE
+  LOADED_POSTS_PAGE,
+  LOADED_RELATED_POSTS
 } = require('../lib/constants').default
 
 const {fromParsePost} = require('./parseModels')
@@ -43,6 +44,7 @@ const {fromParsePost} = require('./parseModels')
 const initialState = {
   isFetching: true,
   currentModel: null,
+  currentRelatedPosts: [],
   pages: []
 }
 
@@ -53,14 +55,25 @@ function postsOverlay (state: State = initialState, action: Action): State {
     return {
       isFetching: false,
       currentModel: {objectId: object, model: model},
+      currentRelatedPosts: [],
       pages: {objectId: model}
     }
+  }
+  if (action.type === LOADED_RELATED_POSTS) {
+    const {list, listTask, listId, limit, totalCount} = action.data
+    const objects = list.map(fromParsePost)
+
+    const nextState = Object.assign({}, state, {
+      currentRelatedPosts: objects
+    })
+    return nextState
   }
 
   if (action.type === POSTS_OVERLAY_PUSH) {
     return {
       isFetching: true,
       currentModel: null,
+      currentRelatedPosts: [],
       pages: []
     }
   }

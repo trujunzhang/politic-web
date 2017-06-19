@@ -65,6 +65,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
     var queryFind = (() => {
       return query.find({
         success: (list) => {
+          debugger
           // debugger
           // Flow can't guarantee {type, list} is a valid action
           const data = {
