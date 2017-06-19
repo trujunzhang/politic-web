@@ -37,6 +37,9 @@ const {
   LIST_VIEW_RESET_ALL_POSTS
 } = require('../lib/constants').default
 
+// ================================
+// For AppOverlay.js
+// ================================
 function pushModel (modelType: string, position: object = null, model: object = null): Action {
   const data = {
     modelType: modelType,
@@ -52,12 +55,26 @@ function dismissPopModel (): Action {
   return {type: OVERLAY_MODEL_DISMISS}
 }
 
+// ================================
+// For Popup detailed Posts
+// ================================
 function resetOverlayDetailedPosts (): Action {
   return {type: OVERLAY_DETAILS_POSTS_DISMISS}
 }
 
-function resetPostsDaily (): Action {
+function pushOverlayDetailedPost (): Action {
+  return {type: OVERLAY_DETAILS_POSTS_PUSH}
+}
+
+// ================================
+// For PostsDaily and PostsList
+// ================================
+function resetPostsDaily (post: object): Action {
   return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
-export default {pushModel, dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily}
+export default {
+  pushModel, dismissPopModel,
+  resetOverlayDetailedPosts, pushOverlayDetailedPost,
+  resetPostsDaily
+}

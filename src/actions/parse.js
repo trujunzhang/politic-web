@@ -27,7 +27,7 @@ const Parse = require('parse')
 
 import type { ThunkAction } from './types'
 
-var Objects = require('./objects').default
+let Objects = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
@@ -62,20 +62,20 @@ function loadParseObject (type: string, query: Parse.Query, objectId: string): T
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
-    var queryFind = (() => {
+    let queryFind = (() => {
       return query.find({
         success: (list) => {
           // debugger
           // debugger
           // Flow can't guarantee {type, list} is a valid action
-          const data = {
+          const payload = {
             list: list,
             listTask: listTask,
             listId: listId,
             limit: limit,
             totalCount: totalCount
           }
-          dispatch({type, data})
+          dispatch({type, payload})
         },
         error: (error) => {
           debugger
@@ -83,7 +83,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
       })
     })
 
-    var totalCount = 0
+    let totalCount = 0
     return query.count({
       success: function (count) {
         totalCount = count
@@ -107,17 +107,15 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    var postQuery = new Parse.Query(Objects.Post).include('topics')
+    let postQuery = new PostsParameters(new Parse.Query(Objects.Post).include('topics'))
+      .addParameters(terms)
+      .end()
 
-    const param = new PostsParameters(postQuery)
-    postQuery = param.addParameters(terms).end()
-
-    var query = postQuery.skip(skipCount).limit(limit)
-    return loadParseQuery(type, query, listTask, listId, limit)
+    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    var pageQuery = new Parse.Query(Objects.Post).include('topics')
+    let pageQuery = new Parse.Query(Objects.Post).include('topics')
 
     return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
   },
@@ -126,13 +124,11 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    var postQuery = new Parse.Query(Objects.Post).include('topics')
+    let postQuery = new PostsParameters(new Parse.Query(Objects.Post).include('topics'))
+      .addParameters(terms)
+      .end()
 
-    const param = new PostsParameters(postQuery)
-    postQuery = param.addParameters(terms).end()
-
-    var query = postQuery.skip(skipCount).limit(limit)
-    return loadParseQuery(type, query, listTask, listId, limit)
+    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
   }
 
 }

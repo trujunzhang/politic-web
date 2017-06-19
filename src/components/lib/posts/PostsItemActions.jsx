@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 
-const {pushModel} = require('../../../actions').default
+const {pushModel, pushOverlayDetailedPost} = require('../../../actions').default
 
 class PostsItemActions extends Component {
 
@@ -102,12 +102,7 @@ class PostsItemActions extends Component {
     //
     // this.context.messages.pushRouterForDetailPage(router, post, admin);
 
-    this.props.dispatch(pushModel('moreTopicsList', {
-      top: clientRect.top + window.pageYOffset,
-      left: clientRect.left + window.pageXOffset,
-      width: this.refs.saveButton.offsetWidth,
-      height: this.refs.saveButton.offsetHeight
-    }, {moreTopics: this.props.post.topics.slice(1)}))
+    this.props.dispatch(pushOverlayDetailedPost(this.props.post))
 
     e.stopPropagation()
   }
