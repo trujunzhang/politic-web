@@ -30,6 +30,29 @@ const createRoutes = (store) => {
 
       childRoutes: [
         {
+          // http://localhost:3000/users/zhang-trujun
+          path: 'users/(:slug)',
+          component: Telescope.components.UsersProfile,
+          indexRoute: {component: Telescope.components.Error404},
+          childRoutes: [
+            {
+              // http://localhost:3000/users/zhang-trujun/downvotes
+              path: 'downvotes',
+              component: Telescope.components.AppAdminPostsList,
+            },
+            {
+              // http://localhost:3000/users/zhang-trujun/posts
+              path: 'posts',
+              component: Telescope.components.AppAdminPostsList,
+            },
+            {
+              // http://localhost:3000/users/zhang-trujun/collections
+              path: 'collections',
+              component: Telescope.components.AppAdminPostsList,
+            }
+          ]
+        },
+        {
           // http://localhost:3000/topic/lead
           path: 'topic/(:topicId)/(:title)',
           component: Telescope.components.PostsHome,

@@ -56,6 +56,9 @@ Telescope.registerComponent('PostsRelatedItem',                   require('./pos
 Telescope.registerComponent('PostsRelatedList',                   require('./postsoverlay/page/PostsRelatedList.jsx').default)
 Telescope.registerComponent('PostsSingleHeader',                  require('./postsoverlay/page/PostsSingleHeader.jsx').default)
 
+// profile
+Telescope.registerComponent('UsersProfile',                   require('./profile/UsersProfile.jsx').default)
+
 // Sidebar
 Telescope.registerComponent('AppSideBar',           require('./sidebar/AppSideBar.jsx').default)
 Telescope.registerComponent('WidgetHeader',         require('./sidebar/WidgetHeader.jsx').default)
