@@ -116,7 +116,8 @@ class PostsPage extends Component {
   renderContent () {
     const {post, location} = this.props,
       {currentUser} = this.context,
-      admin = Users.checkIsAdmin(location, currentUser)
+      admin = false
+
     return (
       <div className="constraintWidth_ZyYbM body_1a08C">
         <main className="main_3lfDa">
@@ -127,11 +128,11 @@ class PostsPage extends Component {
           {/*Curator*/}
           {/*{this.renderCuratorSection()}*/}
           {/*comments*/}
-          <Telescope.components.PostsCommentsThread document={post}/>
+          {/*<Telescope.components.PostsCommentsThread document={post}/>*/}
         </main>
         <aside className="aside_1sJP0">
           {this.renderFlag()}
-          {admin ? <Telescope.components.PostsAdminApproving post={post}/> : null}
+          {/*{admin ? <Telescope.components.PostsAdminApproving post={post}/> : null}*/}
           {this.renderSideRelatedList()}
         </aside>
       </div>
@@ -144,13 +145,12 @@ class PostsPage extends Component {
         <section className="postSection_1iIbk">
           <div className="sectionContent_21Amp">
             {/*<Telescope.components.PostsSingleHeader post={this.props.post}/>*/}
-            {/*{this.renderContent()}*/}
+            {this.renderContent()}
           </div>
         </section>
       </div>
     )
   }
 }
-
 
 export default PostsPage
