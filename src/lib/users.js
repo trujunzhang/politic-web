@@ -212,11 +212,14 @@ Users.openNewBackgroundTab = (element, url) => {
  * @returns {*}
  */
 Users.getUserCoverUrl = (user) => {
+  if (typeof user === 'undefined') {
+    return null
+  }
   let coverUrls = user.coverUrls || []
   if (!!coverUrls && coverUrls.length > 0) {
     return coverUrls[0].url
   }
-  return null 
+  return null
 }
 
 /**
