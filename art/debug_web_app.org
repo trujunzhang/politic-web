@@ -1,0 +1,17 @@
+* url
+
+** Profile
+  $ http://politicl.com/users/zhang-trujun
+  -$ http://politicl.com/users/zhang-trujun/downvotes
+  -$ http://politicl.com/users/zhang-trujun/posts
+  -$ http://politicl.com/users/zhang-trujun/collections
+
+
+** Folder
+  $ http://politicl.com/users/zhang-trujun/collections/ykp6fYoi8s2PkZDbp/Read%20Later
+
+** Collections
+  $ http://politicl.com/users/zhang-trujun/collections
+
+** Edit
+  $ http://politicl.com/users/my/edit
