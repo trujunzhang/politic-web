@@ -10,8 +10,7 @@ class PostsPage extends Component {
 
     const {post} = this.props
     this.state = this.initialState = {
-      status: post.status || 2,
-      cachedIds: post.relatedIds || []
+      status: post.status || 2
     }
   }
 
@@ -55,44 +54,12 @@ class PostsPage extends Component {
   }
 
   renderSideRelatedList () {
-    // Here, we cache the fetched related postIds, so no refresh after upvote/downvote post.
-    const {cachedIds} = this.state
-    let content = null
-    if (cachedIds.length === 0) {
-      content = (
-        <section className="results_37tfm">
-          <Telescope.components.PostsNoResults relatedList={true}/>
-        </section>
-      )
-    } else {
-      const {relatedPostCount} = this.props
-      const terms = {view: 'related', listId: `posts.related.list`, cachedIds: cachedIds, limit: relatedPostCount}
-      const {selector, options} = Posts.parameters.get(terms)
-
-      // content = (
-      //   <Telescope.components.RelatedListContainer
-      //     key={'relatedList'}
-      //     collection={Posts}
-      //     publication="posts.related.list"
-      //     selector={selector}
-      //     options={options}
-      //     terms={terms}
-      //     joins={Posts.getJoins()}
-      //     component={Telescope.components.PostsRelatedList}
-      //     cacheSubscription={false}
-      //     listId={terms.listId}
-      //     limit={terms.limit}
-      //     increment={0}
-      //   />
-      // )
-    }
-
     return (
       <div className="relatedPosts_3XCIU" rel="related-posts">
         <h2 className="heading_woLg1 heading_AsD8K title_2vHSk subtle_1BWOT base_3CbW2">
           Related Articles
         </h2>
-        {content}
+        <Telescope.components.PostsRelatedList/>
       </div>
     )
   }

@@ -1,10 +1,11 @@
 import Telescope from '../../../../lib'
 import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
 
 class PostsRelatedList extends Component {
 
   render () {
+    const ready = false
+
     if (ready && !!results.length) {
       return (
         <div>
@@ -16,7 +17,7 @@ class PostsRelatedList extends Component {
     } else if (!ready) {
       return (
         <section className="results_37tfm">
-          <Telescope.components.PostsLoading message={context.intl.formatMessage({id: 'load.more.hint.posts'})}/>
+          <Telescope.components.PostsLoading id='load.more.hint.posts'/>
         </section>
       )
     } else {
