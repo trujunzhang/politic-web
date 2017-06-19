@@ -17,7 +17,7 @@ class AdminTablescommentsColumn extends Component {
             onClick={(e) => {
               e.preventDefault()
               messages.appManagement.pushCommentQuery(router, {
-                postId: post._id,
+                postId: post.id,
                 status: 'approved'
               })
             }}

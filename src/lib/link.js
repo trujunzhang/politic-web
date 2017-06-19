@@ -14,4 +14,12 @@ export function pushForTopic (router, topic) {
   router.push(obj)
 }
 
+export function showDetailedPagePath (router, post) {
+  const {location} = router
+  const obj = {pathname: location.pathname, query: {postId: post.id}}
+  router.push(obj)
+}
+
+
+
 

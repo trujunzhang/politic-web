@@ -28,7 +28,7 @@ const {dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily} = require('.
  */
 function onUpdate () {
     store.dispatch(dismissPopModel())
-    store.dispatch(resetOverlayDetailedPosts())
+    // store.dispatch(resetOverlayDetailedPosts())
     store.dispatch(resetPostsDaily())
 }
 

@@ -30,7 +30,7 @@ class PostsRelatedItem extends Component {
           <div className="post-thumbnail related-thumbnail" onClick={this.onRelatedPostClick.bind(this)}>
             <a className="container_22rD3 related-thumbnail">
               <Telescope.components.BlurryImage
-                imageId={post._id + '-thumbnail'}
+                imageId={post.id + '-thumbnail'}
                 containerClass={'container__Ql6q lazyLoadContainer_3KgZD'}
                 imageClass={'post-list-thumbnail'}
                 imageSet={imageSet}

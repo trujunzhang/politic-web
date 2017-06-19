@@ -31,7 +31,7 @@ class PostsSingleHeader extends Component {
           <span className="secondaryText_PM80d inverse_1CN6F base_3CbW2">
             <time className="margin_left6">
               {/*2 months ago*/}
-              <FormattedRelative value={post.createdAt}/>
+              <FormattedRelative value={post.postedAt}/>
             </time>
           </span>
         </div>
@@ -51,11 +51,11 @@ class PostsSingleHeader extends Component {
     let thumbnails = []
     if (!!imageSet.small) {
       thumbnails.push(
-        <div key={post._id} className="post-thumbnail thumbnail_1qUpA">
+        <div key={post.id} className="post-thumbnail thumbnail_1qUpA">
           <a target="_blank" href={post.url}>
             <div className="container_22rD3" id="post-detail-thumbnail-panel">
               <Telescope.components.BlurryImage
-                imageId={post._id + '-thumbnail'}
+                imageId={post.id + '-thumbnail'}
                 containerClass={'container__Ql6q lazyLoadContainer_3KgZD'}
                 imageClass={'post-detail-thumbnail-panel'}
                 imageSet={imageSet}

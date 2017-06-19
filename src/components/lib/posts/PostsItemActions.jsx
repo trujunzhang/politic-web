@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 
+var {showDetailedPagePath} = require('../../../lib/link')
 const {pushModel, pushOverlayDetailedPost} = require('../../../actions').default
 
 class PostsItemActions extends Component {
@@ -98,11 +99,11 @@ class PostsItemActions extends Component {
 
     // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
     let {router, location, post} = this.props,
-        admin = false
+      admin = false
 
     // this.context.messages.pushRouterForDetailPage(router, post, admin);
-
-    this.props.dispatch(pushOverlayDetailedPost(this.props.post))
+    showDetailedPagePath(router, post)
+    this.props.dispatch(pushOverlayDetailedPost(post))
 
     e.stopPropagation()
   }

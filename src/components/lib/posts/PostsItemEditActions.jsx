@@ -41,7 +41,7 @@ class PostsItemEditActions extends Component {
         if (admin) {
             // Dashboard UI(for admin)
             // When admin clicks on Edit, the submitted article should open in a new window, not the same window.
-            Users.openNewWindow("/", {action: "edit", editId: post._id, admin: true});
+            Users.openNewWindow("/", {action: "edit", editId: post.id, admin: true});
         } else {
             // messages.pushRouter(router, {pathname: "/", query: {action: "edit", editId: post._id}});
         }

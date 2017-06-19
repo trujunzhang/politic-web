@@ -26,7 +26,7 @@ class AppAdminPostsEditAll extends Component {
   }
 
   onTitleCloseIcon (post) {
-    this.props.checkRow(post._id, false)
+    this.props.checkRow(post.id, false)
   }
 
   onCatSelectorGroupChange (categories) {
@@ -38,7 +38,7 @@ class AppAdminPostsEditAll extends Component {
     let self = this
     _.forEach(this.props.posts, function (post) {
       titles.push(
-        <div key={post._id} id="ttle">
+        <div key={post.id} id="ttle">
           <a className="table_edit_title_close_icon fa fa-close"
              title="Remove From Bulk Edit"
              onClick={self.onTitleCloseIcon.bind(self, post)}/>
