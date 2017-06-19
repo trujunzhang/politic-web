@@ -31,7 +31,7 @@ class PostsRelatedList extends Component {
       return (
         <div>
           {results.map(post =>
-            <Telescope.components.PostsRelatedItem key={post._id} post={post}/>
+            <Telescope.components.PostsRelatedItem key={post.id} post={post}/>
           )}
         </div>
       )

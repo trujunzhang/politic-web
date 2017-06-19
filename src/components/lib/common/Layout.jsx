@@ -26,7 +26,11 @@ class Layout extends Component {
     return (
       <div id='web-app-panel'>
         <Telescope.components.HeaderContent />
+
+        <Telescope.components.PopoverPosts />
+
         <Telescope.components.AppOverlay />
+
         {this.renderContent()}
       </div>
     )

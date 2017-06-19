@@ -81,7 +81,7 @@ class PostsItemActions extends Component {
         <div className="actionButtons_2mJsw">
           <Telescope.components.Upvote post={post}/>
           <Telescope.components.Downvote post={post}/>
-          <Telescope.components.PostsCommenters post={post} e={this.onPopupDetailPress.bind(this)}/>
+          <Telescope.components.PostsCommenters post={post} event={this.onPopupDetailPress.bind(this)}/>
           <div className="additionalActionButtons_BoErh">
             {this.renderSaveRemoveArticleButton()}
           </div>

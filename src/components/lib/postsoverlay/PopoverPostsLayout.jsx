@@ -1,6 +1,7 @@
 import Telescope from '../../lib'
 import React, { Component } from 'react'
 
+
 class PopoverPostsLayout extends Component {
 
   dismissCurrentPostPanel () {

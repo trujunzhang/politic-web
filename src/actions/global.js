@@ -30,51 +30,51 @@ import type { Action, ThunkAction } from './types'
  * The states were interested in
  */
 const {
-  OVERLAY_MODEL_PUSH,
-  OVERLAY_MODEL_DISMISS,
-  OVERLAY_DETAILS_POSTS_DISMISS,
-  OVERLAY_DETAILS_POSTS_PUSH,
-  LIST_VIEW_RESET_ALL_POSTS
+    OVERLAY_MODEL_PUSH,
+    OVERLAY_MODEL_DISMISS,
+    OVERLAY_DETAILS_POSTS_DISMISS,
+    OVERLAY_DETAILS_POSTS_PUSH,
+    LIST_VIEW_RESET_ALL_POSTS
 } = require('../lib/constants').default
 
 // ================================
 // For AppOverlay.js
 // ================================
 function pushModel (modelType: string, position: object = null, model: object = null): Action {
-  const data = {
-    modelType: modelType,
-    position: position,
-    model: model
-  }
+    const data = {
+        modelType: modelType,
+        position: position,
+        model: model
+    }
 
-  // TODO: Make sure reducers clear their state
-  return {type: OVERLAY_MODEL_PUSH, payload: data}
+    // TODO: Make sure reducers clear their state
+    return {type: OVERLAY_MODEL_PUSH, payload: data}
 }
 
 function dismissPopModel (): Action {
-  return {type: OVERLAY_MODEL_DISMISS}
+    return {type: OVERLAY_MODEL_DISMISS}
 }
 
 // ================================
 // For Popup detailed Posts
 // ================================
 function resetOverlayDetailedPosts (): Action {
-  return {type: OVERLAY_DETAILS_POSTS_DISMISS}
+    return {type: OVERLAY_DETAILS_POSTS_DISMISS}
 }
 
-function pushOverlayDetailedPost (): Action {
-  return {type: OVERLAY_DETAILS_POSTS_PUSH}
+function pushOverlayDetailedPost (post: object): Action {
+    return {type: OVERLAY_DETAILS_POSTS_PUSH, payload: post}
 }
 
 // ================================
 // For PostsDaily and PostsList
 // ================================
-function resetPostsDaily (post: object): Action {
-  return {type: LIST_VIEW_RESET_ALL_POSTS}
+function resetPostsDaily (): Action {
+    return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
 export default {
-  pushModel, dismissPopModel,
-  resetOverlayDetailedPosts, pushOverlayDetailedPost,
-  resetPostsDaily
+    pushModel, dismissPopModel,
+    resetOverlayDetailedPosts, pushOverlayDetailedPost,
+    resetPostsDaily
 }
