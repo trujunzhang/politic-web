@@ -23,6 +23,8 @@ export default keyMirror({
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
+  LOADED_POSTS_PAGE: null,
+
   GET_OVERLAY_MODELS: null,
   PUSH_OVERLAY_MODEL: null,
   POP_OVERLAY_MODEL: null,

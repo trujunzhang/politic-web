@@ -36,8 +36,26 @@ const PostsParameters = require('../parameters').Posts
  */
 const {
   LOADED_POSTS,
-  DASHBOARD_LOADED_POSTS
+  DASHBOARD_LOADED_POSTS,
+  LOADED_POSTS_PAGE
 } = require('../lib/constants').default
+
+function loadParseObject (type: string, query: Parse.Query, objectId: string): ThunkAction {
+  return (dispatch) => {
+    return query.get(objectId, {
+      success: (object) => {
+        debugger
+        // Flow can't guarantee {type, list} is a valid action
+        dispatch(({type, object}))
+      },
+      error: (error) => {
+        debugger
+      }
+    })
+
+  }
+
+}
 
 function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
   return (dispatch) => {
@@ -90,6 +108,20 @@ export default {
     var query = postQuery.skip(skipCount).limit(limit)
 
     return loadParseQuery(type, query, listTask, listId, limit)
+  },
+
+  loadPostPage: (objectId: string): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    const skipCount = (pageIndex - 1) * limit
+
+    var postQuery = new Parse.Query(Objects.Post).include('topics')
+
+    const param = new PostsParameters(postQuery)
+    postQuery = param.addParameters(terms).end()
+
+    var query = postQuery.skip(skipCount).limit(limit)
+
+    return loadParseObject(LOADED_POSTS_PAGE, query, objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {

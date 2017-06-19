@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
+const {loadPostPage} = require('../../../../actions').default
+
 class PostsPage extends Component {
 
   constructor (props) {
@@ -12,6 +14,11 @@ class PostsPage extends Component {
     this.state = this.initialState = {
       status: post.status || 2
     }
+  }
+
+  componentDidMount () {
+    debugger
+    this.props.dispatch(loadPostPage('GLp0BQ8hJD'))
   }
 
   onFlagClick () {
@@ -148,4 +155,22 @@ class PostsPage extends Component {
   }
 }
 
-export default PostsPage
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    postsOverlay: store.postsOverlay
+  }
+}
+
+/**
+ * Connect the properties
+ */
+
+export default connect(select)(PostsPage)
+
