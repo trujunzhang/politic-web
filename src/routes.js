@@ -30,6 +30,11 @@ const createRoutes = (store) => {
 
       childRoutes: [
         {
+          // http://localhost:3000/topic/lead
+          path: 'topic/(:slug)',
+          component: Telescope.components.PostsHome,
+        },
+        {
           // http://localhost:3000/from/thehindu.com
           path: 'from/(:domain)',
           component: Telescope.components.PostsHome,

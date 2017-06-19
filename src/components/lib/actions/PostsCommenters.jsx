@@ -19,6 +19,4 @@ const PostsCommenters = ({post, event}) => {
     )
 };
 
-PostsCommenters.displayName = "PostsCommenters";
-
 export default PostsCommenters;
