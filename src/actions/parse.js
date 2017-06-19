@@ -44,7 +44,6 @@ function loadParseObject (type: string, query: Parse.Query, objectId: string): T
   return (dispatch) => {
     return query.get(objectId, {
       success: (object) => {
-        debugger
         // Flow can't guarantee {type, list} is a valid action
         dispatch(({type, object}))
       },
@@ -111,17 +110,9 @@ export default {
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    const skipCount = (pageIndex - 1) * limit
+    var pageQuery = new Parse.Query(Objects.Post).include('topics')
 
-    var postQuery = new Parse.Query(Objects.Post).include('topics')
-
-    const param = new PostsParameters(postQuery)
-    postQuery = param.addParameters(terms).end()
-
-    var query = postQuery.skip(skipCount).limit(limit)
-
-    return loadParseObject(LOADED_POSTS_PAGE, query, objectId)
+    return loadParseObject(LOADED_POSTS_PAGE, pageQuery, objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {

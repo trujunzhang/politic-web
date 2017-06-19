@@ -81,15 +81,15 @@ class PostsPage extends Component {
       <button ref="userProfile"
               id="user-menu"
               className="button button--small button--chromeless u-baseColor--buttonNormal is-inSiteNavBar js-userActions">
-        <Telescope.components.UsersBlurryImageAvatar
-          avatarObj={Users.getAvatarObj(curator)}
-          size={32}/>
+        {/*<Telescope.components.UsersBlurryImageAvatar*/}
+          {/*avatarObj={Users.getAvatarObj(curator)}*/}
+          {/*size={32}/>*/}
       </button>
     )
   }
 
   renderCuratorSection () {
-    let curator = this.props.post.user,
+    let curator = this.props.user,
       displayName = Users.getDisplayName(curator)
 
     // 18/12/2016
@@ -146,8 +146,8 @@ class PostsPage extends Component {
       <div className="page_content_3X9xi" id="overlay-article">
         <section className="postSection_1iIbk">
           <div className="sectionContent_21Amp">
-            <Telescope.components.PostsSingleHeader post={this.props.post}/>
-            {this.renderContent()}
+            {/*<Telescope.components.PostsSingleHeader post={this.props.post}/>*/}
+            {/*{this.renderContent()}*/}
           </div>
         </section>
       </div>
