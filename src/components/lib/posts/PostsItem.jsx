@@ -47,6 +47,8 @@ class PostsItem extends Component {
               imageClass={'post-list-thumbnail'}
               imageSet={imageSet}
               imageTitle={post.title}
+              width={'100%'}
+              height={'100%'}
             />
           </div>
         </div>

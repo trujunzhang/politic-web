@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 class BlurryImage extends Component {
 
   render () {
-    const {imageId, containerClass, imageClass, imageSet, imageTitle} = this.props
+    const {imageId, containerClass, imageClass, imageSet, imageTitle} = this.props,
+      width = this.props.width || '100%',
+      height = this.props.height || '100%'
 
     return (
-      <div style={{width: '100%', height: '100%'}}>
+      <div style={{width: width, height: height}}>
         <div className={containerClass } id={'panel-blurry-' + imageId}>
           <img
             id={'blurry-' + imageId}

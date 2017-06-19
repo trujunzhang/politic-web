@@ -33,6 +33,8 @@ class PostsRelatedItem extends Component {
                 imageClass={'post-list-thumbnail'}
                 imageSet={imageSet}
                 imageTitle={post.title}
+                width={62}
+                height={62}
               />
             </a>
           </div>
