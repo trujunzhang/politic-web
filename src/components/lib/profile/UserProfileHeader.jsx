@@ -99,5 +99,19 @@ class UserProfileHeader extends Component {
   }
 }
 
-export default withRouter(UserProfileHeader)
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+function select (store) {
+  return {
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+    currentUser: store.user
+  }
+}
+
+export default connect(select)(UserProfileHeader)
 
