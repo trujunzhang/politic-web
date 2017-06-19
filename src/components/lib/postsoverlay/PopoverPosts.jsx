@@ -10,7 +10,7 @@ class PopoverPosts extends Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(loadPostPage('GLp0BQ8hJD'))
+    this.props.dispatch(loadPostPage('cDJao7Bw3P'))
   }
 
   renderContent () {

@@ -35,7 +35,7 @@ const createRoutes = (store) => {
           component: Telescope.components.PostsHome,
         },
         {
-          // http://localhost:3000/post/GLp0BQ8hJD
+          // http://localhost:3000/post/cDJao7Bw3P
           path: 'post/(:id)',
           component: Telescope.components.PopoverPosts,
         },

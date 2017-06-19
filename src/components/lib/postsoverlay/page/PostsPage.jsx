@@ -114,15 +114,14 @@ class PostsPage extends Component {
   }
 
   renderContent () {
-    const {post, location} = this.props,
-      {currentUser} = this.context,
+    const {post} = this.props,
       admin = false
 
     return (
       <div className="constraintWidth_ZyYbM body_1a08C">
         <main className="main_3lfDa">
           {/*post's tags*/}
-          <Telescope.components.PostsPageTopics post={post} onTagClick={this.onTagClick.bind(this)}/>
+          <Telescope.components.PostsPageTopics post={post}/>
           {/*middle left*/}
           <Telescope.components.PostDetail post={post}/>
           {/*Curator*/}

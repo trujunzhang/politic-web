@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
 
 class PostsItemTopics extends Component {
 
@@ -11,7 +10,7 @@ class PostsItemTopics extends Component {
    * @returns {XML}
    */
   render () {
-    let topics = this.props.post.topics,
+    const {topics} = this.props.post,
       tagsMoreCount = topics.length > 0 ? topics.length - 1 : 0
 
     if (topics.length !== 0) {
@@ -54,8 +53,4 @@ class PostsItemTopics extends Component {
   }
 }
 
-PostsItemTopics.propTypes = {
-  post: React.PropTypes.object.isRequired
-}
-
-export default withRouter(PostsItemTopics)
+export default PostsItemTopics
