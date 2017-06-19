@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
+
+var {pushForTopic} = require('../../../lib/link')
 
 class PostsItemTopics extends Component {
 
@@ -43,14 +46,15 @@ class PostsItemTopics extends Component {
   onTagClick (event) {
     event.preventDefault()
 
-    let topics = this.props.post.topics
+    const {post, router} = this.props,
+      {topics} = post
 
     if (topics.length > 0) {
-      // this.context.messages.pushForTopic(router, topics[0])
+      pushForTopic(router, topics[0])
     }
 
     event.stopPropagation()
   }
 }
 
-export default PostsItemTopics
+export default withRouter(PostsItemTopics)

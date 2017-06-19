@@ -164,6 +164,9 @@ class PostsItemActions extends Component {
     let width = this.refs.saveButton.offsetWidth
     let height = this.refs.saveButton.offsetHeight
 
+    let xxx = this.refs.saveButton.getBoundingClientRect()
+
+    debugger
     this.props.dispatch(pushModel('moreTopicsList', {
       top: top,
       left: left,
