@@ -102,6 +102,13 @@ class PostsItemActions extends Component {
     //
     // this.context.messages.pushRouterForDetailPage(router, post, admin);
 
+    this.props.dispatch(pushModel('moreTopicsList', {
+      top: clientRect.top + window.pageYOffset,
+      left: clientRect.left + window.pageXOffset,
+      width: this.refs.saveButton.offsetWidth,
+      height: this.refs.saveButton.offsetHeight
+    }, {moreTopics: this.props.post.topics.slice(1)}))
+
     e.stopPropagation()
   }
 

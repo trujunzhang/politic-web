@@ -30,8 +30,8 @@ import type { Action } from '../actions/types'
  * The states were interested in
  */
 const {
-  OVERLAY_POSTS_DISMISS,
-  OVERLAY_POSTS_PUSH,
+  OVERLAY_DETAILS_POSTS_DISMISS,
+  OVERLAY_DETAILS_POSTS_PUSH,
   OVERLAY_LOADED_POSTS_PAGE,
   OVERLAY_LOADED_RELATED_POSTS
 } = require('../lib/constants').default
@@ -66,12 +66,12 @@ function postsOverlay (state: State = initialState, action: Action): State {
     return nextState
   }
 
-  if (action.type === OVERLAY_POSTS_DISMISS) {
+  if (action.type === OVERLAY_DETAILS_POSTS_DISMISS) {
     const nextState = Object.assign({}, state, initialState)
     return nextState
   }
 
-  if (action.type === OVERLAY_POSTS_PUSH) {
+  if (action.type === OVERLAY_DETAILS_POSTS_PUSH) {
     return {
       isFetching: true,
       currentModel: null,
