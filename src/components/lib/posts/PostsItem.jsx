@@ -74,12 +74,7 @@ class PostsItem extends Component {
 
   onReadMoreClick (e) {
     e.preventDefault()
-
-    const {post} = this.props
-    const url = post.url
-
-    Users.openNewBackgroundTab(e.target, url)
-
+    Users.openNewBackgroundTab(e.target, this.props.post.url)
     e.stopPropagation()
   }
 
