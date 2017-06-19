@@ -39,26 +39,6 @@ class PostsItemActions extends Component {
     )
   }
 
-  // issue #118
-  // Remove
-  renderMoreButton () {
-    return (
-      <span id="posts_item_read_more_button"
-            className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W"
-            onClick={this.onReadMoreClick.bind(this)}>
-        <div className="buttonContainer_wTYxi">
-          <span>
-            <svg width="10" height="10" viewBox="0 0 10 10">
-              <path
-                d="M5.9816,1.0418 L8.2136,1.0418 L3.8976,5.3578 L4.6426,6.1018 L8.9586,1.7858 L8.9586,4.0188 L9.9996,4.0188 L9.9996,0.5208 C9.9996,0.2228 9.7766,-0.0002 9.4786,-0.0002 L5.9816,-0.0002 L5.9816,1.0418 Z M9,9 L1,9 L1,1 L3.97833252,1 L3.97833252,0 L0.51,0 C0.228,0 0,0.228 0,0.51 L0,9.49 C0,9.772 0.228,10 0.51,10 L9.49,10 C9.772,10 10,9.772 10,9.49 L10,6.02606201 L9,6.02606201 L9,9 Z"
-                fill="#FFF"/>
-            </svg>
-          </span>
-        </div>
-      </span>
-    )
-  }
-
   render () {
     const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
 
@@ -111,17 +91,6 @@ class PostsItemActions extends Component {
           onMoreTopicsClick={this.onMoreTopicsClick.bind(this)}/>
       </div>
     )
-  }
-
-  onReadMoreClick (event) {
-    event.preventDefault()
-
-    // const {post} = this.props,
-    //     {url} = post;
-
-    // Users.openNewBackgroundTab(event.target, url);
-
-    event.stopPropagation()
   }
 
   popupDetail (event) {
