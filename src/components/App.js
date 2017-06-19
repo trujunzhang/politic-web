@@ -1,5 +1,6 @@
 import React from 'react'
-import { browserHistory, Router } from 'react-router'
+// import { browserHistory, Router } from 'react-router'
+import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 import { IntlProvider } from 'react-intl'
@@ -27,7 +28,7 @@ class App extends React.Component {
       <Provider store={this.props.store}>
         <IntlProvider locale='en' messages={Telescope.strings.en}>
           <div style={{height: '100%'}}>
-            <Router history={browserHistory} children={this.props.routes}/>
+            <Router history={this.props.history} children={this.props.routes} onUpdate={this.props.onUpdate}/>
           </div>
         </IntlProvider>
       </Provider>

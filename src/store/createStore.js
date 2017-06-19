@@ -6,6 +6,7 @@ import promise from './promise'
 import { updateLocation } from './location'
 import { persistStore, autoRehydrate } from 'redux-persist'
 
+
 // Logger with default options
 import logger from 'redux-logger'
 
