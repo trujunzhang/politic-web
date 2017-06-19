@@ -75,14 +75,14 @@ function detailedPostsOverlay (state: State = initialState, action: Action): Sta
     if (action.type === OVERLAY_DETAILS_POSTS_PUSH) {
         const post = action.payload
 
-        const pages = state.pages.push(post)
+        // const pages = state.pages.push(post)
 
         const nextState = Object.assign({}, state, {
             isFetching:false,
             currentModel: {objectId: post.id, model: post},
             isFetchingRelated: true,
             currentRelatedPosts: [],
-            pages:pages
+            // pages:pages
         })
 
         return nextState
