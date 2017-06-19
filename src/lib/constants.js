@@ -17,6 +17,7 @@ export default keyMirror({
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
+  OVERLAY_DISMISS: null,
   OVERLAY_POSTS_PUSH: null,
   OVERLAY_POSTS_POP: null,
   OVERLAY_POSTS_EMPTY: null,

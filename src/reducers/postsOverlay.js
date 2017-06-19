@@ -30,6 +30,7 @@ import type { Action } from '../actions/types'
  * The states were interested in
  */
 const {
+  OVERLAY_DISMISS,
   OVERLAY_POSTS_PUSH,
   OVERLAY_LOADED_POSTS_PAGE,
   OVERLAY_LOADED_RELATED_POSTS
@@ -62,6 +63,12 @@ function postsOverlay (state: State = initialState, action: Action): State {
       currentRelatedPosts: list.map(fromParsePost),
       isFetchingRelated: false,
     })
+    return nextState
+  }
+
+  if (action.type === OVERLAY_DISMISS) {
+    debugger
+    const nextState = Object.assign({}, state, initialState)
     return nextState
   }
 
