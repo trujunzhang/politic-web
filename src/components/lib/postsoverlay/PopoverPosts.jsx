@@ -14,8 +14,8 @@ class PopoverPosts extends Component {
   }
 
   renderContent () {
-    const {postsOverlay} = this.props,
-      {isFetching, currentModel} = postsOverlay
+    const {detailedPostsOverlay} = this.props,
+      {isFetching, currentModel} = detailedPostsOverlay
 
     if (isFetching) {
       return (
@@ -50,7 +50,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    postsOverlay: store.postsOverlay
+    detailedPostsOverlay: store.detailedPostsOverlay
   }
 }
 

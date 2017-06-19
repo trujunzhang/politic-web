@@ -23,9 +23,9 @@ class PostsRelatedList extends Component {
   }
 
   render () {
-    const {postsOverlay} = this.props,
-      {isFetchingRelated} = postsOverlay,
-      results = postsOverlay.currentRelatedPosts || []
+    const {detailedPostsOverlay} = this.props,
+      {isFetchingRelated} = detailedPostsOverlay,
+      results = detailedPostsOverlay.currentRelatedPosts || []
 
     if (!isFetchingRelated && !!results.length) {
       return (
@@ -60,7 +60,7 @@ import { connect } from 'react-redux'
 
 function select (store) {
   return {
-    postsOverlay: store.postsOverlay
+    detailedPostsOverlay: store.detailedPostsOverlay
   }
 }
 
