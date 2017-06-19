@@ -169,10 +169,10 @@ class UsersProfile extends Component {
   }
 
   renderCommon () {
-    const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
+    const {currentUser} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
     return (
       <div>
-        <Telescope.components.UserProfileHeader user={user}/>
+        <Telescope.components.UserProfileHeader user={currentUser}/>
         <div className="constraintWidth_ZyYbM body_1RqUJ">
 
           {this.renderLeftPanel()}
