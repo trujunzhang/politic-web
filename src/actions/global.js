@@ -54,4 +54,4 @@ function resetOverlayPosts (): Action {
   return {type: OVERLAY_POSTS_DISMISS}
 }
 
-export default {pushModel, dismissPopModel}
+export default {pushModel, dismissPopModel, resetOverlayPosts }
