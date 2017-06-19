@@ -30,7 +30,7 @@ class PostsSingleHeader extends Component {
         <div>
           <span className="secondaryText_PM80d inverse_1CN6F base_3CbW2">
             <time className="margin_left6">
-                            {/*2 months ago*/}
+              {/*2 months ago*/}
               <FormattedRelative value={post.createdAt}/>
             </time>
           </span>
@@ -88,7 +88,7 @@ class PostsSingleHeader extends Component {
           <div className="timestamp_3yr9h">
             <span className="secondaryText_PM80d inverse_1CN6F base_3CbW2">
               <time className="margin_left6">
-                            {/*2 months ago*/}
+                {/*2 months ago*/}
                 <FormattedRelative value={post.createdAt}/>
               </time>
             </span>
