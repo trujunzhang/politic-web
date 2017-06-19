@@ -23,17 +23,19 @@ class PostsRelatedList extends Component {
   }
 
   render () {
-    const ready = false
+    const {postsOverlay} = this.props,
+      {isFetchingRelated} = postsOverlay,
+      results = postsOverlay.currentRelatedPosts || []
 
-    if (ready && !!results.length) {
+    if (!isFetchingRelated && !!results.length) {
       return (
         <div>
           {results.map(post =>
-            <Telescope.components.PostsRelatedItem key={post._id} post={post} currentUser={currentUser}/>
+            <Telescope.components.PostsRelatedItem key={post._id} post={post}/>
           )}
         </div>
       )
-    } else if (!ready) {
+    } else if (isFetchingRelated) {
       return (
         <section className="results_37tfm">
           <Telescope.components.PostsLoading id='load.more.hint.posts'/>

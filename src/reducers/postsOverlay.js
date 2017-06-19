@@ -43,6 +43,7 @@ const {fromParsePost} = require('./parseModels')
 
 const initialState = {
   isFetching: true,
+  isFetchingRelated: true,
   currentModel: null,
   currentRelatedPosts: [],
   pages: []
@@ -62,9 +63,9 @@ function postsOverlay (state: State = initialState, action: Action): State {
   if (action.type === LOADED_RELATED_POSTS) {
     const {list, listTask, listId, limit, totalCount} = action.data
     const objects = list.map(fromParsePost)
-    debugger
     const nextState = Object.assign({}, state, {
-      currentRelatedPosts: objects
+      currentRelatedPosts: objects,
+      isFetchingRelated: false,
     })
     return nextState
   }
