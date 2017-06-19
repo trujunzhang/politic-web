@@ -28,9 +28,9 @@ const createParseReducer = require('./createParseReducer').default
  * The states were interested in
  */
 const {
-  LIST_VIEW_LOADED_TOPICS
+  DASHBOARD_LOADED_TOPICS
 } = require('../lib/constants').default
 
 const {fromParseTopic} = require('./parseModels')
 
-export default createParseReducer(LIST_VIEW_LOADED_TOPICS, fromParseTopic)
+export default createParseReducer(DASHBOARD_LOADED_TOPICS, fromParseTopic)

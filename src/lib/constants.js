@@ -14,11 +14,12 @@ export default keyMirror({
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS: null,
 
   DASHBOARD_LOADED_POSTS: null,
+  DASHBOARD_LOADED_TOPICS: null,
   DASHBOARD_RESET: null,
 
   // PostHome, PostDaily
-  LIST_VIEW_LOADED_TOPICS: null,
   LIST_VIEW_LOADED_POSTS: null,
+  LIST_VIEW_RESET_ALL_POSTS: null,
 
   // Detailed Posts
   OVERLAY_POSTS_DISMISS: null,

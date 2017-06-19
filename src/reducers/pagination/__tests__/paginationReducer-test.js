@@ -19,8 +19,6 @@
  * case statements are shared amongst the actions.
  */
 const {
-
-  LIST_VIEW_LOADED_TOPICS,
   LIST_VIEW_LOADED_POSTS
 } = require('../../../lib/constants').default
 
