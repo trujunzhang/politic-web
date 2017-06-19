@@ -9,7 +9,7 @@ function adjustNewQuery (router, newQuery) {
 }
 
 export function pushForTopic (router, topic) {
-  const obj = {pathname: `topic/${topic.id}/${topic.name}`, query: {}}
+  const obj = {pathname: `/topic/${topic.id}/${topic.name}`, query: {}}
   adjustNewQuery(router, obj.query)
   router.push(obj)
 }
