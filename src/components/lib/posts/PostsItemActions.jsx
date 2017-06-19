@@ -158,13 +158,11 @@ class PostsItemActions extends Component {
   onMoreTopicsClick (event) {
     event.preventDefault()
 
-    const {post} = this.props
-    let top = this.refs.saveButton.offsetTop
-    let left = this.refs.saveButton.offsetLeft
+    let clientRect = this.refs.saveButton.getBoundingClientRect()
+    let top = clientRect.top + window.pageYOffset
+    let left = clientRect.left + window.pageXOffset
     let width = this.refs.saveButton.offsetWidth
     let height = this.refs.saveButton.offsetHeight
-
-    let xxx = this.refs.saveButton.getBoundingClientRect()
 
     debugger
     this.props.dispatch(pushModel('moreTopicsList', {
@@ -172,7 +170,7 @@ class PostsItemActions extends Component {
       left: left,
       width: width,
       height: height
-    }, {moreTopics: post.topics.slice(1)}))
+    }, {moreTopics: this.props.post.topics.slice(1)}))
     // this.context.messages.showPopoverMenu("", post.topicsArray.slice(1), top, left, width, height);
 
     event.stopPropagation()
