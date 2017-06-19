@@ -1,10 +1,14 @@
 import Telescope from '../../lib'
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 
+const {resetOverlayDetailedPosts} = require('../../../actions').default
 
 class PopoverPostsLayout extends Component {
 
-  dismissCurrentPostPanel () {
+  dismissCurrentPostPanel (e) {
+    e.preventDefault()
+
     // this.props.router.goBack()
   }
 
@@ -17,10 +21,8 @@ class PopoverPostsLayout extends Component {
   closingMultipleOverlayArticles (e) {
     e.preventDefault()
 
-    const {locationrouter} = this.props,
-      {messages} = this.context,
-      {pathname} = location
-    // messages.dismissAllPopoverPosts()
+    this.props.dispatch(resetOverlayDetailedPosts())
+
     // router.replace({pathname: pathname})
   }
 
@@ -64,4 +66,16 @@ class PopoverPostsLayout extends Component {
 
 }
 
-export default PopoverPostsLayout
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+/**
+ * Connect the properties
+ */
+
+export default withRouter(connect()(PopoverPostsLayout))
+

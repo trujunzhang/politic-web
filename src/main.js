@@ -14,10 +14,10 @@ const store = createStore(window.__INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
 
 history.listen((location) => {
-  window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
 
-// debugger
-  // analyticsService.track(location.pathname)
+    // debugger
+    // analyticsService.track(location.pathname)
 })
 
 const {dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily} = require('./actions').default
@@ -27,9 +27,9 @@ const {dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily} = require('.
  * https://github.com/reactGo/reactGo/blob/master/app/client.jsx
  */
 function onUpdate () {
-  store.dispatch(dismissPopModel())
-  store.dispatch(resetOverlayDetailedPosts())
-  store.dispatch(resetPostsDaily())
+    store.dispatch(dismissPopModel())
+    store.dispatch(resetOverlayDetailedPosts())
+    store.dispatch(resetPostsDaily())
 }
 
 // Render Setup
@@ -37,46 +37,46 @@ function onUpdate () {
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
-  const App = require('./components/App').default
-  const routes = require('./routes').default(store)
+    const App = require('./components/App').default
+    const routes = require('./routes').default(store)
 
-  ReactDOM.render(
-    <App store={store} routes={routes} history={history} onUpdate={onUpdate}/>,
-    MOUNT_NODE
-  )
+    ReactDOM.render(
+        <App store={store} routes={routes} history={history} onUpdate={onUpdate}/>,
+        MOUNT_NODE
+    )
 }
 
 // Development Tools
 // ------------------------------------
 if (__DEV__) {
-  if (module.hot) {
-    const renderApp = render
-    const renderError = (error) => {
-      const RedBox = require('redbox-react').default
+    if (module.hot) {
+        const renderApp = render
+        const renderError = (error) => {
+            const RedBox = require('redbox-react').default
 
-      ReactDOM.render(<RedBox error={error}/>, MOUNT_NODE)
+            ReactDOM.render(<RedBox error={error}/>, MOUNT_NODE)
+        }
+
+        render = () => {
+            try {
+                renderApp()
+            } catch (e) {
+                console.error(e)
+                renderError(e)
+            }
+        }
+
+        // Setup hot module replacement
+        module.hot.accept([
+            './components/App',
+            './routes',
+        ], () =>
+            setImmediate(() => {
+                ReactDOM.unmountComponentAtNode(MOUNT_NODE)
+                render()
+            })
+        )
     }
-
-    render = () => {
-      try {
-        renderApp()
-      } catch (e) {
-        console.error(e)
-        renderError(e)
-      }
-    }
-
-    // Setup hot module replacement
-    module.hot.accept([
-        './components/App',
-        './routes',
-      ], () =>
-        setImmediate(() => {
-          ReactDOM.unmountComponentAtNode(MOUNT_NODE)
-          render()
-        })
-    )
-  }
 }
 
 // Let's Go!
