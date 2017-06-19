@@ -46,7 +46,7 @@ const initialState = {
   pages: []
 }
 
-function postsOverlay (state: State = initialState, action: Action): State {
+function detailedPostsOverlay (state: State = initialState, action: Action): State {
   if (action.type === OVERLAY_LOADED_POSTS_PAGE) {
     let {objectId, object} = action.data
 
@@ -83,4 +83,4 @@ function postsOverlay (state: State = initialState, action: Action): State {
   return state
 }
 
-export default postsOverlay
+export default detailedPostsOverlay
