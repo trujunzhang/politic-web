@@ -97,27 +97,12 @@ class PostsItemActions extends Component {
     e.preventDefault()
 
     // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
-    // let {router, location, post} = this.props,
-    //     admin = this.context.messages.appManagement.getAdmin(location, user);
-    //
+    let {router, location, post} = this.props,
+        admin = false
+
     // this.context.messages.pushRouterForDetailPage(router, post, admin);
 
     this.props.dispatch(pushOverlayDetailedPost(this.props.post))
-
-    e.stopPropagation()
-  }
-
-  onSaveButtonClick (e) {
-    e.preventDefault()
-
-    // const {post} = this.props;
-    // const {currentUser} = this.context;
-    // if (!currentUser) {
-    //     const title = 'save "' + post.title + '" to collection.';
-    //     this.context.messages.showLoginUI(title);
-    // } else {
-    //     this.popoverSaveButtonClick();
-    // }
 
     e.stopPropagation()
   }
@@ -136,23 +121,14 @@ class PostsItemActions extends Component {
     // }, top, left, width, height);
   }
 
-  onRemoveButtonClick (e) {
+  onSaveButtonClick (e) {
     e.preventDefault()
 
-    // const {post} = this.props;
-    // let {folder} = this.props;
-    // folder['lastPost'] = post._id;
-    //
-    // const modifier = {...folder, lastPost: post._id};
-    //
-    // const deleteFolderConfirm = "Are you sure you want to delete this post? There is no way back. This is a path without return! Be brave?";
-    // if (window.confirm(deleteFolderConfirm)) {
-    //     this.context.actions.call('folders.removePost', folder, (error, result) => {
-    //         if (!!error) {
-    //             this.context.messages.flash(this.context.intl.formatMessage({id: "msg.error.folders.delete.post"}, {title: post.title}), "error");
-    //         }
-    //     });
-    // }
+    e.stopPropagation()
+  }
+
+  onRemoveButtonClick (e) {
+    e.preventDefault()
 
     e.stopPropagation()
   }
