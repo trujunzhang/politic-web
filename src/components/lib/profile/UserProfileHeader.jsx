@@ -79,7 +79,7 @@ class UserProfileHeader extends Component {
             <span className="user-image image_1r8-2 v-big">
               <div className="container_22rD3 user-image--image user-image-size">
                 <div className="container__Ql6q lazyLoadContainer_3KgZD">
-                  <Avatar {...avatarObj.avatar} size={140} round={false}/>
+                  <Avatar {...avatarObj.avatar} size={140} round={true}/>
                 </div>
               </div>
             </span>
