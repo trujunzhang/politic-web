@@ -1,4 +1,4 @@
-import Telescope from '../../../lib'
+import Telescope from '../../lib'
 import React, { Component } from 'react'
 
 class PopoverPosts extends Component {
@@ -12,20 +12,15 @@ class PopoverPosts extends Component {
   }
 
   render () {
-    if (this.state.didMount) {
-      document.body.className = (!!currentPost) ? 'no-scroll' : ''
-    }
-    if ((!!currentPost)) {
-      return (
-        <div>
-          <Telescope.components.PopoverPostsLayout key="currentpost">
-            <Telescope.components.PostsSingle params={{'slug': currentPost.slug, '_id': currentPost._id}}/>
-          </Telescope.components.PopoverPostsLayout>
-        </div>
-      )
-    }
-    return null
+    return (
+      <div>
+        <Telescope.components.PopoverPostsLayout key="currentpost">
+          {/*<Telescope.components.PostsSingle params={{'slug': currentPost.slug, '_id': currentPost._id}}/>*/}
+        </Telescope.components.PopoverPostsLayout>
+      </div>
+    )
   }
+
 }
 
 /**
