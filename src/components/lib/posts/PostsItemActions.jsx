@@ -159,16 +159,11 @@ class PostsItemActions extends Component {
     event.preventDefault()
 
     let clientRect = this.refs.saveButton.getBoundingClientRect()
-    let top = clientRect.top + window.pageYOffset
-    let left = clientRect.left + window.pageXOffset
-    let width = this.refs.saveButton.offsetWidth
-    let height = this.refs.saveButton.offsetHeight
-
     this.props.dispatch(pushModel('moreTopicsList', {
-      top: top,
-      left: left,
-      width: width,
-      height: height
+      top: clientRect.top + window.pageYOffset,
+      left: clientRect.left + window.pageXOffset,
+      width: this.refs.saveButton.offsetWidth,
+      height: this.refs.saveButton.offsetHeight
     }, {moreTopics: this.props.post.topics.slice(1)}))
 
     event.stopPropagation()
