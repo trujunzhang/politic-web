@@ -30,13 +30,9 @@ import type { Action } from '../actions/types'
  * The states were interested in
  */
 const {
-  POSTS_OVERLAY_PUSH,
-  POSTS_OVERLAY_POP,
-  POSTS_OVERLAY_EMPTY,
-  POSTS_OVERLAY_BACKWARD,
-  POSTS_OVERLAY_FORWARD,
-  LOADED_POSTS_PAGE,
-  LOADED_RELATED_POSTS
+  OVERLAY_POSTS_PUSH,
+  OVERLAY_LOADED_POSTS_PAGE,
+  OVERLAY_LOADED_RELATED_POSTS
 } = require('../lib/constants').default
 
 const {fromParsePost} = require('./parseModels')
@@ -50,7 +46,7 @@ const initialState = {
 }
 
 function postsOverlay (state: State = initialState, action: Action): State {
-  if (action.type === LOADED_POSTS_PAGE) {
+  if (action.type === OVERLAY_LOADED_POSTS_PAGE) {
     let {objectId, object} = action.data
 
     const nextState = Object.assign({}, state, {
@@ -59,7 +55,7 @@ function postsOverlay (state: State = initialState, action: Action): State {
     })
     return nextState
   }
-  if (action.type === LOADED_RELATED_POSTS) {
+  if (action.type === OVERLAY_LOADED_RELATED_POSTS) {
     const {list, listTask, listId, limit, totalCount} = action.data
 
     const nextState = Object.assign({}, state, {
@@ -69,7 +65,7 @@ function postsOverlay (state: State = initialState, action: Action): State {
     return nextState
   }
 
-  if (action.type === POSTS_OVERLAY_PUSH) {
+  if (action.type === OVERLAY_POSTS_PUSH) {
     return {
       isFetching: true,
       currentModel: null,

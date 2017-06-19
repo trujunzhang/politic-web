@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 const {loadPosts} = require('../../../../actions').default
 
 const {
-  LOADED_RELATED_POSTS
+  OVERLAY_LOADED_RELATED_POSTS
 } = require('../../../../lib/constants').default
 
 const RELATED_POSTS_COUNT = 6
@@ -19,7 +19,7 @@ class PostsRelatedList extends Component {
     const terms = {
       related: {id: this.props.post.id, author: this.props.post.author}
     }
-    this.props.dispatch(loadPosts(listTask, 'posts.related.list', terms, LOADED_RELATED_POSTS))
+    this.props.dispatch(loadPosts(listTask, 'posts.related.list', terms, OVERLAY_LOADED_RELATED_POSTS))
   }
 
   render () {

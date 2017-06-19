@@ -37,7 +37,7 @@ const PostsParameters = require('../parameters').Posts
 const {
   LOADED_POSTS,
   DASHBOARD_LOADED_POSTS,
-  LOADED_POSTS_PAGE
+  OVERLAY_LOADED_POSTS_PAGE
 } = require('../lib/constants').default
 
 function loadParseObject (type: string, query: Parse.Query, objectId: string): ThunkAction {
@@ -119,7 +119,7 @@ export default {
   loadPostPage: (objectId: string): ThunkAction => {
     var pageQuery = new Parse.Query(Objects.Post).include('topics')
 
-    return loadParseObject(LOADED_POSTS_PAGE, pageQuery, objectId)
+    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {

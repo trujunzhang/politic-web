@@ -1,14 +1,6 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
-  POSTS_OVERLAY_PUSH: null,
-  POSTS_OVERLAY_POP: null,
-  POSTS_OVERLAY_EMPTY: null,
-  POSTS_OVERLAY_BACKWARD: null,
-  POSTS_OVERLAY_FORWARD: null,
-
-  LOADED_RELATED_POSTS: null,
-
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
   DASHBOARD_EDIT_SINGLE_ROW_CANCEL: null,
@@ -25,7 +17,14 @@ export default keyMirror({
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
-  LOADED_POSTS_PAGE: null,
+  OVERLAY_POSTS_PUSH: null,
+  OVERLAY_POSTS_POP: null,
+  OVERLAY_POSTS_EMPTY: null,
+  OVERLAY_POSTS_BACKWARD: null,
+  OVERLAY_POSTS_FORWARD: null,
+
+  OVERLAY_LOADED_POSTS_PAGE: null,
+  OVERLAY_LOADED_RELATED_POSTS: null,
 
   GET_OVERLAY_MODELS: null,
   PUSH_OVERLAY_MODEL: null,
