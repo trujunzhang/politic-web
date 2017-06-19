@@ -20,7 +20,7 @@ history.listen((location) => {
   // analyticsService.track(location.pathname)
 })
 
-const { dismissPopModel, resetOverlayPosts} = require('./actions').default
+const {dismissPopModel, resetOverlayPosts, resetPostsDaily} = require('./actions').default
 
 /**
  * Callback function handling frontend route changes.
@@ -29,6 +29,7 @@ const { dismissPopModel, resetOverlayPosts} = require('./actions').default
 function onUpdate () {
   store.dispatch(dismissPopModel())
   store.dispatch(resetOverlayPosts())
+  store.dispatch(resetPostsDaily())
 }
 
 // Render Setup

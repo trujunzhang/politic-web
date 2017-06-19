@@ -59,4 +59,4 @@ function resetPostsDaily (): Action {
   return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
-export default {pushModel, dismissPopModel, resetOverlayPosts}
+export default {pushModel, dismissPopModel, resetOverlayPosts, resetPostsDaily}

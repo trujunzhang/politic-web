@@ -66,10 +66,7 @@ function paginationReducer (state: State = initialState, action): State {
     }
 
     case LIST_VIEW_RESET_ALL_POSTS: {
-      const nextState = Object.assign({}, state, {
-        isFetchingRelated: false,
-      })
-      return nextState
+      return Map({})
     }
 
   }
