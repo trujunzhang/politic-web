@@ -31,7 +31,8 @@ import type { Action, ThunkAction } from './types'
  */
 const {
   PUSH_OVERLAY_MODEL,
-  POP_OVERLAY_MODEL
+  POP_OVERLAY_MODEL,
+  OVERLAY_DISMISS
 } = require('../lib/constants').default
 
 function pushModel (modelType: string, position: object = null, model: object = null): Action {
@@ -47,6 +48,10 @@ function pushModel (modelType: string, position: object = null, model: object = 
 
 function popModel (): Action {
   return {type: POP_OVERLAY_MODEL}
+}
+
+function resetOverlayPosts (): Action {
+  return {type: OVERLAY_DISMISS}
 }
 
 export default {pushModel, popModel}

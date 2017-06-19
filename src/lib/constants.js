@@ -1,6 +1,10 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  GET_OVERLAY_MODELS: null,
+  PUSH_OVERLAY_MODEL: null,
+  POP_OVERLAY_MODEL: null,
+
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
   DASHBOARD_EDIT_SINGLE_ROW_CANCEL: null,
@@ -26,10 +30,6 @@ export default keyMirror({
 
   OVERLAY_LOADED_POSTS_PAGE: null,
   OVERLAY_LOADED_RELATED_POSTS: null,
-
-  GET_OVERLAY_MODELS: null,
-  PUSH_OVERLAY_MODEL: null,
-  POP_OVERLAY_MODEL: null,
 
   SET_PLATFORM: null,
   SET_VERSION: null,
