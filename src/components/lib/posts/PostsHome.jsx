@@ -49,6 +49,7 @@ class PostsHome extends Component {
 
     return Users.renderWithSideBar(
       <Telescope.components.PostsList
+        key={key}
         limit={limit}
         terms={terms}
         listId={'single-list-view'}
@@ -57,11 +58,12 @@ class PostsHome extends Component {
   }
 
   render () {
-    const {params} = this.props
+    const {params, location} = this.props
     const paramsLength = Object.keys(params).length
 
     if (paramsLength > 0) {
-      return this.renderPostList('')
+      const key = md5(location.pathname)
+      return this.renderPostList(key)
     }
 
     return this.renderPostDaily()
