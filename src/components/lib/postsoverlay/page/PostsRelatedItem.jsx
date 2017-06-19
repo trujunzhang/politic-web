@@ -39,7 +39,7 @@ class PostsRelatedItem extends Component {
 
   render () {
     const {post} = this.props,
-      imageSet = Posts.getRelatedThumbnailSet(post)
+      imageSet = Posts.getThumbnailSet(post)
 
     return (
       <div className="link_2Cj8i">
