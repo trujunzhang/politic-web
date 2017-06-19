@@ -21,6 +21,7 @@ class PostsList extends Component {
   }
 
   componentDidMount () {
+    // console.log('@ Posts List did Mount!')
     this.loadMore()
   }
 

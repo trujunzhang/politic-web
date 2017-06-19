@@ -41,29 +41,29 @@ class PostsHome extends Component {
   }
 
   renderPostList (key) {
-      const {params} = this.props,
-            limit = Telescope.settings.get("postsPerPage", 10);
+    const {params} = this.props,
+      limit = Telescope.settings.get('postsPerPage', 10)
 
-     const terms = {...params, listId: "posts.list.main", view: 'new', limit: limit};
+    const terms = {...params, listId: 'posts.list.main', view: 'new', limit: limit}
 
     return Users.renderWithSideBar(
-        <Telescope.components.PostsList
+      <Telescope.components.PostsList
         limit={limit}
-        terms = {terms}
+        terms={terms}
         listId={'single-list-view'}
         {...Posts.generatePostListTitle(params)}/>
     )
   }
 
-    render () {
-        const {params} = this.props
-        const paramsLength= Object.keys(params).length
+  render () {
+    const {params} = this.props
+    const paramsLength = Object.keys(params).length
 
-        if(paramsLength>0){
-            return this.renderPostList('')
-        }
+    if (paramsLength > 0) {
+      return this.renderPostList('')
+    }
 
-        return this.renderPostDaily()
+    return this.renderPostDaily()
   }
 
   renderxxx () {
