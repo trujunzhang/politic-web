@@ -51,6 +51,7 @@ Telescope.registerComponent('PopoverPostsLayout',                 require('./pos
 
 // postsoverlay(page)
 Telescope.registerComponent('PostsPage',                          require('./postsoverlay/page/PostsPage.jsx').default)
+Telescope.registerComponent('PostsRelatedList',                   require('./postsoverlay/page/PostsRelatedList.jsx').default)
 Telescope.registerComponent('PostsSingleHeader',                  require('./postsoverlay/page/PostsSingleHeader.jsx').default)
 
 // Sidebar

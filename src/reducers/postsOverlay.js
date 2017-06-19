@@ -50,7 +50,7 @@ const initialState = {
 };
 
 function postsOverlay(state: State = initialState, action: Action): State {
-    if (action.type === PUSH_OVERLAY_MODEL) {
+    if (action.type === POSTS_OVERLAY_PUSH) {
         let { modelType,position, model} = action.data;
         if(modelType === 'LoginUI'){
             return {
@@ -63,19 +63,7 @@ function postsOverlay(state: State = initialState, action: Action): State {
             currentModel: action.data
         };
     }
-    if (action.type === POP_OVERLAY_MODEL) {
-        return {
-            isLoggedIn: false,
-            hasSkippedLogin: true,
-            sharedSchedule: null,
-            id: null,
-            name: null,
-            roleType: null
-        };
-    }
-    if (action.type === GET_OVERLAY_MODELS) {
-        return initialState;
-    }
+
     return state;
 }
 

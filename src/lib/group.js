@@ -1,4 +1,4 @@
-var Telescope = require('../components/lib').default
+var Users = require('./users').default
 
 /**
  * @summary Users.groups object

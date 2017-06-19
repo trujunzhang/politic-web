@@ -10,8 +10,8 @@ class PostsPage extends Component {
 
     const {post} = this.props
     this.state = this.initialState = {
-      status: post.status,
-      cachedIds: post.relatedIds ? post.relatedIds : []
+      status: post.status || 2,
+      cachedIds: post.relatedIds || []
     }
   }
 

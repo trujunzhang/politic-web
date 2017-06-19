@@ -37,7 +37,7 @@ const createRoutes = (store) => {
         {
           // http://localhost:3000/post/GLp0BQ8hJD
           path: 'post/(:id)',
-          component: Telescope.components.PostsHome,
+          component: Telescope.components.PostsPage,
         },
         {
           // http://localhost:3000/article/new
