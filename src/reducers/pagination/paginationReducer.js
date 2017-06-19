@@ -67,7 +67,6 @@ function paginationReducer (state: State = initialState, action): State {
     }
 
     case LIST_VIEW_RESET_ALL_POSTS: {
-      debugger
       return Map({})
     }
 

@@ -33,7 +33,7 @@ export default  function createParseReducer<T>(
 ): Reducer<T> {
   return function(state: ?Array<T>, action: Action): Array<T> {
 
-    debugger
+    // debugger
     if (action.type === type) {
       // Flow can't guarantee {type, list} is a valid action
       return (action: any).list.map(convert);

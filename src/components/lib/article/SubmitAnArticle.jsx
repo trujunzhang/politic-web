@@ -7,7 +7,7 @@ class SubmitAnArticle extends Component {
   constructor (props) {
     super(props)
 
-    debugger
+    // debugger
     const {document} = this.props
 
     if (document) {
