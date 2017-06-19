@@ -164,14 +164,12 @@ class PostsItemActions extends Component {
     let width = this.refs.saveButton.offsetWidth
     let height = this.refs.saveButton.offsetHeight
 
-    debugger
     this.props.dispatch(pushModel('moreTopicsList', {
       top: top,
       left: left,
       width: width,
       height: height
     }, {moreTopics: this.props.post.topics.slice(1)}))
-    // this.context.messages.showPopoverMenu("", post.topicsArray.slice(1), top, left, width, height);
 
     event.stopPropagation()
   }
