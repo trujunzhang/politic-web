@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
-const {popModel} = require('../../../actions').default
 var {pushForTopic} = require('../../../lib/link')
 
 class MoreTagsPopoverMenu extends Component {
 
   onTagClick (topic) {
-    this.props.dispatch(popModel())
     pushForTopic(this.props.router, topic)
   }
 

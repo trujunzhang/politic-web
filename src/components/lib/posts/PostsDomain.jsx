@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
-const {popModel} = require('../../../actions').default
-
 /**
  * A: Remove “THE-VIEWSPAPER” from there
  * B: YES
@@ -17,8 +15,6 @@ class PostsDomain extends Component {
     const {post, router} = this.props,
       domain = (post.sourceFrom || '').replace('www.', '')
 
-    this.props.dispatch(popModel())
-    
     router.push({
       pathname: `/from/${domain}`,
       query: {}
