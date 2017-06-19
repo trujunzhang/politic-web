@@ -50,7 +50,7 @@ class PostsRelatedItem extends Component {
         <a onClick={this.onRelatedPostClick.bind(this)}>
           <h2 className="name_DrXo8 featured_2W7jd default_tBeAo base_3CbW2">{post.title}</h2>
           <p className="text_relate_3Wjo0 subtle_1BWOT base_3CbW2">
-            {Posts.getLimitedContent(post.excerpt, 100)}
+            {Posts.getLimitedContent(post.body, 100)}
           </p>
         </a>
       </div>

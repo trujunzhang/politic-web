@@ -26,7 +26,7 @@ class PostsRelatedList extends Component {
     const {postsOverlay} = this.props,
       {isFetchingRelated} = postsOverlay,
       results = postsOverlay.currentRelatedPosts || []
-
+debugger
     if (!isFetchingRelated && !!results.length) {
       return (
         <div>
