@@ -22,6 +22,7 @@ const initialState = Map({})
  */
 const {
   LIST_VIEW_LOADED_POSTS,
+  LIST_VIEW_RESET_ALL_POSTS
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -66,6 +67,7 @@ function paginationReducer (state: State = initialState, action): State {
     }
 
     case LIST_VIEW_RESET_ALL_POSTS: {
+      debugger
       return Map({})
     }
 
