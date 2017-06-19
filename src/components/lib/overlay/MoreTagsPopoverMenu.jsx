@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
+const {popModel} = require('../../../actions').default
+var {pushForTopic} = require('../../../lib/link')
+
 class MoreTagsPopoverMenu extends Component {
 
   onTagClick (topic) {
-    // this.context.messages.dismissPopoverMenu();
-    // this.context.messages.pushForTopic(this.props.router, topic);
+    this.props.dispatch(popModel())
+    pushForTopic(this.props.router, topic)
   }
 
   render () {
@@ -19,14 +22,14 @@ class MoreTagsPopoverMenu extends Component {
       <div className="popover v-bottom-right" style={{top: top, left: left}}>
         <ul className="content_2mq4P">
 
-          {object.map((menu, key) => {
+          {object.map((item, key) => {
             return (
               <li key={key}
                   className="option_2XMGo secondaryBoldText_1PBCf secondaryText_PM80d subtle_1BWOT base_3CbW2">
-                <a onClick={this.onTagClick.bind(this, menu)}
+                <a onClick={this.onTagClick.bind(this, item)}
                    className="button_2I1re smallSize_1da-r secondaryText_PM80d greySolidColor_270pZ solidVariant_2wWrf"
-                   title={menu.name}>
-                  <div className="buttonContainer_wTYxi">{menu.name}</div>
+                   title={item.name}>
+                  <div className="buttonContainer_wTYxi">{item.name}</div>
                 </a>
               </li>
             )
@@ -39,4 +42,11 @@ class MoreTagsPopoverMenu extends Component {
 
 }
 
-export default withRouter(MoreTagsPopoverMenu)
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+import { connect } from 'react-redux'
+
+export default withRouter(connect()(MoreTagsPopoverMenu))
