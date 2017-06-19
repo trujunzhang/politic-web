@@ -157,7 +157,7 @@ class UserCollectionsPopover extends Component {
       {position} = comp
 
     const top = position.top + position.height + 14
-    let left = (position.left + position.width / 2) - 80
+    let left = (position.left + position.width / 2) - 100
 
     let offX = 0
     switch (this.state.step) {
