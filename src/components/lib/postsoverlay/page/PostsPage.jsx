@@ -10,10 +10,10 @@ class PostsPage extends Component {
   constructor (props) {
     super(props)
 
-    const {post} = this.props
-    this.state = this.initialState = {
-      status: post.status || 2
-    }
+    // const {post} = this.props
+    // this.state = this.initialState = {
+    //   status: post.status || 2
+    // }
   }
 
   componentDidMount () {
