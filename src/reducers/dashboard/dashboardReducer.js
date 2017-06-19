@@ -53,9 +53,9 @@ function dashboardReducer (state = initialState, action): State {
      * set the form to fetching and clear any errors
      */
     case DASHBOARD_LOADED_POSTS: {
-      console.log('Dashboard loaded posts: ')
+      // console.log('Dashboard loaded posts: ')
 
-      const {list, listTask, listId, limit} = action.data
+      const {list, listTask, listId, limit} = action.payload
       const objects = list.map(fromParsePost)
 
       // let nextState = state

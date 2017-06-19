@@ -98,16 +98,16 @@ async function _logInWithPassword(username: string, password: string): Promise<A
     user.set('password', password);
 
     let loginWithPassword = user.logIn();
-    await loginWithPassword;
-    // await updateInstallation({user});
+    // await loginWithPassword;
 
     var callBackObject = null;
     await loginWithPassword.then((result) => {
         callBackObject = result;
-        console.log("result: " + JSON.stringify(result));
+        // console.log("result: " + JSON.stringify(result));
     });
+  // await updateInstallation({user});
 
-    console.log("callBackObject: " + JSON.stringify(callBackObject));
+    // console.log("callBackObject: " + JSON.stringify(callBackObject));
 
     const userData = {
         id: callBackObject.id,
@@ -116,11 +116,11 @@ async function _logInWithPassword(username: string, password: string): Promise<A
         email:callBackObject.get("email")
     };
 
-    console.log("userData: " + JSON.stringify(userData));
+    // console.log("userData: " + JSON.stringify(userData));
 
     const action = {
-        type: 'LOGGED_IN',
-        data: userData
+      type: 'LOGGED_IN',
+      payload: userData
     };
 
     return Promise.all([
@@ -174,7 +174,7 @@ async function _signUpWithPassword(username: string, email: string, password: st
 
   const action = {
     type: 'LOGGED_IN',
-    data: userData
+    payload: userData
   }
 
   return Promise.all([

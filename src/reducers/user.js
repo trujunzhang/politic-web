@@ -22,20 +22,21 @@
  * @flow
  */
 
-'use strict';
+'use strict'
 
-import type {Action} from '../actions/types'
+import type { Action } from '../actions/types'
 var slugify = require('slugify')
 
 export type State = {
-    isLoggedIn: boolean;
-    hasSkippedLogin: boolean;
-    id: ?string;
-    name: ?string;
-    loginType: ?string;
-    email: ?string;
-    slug: ?string;
-};
+  isLoggedIn: boolean,
+  hasSkippedLogin: boolean,
+  id: ? string,
+  name: ? string,
+  loginType: ? string,
+  email: ? string,
+  slug: ? string
+}
+
 
 const initialState = {
   isLoggedIn: false,
@@ -43,35 +44,35 @@ const initialState = {
   id: null,
   name: null,
   loginType: null,
-  email:null,
-  slug:null
-};
+  email: null,
+  slug: null
+}
 
-function user(state: State = initialState, action: Action): State {
-    if (action.type === 'LOGGED_IN') {
-        let {id, name, loginType,email} = action.data;
-        return {
-          isLoggedIn: true,
-          hasSkippedLogin: false,
-          id,
-          name,
-          loginType,
-          email,
-          slug:slugify(name, '_')
-        };
+function user (state: State = initialState, action: Action): State {
+  if (action.type === 'LOGGED_IN') {
+    let {id, name, loginType, email} = action.payload
+    return {
+      isLoggedIn: true,
+      hasSkippedLogin: false,
+      id,
+      name,
+      loginType,
+      email,
+      slug: slugify(name, '_')
     }
-    if (action.type === 'LOGGED_OUT') {
-        return initialState;
+  }
+  if (action.type === 'LOGGED_OUT') {
+    return initialState
+  }
+  if (action.type === 'SET_SHARING') {
+    return {
+      ...state
     }
-    if (action.type === 'SET_SHARING') {
-        return {
-            ...state
-        };
-    }
-    if (action.type === 'RESET_NUXES') {
-        return {...state};
-    }
-    return state;
+  }
+  if (action.type === 'RESET_NUXES') {
+    return {...state}
+  }
+  return state
 }
 
 export default user

@@ -48,7 +48,7 @@ function pushModel (modelType: string, position: object = null, model: object = 
   }
 
   // TODO: Make sure reducers clear their state
-  return {type: OVERLAY_MODEL_PUSH, data: data}
+  return {type: OVERLAY_MODEL_PUSH, payload: data}
 }
 
 function dismissPopModel (): Action {

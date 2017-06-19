@@ -22,10 +22,9 @@
  * @flow
  */
 
-'use strict';
+'use strict'
 
-import type {Action} from '../actions/types';
-
+import type { Action } from '../actions/types'
 
 /**
  * The states were interested in
@@ -35,43 +34,42 @@ const {
   OVERLAY_MODEL_DISMISS
 } = require('../lib/constants').default
 
-
 export type State = {
-    showOverlay: boolean;
-    currentModel: ? object;
-};
-
-const initialState = {
-    showOverlay: false,
-    currentModel: null
-};
-
-function popModels(state: State = initialState, action: Action): State {
-    if (action.type === OVERLAY_MODEL_PUSH) {
-        let { modelType,position, model} = action.data;
-        if(modelType === 'LoginUI'){
-            return {
-                showOverlay: true,
-                currentModel: action.data
-            }
-        }
-        return {
-            showOverlay: true,
-            currentModel: action.data
-        };
-    }
-    if (action.type === OVERLAY_MODEL_DISMISS) {
-        return {
-            isLoggedIn: false,
-            hasSkippedLogin: true,
-            sharedSchedule: null,
-            id: null,
-            name: null,
-            roleType: null
-        };
-    }
-
-    return state;
+  showOverlay: boolean;
+  currentModel: ? object;
 }
 
-export default popModels;
+const initialState = {
+  showOverlay: false,
+  currentModel: null
+}
+
+function popModels (state: State = initialState, action: Action): State {
+  if (action.type === OVERLAY_MODEL_PUSH) {
+    let {modelType, position, model} = action.payload
+    if (modelType === 'LoginUI') {
+      return {
+        showOverlay: true,
+        currentModel: action.payload
+      }
+    }
+    return {
+      showOverlay: true,
+      currentModel: action.payload
+    }
+  }
+  if (action.type === OVERLAY_MODEL_DISMISS) {
+    return {
+      isLoggedIn: false,
+      hasSkippedLogin: true,
+      sharedSchedule: null,
+      id: null,
+      name: null,
+      roleType: null
+    }
+  }
+
+  return state
+}
+
+export default popModels
