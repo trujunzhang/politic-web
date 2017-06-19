@@ -19,8 +19,6 @@
  * case statements are shared amongst the actions.
  */
 const {
-  NEXT_PAGE,
-  RESET_PAGE,
 
   LOADED_TOPICS,
   LOADED_POSTS

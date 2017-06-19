@@ -1,11 +1,11 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
-    // AppOverlay
+  // AppOverlay
   OVERLAY_MODEL_PUSH: null,
   OVERLAY_MODEL_DISMISS: null,
 
-    // For dashboard
+  // For dashboard
   DASHBOARD_EDIT_ALL_ROWS: null,
   DASHBOARD_EDIT_SINGLE_ROW: null,
   DASHBOARD_EDIT_SINGLE_ROW_CANCEL: null,
@@ -16,13 +16,11 @@ export default keyMirror({
   DASHBOARD_LOADED_POSTS: null,
   DASHBOARD_RESET: null,
 
-  NEXT_PAGE: null,
-  RESET_PAGE: null,
-
+  // PostHome, PostDaily
   LOADED_TOPICS: null,
   LOADED_POSTS: null,
 
-    // Detailed Posts 
+  // Detailed Posts
   OVERLAY_POSTS_DISMISS: null,
   OVERLAY_POSTS_PUSH: null,
   OVERLAY_POSTS_POP: null,

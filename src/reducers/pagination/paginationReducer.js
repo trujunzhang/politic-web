@@ -22,8 +22,6 @@ const initialState = Map({})
  */
 const {
   LOADED_POSTS,
-  NEXT_PAGE,
-  RESET_PAGE
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
