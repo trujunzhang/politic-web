@@ -187,15 +187,15 @@ class UsersProfile extends Component {
     )
   }
 
-  renderPostSingle () {
-    const {location} = this.props
-    return (
-      <div className="constraintWidth_ZyYbM container_3aBgK">
-        <Telescope.components.PostsSingle
-          params={{'slug': location.query.title, '_id': location.query.postId}}/>
-      </div>
-    )
-  }
+  // renderPostSingle () {
+  //   const {location} = this.props
+  //   return (
+  //     <div className="constraintWidth_ZyYbM container_3aBgK">
+  //       <Telescope.components.PostsSingle
+  //         params={{'slug': location.query.title, '_id': location.query.postId}}/>
+  //     </div>
+  //   )
+  // }
 
   render () {
     const {isLoggedIn} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
