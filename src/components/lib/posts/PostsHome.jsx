@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Users from '../../../lib/users'
 import Posts from '../../../lib/posts'
 
+import { withRouter } from 'react-router'
 let md5 = require('blueimp-md5')
 
 /**
@@ -41,7 +42,7 @@ class PostsHome extends Component {
   }
 
   renderPostList (key) {
-    const {params} = this.props,
+    const {params, location} = this.props,
       limit = Telescope.settings.get('postsPerPage', 10)
 
     const terms = {...params, listId: 'posts.list.main', view: 'new', limit: limit}
@@ -51,7 +52,7 @@ class PostsHome extends Component {
         limit={limit}
         terms={terms}
         listId={'single-list-view'}
-        {...Posts.generatePostListTitle(params)}/>
+        {...Posts.generatePostListTitle(location, params)}/>
     )
   }
 
@@ -123,4 +124,4 @@ class PostsHome extends Component {
   }
 }
 
-export default PostsHome
+export default withRouter(PostsHome)

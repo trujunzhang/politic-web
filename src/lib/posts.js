@@ -255,9 +255,12 @@ Posts.getDailyDateTitle = function (date) {
 /**
  * @summary statistic topics.
  */
-Posts.generatePostListTitle = function (query) {
+Posts.generatePostListTitle = function (location, params) {
+
+  const query = params
   let title = null
 
+  // debugger
   let preTitle = 'Articles'
 
   if (query.query) {
