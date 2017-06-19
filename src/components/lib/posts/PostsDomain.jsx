@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 
 /**
  * A: Remove “THE-VIEWSPAPER” from there
@@ -8,17 +8,33 @@ import { Link } from 'react-router'
  * B: “theviewspaper.net” on a line between the title and read more and link it to the domain page, need to add click event?
  * A: YES
  */
-const PostsDomain = ({post, domainClass}) => {
-  let domain = (post.sourceFrom || '').replace('www.', '')
+class PostsDomain extends Component {
+  onDomainClick (event) {
+    event.preventDefault()
 
-  return (
-    <span className={`domain_item ${domainClass}`}>
-      <Link to={`/from/${domain}`}>
-        <span className="domain">{domain}</span>
-      </Link>
-    </span>
-  )
+    const {post, router} = this.props
+    router.push({
+      pathname: '/',
+      query: {from: post.sourceFrom}
+    })
+
+    event.stopPropagation()
+  }
+
+  render () {
+    const {post, domainClass} = this.props,
+      domain = (post.sourceFrom || '').replace('www.', '')
+
+    return (
+      <span className={`domain_item ${domainClass}`}>
+        <span className="domain" onClick={this.onDomainClick.bind(this)}>
+          { domain}
+        </span>
+      </span>
+    )
+  }
 }
 
-export default PostsDomain
+export default withRouter(PostsDomain)
+
 
