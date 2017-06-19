@@ -1,7 +1,9 @@
 import Telescope from '../../../lib'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
+import { withRouter } from 'react-router'
 
+var {showDetailedPagePath} = require('../../../../lib/link')
 const {pushOverlayDetailedPost} = require('../../../../actions').default
 
 class PostsRelatedItem extends Component {
@@ -68,12 +70,10 @@ class PostsRelatedItem extends Component {
   onRelatedPostClick (event) {
     event.preventDefault()
 
-    this.props.dispatch(pushOverlayDetailedPost(this.props.post))
+    const {router, post} = this.props
 
-    // const {currentUser, messages} = this.context,
-    //   {router, post} = this.props,
-    //   admin = messages.appManagement.getAdmin(this.props.location, currentUser)
-    // messages.pushRouterForDetailPage(router, post, admin)
+    showDetailedPagePath(router, post)
+    this.props.dispatch(pushOverlayDetailedPost(post))
   }
 
 }
@@ -85,4 +85,4 @@ class PostsRelatedItem extends Component {
  */
 import { connect } from 'react-redux'
 
-export default connect()(PostsRelatedItem)
+export default withRouter(connect()(PostsRelatedItem))

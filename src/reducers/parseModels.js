@@ -26,7 +26,8 @@ export type Post = {
     thumbnailUrl: string;
     userId: string;
     author: string;
-    status: int;
+status: int;
+postedAt: Date;
 };
 
 export function fromParseTopic(map: Object): Topic {
@@ -63,7 +64,8 @@ export function fromParsePost(map: Object): Post {
         author: map.get('author'),
         status: map.get('status')|| 2,
         topics: (map.get('topics') || []).map(fromParseTopic),
-        cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary)
+        cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary),
+        postedAt: map.get('postedAt'),
     };
 }
 
