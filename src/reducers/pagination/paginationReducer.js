@@ -65,24 +65,13 @@ function paginationReducer (state: State = initialState, action): State {
       return nextState
     }
 
-    case NEXT_PAGE: {
-      let nextState = state
-        .setIn(['form', 'isFetching'], true)
-        .setIn(['form', 'error'], null)
+    case LIST_VIEW_RESET_ALL_POSTS: {
+      const nextState = Object.assign({}, state, {
+        isFetchingRelated: false,
+      })
       return nextState
     }
 
-    /**
-     * ### Hot Loading support
-     *
-     * Set all the field values from the payload
-     */
-    case RESET_PAGE:
-      var form = JSON.parse(action.payload).auth.form
-
-      var next = state.setIn(['form', 'state'], form.state)
-        .setIn(['form', 'disabled'], form.disabled)
-      return next
   }
   /**
    * ## Default

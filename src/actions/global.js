@@ -32,7 +32,8 @@ import type { Action, ThunkAction } from './types'
 const {
   OVERLAY_MODEL_PUSH,
   OVERLAY_MODEL_DISMISS,
-  OVERLAY_POSTS_DISMISS
+  OVERLAY_POSTS_DISMISS,
+  LIST_VIEW_RESET_ALL_POSTS
 } = require('../lib/constants').default
 
 function pushModel (modelType: string, position: object = null, model: object = null): Action {
@@ -52,6 +53,10 @@ function dismissPopModel (): Action {
 
 function resetOverlayPosts (): Action {
   return {type: OVERLAY_POSTS_DISMISS}
+}
+
+function resetPostsDaily (): Action {
+  return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
 export default {pushModel, dismissPopModel, resetOverlayPosts}

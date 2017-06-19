@@ -67,7 +67,6 @@ function postsOverlay (state: State = initialState, action: Action): State {
   }
 
   if (action.type === OVERLAY_POSTS_DISMISS) {
-    debugger
     const nextState = Object.assign({}, state, initialState)
     return nextState
   }
