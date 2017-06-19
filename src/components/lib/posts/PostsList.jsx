@@ -81,7 +81,8 @@ class PostsList extends Component {
           results={results}
           limit={limit}
           hasMore={hasMore}
-          ready={ready} title={title}
+          ready={ready}
+          title={title}
           showClose={showClose}
           showHeader={showHeader}
           dismissBanner={dismissBanner}
