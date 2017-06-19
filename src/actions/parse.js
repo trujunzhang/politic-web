@@ -49,7 +49,6 @@ function loadParseObject (type: string, query: Parse.Query, objectId: string): T
           objectId: objectId,
           object: object
         }
-        debugger
         dispatch({type, data})
       },
       error: (error) => {
