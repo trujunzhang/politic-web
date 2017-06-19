@@ -90,8 +90,6 @@ function logInWithFacebook(source: ?string): ThunkAction {
   }
 }
 
-
-
 async function _logInWithPassword(username: string, password: string): Promise<Array<Action>> {
     const user = new Parse.User();
     user.set('username', username);

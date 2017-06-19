@@ -24,11 +24,13 @@
 
 const parseActions = require('./parse').default
 const loginActions = require('./login').default
+const voingtActions = require('./voting').default
 const shipmentActions = require('./shipment').default
 const golbalActions = require('./global').default
 
 export default {
   ...loginActions,
+  ...voingtActions,
   ...parseActions,
   ...shipmentActions,
   ...golbalActions
