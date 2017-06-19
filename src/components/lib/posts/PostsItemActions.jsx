@@ -8,13 +8,13 @@ const {pushModel} = require('../../../actions').default
 class PostsItemActions extends Component {
 
   /**
-   * Rendering the post's event button, such as 'save' or 'remove'
+   * Rendering the post's e button, such as 'save' or 'remove'
    * @returns {XML}
    */
   renderSaveRemoveArticleButton () {
     const type = 'save',
       isMobileAndPortrait = false,
-      event = (type === 'save') ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this)
+      e = (type === 'save') ? this.onSaveButtonClick.bind(this) : this.onRemoveButtonClick.bind(this)
 
     const leftIcon = (type === 'remove') ? (<span className="remove-button fa fa-remove"/>) : (<span>
         <svg className={isMobileAndPortrait ? 'margin_left4' : ''} width="13" height="10" viewBox="0 0 13 10">
@@ -27,10 +27,10 @@ class PostsItemActions extends Component {
     )
 
     return (
-      <span label={type} onClick={event}
+      <span label={type} onClick={e}
             className="button_2I1re smallSize_1da-r secondaryText_PM80d subtleVariant_tlhj3 simpleVariant_1Nl54 button_2n20W">
         <div className="buttonContainer_wTYxi">
-          <span className="post-item-event-button">
+          <span className="post-item-e-button">
             {leftIcon}
             {/*{isMobileAndPortrait ? "" : type}*/}
           </span>
@@ -81,7 +81,7 @@ class PostsItemActions extends Component {
         <div className="actionButtons_2mJsw">
           <Telescope.components.Upvote post={post}/>
           <Telescope.components.Downvote post={post}/>
-          <Telescope.components.PostsCommenters post={post} event={this.popupDetail.bind(this)}/>
+          <Telescope.components.PostsCommenters post={post} e={this.onPopupDetailPress.bind(this)}/>
           <div className="additionalActionButtons_BoErh">
             {this.renderSaveRemoveArticleButton()}
           </div>
@@ -93,8 +93,8 @@ class PostsItemActions extends Component {
     )
   }
 
-  popupDetail (event) {
-    event.preventDefault()
+  onPopupDetailPress (e) {
+    e.preDefault()
 
     // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
     // let {router, location, post} = this.props,
@@ -102,11 +102,11 @@ class PostsItemActions extends Component {
     //
     // this.context.messages.pushRouterForDetailPage(router, post, admin);
 
-    event.stopPropagation()
+    e.stopPropagation()
   }
 
-  onSaveButtonClick (event) {
-    event.preventDefault()
+  onSaveButtonClick (e) {
+    e.preDefault()
 
     // const {post} = this.props;
     // const {currentUser} = this.context;
@@ -117,7 +117,7 @@ class PostsItemActions extends Component {
     //     this.popoverSaveButtonClick();
     // }
 
-    event.stopPropagation()
+    e.stopPropagation()
   }
 
   popoverSaveButtonClick () {
@@ -134,8 +134,8 @@ class PostsItemActions extends Component {
     // }, top, left, width, height);
   }
 
-  onRemoveButtonClick (event) {
-    event.preventDefault()
+  onRemoveButtonClick (e) {
+    e.preDefault()
 
     // const {post} = this.props;
     // let {folder} = this.props;
@@ -152,11 +152,11 @@ class PostsItemActions extends Component {
     //     });
     // }
 
-    event.stopPropagation()
+    e.stopPropagation()
   }
 
-  onMoreTopicsClick (event) {
-    event.preventDefault()
+  onMoreTopicsClick (e) {
+    e.preDefault()
 
     let clientRect = this.refs.saveButton.getBoundingClientRect()
     this.props.dispatch(pushModel('moreTopicsList', {
@@ -166,7 +166,7 @@ class PostsItemActions extends Component {
       height: this.refs.saveButton.offsetHeight
     }, {moreTopics: this.props.post.topics.slice(1)}))
 
-    event.stopPropagation()
+    e.stopPropagation()
   }
 }
 
