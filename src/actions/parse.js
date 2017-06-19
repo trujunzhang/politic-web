@@ -35,7 +35,7 @@ const PostsParameters = require('../parameters').Posts
  * The states were interested in
  */
 const {
-  LOADED_POSTS,
+  LIST_VIEW_LOADED_POSTS,
   DASHBOARD_LOADED_POSTS,
   OVERLAY_LOADED_POSTS_PAGE
 } = require('../lib/constants').default
@@ -94,7 +94,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
         // queryFind()
         console.log('failure')
       }
-    }).then(()=>{
+    }).then(() => {
       // debugger
       return queryFind()
     })
@@ -103,7 +103,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
 }
 
 export default {
-  loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {
+  loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
@@ -122,7 +122,7 @@ export default {
     return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
   },
 
-  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LOADED_POSTS): ThunkAction => {
+  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 

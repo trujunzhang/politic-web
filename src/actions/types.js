@@ -30,8 +30,8 @@ export type Action =
     { type: 'LOADED_ABOUT', list: Array<ParseObject> }
     | { type: 'LOADED_CACHES', list: Array<ParseObject> }
     | { type: 'LOADED_HISTORIES', list: Array<ParseObject> }
-    | { type: 'LOADED_POSTS', list: Array<ParseObject> }
-    | { type: 'LOADED_TOPICS', list: Array<ParseObject> }
+    | { type: 'LIST_VIEW_LOADED_POSTS', list: Array<ParseObject> }
+    | { type: 'LIST_VIEW_LOADED_TOPICS', list: Array<ParseObject> }
     | { type: 'LOADED_FOLDERS', list: Array<ParseObject> }
     | { type: 'LOADED_COMMENTS', list: Array<ParseObject> }
     | { type: 'LOADED_MESSAGES', list: Array<ParseObject> }

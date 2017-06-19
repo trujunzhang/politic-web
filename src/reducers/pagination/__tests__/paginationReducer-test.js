@@ -20,8 +20,8 @@
  */
 const {
 
-  LOADED_TOPICS,
-  LOADED_POSTS
+  LIST_VIEW_LOADED_TOPICS,
+  LIST_VIEW_LOADED_POSTS
 } = require('../../../lib/constants').default
 
 /**
@@ -40,10 +40,10 @@ const paginationReducer = require('../paginationReducer').default
 describe('paginationReducer', () => {
 
   /**
-   * ### The use LOADED_POSTS
+   * ### The use LIST_VIEW_LOADED_POSTS
    *
    */
-  describe('LOADED_POSTS', () => {
+  describe('LIST_VIEW_LOADED_POSTS', () => {
     let initialState = null
     /**
      * #### Get a valid state
@@ -62,13 +62,13 @@ describe('paginationReducer', () => {
      */
     it('form is not valid with empty fields', () => {
       const action = {
-        type: LOADED_POSTS
+        type: LIST_VIEW_LOADED_POSTS
       }
       let next = paginationReducer(initialState, action)
 
-      expect(next.form.state).toBe(LOADED_POSTS)
+      expect(next.form.state).toBe(LIST_VIEW_LOADED_POSTS)
       // expect(next.form.listContainer).toBe({})
     })
 
-  })// LOADED_POSTS
+  })// LIST_VIEW_LOADED_POSTS
 })// paginationReducer

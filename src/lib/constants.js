@@ -17,8 +17,8 @@ export default keyMirror({
   DASHBOARD_RESET: null,
 
   // PostHome, PostDaily
-  LOADED_TOPICS: null,
-  LOADED_POSTS: null,
+  LIST_VIEW_LOADED_TOPICS: null,
+  LIST_VIEW_LOADED_POSTS: null,
 
   // Detailed Posts
   OVERLAY_POSTS_DISMISS: null,

@@ -21,7 +21,7 @@ const initialState = Map({})
  * The states were interested in
  */
 const {
-  LOADED_POSTS,
+  LIST_VIEW_LOADED_POSTS,
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -37,7 +37,7 @@ function paginationReducer (state: State = initialState, action): State {
      * ### Requests start
      * set the form to fetching and clear any errors
      */
-    case LOADED_POSTS: {
+    case LIST_VIEW_LOADED_POSTS: {
       const {list, listTask, listId, limit, totalCount} = action.data
       const objects = list.map(fromParsePost)
       // debugger
