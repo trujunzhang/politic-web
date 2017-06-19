@@ -143,7 +143,7 @@ class PostsPage extends Component {
       <div className="page_content_3X9xi" id="overlay-article">
         <section className="postSection_1iIbk">
           <div className="sectionContent_21Amp">
-            {/*<Telescope.components.PostsSingleHeader post={this.props.post}/>*/}
+            <Telescope.components.PostsSingleHeader post={this.props.post}/>
             {this.renderContent()}
           </div>
         </section>
