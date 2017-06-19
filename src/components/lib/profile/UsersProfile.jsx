@@ -37,7 +37,7 @@ class UsersProfile extends Component {
         type: 'collections',
         title: 'Collections',
         value: foldersCount,
-        link: Users.getLinkObject('collections', user)
+        link: Users.getLinkObject('collections', currentUser)
       }
     ]
 
