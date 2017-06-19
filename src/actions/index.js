@@ -25,11 +25,11 @@
 const parseActions = require('./parse').default
 const loginActions = require('./login').default
 const shipmentActions = require('./shipment').default
-const popModelActions = require('./popModel').default
+const popModelsActions = require('./popModels').default
 
 export default {
   ...loginActions,
   ...parseActions,
   ...shipmentActions,
-  ...popModelActions
+  ...popModelsActions
 }

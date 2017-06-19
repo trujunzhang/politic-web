@@ -47,7 +47,7 @@ const initialState = {
     currentModel: null
 };
 
-function popModel(state: State = initialState, action: Action): State {
+function popModels(state: State = initialState, action: Action): State {
     if (action.type === PUSH_OVERLAY_MODEL) {
         let { modelType,position, model} = action.data;
         if(modelType === 'LoginUI'){
@@ -77,4 +77,4 @@ function popModel(state: State = initialState, action: Action): State {
     return state;
 }
 
-export default popModel;
+export default popModels;

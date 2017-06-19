@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   // posts: require('./posts').default,
   // topics: require('./topics').default,
   routing: routerReducer,
-  popModel: require('./popModel').default,
+  popModels: require('./popModels').default,
   postsOverlay: require('./postsOverlay').default,
   user: require('./user').default,
   auth: require('./auth/authReducer').default,
