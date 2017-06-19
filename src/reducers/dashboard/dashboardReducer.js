@@ -13,7 +13,7 @@ import update from 'immutability-helper'
  */
 const {
   DASHBOARD_LOADED_POSTS,
-  RESET_DASHBOARD,
+  DASHBOARD_RESET,
   TOGGLE_TABLE_ROW_CHECKBOX,
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS,
   DASHBOARD_EDIT_ALL_ROWS,
@@ -120,7 +120,7 @@ function dashboardReducer (state = initialState, action): State {
      *
      * Set all the field values from the payload
      */
-    case RESET_DASHBOARD:
+    case DASHBOARD_RESET:
       var form = JSON.parse(action.payload).auth.form
 
       var next = state.setIn(['form', 'state'], form.state)

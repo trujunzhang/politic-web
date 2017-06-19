@@ -17,7 +17,7 @@ export default keyMirror({
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS: null,
 
   DASHBOARD_LOADED_POSTS: null,
-  RESET_DASHBOARD: null,
+  DASHBOARD_RESET: null,
 
   NEXT_PAGE: null,
   RESET_PAGE: null,
