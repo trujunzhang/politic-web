@@ -45,7 +45,12 @@ function loadParseObject (type: string, query: Parse.Query, objectId: string): T
     return query.get(objectId, {
       success: (object) => {
         // Flow can't guarantee {type, list} is a valid action
-        dispatch(({type, object}))
+        const data = {
+          objectId: objectId,
+          object: object
+        }
+        debugger
+        dispatch({type, data})
       },
       error: (error) => {
         debugger
@@ -70,7 +75,7 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
             limit: limit,
             totalCount: totalCount
           }
-          dispatch(({type, data}))
+          dispatch({type, data})
         },
         error: (error) => {
           debugger

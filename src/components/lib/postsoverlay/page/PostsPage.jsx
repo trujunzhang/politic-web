@@ -17,7 +17,6 @@ class PostsPage extends Component {
   }
 
   componentDidMount () {
-    debugger
     this.props.dispatch(loadPostPage('GLp0BQ8hJD'))
   }
 

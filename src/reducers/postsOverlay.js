@@ -22,10 +22,9 @@
  * @flow
  */
 
-'use strict';
+'use strict'
 
-import type {Action} from '../actions/types';
-
+import type { Action } from '../actions/types'
 
 /**
  * The states were interested in
@@ -35,36 +34,40 @@ const {
   POSTS_OVERLAY_POP,
   POSTS_OVERLAY_EMPTY,
   POSTS_OVERLAY_BACKWARD,
-  POSTS_OVERLAY_FORWARD
+  POSTS_OVERLAY_FORWARD,
+  LOADED_POSTS_PAGE
 } = require('../lib/constants').default
 
-
-export type State = {
-    showOverlay: boolean;
-    currentModel: ? object;
-};
-
 const initialState = {
-    showOverlay: false,
-    currentModel: null
-};
-
-function postsOverlay(state: State = initialState, action: Action): State {
-    if (action.type === POSTS_OVERLAY_PUSH) {
-        let { modelType,position, model} = action.data;
-        if(modelType === 'LoginUI'){
-            return {
-                showOverlay: true,
-                currentModel: action.data
-            }
-        }
-        return {
-            showOverlay: true,
-            currentModel: action.data
-        };
-    }
-
-    return state;
+  showOverlay: false,
+  currentModel: null
 }
 
-export default postsOverlay;
+function postsOverlay (state: State = initialState, action: Action): State {
+  if (action.type === LOADED_POSTS_PAGE) {
+    let {objectId, object} = action.data
+    debugger
+    return {
+      showOverlay: true,
+      currentModel: action.data
+    }
+  }
+
+  if (action.type === POSTS_OVERLAY_PUSH) {
+    let {modelType, position, model} = action.data
+    if (modelType === 'LoginUI') {
+      return {
+        showOverlay: true,
+        currentModel: action.data
+      }
+    }
+    return {
+      showOverlay: true,
+      currentModel: action.data
+    }
+  }
+
+  return state
+}
+
+export default postsOverlay
