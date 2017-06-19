@@ -87,13 +87,16 @@ function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId
     return query.count({
       success: function (count) {
         totalCount = count
-        queryFind()
+        // queryFind()
       },
       error: function (error) {
-        queryFind()
         debugger
+        // queryFind()
         console.log('failure')
       }
+    }).then(()=>{
+      debugger
+      return queryFind()
     })
 
   }
@@ -110,7 +113,6 @@ export default {
     postQuery = param.addParameters(terms).end()
 
     var query = postQuery.skip(skipCount).limit(limit)
-
     return loadParseQuery(type, query, listTask, listId, limit)
   },
 
@@ -130,7 +132,6 @@ export default {
     postQuery = param.addParameters(terms).end()
 
     var query = postQuery.skip(skipCount).limit(limit)
-
     return loadParseQuery(type, query, listTask, listId, limit)
   }
 

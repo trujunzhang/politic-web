@@ -19,7 +19,7 @@ class PostsRelatedList extends Component {
     const terms = {
       related: {id: this.props.post.id, author: this.props.post.author}
     }
-    this.props.dispatch(loadPosts({}, 'posts.related.list', terms, LOADED_RELATED_POSTS))
+    this.props.dispatch(loadPosts(listTask, 'posts.related.list', terms, LOADED_RELATED_POSTS))
   }
 
   render () {

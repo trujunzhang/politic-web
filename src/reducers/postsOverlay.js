@@ -62,7 +62,7 @@ function postsOverlay (state: State = initialState, action: Action): State {
   if (action.type === LOADED_RELATED_POSTS) {
     const {list, listTask, listId, limit, totalCount} = action.data
     const objects = list.map(fromParsePost)
-
+    debugger
     const nextState = Object.assign({}, state, {
       currentRelatedPosts: objects
     })

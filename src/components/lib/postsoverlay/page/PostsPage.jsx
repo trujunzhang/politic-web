@@ -62,7 +62,7 @@ class PostsPage extends Component {
         <h2 className="heading_woLg1 heading_AsD8K title_2vHSk subtle_1BWOT base_3CbW2">
           Related Articles
         </h2>
-        <Telescope.components.PostsRelatedList />
+        <Telescope.components.PostsRelatedList post={this.props.post}/>
       </div>
     )
   }

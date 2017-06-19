@@ -8,9 +8,8 @@ export default class PostsParameters {
 
   addParameters (terms: Any) {
     if (terms.related) { // related posts
-debugger
-      this.query.notContainedIn('objectId', terms.related.id)
-      this.query.equalTo('author', terms.related.author)
+      // this.query.notContainedIn('objectId', terms.related.id)
+      // this.query.equalTo('author', terms.related.author)
     }
 
     if (terms.before && terms.after) { // Calendar posts
