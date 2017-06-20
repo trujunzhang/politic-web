@@ -1,3 +1,8 @@
 * 16/06/2017
-   1. register with email
-   2. load more pagation
+   1. (*)register with email
+   2. (*)load more pagation
+
+* 20/06/2017
+   1. (*)register with facebook and twitter
+   2. build react-native apps
+
