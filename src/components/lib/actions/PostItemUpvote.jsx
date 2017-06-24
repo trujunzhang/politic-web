@@ -104,8 +104,7 @@ class PostItemUpvote extends Component {
     return (
       <button className={buttonClass} rel="vote-button" onClick={this.onUpvoteClick.bind(this)}>
         <div className="buttonContainer_wTYxi">
-          <div ref='button' className={postVoteClass}>
-          </div>
+          <div ref='button' className={postVoteClass}/>
           {voteCount}
         </div>
       </button>
