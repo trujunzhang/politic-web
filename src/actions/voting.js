@@ -43,6 +43,7 @@ const {
   POSTS_DOWNVOTE,
   POSTS_UPVOTE_CACEL,
   POSTS_DOWNVOTE_CACEL,
+  POSTS_VOTING_DONE,
 } = require('../lib/constants').default
 
 function operatePostsOnItem(post: ParsePost, userId: string, operation: string) {
@@ -138,8 +139,11 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
   await post.save()
 
   const action = {
-    type: 'LOGGED_INxxx',
-    payload: []
+    type: POSTS_VOTING_DONE,
+    payload: {
+      user: fromParseUser(user),
+      post: fromParsePost(post)
+    }
   };
 
   return Promise.all([

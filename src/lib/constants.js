@@ -7,6 +7,8 @@ export default keyMirror({
   POSTS_UPVOTE_CACEL: null,
   POSTS_DOWNVOTE_CACEL: null,
 
+  POSTS_VOTING_DONE: null,
+
   // UserProfile
   USERPROFILE_RESET: null,
   USERPROFILE_LOADED: null,
