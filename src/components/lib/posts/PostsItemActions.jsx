@@ -134,18 +134,6 @@ class PostsItemActions extends Component {
       width: 20 + (isMobileAndPortrait ? 0 : 40),
       height: 20
     }, {title: post.title, savedPostId: post.id}))
-
-    // const {post} = this.props,
-    //     isMobileAndPortrait = Users.isMobileAndPortrait();
-    // let offset = $(this.refs.saveButton).offset();
-    // let top = offset.top;
-    // let left = offset.left + 60;
-    // let width = 20 + (isMobileAndPortrait ? 0 : 40);
-    // let height = 20;
-    // this.context.messages.showPopoverMenu('SaveButton', {
-    //     title: post.title,
-    //     savedPostId: post._id
-    // }, top, left, width, height);
   }
 
   onSaveButtonClick(e) {

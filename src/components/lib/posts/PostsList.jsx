@@ -54,7 +54,6 @@ class PostsList extends Component {
       firstPagination,
     } = listTask
 
-    // debugger
 
     const showReady = Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination)
     const headerView =

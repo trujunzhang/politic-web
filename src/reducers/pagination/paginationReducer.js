@@ -79,9 +79,7 @@ function paginationReducer(state: State = initialState, action): State {
       var nextTask = state.get(listId),
         results = nextTask.get('results')
 
-
       let list = List(results)
-
 
       list.update(
         list.findIndex(function (item) {
