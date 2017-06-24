@@ -27,7 +27,7 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {Post, Folder} = require('./objects').default
+let {Post, Folder, User} = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
@@ -37,7 +37,8 @@ const PostsParameters = require('../parameters').Posts
 const {
   LIST_VIEW_LOADED_POSTS,
   DASHBOARD_LOADED_POSTS,
-  OVERLAY_LOADED_POSTS_PAGE
+  OVERLAY_LOADED_POSTS_PAGE,
+  USERPROFILE_LOADED
 } = require('../lib/constants').default
 
 function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
@@ -103,6 +104,15 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
 }
 
 export default {
+  loadUserProfile: (userId: string, slug: string): ThunkAction => {
+    debugger
+    
+    let user = new Parse.Query(User).get(userId)
+
+    debugger
+    return loadParseQuery(USERPROFILE_LOADED, null)
+  },
+
   loadUserFolders: (userId: string): ThunkAction => {
     let query = new Parse.Query(Folder).equalTo('user', Parse.User.createWithoutData(userId))
 

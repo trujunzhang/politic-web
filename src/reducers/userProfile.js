@@ -36,38 +36,22 @@ const {
   ADDED_NEW_FOLDER_WITH_POST
 } = require('../lib/constants').default
 
-const {Folder, fromParseFolder} = require('./parseModels')
+const {User, fromParseFolder} = require('./parseModels')
 
 import type {Action} from '../actions/types'
 var slugify = require('slugify')
 
 export type State = {
-  isLoggedIn: boolean,
-  hasSkippedLogin: boolean,
-  id: ? string,
-  name: ? string,
-  loginType: ? string,
-  email: ? string,
-  slug: ? string,
-  defaultFolderId: ? string,
-  folders: ? Array<Folder>,
-  selectedFolder: Folder
+  ready: boolean,
+  userProfile: User
 }
 
 const initialState = {
-  isLoggedIn: false,
-  hasSkippedLogin: false,
-  id: null,
-  name: null,
-  loginType: null,
-  email: null,
-  slug: null,
-  defaultFolderId: null,
-  folders: [],
-  selectedFolder: null
+  ready: false,
+  userProfile: null
 }
 
-function userProfile(state: State = initialState, action: Action): State {
+function userProfileTask(state: State = initialState, action: Action): State {
   switch (action.type) {
     case LOGGED_IN:
     case ADDED_NEW_FOLDER_WITH_POST: {
@@ -100,4 +84,4 @@ function userProfile(state: State = initialState, action: Action): State {
   return state
 }
 
-export default userProfile
+export default userProfileTask

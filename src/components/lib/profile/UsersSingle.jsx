@@ -6,51 +6,57 @@ import {Link} from 'react-router'
 
 import {withRouter} from 'react-router'
 
+const {loadUserProfile} = require('../../../actions').default
+
 class UsersSingle extends Component {
 
   constructor(props) {
     super(props)
 
-    const {currentUser} = props
+    this.state = this.initialState = {
+      ready: false,
+      userProfile: null,
+      userId: props.param.uid,
+      userSlug: props.params.uslug
+    }
+  }
 
-    this.state = this.initialState = {}
+  componentWillReceiveProps(nextProps) {
+    let userProfile = nextProps.userProfileTask
+    if (!!userProfile) {
+      if (userProfile.id === this.state.userId) {
+        debugger
+        this.setState({
+          ready: true,
+          userProfile: userProfile
+        })
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(loadUserProfile(this.props.param.uid, this.props.param.uslug))
   }
 
   render() {
     const terms = {"telescope.slug": this.props.params.slug};
     const path = this.props.location.pathname;
+    const {ready, userProfile, userId, userSlug} = this.state
 
-
-    return (
-      <div className="placeholder_1WOC3">
-        <div className="loader_54XfI animationRotate loader_OEQVm">
+    if (!ready) {
+      return (
+        <div className="placeholder_1WOC3">
+          <div className="loader_54XfI animationRotate loader_OEQVm">
+          </div>
         </div>
-      </div>
+      )
+    }
+    debugger
+    return (
+      <Telescope.components.UsersProfile {...this.props} userProfile={userProfile}/>
     )
-
-    // return (
-    //   <Telescope.components.UsersProfile {...this.props}/>
-    // )
   }
 }
-
-
-//   const  = (props, context) => {
-//
-//     return (
-//       //Important: Using <*PostDocumentContainer*> here.
-//         <Telescope.components.PostDocumentContainer
-//         key={path}
-//         collection={Users}
-//         publication="users.profile"
-//         selector={terms}
-//         terms={terms}
-//         component={Telescope.components.}
-//         componentProps={{children: props.children}}
-//         documentPropName="user"
-//       />
-//     )
-// };
 
 
 /**
@@ -63,7 +69,8 @@ var {connect} = require('react-redux')
 function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    currentUser: store.user
+    currentUser: store.user,
+    userProfileTask: store.userProfileTask
   }
 }
 

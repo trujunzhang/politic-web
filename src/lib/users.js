@@ -69,7 +69,7 @@ Users.userSidebarMenu = function (user) {
 }
 
 Users.getLinkObject = function (type, user = null, folder = null) {
-  const userLink = !!user ? `/users/${user.slug}` : null
+  const userLink = !!user ? `/users/${user.id}/${user.slug}` : null
   switch (type) {
     case 'homepage':
       return {pathname: '/'}

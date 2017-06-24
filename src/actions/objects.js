@@ -26,6 +26,7 @@
 const Parse = require('parse')
 
 export default {
+  User: Parse.Object.extend('User'),
   Cache: Parse.Object.extend('Cache'),
   History: Parse.Object.extend('History'),
   Topic: Parse.Object.extend('Topic'),

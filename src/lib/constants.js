@@ -1,6 +1,9 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  // UserProfile
+  USERPROFILE_RESET: null,
+  USERPROFILE_LOADED: null,
 
   // Users
   LOGGED_IN: null,
