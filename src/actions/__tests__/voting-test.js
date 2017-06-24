@@ -52,7 +52,7 @@ describe('voting', () => {
       objectId: userId,
       username: 'medium'
     };
-    let user = Parse.Object.fromJSON(userJson)
+    let user = ParseUser.createWithoutData(userId)
 
     beforeEach(() => {
       let xxx = user
@@ -60,13 +60,11 @@ describe('voting', () => {
     });
 
     it('down vote a post', () => {
-      let operation = 'downvote'
+      operateUsersOnItem(user, postId, 'downvote')
+      expect(user.get('downvotedPosts').length).toBe(1)
+      operateUsersOnItem(user, postId, 'cancelDownvote')
+      expect(user.get('downvotedPosts').length).toBe(0)
 
-      operateUsersOnItem(user, postId, operation)
-      debugger
-      // var o = ParseObject.fromJSON(json);
-
-      // expect(gameValue).toBe(234)
     })
   })// downvote
 

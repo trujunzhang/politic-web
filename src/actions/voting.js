@@ -67,7 +67,7 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
 
       break;
     case "downvote":
-      debugger
+      // debugger
       pointers = (user.get('downvotedPosts') || [])
       pointers.push(ParsePost.createWithoutData(postId))
       user.set('downvotedPosts', pointers)
@@ -76,11 +76,10 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
 
       break;
     case "cancelDownvote":
-      pointers = (user.get('downvotedPosts') || []).map((item, index) => {
-        if (item.id !== postId) {
-          return item
-        }
-      })
+      pointers = (user.get('downvotedPosts') || [])
+      pointers = _.without(pointers, _.findWhere(pointers, {
+        id: postId
+      }))
       user.set('downvotedPosts', pointers)
       break;
   }
