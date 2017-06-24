@@ -41,7 +41,7 @@ class PostItemDownvote extends Component {
     this.setState({fade: false})
   }
 
-  onDownvoteClick(event) {
+  onVoteButtonClick(event) {
     event.preventDefault();
 
     const {post, currentUser, isLoggedIn} = this.props
@@ -102,7 +102,7 @@ class PostItemDownvote extends Component {
     }
 
     return (
-      <button className={buttonClass} rel="vote-button" onClick={this.onDownvoteClick.bind(this)}>
+      <button className={buttonClass} rel="vote-button" onClick={this.onVoteButtonClick.bind(this)}>
         <div className="buttonContainer_wTYxi">
           <div ref='button' className={postVoteClass}/>
           {voteCount}
