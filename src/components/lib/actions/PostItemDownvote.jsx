@@ -83,7 +83,6 @@ class PostItemDownvote extends Component {
         console.warn(e);
       }
     } finally {
-      debugger
       this.setState({isWaiting: false})
     }
   }

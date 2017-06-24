@@ -1,6 +1,18 @@
 import React, {Component} from 'react';
 import Users from '../../../lib/users';
 
+
+/**
+ * The states were interested in
+ */
+const {
+  POSTS_UPVOTE,
+  POSTS_DOWNVOTE,
+  POSTS_UPVOTE_CACEL,
+  POSTS_DOWNVOTE_CACEL,
+} = require('../../../lib/constants').default
+
+
 class PostItemUpvote extends Component {
 
   constructor(props) {
@@ -34,13 +46,43 @@ class PostItemUpvote extends Component {
     if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
     } else if (Users.hasUpvoted(currentUser, post)) {
-
+      this.onVotingPress(POSTS_UPVOTE_CACEL)
     } else {
       this.setState({fade: true});
-
+      this.onVotingPress(POSTS_UPVOTE)
     }
 
     event.stopPropagation();
+  }
+
+  async onVotingPress(operation) {
+    if (this.state.isWaiting) {
+      return
+    }
+
+    this.setState({isWaiting: true})
+
+    const {dispatch, post, currentUser} = this.props
+
+    let postId = post.id
+    let userId = currentUser.id
+    let isDownvoted = Users.hasDownvoted(currentUser, post)
+    let isUpvoted = Users.hasUpvoted(currentUser, post)
+
+    try {
+      await Promise.race([
+        dispatch(postsItemVoting(postId, userId, operation)),
+        timeout(15000),
+      ])
+    } catch (e) {
+      const message = e.message || e
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        alert(message);
+        console.warn(e);
+      }
+    } finally {
+      this.setState({isWaiting: false})
+    }
   }
 
   render() {
@@ -65,11 +107,9 @@ class PostItemUpvote extends Component {
     return (
       <button className={buttonClass} rel="vote-button" onClick={this.onUpvoteClick.bind(this)}>
         <div className="buttonContainer_wTYxi">
-          <div
-            ref='button'
-            className={postVoteClass}>
+          <div ref='button' className={postVoteClass}>
           </div>
-          {post.upvotes || 0}
+          {post.upvoters.length || 0}
         </div>
       </button>
     )
