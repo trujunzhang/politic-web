@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Users from '../../../lib/users';
 
-const {postsItemVoting} = require('../../../../actions').default
+const {timeout, postsItemVoting} = require('../../../actions').default
 
 class PostItemDownvote extends Component {
 

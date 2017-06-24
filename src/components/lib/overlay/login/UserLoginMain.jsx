@@ -1,7 +1,7 @@
 import Telescope from '../../index'
 import React, {Component} from 'react'
 
-const {logInWithFacebook, logInWithTwitter, dismissPopModel} = require('../../../../actions').default
+const {timeout, logInWithFacebook, logInWithTwitter, dismissPopModel} = require('../../../../actions').default
 
 class UserLoginMain extends Component {
 
@@ -85,11 +85,6 @@ class UserLoginMain extends Component {
   }
 }
 
-async function timeout(ms: number): Promise {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms)
-  })
-}
 
 /**
  * ## Imports

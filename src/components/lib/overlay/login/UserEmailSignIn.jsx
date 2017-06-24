@@ -1,5 +1,5 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 /**
  *   LoginRender
  */
@@ -13,11 +13,11 @@ const {
 
 const I18n = require('./Translate').default
 
-const {logInWithPassword, dismissPopModel} = require('../../../../actions').default
+const {timeout, logInWithPassword, dismissPopModel} = require('../../../../actions').default
 
 class UserEmailSignIn extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = this.initialState = {
       // Message
@@ -25,7 +25,7 @@ class UserEmailSignIn extends Component {
     }
   }
 
-  async onButtonPress () {
+  async onButtonPress() {
     const {dispatch} = this.props
 
     let username = this.props.auth.form.fields.username
@@ -60,10 +60,10 @@ class UserEmailSignIn extends Component {
     }
   }
 
-  onForgotPasswordPress () {
+  onForgotPasswordPress() {
   }
 
-  render () {
+  render() {
     return (
       <span>
           {!!this.state.errorMessage ? <div className='errorMessage_2lxEG'>{this.state.errorMessage}</div> : null}
@@ -84,11 +84,6 @@ class UserEmailSignIn extends Component {
   }
 }
 
-async function timeout (ms: number): Promise {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms)
-  })
-}
 
 /**
  * ## Imports

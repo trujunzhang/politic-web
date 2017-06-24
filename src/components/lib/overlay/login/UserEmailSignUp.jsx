@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 const {
   LOGIN_VIA_SOCIAL,
@@ -11,11 +11,11 @@ const I18n = require('./Translate').default
 
 import LoginRender from './LoginRender'
 
-const {signUpWithPassword, dismissPopModel} = require('../../../../actions').default
+const {timeout, signUpWithPassword, dismissPopModel} = require('../../../../actions').default
 
 class UserEmailSignUp extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = this.initialState = {
       formState: 'COMMON',
@@ -24,11 +24,11 @@ class UserEmailSignUp extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
 
   }
 
-  async onButtonPress () {
+  async onButtonPress() {
     const {dispatch} = this.props
 
     let username = this.props.auth.form.fields.username
@@ -63,7 +63,7 @@ class UserEmailSignUp extends Component {
     }
   }
 
-  renderResult () {
+  renderResult() {
     return (
       <div>
         <div className='alert alert-info' role='alert'>
@@ -77,7 +77,7 @@ class UserEmailSignUp extends Component {
     )
   }
 
-  render () {
+  render() {
     let content = null
     if (this.state.formState === 'RESULT') {
       content = this.renderResult()
@@ -109,11 +109,6 @@ class UserEmailSignUp extends Component {
   }
 }
 
-async function timeout (ms: number): Promise {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms)
-  })
-}
 
 /**
  * ## Imports
@@ -122,7 +117,7 @@ async function timeout (ms: number): Promise {
  */
 var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     auth: store.auth
   }

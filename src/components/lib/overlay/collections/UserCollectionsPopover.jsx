@@ -5,7 +5,7 @@ import Users from '../../../../lib/users'
 import {Link} from 'react-router'
 import {withRouter} from 'react-router'
 
-const {newUserFolderWithPost, dismissPopModel} = require('../../../../actions').default
+const {timeout, newUserFolderWithPost, dismissPopModel} = require('../../../../actions').default
 
 class UserCollectionsPopover extends Component {
 
@@ -201,13 +201,6 @@ class UserCollectionsPopover extends Component {
       </div>
     )
   }
-}
-
-
-async function timeout(ms: number): Promise {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Timed out')), ms)
-  })
 }
 
 
