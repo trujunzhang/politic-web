@@ -3,3 +3,7 @@
 
 * Sign Up
   [http://docs.parseplatform.org/js/guide/#signing-up]
+
+
+* JEST
+  [https://github.com/parse-community/Parse-SDK-JS/blob/master/src/__tests__/ParseObject-test.js]
