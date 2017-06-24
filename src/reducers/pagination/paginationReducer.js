@@ -13,7 +13,7 @@
 
 import type {Action} from '../../actions/types'
 
-const {Map} = require('immutable')
+const {Map, List} = require('immutable')
 
 const initialState = Map({})
 
@@ -85,10 +85,31 @@ function paginationReducer(state: State = initialState, action): State {
       //   }
       // )
 
-      const {user, post, listId} = action.payload
-      var nextTask = state.get(listId)
+      const {user, post} = action.payload,
+        listId = action.payload.listId,
+        postId = post.id
+
+      var nextTask = state.get(listId),
+        results = nextTask.get('results')
+
+
+      let list = List(results)
+
       debugger
-      return Map({})
+
+      list.update(
+        list.findIndex(function (item) {
+          return item.id === postId;
+        }), function (item) {
+          return post
+        }
+      )
+
+      debugger
+      let newResult = list.toJS()
+
+      debugger
+      return nextTask
     }
     case LIST_VIEW_RESET_ALL_POSTS: {
       return Map({})
