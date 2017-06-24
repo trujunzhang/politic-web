@@ -88,10 +88,9 @@ class PostItemDownvote extends Component {
   }
 
   render() {
-    const {post, currentUser, voteCount} = this.props,
+    const {post, currentUser, voteCount, hasVoted} = this.props,
       {fade} = this.state
 
-    const hasVoted = Users.hasDownvoted(currentUser, post);
     const buttonClass =
       hasVoted ?
         "button_2I1re active_2heMV smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W" :

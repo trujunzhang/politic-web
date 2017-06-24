@@ -87,10 +87,8 @@ class PostItemUpvote extends Component {
   }
 
   render() {
-    const {post, currentUser, voteCount} = this.props,
+    const {post, currentUser, voteCount, hasVoted} = this.props,
       {fade} = this.state;
-
-    const hasVoted = Users.hasUpvoted(currentUser, post);
 
     const buttonClass =
       hasVoted ?
