@@ -1,15 +1,15 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
-import { withRouter } from 'react-router'
+import {withRouter} from 'react-router'
 
 class PostsItem extends Component {
   // A: Title + Image should open the “Read More” link - link to the original article
   // B: Title + Image in post list is like in post detail. click them will open original url?
   // A: YES
 
-  renderContent (showActionButtons) {
+  renderContent(showActionButtons) {
     const {post} = this.props
     return (
       <div className={'row ' + (showActionButtons ? 'posts_content row_margin_bottom30' : '')}>
@@ -31,7 +31,7 @@ class PostsItem extends Component {
     )
   }
 
-  renderThumbnail () {
+  renderThumbnail() {
     const {post} = this.props,
       imageSet = Posts.getThumbnailSet(post)
 
@@ -56,7 +56,7 @@ class PostsItem extends Component {
     return null
   }
 
-  render () {
+  render() {
     const showActionButtons = false
     const itemDisabled = false//post.status !== Posts.config.STATUS_APPROVED;
 
@@ -72,7 +72,7 @@ class PostsItem extends Component {
     )
   }
 
-  onReadMoreClick (e) {
+  onReadMoreClick(e) {
     e.preventDefault()
 
     Users.openNewBackgroundTab(e.target, this.props.post.url)
@@ -80,17 +80,6 @@ class PostsItem extends Component {
     e.stopPropagation()
   }
 
-  popupDetail (event) {
-    event.preventDefault()
-
-    // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
-    // const {router, post, location} = this.props;
-    // if (post.status === Posts.config.STATUS_APPROVED) {
-    //     this.context.messages.pushRouterForDetailPage(router, post, Users.checkIsAdmin(location, user));
-    // }
-
-    event.stopPropagation()
-  }
 
 }
 
