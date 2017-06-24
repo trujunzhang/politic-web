@@ -29,22 +29,15 @@ class Downvote extends Component {
   onDownvoteClick(event) {
     event.preventDefault();
 
-    // const {post} = this.props;
-    // const {currentUser} = this.context;
-    //
-    // if (!currentUser) {
-    //     this.context.messages.showLoginUI();
-    //
-    // } else if (currentUser.hasDownvoted(post)) {
-    //     this.context.actions.call('posts.cancelDownvote', post._id, (error, result) => {
-    //         this.context.events.track("post downvote cancelled", {'_id': post._id});
-    //     });
-    // } else {
-    //     this.setState({fade: true});
-    //     this.context.actions.call('posts.downvote', post._id, (error, result) => {
-    //         this.context.events.track("post downvoted", {'_id': post._id});
-    //     });
-    // }
+    const {post, currentUser, isLoggedIn} = this.props
+    if (isLoggedIn === false) {
+      this.props.onShowLoginOverlay()
+    } else if (Users.hasDownvoted(currentUser, post)) {
+
+    } else {
+      this.setState({fade: true});
+
+    }
 
     event.stopPropagation();
   }

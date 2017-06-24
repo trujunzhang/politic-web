@@ -31,8 +31,7 @@ class Upvote extends Component {
     event.preventDefault();
 
     const {post, currentUser, isLoggedIn} = this.props
-
-    if (!currentUser) {
+    if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
     } else if (Users.hasUpvoted(currentUser, post)) {
 
