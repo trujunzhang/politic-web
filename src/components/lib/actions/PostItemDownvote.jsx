@@ -56,7 +56,6 @@ class PostItemDownvote extends Component {
 
     let postId = post.id
     let userId = currentUser.id
-
     try {
       await Promise.race([
         dispatch(postsItemVoting(postId, userId, operation)),
@@ -65,10 +64,11 @@ class PostItemDownvote extends Component {
     } catch (e) {
       const message = e.message || e
       if (message !== 'Timed out' && message !== 'Canceled by user') {
-        // alert(message);
-        // console.warn(e);
+         alert(message);
+         console.warn(e);
       }
     } finally {
+        debugger
       this.setState({isWaiting: false})
     }
   }
@@ -100,4 +100,12 @@ class PostItemDownvote extends Component {
   }
 }
 
-export default PostItemDownvote;
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+export default connect()(PostItemDownvote)

@@ -70,7 +70,6 @@ debugger
 function postsItemVoting(postId: string, userId: string, operation: string): ThunkAction {
   return (dispatch) => {
     const action = _postsItemVoting(postId, userId, operation);
-
     // Loading friends schedules shouldn't block the login process
     action.then(
       ([result]) => {
