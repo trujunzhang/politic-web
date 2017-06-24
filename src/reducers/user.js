@@ -33,7 +33,8 @@ const {
   SET_SHARING,
   LOADED_USER_FOLDERS,
   SELECTED_USER_FOLDER,
-  ADDED_NEW_FOLDER_WITH_POST
+  ADDED_NEW_FOLDER_WITH_POST,
+  POSTS_VOTING_DONE
 } = require('../lib/constants').default
 
 const {Folder, fromParseFolder} = require('./parseModels')
@@ -52,10 +53,6 @@ export type State = {
   slug: ? string,
   defaultFolderId: ? string,
   folders: ? Array<Folder>,
-  upvotedPosts: ? Array,
-  downvotedPosts: ? Array,
-  upvotedComments: ? Array,
-  downvotedComments: ? Array,
   // The following is for collection Folder
   selectedFolder: Folder
 }
@@ -71,10 +68,6 @@ const initialState = {
   slug: null,
   defaultFolderId: null,
   folders: [],
-  upvotedPosts: [],
-  downvotedPosts: [],
-  upvotedComments: [],
-  downvotedComments: [],
   // The following is for collection Folder
   selectedFolder: null
 }
@@ -93,10 +86,6 @@ function user(state: State = initialState, action: Action): State {
         email,
         defaultFolderId,
         folders,
-        upvotedPosts,
-        downvotedPosts,
-        upvotedComments,
-        downvotedComments,
         slug: slugify(name, '_')
       }
     }
