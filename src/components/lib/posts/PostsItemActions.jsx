@@ -40,20 +40,6 @@ class PostsItemActions extends Component {
     )
   }
 
-  render() {
-    const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
-
-    const {location, post} = this.props,
-      admin = false,
-      showActionButtons = true
-
-    // if (showActionButtons) {
-    return this.renderActionButtons()
-    // }
-
-    // return this.renderPostStatus();
-  }
-
   renderPostStatus() {
     const {post} = this.props,
       imageSet = Posts.getThumbnailSet(post),
@@ -72,7 +58,7 @@ class PostsItemActions extends Component {
     )
   }
 
-  renderActionButtons() {
+  render() {
     const {post, currentUser, isLoggedIn, listId} = this.props,
       imageSet = Posts.getThumbnailSet(post),
       panelClass = 'meta_2lIV- ' + (!!imageSet.small ? 'meta_2lIV-thumbnail' : 'meta_2lIV-no_thumbnail')
