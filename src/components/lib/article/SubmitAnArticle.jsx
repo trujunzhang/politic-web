@@ -106,7 +106,7 @@ class SubmitAnArticle extends Component {
         // So redirect to the article.
         if (result.status === 'duplicate') {
           let post = result.value
-          this.context.messages.pushRouter(this.props.router, {pathname: '/', query: {postId: post._id,}})
+          // this.context.messages.pushRouter(this.props.router, {pathname: '/', query: {postId: post._id,}})
         } else if (result.status === 'validated') {
           let newPost = this.state.newPost
           newPost['url'] = result.value.url

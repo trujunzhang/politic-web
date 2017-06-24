@@ -88,16 +88,16 @@ class PostItemDownvote extends Component {
   }
 
   render() {
-    const {post, currentUser} = this.props,
+    const {post, currentUser, voteCount} = this.props,
       {fade} = this.state
 
-    const hasDownvoted = Users.hasDownvoted(currentUser, post);
+    const hasVoted = Users.hasDownvoted(currentUser, post);
     const buttonClass =
-      hasDownvoted ?
+      hasVoted ?
         "button_2I1re active_2heMV smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W" :
         "button_2I1re smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W";
 
-    let postVoteClass = "postDownvoteArrow_2xABl" + (hasDownvoted ? " upvoted_172lX" : "");
+    let postVoteClass = "postDownvoteArrow_2xABl" + (hasVoted ? " upvoted_172lX" : "");
     if (fade) {
       postVoteClass = postVoteClass + ' animate_asuDN';
     }
@@ -106,7 +106,7 @@ class PostItemDownvote extends Component {
       <button className={buttonClass} rel="vote-button" onClick={this.onDownvoteClick.bind(this)}>
         <div className="buttonContainer_wTYxi">
           <div ref='button' className={postVoteClass}/>
-          {post.downvoters.length || 0}
+          {voteCount}
         </div>
       </button>
     )

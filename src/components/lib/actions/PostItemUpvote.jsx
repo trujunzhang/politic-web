@@ -87,17 +87,17 @@ class PostItemUpvote extends Component {
   }
 
   render() {
-    const {post, currentUser} = this.props,
+    const {post, currentUser, voteCount} = this.props,
       {fade} = this.state;
 
-    const hasUpvoted = Users.hasUpvoted(currentUser, post);
+    const hasVoted = Users.hasUpvoted(currentUser, post);
 
     const buttonClass =
-      hasUpvoted ?
+      hasVoted ?
         "button_2I1re active_2heMV smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W" :
         "button_2I1re smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W";
 
-    let postVoteClass = "postUpvoteArrow_2xABl" + (hasUpvoted ? " upvoted_172lX" : "");
+    let postVoteClass = "postUpvoteArrow_2xABl" + (hasVoted ? " upvoted_172lX" : "");
 
     if (fade) {
       postVoteClass = postVoteClass + ' animate_asuDN';
@@ -108,7 +108,7 @@ class PostItemUpvote extends Component {
         <div className="buttonContainer_wTYxi">
           <div ref='button' className={postVoteClass}>
           </div>
-          {post.upvoters.length || 0}
+          {voteCount}
         </div>
       </button>
     )

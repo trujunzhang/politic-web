@@ -125,7 +125,10 @@ Users.getEmailHash = function (user) {
  * @param {Object} document
  */
 Users.hasUpvoted = function (user, document) {
-  return user && _.include(document.upvoters, user._id)
+  if (document.id === 'ELxe8ZjTWL') {
+    // debugger
+  }
+  return user && _.include(document.upvoters, user.id)
 }
 
 /**

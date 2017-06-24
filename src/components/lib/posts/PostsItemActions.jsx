@@ -84,11 +84,13 @@ class PostsItemActions extends Component {
             post={post}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
+            voteCount={post.upvoters.length || 0}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
           <Telescope.components.PostItemDownvote
             post={post}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
+            voteCount={post.downvoters.length || 0}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
           <Telescope.components.PostsCommenters post={post} event={this.onPopupDetailPress.bind(this)}/>
           <div className="additionalActionButtons_BoErh">
