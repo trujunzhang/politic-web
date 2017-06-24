@@ -26,31 +26,40 @@
 
 const Parse = require('parse')
 
+var _ = require('underscore')
+
 import type {Action, ThunkAction} from './types'
 
-async function _postsItemVoting(postId: string, userId: string, voteType: string): Promise<Array<Action>> {
-  const user = new Parse.User();
-  user.set('username', username);
-  user.set('password', password);
-
-  var callBackObject = null;
-  await user.logIn().then((result) => {
-    callBackObject = result;
-  });
+const {User, fromParseUser} = require('../reducers/parseModels')
 
 
-  const userData = {
-    id: callBackObject.id,
-    name: callBackObject.get("username"),
-    loginType: callBackObject.get("loginType"),
-    email: callBackObject.get("email")
-  };
+function operateOnItem(userInstance: User, postId: string, operation: string) {
+  debugger
+  switch (operation) {
+    case "upvote":
 
-  // console.log("userData: " + JSON.stringify(userData));
+    case "downvote":
+
+    case "cancelUpvote":
+
+    case "cancelDownvote":
+  }
+
+}
+
+async function _postsItemVoting(postId: string, userId: string, operation: string): Promise<Array<Action>> {
+debugger
+  const user = await Parse.User.currentAsync();
+  debugger
+  const userInstance = fromParseUser(user)
+
+  operateOnItem(userInstance, postId, operation)
+
+  // await user.save()
 
   const action = {
-    type: 'LOGGED_IN',
-    payload: userData
+    type: 'LOGGED_INxxx',
+    payload: []
   };
 
   return Promise.all([
@@ -58,10 +67,9 @@ async function _postsItemVoting(postId: string, userId: string, voteType: string
   ]);
 }
 
-function postsItemVoting(postId: string, userId: string, voteType: string): ThunkAction {
-  debugger
+function postsItemVoting(postId: string, userId: string, operation: string): ThunkAction {
   return (dispatch) => {
-    const action = _postsItemVoting(postId, userId, voteType);
+    const action = _postsItemVoting(postId, userId, operation);
 
     // Loading friends schedules shouldn't block the login process
     action.then(

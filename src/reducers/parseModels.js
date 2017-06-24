@@ -5,6 +5,9 @@ export type Cloudinary = {
   url: string;
 }
 
+export type Pointer = {
+  id: string
+}
 
 export type User = {
   id: string,
@@ -12,7 +15,12 @@ export type User = {
   loginType: string,
   email: string,
   slug: string,
-  defaultFolderId: string
+  defaultFolderId: string,
+  folders: Array<Folder>,
+  upvotedPosts: Array,
+  downvotedPosts: Array,
+  upvotedComments: Array,
+  downvotedComments: Array,
 }
 
 export type Topic = {
@@ -49,6 +57,11 @@ export type Post = {
   postedAt: Date;
 };
 
+export function fromParsePointer(map: Object): Pointer {
+  return {
+    id: map.id,
+  }
+}
 
 export function fromParseUser(map: Object): User {
   return {
@@ -58,7 +71,13 @@ export function fromParseUser(map: Object): User {
     loginType: map.get('loginType'),
     email: map.get('email'),
     defaultFolderId: fromParseFolder(map.get('folders')[0]).id,
-    folders: (map.get('folders') || []).map(fromParseFolder)
+    folders: (map.get('folders') || []).map(fromParseFolder),
+
+    upvotedPosts: (map.get('upvotedPosts') || []).map(fromParsePointer),
+    downvotedPosts: (map.get('downvotedPosts') || []).map(fromParsePointer),
+    upvotedComments: (map.get('upvotedComments') || []).map(fromParsePointer),
+    downvotedComments: (map.get('downvotedComments') || []).map(fromParsePointer)
+
   };
 }
 

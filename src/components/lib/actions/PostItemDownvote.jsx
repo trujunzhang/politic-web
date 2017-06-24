@@ -36,7 +36,7 @@ class PostItemDownvote extends Component {
     if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
     } else if (Users.hasDownvoted(currentUser, post)) {
-      this.onVotingPress('unDownvote')
+      this.onVotingPress('cancelDownvote')
     } else {
       this.setState({fade: true});
       this.onVotingPress('downvote')
@@ -45,8 +45,7 @@ class PostItemDownvote extends Component {
     event.stopPropagation();
   }
 
-  async onVotingPress(voteType: string) {
-    debugger
+  async onVotingPress(operation: string) {
     if (this.state.isWaiting) {
       return
     }
@@ -60,7 +59,7 @@ class PostItemDownvote extends Component {
 
     try {
       await Promise.race([
-        dispatch(postsItemVoting(postId, userId, voteType)),
+        dispatch(postsItemVoting(postId, userId, operation)),
         timeout(15000),
       ])
     } catch (e) {
