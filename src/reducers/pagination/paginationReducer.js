@@ -11,7 +11,7 @@
  * formValidation for setting the form's valid flag
  */
 
-import type { Action } from '../../actions/types'
+import type {Action} from '../../actions/types'
 
 const {Map} = require('immutable')
 
@@ -22,7 +22,8 @@ const initialState = Map({})
  */
 const {
   LIST_VIEW_LOADED_POSTS,
-  LIST_VIEW_RESET_ALL_POSTS
+  LIST_VIEW_RESET_ALL_POSTS,
+  POSTS_VOTING_DONE
 } = require('../../lib/constants').default
 
 const {fromParsePost} = require('../parseModels')
@@ -32,7 +33,7 @@ const {fromParsePost} = require('../parseModels')
  * @param {Object} state - initialState
  * @param {Object} action - type and payload
  */
-function paginationReducer (state: State = initialState, action): State {
+function paginationReducer(state: State = initialState, action): State {
   switch (action.type) {
     /**
      * ### Requests start
@@ -68,6 +69,9 @@ function paginationReducer (state: State = initialState, action): State {
       return nextState
     }
 
+    case POSTS_VOTING_DONE: {
+      return Map({})
+    }
     case LIST_VIEW_RESET_ALL_POSTS: {
       return Map({})
     }
