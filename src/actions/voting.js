@@ -153,6 +153,7 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
 }
 
 function postsItemVoting(postId: string, userId: string, operation: string, listId: string, isUpvoted: boolean, isDownvoted: boolean): ThunkAction {
+  debugger
   return (dispatch) => {
     const action = _postsItemVoting(postId, userId, operation, listId, isUpvoted, isDownvoted)
 

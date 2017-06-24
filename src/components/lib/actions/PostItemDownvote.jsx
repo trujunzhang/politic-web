@@ -71,6 +71,7 @@ class PostItemDownvote extends Component {
     let isDownvoted = Users.hasDownvoted(currentUser, post)
     let isUpvoted = Users.hasUpvoted(currentUser, post)
 
+
     try {
       await Promise.race([
         dispatch(postsItemVoting(postId, userId, operation, listId, isUpvoted, isDownvoted)),
@@ -88,8 +89,9 @@ class PostItemDownvote extends Component {
   }
 
   render() {
-    const {voteCount, hasVoted, voteClass} = this.props,
+    const {voteCount, hasVoted, voteClass, listId} = this.props,
       {fade} = this.state
+
 
     const buttonClass =
       hasVoted ?

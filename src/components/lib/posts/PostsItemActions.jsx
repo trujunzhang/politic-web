@@ -77,7 +77,6 @@ class PostsItemActions extends Component {
       imageSet = Posts.getThumbnailSet(post),
       panelClass = 'meta_2lIV- ' + (!!imageSet.small ? 'meta_2lIV-thumbnail' : 'meta_2lIV-no_thumbnail')
 
-
     return (
       <div className={panelClass} ref="saveButton">
         <div className="actionButtons_2mJsw">
