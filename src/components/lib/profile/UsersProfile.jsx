@@ -11,10 +11,10 @@ class UsersProfile extends Component {
   constructor(props) {
     super(props)
 
-    const {currentUser} = props
+    const {userProfile} = props
 
     this.state = this.initialState = {
-      userSidebarMenu: Users.userSidebarMenu(currentUser)
+      userSidebarMenu: Users.userSidebarMenu(userProfile)
     }
   }
 
