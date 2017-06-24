@@ -46,6 +46,7 @@ class PostItemDownvote extends Component {
   }
 
   async onVotingPress(voteType: string) {
+    debugger
     if (this.state.isWaiting) {
       return
     }
