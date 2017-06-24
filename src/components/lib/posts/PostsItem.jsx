@@ -60,6 +60,8 @@ class PostsItem extends Component {
     const showActionButtons = false
     const itemDisabled = false//post.status !== Posts.config.STATUS_APPROVED;
 
+    // debugger
+
     return (
       <li className='postItem_block'>
         <div disabled={itemDisabled} className="postItem_2pV9v">

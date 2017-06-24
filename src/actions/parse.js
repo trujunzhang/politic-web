@@ -124,7 +124,7 @@ export default {
       .addParameters(terms)
       .end()
 
-    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
+    return loadParseQuery(type, postQuery.skip(skipCount).limit(1), listTask, listId, limit)
   },
 
   loadPostPage: (objectId: string): ThunkAction => {

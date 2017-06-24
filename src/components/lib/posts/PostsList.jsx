@@ -15,7 +15,7 @@ class PostsList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
+    // debugger
     this.setState({
       listTask: byListId(nextProps.listContainerTasks, nextProps.listId, nextProps.limit)
     })
