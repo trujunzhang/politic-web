@@ -28,7 +28,7 @@ const Parse = require('parse')
 
 import type {Action, ThunkAction} from './types'
 
-async function _upvotePost(postId: string, userId: string): Promise<Array<Action>> {
+async function _postsItemVoting(postId: string, userId: string, voteType: string): Promise<Array<Action>> {
   const user = new Parse.User();
   user.set('username', username);
   user.set('password', password);
@@ -58,22 +58,21 @@ async function _upvotePost(postId: string, userId: string): Promise<Array<Action
   ]);
 }
 
-function upvotePost(postId: string, userId: string): ThunkAction {
+function postsItemVoting(postId: string, userId: string, voteType: string): ThunkAction {
   return (dispatch) => {
-    const login = _upvotePost(username, password);
+    const action = _postsItemVoting(postId, userId, voteType);
 
     // Loading friends schedules shouldn't block the login process
-    login.then(
+    action.then(
       ([result]) => {
         dispatch(result);
       }
     );
-    return login;
+    return action;
   };
 }
 
 export default {
-  upvotePost,
-  // downvotePost, upvoteComment, downvoteComment, flagPost
+  postsItemVoting,
 
 }

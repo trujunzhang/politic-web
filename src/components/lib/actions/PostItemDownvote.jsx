@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import Users from '../../../lib/users';
 
+const {postsItemVoting} = require('../../../../actions').default
+
 class PostItemDownvote extends Component {
 
   constructor(props) {
     super(props);
     this.state = this.initialState = {
-      fade: false
+      fade: false,
+      isWaiting: false
     };
     this.fadingDone = this.fadingDone.bind(this)
   }
@@ -33,13 +36,41 @@ class PostItemDownvote extends Component {
     if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
     } else if (Users.hasDownvoted(currentUser, post)) {
-
+      this.onVotingPress('unDownvote')
     } else {
       this.setState({fade: true});
-
+      this.onVotingPress('downvote')
     }
 
     event.stopPropagation();
+  }
+
+  async onVotingPress(voteType: string) {
+    if (this.state.isWaiting) {
+      return
+    }
+
+    this.setState({isWaiting: true})
+
+    const {dispatch, post, currentUser} = this.props
+
+    let postId = post.id
+    let userId = currentUser.id
+
+    try {
+      await Promise.race([
+        dispatch(postsItemVoting(postId, userId, voteType)),
+        timeout(15000),
+      ])
+    } catch (e) {
+      const message = e.message || e
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        // alert(message);
+        // console.warn(e);
+      }
+    } finally {
+      this.setState({isWaiting: false})
+    }
   }
 
   render() {
