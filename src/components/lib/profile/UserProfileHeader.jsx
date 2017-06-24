@@ -5,12 +5,10 @@ import Users from '../../../lib/users'
 
 import Avatar from 'react-avatar'
 
+import {Link} from 'react-router'
+
 class UserProfileHeader extends Component {
-
-  onEditButtonClick(menu) {
-    // this.context.messages.pushRouter(this.props.router, Users.getLinkObject('editing',))
-  }
-
+  
   renderTwitterIcon(userName) {
     return (
       <a className="twitter_3_mOY" href={'https://twitter.com/' + userName} rel="user-twitter" target="_blank">
@@ -40,23 +38,17 @@ class UserProfileHeader extends Component {
   }
 
   renderEditPanel() {
-    const {userProfile} = this.props
-    const {currentUser} = this.props
-    // if (Users.isLoggedUser(user, currentUser)) {
-    //   return (
-    //     <Telescope.components.CanDo
-    //       action="users.edit.own"
-    //       document={user}>
-    //       <div className="social_1SKRS">
-    //         <a
-    //           className="button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d simpleVariant_1Nl54"
-    //           onClick={this.onEditButtonClick.bind(this)}>
-    //           <div className="buttonContainer_wTYxi">edit</div>
-    //         </a>
-    //       </div>
-    //     </Telescope.components.CanDo>
-    //   )
-    // }
+    const {userProfile, currentUser} = this.props
+    if (Users.isLoggedUser(userProfile, currentUser)) {
+      return (
+        <div className="social_1SKRS">
+          <Link to={Users.getLinkObject('editing')}
+                className="button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d simpleVariant_1Nl54">
+            <div className="buttonContainer_wTYxi">edit</div>
+          </Link>
+        </div>
+      )
+    }
 
     return null
   }

@@ -68,6 +68,15 @@ Users.userSidebarMenu = function (user) {
   ]
 }
 
+
+Users.isLoggedUser = function (userProfile, currentUser) {
+  if (!!currentUser && !!userProfile && userProfile.id === currentUser.id) {
+    return true;
+  }
+
+  return false;
+};
+
 Users.getLinkObject = function (type, user = null, folder = null) {
   const userLink = !!user ? `/users/${user.id}/${user.slug}` : null
   switch (type) {
