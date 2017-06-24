@@ -42,9 +42,9 @@ class UsersProfile extends Component {
   }
 
   renderRecentComments() {
-    const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
+    const {userProfile} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
 
-    // const terms = {view: 'postComments', userId: user._id, listId: 'comments.recent.list', limit: 5}
+    // const terms = {view: 'postComments', userId: userProfile.id, listId: 'comments.recent.list', limit: 5}
     // const {selector, options} = Comments.parameters.get(terms)
 
     return (
@@ -122,10 +122,10 @@ class UsersProfile extends Component {
   }
 
   renderCommon() {
-    const {currentUser} = this.props
+    const {userProfile} = this.props
     return (
       <div>
-        <Telescope.components.UserProfileHeader user={currentUser}/>
+        <Telescope.components.UserProfileHeader userProfile={userProfile}/>
         <div className="constraintWidth_ZyYbM body_1RqUJ">
 
           {this.renderLeftPanel()}

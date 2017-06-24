@@ -1,19 +1,17 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 
 import Avatar from 'react-avatar'
 
-import { withRouter } from 'react-router'
-
 class UserProfileHeader extends Component {
 
-  onEditButtonClick (menu) {
+  onEditButtonClick(menu) {
     // this.context.messages.pushRouter(this.props.router, Users.getLinkObject('editing',))
   }
 
-  renderTwitterIcon (userName) {
+  renderTwitterIcon(userName) {
     return (
       <a className="twitter_3_mOY" href={'https://twitter.com/' + userName} rel="user-twitter" target="_blank">
               <span>
@@ -27,7 +25,7 @@ class UserProfileHeader extends Component {
     )
   }
 
-  renderFacebookIcon (facebookLink) {
+  renderFacebookIcon(facebookLink) {
     return (
       <a className="twitter_3_mOY" href={facebookLink} rel="user-facebook" target="_blank">
               <span>
@@ -41,8 +39,8 @@ class UserProfileHeader extends Component {
     )
   }
 
-  renderEditPanel () {
-    const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
+  renderEditPanel() {
+    const {userProfile} = this.props
     const {currentUser} = this.props
     // if (Users.isLoggedUser(user, currentUser)) {
     //   return (
@@ -63,12 +61,12 @@ class UserProfileHeader extends Component {
     return null
   }
 
-  render () {
-    const {currentUser} = this.props
-    const avatarObj = Users.getAvatarObj(currentUser),
-      bio = Users.getBio(currentUser),
-      twitterName = Users.getTwitterName(currentUser),
-      coverImage = Users.getUserCoverUrl(currentUser)
+  render() {
+    const {userProfile} = this.props
+    const avatarObj = Users.getAvatarObj(userProfile),
+      bio = Users.getBio(userProfile),
+      twitterName = Users.getTwitterName(userProfile),
+      coverImage = Users.getUserCoverUrl(userProfile)
 
     const headerStyle = !!coverImage ? {backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + coverImage + ')'} : {}
 
@@ -85,7 +83,7 @@ class UserProfileHeader extends Component {
             </span>
             <div className="info_2UynN user_header_info_panel">
               <div className="primary_38IeC">
-                <h1 className="headline_azIav inverse_1CN6F base_3CbW2">{Users.getDisplayName(currentUser)}</h1>
+                <h1 className="headline_azIav inverse_1CN6F base_3CbW2">{Users.getDisplayName(userProfile)}</h1>
               </div>
               <h2 className="username_3tQri featured_2W7jd inverse_1CN6F base_3CbW2">{twitterName}</h2>
               <p className="secondary_Yuxa5 text_3Wjo0 inverse_1CN6F base_3CbW2">{bio}</p>
@@ -106,7 +104,7 @@ class UserProfileHeader extends Component {
  */
 var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
     currentUser: store.user
