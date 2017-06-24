@@ -120,7 +120,7 @@ function removeLastVoting(operation: string, isUpvoted: boolean, isDownvoted: bo
   return null
 }
 
-async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
+async function _postsItemVoting(postId: string, userId: string, operation: string, listId: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
   let preOperation = removeLastVoting(operation, isUpvoted, isDownvoted)
 
   const user = await Parse.User.currentAsync()
@@ -141,6 +141,7 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
   const action = {
     type: POSTS_VOTING_DONE,
     payload: {
+      listId: listId,
       user: fromParseUser(user),
       post: fromParsePost(post)
     }
@@ -151,9 +152,9 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
   ]);
 }
 
-function postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): ThunkAction {
+function postsItemVoting(postId: string, userId: string, operation: string, listId: string, isUpvoted: boolean, isDownvoted: boolean): ThunkAction {
   return (dispatch) => {
-    const action = _postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)
+    const action = _postsItemVoting(postId, userId, operation, listId, isUpvoted, isDownvoted)
 
     action.then(
       ([result]) => {
