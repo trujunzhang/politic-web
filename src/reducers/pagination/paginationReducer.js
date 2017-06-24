@@ -94,10 +94,10 @@ function paginationReducer(state: State = initialState, action): State {
       )
 
       let newResult = list.toJS()
-      nextTask.set('results', newResult)
+      // nextTask.set('results', newResult)
 
       let nextState = state
-        .setIn([listId], nextTask)
+        .setIn([listId, 'results'], newResult)
 
       return nextState
     }
