@@ -1,6 +1,12 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  // Voting
+  POSTS_UPVOTE: null,
+  POSTS_DOWNVOTE: null,
+  POSTS_UPVOTE_CACEL: null,
+  POSTS_DOWNVOTE_CACEL: null,
+
   // UserProfile
   USERPROFILE_RESET: null,
   USERPROFILE_LOADED: null,

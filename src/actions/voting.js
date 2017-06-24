@@ -34,21 +34,32 @@ const {User, Post, fromParseUser, fromParsePost} = require('../reducers/parseMod
 
 let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
+
+/**
+ * The states were interested in
+ */
+const {
+  POSTS_UPVOTE,
+  POSTS_DOWNVOTE,
+  POSTS_UPVOTE_CACEL,
+  POSTS_DOWNVOTE_CACEL,
+} = require('../lib/constants').default
+
 function operatePostsOnItem(post: ParsePost, userId: string, operation: string) {
   let pointers = []
   switch (operation) {
-    case "upvote":
+    case POSTS_UPVOTE:
 
       break;
-    case "downvote":
+    case POSTS_DOWNVOTE:
       pointers = (post.get('downvoters') || [])
       pointers.push(ParseUser.createWithoutData(userId))
       post.set('downvoters', pointers)
       break;
-    case "cancelUpvote":
+    case POSTS_UPVOTE_CACEL:
 
       break;
-    case "cancelDownvote":
+    case POSTS_DOWNVOTE_CACEL:
       pointers = (post.get('downvoters') || []).map((item, index) => {
         if (item.id !== userId) {
           return item
@@ -63,23 +74,23 @@ function operatePostsOnItem(post: ParsePost, userId: string, operation: string) 
 function operateUsersOnItem(user: ParseUser, postId: string, operation: string) {
   let pointers = []
   switch (operation) {
-    case "upvote":
+    case POSTS_UPVOTE:
       pointers = (user.get('upvotedPosts') || [])
       pointers.push(ParsePost.createWithoutData(postId))
       user.set('upvotedPosts', pointers)
       break;
-    case "downvote":
+    case POSTS_DOWNVOTE:
       pointers = (user.get('downvotedPosts') || [])
       pointers.push(ParsePost.createWithoutData(postId))
       user.set('downvotedPosts', pointers)
       break;
-    case "cancelUpvote":
+    case POSTS_UPVOTE_CACEL:
       pointers = _.filter((user.get('upvotedPosts') || []), function (item) {
         return item.id !== postId
       })
       user.set('upvotedPosts', pointers)
       break;
-    case "cancelDownvote":
+    case POSTS_DOWNVOTE_CACEL:
       pointers = _.filter((user.get('downvotedPosts') || []), function (item) {
         return item.id !== postId
       })

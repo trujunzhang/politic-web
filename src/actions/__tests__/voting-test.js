@@ -27,6 +27,17 @@
  * as well
  */
 
+
+/**
+ * The states were interested in
+ */
+const {
+  POSTS_UPVOTE,
+  POSTS_DOWNVOTE,
+  POSTS_UPVOTE_CACEL,
+  POSTS_DOWNVOTE_CACEL,
+} = require('../../lib/constants').default
+
 const Parse = require('parse')
 const {operatePostsOnItem, operateUsersOnItem} = require('../voting').default
 let {ParsePost, ParseFolder, ParseUser} = require('../objects').default
@@ -37,40 +48,37 @@ let {ParsePost, ParseFolder, ParseUser} = require('../objects').default
  * voting
  */
 describe('voting', () => {
+  let postId = 'ELxe8ZjTWL'
+  let userId = 'RqlbSRQRAU'
+
+  let userJson = {
+    className: 'User',
+    createdAt: '2013-12-14T04:51:19Z',
+    objectId: userId,
+    username: 'medium'
+  };
+  let user = ParseUser.createWithoutData(userId)
+
 
   /**
    * ### Signup failure will have an error associated with it
    *
    */
   describe('test method called "operateUsersOnItem"', () => {
-    let postId = 'ELxe8ZjTWL'
-    let userId = 'RqlbSRQRAU'
-
-    let userJson = {
-      className: 'User',
-      createdAt: '2013-12-14T04:51:19Z',
-      objectId: userId,
-      username: 'medium'
-    };
-    let user = ParseUser.createWithoutData(userId)
-
-    beforeEach(() => {
-    });
-
     it('down vote a post', () => {
-      operateUsersOnItem(user, postId, 'downvote')
+      operateUsersOnItem(user, postId, POSTS_DOWNVOTE)
       expect(user.get('downvotedPosts').length).toBe(1)
-      operateUsersOnItem(user, postId, 'cancelDownvote')
+      operateUsersOnItem(user, postId, POSTS_DOWNVOTE_CACEL)
       expect(user.get('downvotedPosts').length).toBe(0)
 
     })
 
     it('up vote a post', () => {
-      operateUsersOnItem(user, postId, 'upvote')
+      operateUsersOnItem(user, postId, POSTS_UPVOTE)
       expect(user.get('upvotedPosts').length).toBe(1)
-      operateUsersOnItem(user, postId, 'cancelUpvote')
+      operateUsersOnItem(user, postId, POSTS_UPVOTE_CACEL)
       expect(user.get('upvotedPosts').length).toBe(0)
     })
-  })// downvote
+  })// operateUsersOnItem
 
 })// voting
