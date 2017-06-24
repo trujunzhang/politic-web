@@ -3,8 +3,7 @@ import React, {Component} from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
 
-var {showDetailedPagePath} = require('../../../lib/link')
-const {pushModel, pushOverlayDetailedPost} = require('../../../actions').default
+const {pushModel} = require('../../../actions').default
 
 class PostsItemActions extends Component {
 
@@ -84,7 +83,7 @@ class PostsItemActions extends Component {
             hasVoted={Users.hasDownvoted(currentUser, post)}
             voteClass={"postDownvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
-          <Telescope.components.PostsCommenters post={post} event={this.onPopupDetailPress.bind(this)}/>
+          <Telescope.components.PostsCommenters post={post}/>
           <div className="additionalActionButtons_BoErh">
             {this.renderSaveRemoveArticleButton()}
           </div>
@@ -96,18 +95,6 @@ class PostsItemActions extends Component {
     )
   }
 
-  onPopupDetailPress(e) {
-    e.preventDefault()
-
-    // const {user} = this.props; // Important: <* props.user (Maybe user is not Logged user)*>
-    let {router, location, post} = this.props,
-      admin = false
-
-    showDetailedPagePath(router, post)
-    this.props.dispatch(pushOverlayDetailedPost(post))
-
-    e.stopPropagation()
-  }
 
   popoverSaveButtonClick() {
     const {post} = this.props,
