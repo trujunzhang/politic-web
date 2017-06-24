@@ -95,12 +95,6 @@ async function timeout (ms: number): Promise {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
-  return {
-    auth: store.auth
-  }
-}
-
-export default connect(select)(UserEmailSignIn)
+export default connect()(UserEmailSignIn)

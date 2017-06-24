@@ -11,3 +11,12 @@
 
 ** Now you can use immuable-js methods in your reducers, such as get and set.
   [https://coderwall.com/p/tzxh1a/updating-your-redux-app-to-use-immutablejs]
+
+
+* Parse Blogs
+
+* var Comments= Parse.Object.extend("Comments");
+  [https://coderwall.com/p/cy6cea/how-to-use-pointers-relations-parse-com-javascript-sdk]
+
+* Relatation
+  [https://github.com/parse-community/Parse-SDK-JS/issues/258]

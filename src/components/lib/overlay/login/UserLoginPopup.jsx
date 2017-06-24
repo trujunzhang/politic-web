@@ -32,7 +32,10 @@ class UserLoginPopup extends Component {
       case 'MAIN':
         return (
           <div className='tcomb_panel'>
-            <Telescope.components.UserLoginMain toggleEvent={this.switchFormState.bind(this)}/>
+            <Telescope.components.UserLoginMain
+              actions={this.props.actions}
+              auth={this.props.auth}
+              toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
       case 'SIGNIN':
@@ -40,6 +43,7 @@ class UserLoginPopup extends Component {
           <div className='tcomb_panel'>
             <Telescope.components.UserEmailSignIn
               actions={this.props.actions}
+              auth={this.props.auth}
               toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
@@ -48,6 +52,7 @@ class UserLoginPopup extends Component {
           <div className='tcomb_panel'>
             <Telescope.components.UserEmailSignUp
               actions={this.props.actions}
+              auth={this.props.auth}
               toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
@@ -77,10 +82,16 @@ class UserLoginPopup extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 import * as authActions from '../../../../reducers/auth/authActions'
 import { bindActionCreators } from 'redux'
+
+function select (store) {
+  return {
+    auth: store.auth
+  }
+}
 
 function mapDispatchToProps (dispatch) {
   return {
@@ -88,4 +99,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserLoginPopup)
+export default connect(select, mapDispatchToProps)(UserLoginPopup)

@@ -1,14 +1,16 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class AppOverlay extends Component {
 
-  renderMenu (popoverMenu) {
+  renderMenu(popoverMenu) {
     switch (popoverMenu.modelType) {
       case 'LoggedUserMenu':
         return (<Telescope.components.UsersPopoverMenu comp={popoverMenu}/>)
       case 'SaveButton':
-        return (<Telescope.components.UserCollectionsPopover comp={popoverMenu}/>)
+        return (<Telescope.components.UserCollectionsPopover
+          key={popoverMenu.model.savedPostId}
+          comp={popoverMenu}/>)
       case 'moreTopicsList':
         return (<Telescope.components.MoreTagsPopoverMenu comp={popoverMenu}/>)
       case 'submitFlag':
@@ -24,7 +26,7 @@ class AppOverlay extends Component {
     }
   }
 
-  render () {
+  render() {
     const {showOverlay, currentModel} = this.props.popModels
 
     return (showOverlay ? (<div id='show_popover_menu'>{this.renderMenu(currentModel)}</div>) : null)
@@ -37,9 +39,9 @@ class AppOverlay extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     popModels: store.popModels
   }

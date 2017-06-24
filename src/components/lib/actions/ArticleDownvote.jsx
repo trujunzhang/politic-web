@@ -41,9 +41,6 @@ class ArticleDownvote extends Component {
     }
 }
 
-ArticleDownvote.propTypes = {
-    post: React.PropTypes.object.isRequired, // the current post
-};
 
 
 export default ArticleDownvote;

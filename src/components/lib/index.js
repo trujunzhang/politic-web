@@ -60,6 +60,20 @@ Telescope.registerComponent('PostsSingleHeader',                  require('./pos
 Telescope.registerComponent('UserProfileHeader',                   require('./profile/UserProfileHeader.jsx').default)
 Telescope.registerComponent('UsersProfile',                        require('./profile/UsersProfile.jsx').default)
 
+// profile(list)
+Telescope.registerComponent('UserProfilePostsList',                require('./profile/list/UserProfilePostsList.jsx').default)
+
+// profile(menus)
+Telescope.registerComponent('UsersCollectionFoldersList',          require('./profile/menus/UsersCollectionFoldersList.jsx').default)
+Telescope.registerComponent('UsersDownvote',                       require('./profile/menus/UsersDownvote.jsx').default)
+Telescope.registerComponent('UsersSubmittedPostsList',             require('./profile/menus/UsersSubmittedPostsList.jsx').default)
+Telescope.registerComponent('UsersUpvote',                         require('./profile/menus/UsersUpvote.jsx').default)
+
+// profile(folders)
+Telescope.registerComponent('FoldersItem',                       require('./profile/folders/FoldersItem.jsx').default)
+Telescope.registerComponent('FoldersList',                       require('./profile/folders/FoldersList.jsx').default)
+
+
 // Sidebar
 Telescope.registerComponent('AppSideBar',           require('./sidebar/AppSideBar.jsx').default)
 Telescope.registerComponent('WidgetHeader',         require('./sidebar/WidgetHeader.jsx').default)

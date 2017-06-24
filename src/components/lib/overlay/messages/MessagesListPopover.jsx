@@ -24,7 +24,7 @@ class MessagesListPopover extends Component {
 
         const terms = {
             view: 'popover',
-            userId: currentUser._id,
+            userId: currentUser.id,
             listId: "messages.list.popover",
             limit: 10
         };

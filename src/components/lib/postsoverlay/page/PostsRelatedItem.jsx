@@ -83,6 +83,6 @@ class PostsRelatedItem extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 export default withRouter(connect()(PostsRelatedItem))

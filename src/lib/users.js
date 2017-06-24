@@ -137,15 +137,24 @@ Users.checkArticleInFolder = function (postId, folder) {
   return folder.posts.indexOf(postId) !== -1
 }
 
-{/*<Avatar googleId="118096717852922241760" size="100" round="true" />*/}
-{/*<Avatar facebookId="100008343750912" size="150" />*/}
-{/*<Avatar vkontakteId="1" size="150" />*/}
-{/*<Avatar skypeId="sitebase" size="200" />*/}
-{/*<Avatar twitterHandle="sitebase" size="40" />*/}
-{/*<Avatar name="Wim Mostmans" size="150" />*/}
-{/*<Avatar name="Wim Mostmans" size="150" textSizeRatio="1.75" />*/}
-{/*<Avatar value="86%" size="40" />*/}
-{/*<Avatar size="100" facebook-id="invalidfacebookusername" src="http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3" />*/}
+{/*<Avatar googleId="118096717852922241760" size="100" round="true" />*/
+}
+{/*<Avatar facebookId="100008343750912" size="150" />*/
+}
+{/*<Avatar vkontakteId="1" size="150" />*/
+}
+{/*<Avatar skypeId="sitebase" size="200" />*/
+}
+{/*<Avatar twitterHandle="sitebase" size="40" />*/
+}
+{/*<Avatar name="Wim Mostmans" size="150" />*/
+}
+{/*<Avatar name="Wim Mostmans" size="150" textSizeRatio="1.75" />*/
+}
+{/*<Avatar value="86%" size="40" />*/
+}
+{/*<Avatar size="100" facebook-id="invalidfacebookusername" src="http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3" />*/
+}
 Users.getAvatarObj = function (user) {
   if (!user) {
     return {
@@ -158,8 +167,11 @@ Users.getAvatarObj = function (user) {
     }
   }
   const {loginType} = user
+
   switch (loginType) {
     case 'email':
+    case 'facebook':
+    case 'twitter':
       return {
         title: Users.getDisplayName(user),
         slug: user.slug,

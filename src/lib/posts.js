@@ -421,4 +421,8 @@ Posts.generateCommentFacebookShareLink = function (router, comment) {
   return 'https://www.facebook.com/dialog/share?' + splits.join('&')
 }
 
+Posts.isRemovedPost = function (post) {
+  return post.status === Posts.config.STATUS_REMOVED;
+}
+
 export default Posts

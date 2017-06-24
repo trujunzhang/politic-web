@@ -1,2 +1,5 @@
 * Parse Query
   [http://parseplatform.org/Parse-SDK-JS/api/classes/Parse.Query.html]
+
+* Sign Up
+  [http://docs.parseplatform.org/js/guide/#signing-up]

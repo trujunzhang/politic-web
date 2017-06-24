@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Users from '../../../lib/users'
-import Cookie from 'react-cookie'
-import { withRouter } from 'react-router'
+import {Link} from 'react-router'
+
+const {logOut, dismissPopModel} = require('../../../actions').default
 
 class UsersPopoverMenu extends Component {
 
-  constructor (props, context) {
+  constructor(props, context) {
     super(props)
 
     const {currentUser} = props,
@@ -16,10 +17,13 @@ class UsersPopoverMenu extends Component {
     }
   }
 
-  onMenuItemClick (menu) {
+  onMenuItemClick(menu) {
     //const {router} = this.props
     switch (menu.type) {
       case 'logout':
+
+        this.props.dispatch(logOut())
+        this.props.dispatch(dismissPopModel())
 
         break
       case 'line':
@@ -30,7 +34,7 @@ class UsersPopoverMenu extends Component {
     }
   }
 
-  render () {
+  render() {
     const {comp} = this.props,
       {position} = comp,
       {loggedUserMenu} = this.state
@@ -50,19 +54,28 @@ class UsersPopoverMenu extends Component {
       <div id="medium-popover-user-menus" className={popover.className} style={popover.style}>
         <ul className="content_2mq4P">
           {loggedUserMenu.map((menu, key) => {
-            if (menu.type === '') {
+            const {type, title, link} = menu
+            if (type === '') {
               return (<li key={key}/>)
             }
-            else if (menu.type === 'separator') {
+            else if (type === 'separator') {
               return (<li key={key} className="list-item list-item--separator"/>)
             }
             return (<li key={key}
                         className="option_2XMGo secondaryBoldText_1PBCf secondaryText_PM80d subtle_1BWOT base_3CbW2">
-              <a className="button button--dark button--chromeless u-baseColor--buttonDark"
-                 id={`user_pop_menu_${menu.type}`}
-                 onClick={this.onMenuItemClick.bind(this, menu)}>
-                {menu.title}
-              </a>
+              {
+                !!link ? (
+                  <Link className="button button--dark button--chromeless u-baseColor--buttonDark" to={link}>
+                    {title}
+                  </Link>
+                ) : (
+                  <a className="button button--dark button--chromeless u-baseColor--buttonDark"
+                     id={`user_pop_menu_${type}`}
+                     onClick={this.onMenuItemClick.bind(this, menu)}>{title}
+                  </a>
+                )
+              }
+
             </li>)
           })}
         </ul>
@@ -78,9 +91,9 @@ class UsersPopoverMenu extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     currentUser: store.user
   }

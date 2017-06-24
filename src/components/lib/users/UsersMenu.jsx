@@ -1,5 +1,5 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 var Users = require('../../../lib/users').default
 import Avatar from 'react-avatar'
 
@@ -7,7 +7,7 @@ const {pushModel} = require('../../../actions').default
 
 class UsersMenu extends Component {
 
-  popoverUserMenus () {
+  popoverUserMenus() {
     let button = this.refs.userProfile
     let top = button.offsetTop
     let left = button.offsetLeft
@@ -18,7 +18,7 @@ class UsersMenu extends Component {
     // this.context.messages.showPopoverMenu('LoggedUserMenu', {}, )
   }
 
-  render () {
+  render() {
     const {currentUser} = this.props,
       avatarObj = Users.getAvatarObj(currentUser),
       userName = avatarObj.title
@@ -42,7 +42,7 @@ class UsersMenu extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 export default connect()(UsersMenu)
 

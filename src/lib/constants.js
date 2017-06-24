@@ -1,6 +1,18 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+
+  // Users
+  LOGGED_IN: null,
+  LOGGED_OUT: null,
+  SET_SHARING: null,
+  RESET_NUXES: null,
+
+  // Folders
+  LOADED_USER_FOLDERS: null,
+  SELECTED_USER_FOLDER: null,
+  ADDED_NEW_FOLDER_WITH_POST: null,
+
   // AppOverlay
   OVERLAY_MODEL_PUSH: null,
   OVERLAY_MODEL_DISMISS: null,
@@ -52,9 +64,6 @@ export default keyMirror({
   LOGOUT_REQUEST: null,
   LOGOUT_SUCCESS: null,
   LOGOUT_FAILURE: null,
-
-  LOGGED_IN: null,
-  LOGGED_OUT: null,
 
   SET_SESSION_TOKEN: null,
 

@@ -1,12 +1,12 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
-import { Link } from 'react-router'
+import React, {Component} from 'react'
+import {Link} from 'react-router'
 
 const {pushModel} = require('../../../actions').default
 
 class HeaderContent extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = this.initialState = {
@@ -14,19 +14,19 @@ class HeaderContent extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     //if ((!!nextProps.router.location.query.topicId) || (!nextProps.router.location.query.query)) {
     //this.setState({showSearchForm: false})
     //}
   }
 
-  onBookmarkClick () {
+  onBookmarkClick() {
     // const {currentUser} = this.context,
     //   path = "/users/" + currentUser.telescope.slug + "/collections/" + currentUser.telescope.folderBookmarkId + "/" + Folders.getDefaultFolderName();
     // this.context.messages.pushRouter(this.props.router, {pathname: path});
   }
 
-  renderLeft () {
+  renderLeft() {
     return (
       <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
         <Link className="siteNav-logo" to="/">
@@ -38,7 +38,7 @@ class HeaderContent extends Component {
     )
   }
 
-  renderBookmarkIcon () {
+  renderBookmarkIcon() {
     return (
       <a onClick={this.onBookmarkClick.bind(this)}
          className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
@@ -66,7 +66,7 @@ class HeaderContent extends Component {
     )
   }
 
-  onMessageButtonClick () {
+  onMessageButtonClick() {
     // let offset = $(this.refs.messagesButton).offset();
     // let top = offset.top + 14;
     // let left = offset.left + 82;
@@ -75,7 +75,7 @@ class HeaderContent extends Component {
     // this.context.messages.showPopoverMenu("messagesList", {}, top, left, width, height);
   }
 
-  renderNotification () {
+  renderNotification() {
     const {currentUser} = this.context
     if (!currentUser)
       return null
@@ -116,7 +116,7 @@ class HeaderContent extends Component {
     )
   }
 
-  renderSearchIcon () {
+  renderSearchIcon() {
     return (
       <a
         className="button button--small button--chromeless u-sm-show is-inSiteNavBar u-baseColor--buttonNormal button--withIcon button--withSvgIcon u-xs-top2"
@@ -135,11 +135,11 @@ class HeaderContent extends Component {
     )
   }
 
-  onLoginIconPress () {
+  onLoginIconPress() {
     this.props.dispatch(pushModel('LoginUI', {}, {showCloseIcon: true, title: ''}))
   }
 
-  renderRight () {
+  renderRight() {
     const {currentUser, isLoggedIn} = this.props,
       isMobileDevice = false, //Users.isMobileDevice(),
       writeClass =
@@ -180,7 +180,7 @@ class HeaderContent extends Component {
     )
   }
 
-  renderSearchForm () {
+  renderSearchForm() {
     return (
       <Telescope.components.HeaderContentSearchBar
         barType="form"
@@ -188,7 +188,7 @@ class HeaderContent extends Component {
     )
   }
 
-  renderHeader () {
+  renderHeader() {
     return (
       <div className="header_2k8Jf medium-header">
         <div className="metabar constraintWidth_ZyYbM">
@@ -201,7 +201,7 @@ class HeaderContent extends Component {
     )
   }
 
-  render () {
+  render() {
     return (
       <div id="section_header">
         {this.renderHeader()}
@@ -217,9 +217,9 @@ class HeaderContent extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
     currentUser: store.user

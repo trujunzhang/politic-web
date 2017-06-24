@@ -238,7 +238,7 @@ class AppAdminPostsEditSingle extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 import { bindActionCreators } from 'redux'
 

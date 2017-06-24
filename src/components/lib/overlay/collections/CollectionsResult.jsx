@@ -1,11 +1,21 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Users from '../../../../lib/users'
+import Folders from '../../../../lib/folder'
+
+const {loadUserFolders} = require('../../../../actions').default
 
 class CollectionsResult extends Component {
 
-  render () {
-    const {ready, onCollectedItemClick, savedPostId} = this.props,
-      results = this.props.results || []
+  componentDidMount() {
+    // const nextListTask = this.state.listTask
+    // nextListTask['ready'] = false
+    // this.setState({listTask: nextListTask})
+    // this.props.dispatch(loadUserFolders(nextListTask, this.props.listId, this.props.terms))
+  }
+
+  render() {
+    const {currentUser, onCollectedItemClick, savedPostId} = this.props,
+      {folders} = currentUser
 
     const existInFolder = (
       <span className="checkmark_e76b7">
@@ -19,16 +29,16 @@ class CollectionsResult extends Component {
 
     const lockIcon = (<span className="collections-popover--collection--icon v-collect folder-visible fa fa-lock"/>)
 
-    const folders = results.map((folder, index) => {
-      let exist = Users.checkArticleInFolder(savedPostId, folder)
+    const foldersList = folders.map((folder, index) => {
+      let postExist = Users.checkArticleInFolder(savedPostId, folder)
       return (
-        <li key={folder._id}>
+        <li key={folder.id}>
           <a onClick={(e) => {
-            onCollectedItemClick(folder, exist)
+            onCollectedItemClick(folder, postExist)
           }}
              className="collections-popover--collection popover--scrollable-list--element">
             {folder.name}
-            {exist ? existInFolder : null}
+            {postExist ? existInFolder : null}
             {folder.visible === 'Lock' ? lockIcon : null}
           </a>
         </li>
@@ -43,11 +53,24 @@ class CollectionsResult extends Component {
 
     return (
       <ul className="collections-popover--collections popover--scrollable-list">
-        {results.length > 0 ? folders : (!ready ? loading : null)}
+        {foldersList}
       </ul>
     )
   }
 
 }
 
-export default CollectionsResult
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+
+/**
+ * Connect the properties
+ */
+
+export default connect()(CollectionsResult)
+

@@ -1,30 +1,38 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Users from '../../../../lib/users'
-import { withRouter } from 'react-router'
+
+import {Link} from 'react-router'
+import {withRouter} from 'react-router'
+
+const {newUserFolderWithPost, dismissPopModel} = require('../../../../actions').default
 
 class UserCollectionsPopover extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
-    ['onAddNewClick', 'onSubmitNewCollectionClick'].forEach(methodName => {
-      this[methodName] = this[methodName].bind(this)
-    })
 
     this.state = this.initialState = {
+      // Action Types
       addNewItem: false,
+
+      // Folders
       newFolder: null,
+      postExist: false,
       showResult: false,
-      value: '',
+
+      // Posts
+      folderName: '',
+      savedPostId: props.comp.model.savedPostId,
       step: 1
     }
   }
 
-  onHelpIconClick () {
+  onHelpIconClick() {
 
   }
 
-  renderCollectionsHeader () {
+  renderCollectionsHeader() {
     return (
       <div className="popover--header">
         <h3 className="popover--header--title">Add to Collection</h3>
@@ -43,15 +51,15 @@ class UserCollectionsPopover extends Component {
     )
   }
 
-  renderCollectionsPanel () {
+  renderCollectionsPanel() {
     return (
       <div >
         {this.renderCollectionsHeader()}
         <div>
 
           <Telescope.components.CollectionsResult
-            userId={this.props.currentUser.id}
-            savedPostId={ this.props.comp.model.savedPostId}
+            currentUser={this.props.currentUser}
+            savedPostId={ this.state.savedPostId}
             onCollectedItemClick={this.onCollectedItemClick.bind(this)}/>
 
           <div className="popover--footer">
@@ -62,18 +70,18 @@ class UserCollectionsPopover extends Component {
     )
   }
 
-  renderAddNewForm () {
+  renderAddNewForm() {
     return (
       <form id="newCollectionForm" className="collections-popover--form">
         <input autoFocus type="text"
                className="collections-popover--form--field input collections-input"
-               value={this.state.value}
+               value={this.state.folderName}
                onChange={(e) => {
-                 this.setState({value: e.target.value})
+                 this.setState({folderName: e.target.value})
                }}
                placeholder="Collection name (public)"
                ref="newCollectionInput"/>
-        <button onClick={this.onSubmitNewCollectionClick}
+        <button onClick={this.onAddNewFolderButtonPress.bind(this)}
                 className="button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d simpleletiant_1Nl54 collections-popover--form--submit"
                 type="submit">
           <div className="buttonContainer_wTYxi">Add</div>
@@ -82,77 +90,95 @@ class UserCollectionsPopover extends Component {
     )
   }
 
-  rendAddNewButton () {
+  rendAddNewButton() {
     return (
-      <a id="addNewCollectionButton" onClick={this.onAddNewClick} className="collections-popover--form-trigger">
+      <a id="addNewCollectionButton" onClick={(e) => this.setState({addNewItem: true})}
+         className="collections-popover--form-trigger">
         Add New
       </a>
     )
   }
 
-  renderSuccessfully () {
-    const {newFolder, exist} = this.state
+  renderSuccessfully() {
+    const {folderName, postExist} = this.state
 
     return (
       <div>
         <div className="popover--header">
-          <h3 className="popover--header--title">{exist ? 'Already added earlier!' : 'Done!'}</h3>
+          <h3 className="popover--header--title">{postExist ? 'Already added earlier!' : 'Done!'}</h3>
         </div>
         <div className="popover--message collections-popover--message">
-          {`"${this.props.comp.object.title}" has been added to your collection`}
-          <a className="margin_left4" onClick={this.onFolderItemClick.bind(this)}>
-            {newFolder.name}
+          {`"${this.props.comp.model.title}" has been added to your collection`}
+          <a className="margin_left4" onClick={this.onJumpToFolderClick.bind(this)}>
+            {folderName}
           </a>
         </div>
       </div>
     )
   }
 
-  onFolderItemClick () {
-    this.context.messages.dismissAllPopoverPosts()
-    this.context.messages.dismissPopoverMenu()
+  onJumpToFolderClick() {
+    // this.context.messages.dismissAllPopoverPosts()
+    // this.context.messages.dismissPopoverMenu()
 
-    const {currentUser} = this.props,
-      {newFolder} = this.state
+    // const {currentUser} = this.props,
+    //   {newFolder} = this.state
     //this.context.messages.pushRouter(this.props.router, Users.getLinkObject('folderItem', currentUser, newFolder));
   }
 
-  onAddNewClick (e) {
-    e.preventDefault()
-    this.setState({addNewItem: true})
+  // Press Event On the Bottom-Right button called "Add".
+  onAddNewFolderButtonPress(event) {
+    event.preventDefault()
+    this._saveFolderWithSelectedPost(this.state.folderName)
   }
 
-  onSubmitSaveCollectionClick (event, name) {
-    event.preventDefault()
+  // Folder List Item clicked event
+  onCollectedItemClick(folder, postExist) {
+    this.setState({postExist: postExist, folderName: folder.name})
 
-    const {comp} = this.props
-    const object = comp.object
+    this._saveFolderWithSelectedPost(folder.name, folder.id, postExist)
+  }
+
+  async _saveFolderWithSelectedPost(folderName, folderId: string = '', postExist: boolean = false) {
+    const {dispatch} = this.props
 
     const folder = {
-      name: name,
-      posts: [object.savedPostId],
-      lastPost: object.savedPostId
+      "name": folderName,
+      "folderId": folderId,
+      "postExist": postExist
     }
-    this.context.actions.call('folders.new', folder, (error, result) => {
-      if (!error) {
-        this.setState({showResult: true, newFolder: result, step: 2})
+
+    let postId = this.state.savedPostId
+    let userId = this.props.currentUser.id
+
+    this.setState({errorMessage: null})
+    var errorMessage = null
+
+    try {
+      await Promise.race([
+        dispatch(newUserFolderWithPost(folder, postId, userId)),
+        timeout(15000),
+      ])
+    } catch (e) {
+      // this.props.actions.loginFailure(e)
+      const message = e.message || e
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        errorMessage = message
+        // alert(message);
+        // console.warn(e);
       }
-    })
-  }
+    } finally {
 
-  onSubmitNewCollectionClick (event) {
-    this.onSubmitSaveCollectionClick(event, this.state.value)
-  }
-
-  onCollectedItemClick (folder, exist) {
-    let newState = {showResult: true, exist: exist, newFolder: {name: folder.name, _id: folder._id}, step: 2}
-    if (!!exist) {
-      this.setState(newState)
-    } else { // If not exist, insert it to the folder.
+      if (!!errorMessage) {
+        // this.setState({errorMessage: errorMessage})
+      } else {
+        this.setState({showResult: true})
+      }
     }
   }
 
-  render () {
+
+  render() {
     const {comp} = this.props,
       {position} = comp
 
@@ -177,14 +203,22 @@ class UserCollectionsPopover extends Component {
   }
 }
 
+
+async function timeout(ms: number): Promise {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Timed out')), ms)
+  })
+}
+
+
 /**
  * ## Imports
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
     currentUser: store.user

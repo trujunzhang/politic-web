@@ -1,23 +1,25 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Posts from '../../../lib/posts'
 import Users from '../../../lib/users'
+import {Link} from 'react-router'
 
-import { withRouter } from 'react-router'
+import {withRouter} from 'react-router'
 
 class UsersProfile extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
-    const {currentUser} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
+    const {currentUser} = props
 
-    const telescope = currentUser,
-      {upvotedPosts, downvotedPosts, folders} = telescope,
-      upvotedPostsCount = (upvotedPosts && upvotedPosts.length > 0) ? upvotedPosts.length : 0,
-      downvotedPostsCount = (downvotedPosts && downvotedPosts.length > 0) ? downvotedPosts.length : 0,
-      postCount = telescope.postCount,
-      foldersCount = (folders && folders.length > 0) ? folders.length : 0
+    const upvotedPosts = currentUser.upvotedPosts || [],
+      downvotedPosts = currentUser.downvotedPosts || [],
+      folders = currentUser.folders || [],
+      upvotedPostsCount = upvotedPosts.length,
+      downvotedPostsCount = downvotedPosts.length,
+      postCount = currentUser.postCount || 0,
+      foldersCount = folders.length
 
     const loggedUserMenu = [
       {type: 'upvotes', title: 'Upvotes', value: upvotedPostsCount, link: Users.getLinkObject('profile', currentUser)},
@@ -46,10 +48,10 @@ class UsersProfile extends Component {
     }
   }
 
-  getMenuType () {
-    const {router} = this.props,
+  getMenuType() {
+    const {location, params} = this.props,
       {loggedUserMenu} = this.state,
-      currentPathName = router.location.pathname
+      currentPathName = location.pathname
     let type = loggedUserMenu[0].type
     loggedUserMenu.forEach(function (menu) {
       if (currentPathName === menu.link.pathname) {
@@ -60,11 +62,11 @@ class UsersProfile extends Component {
     return type
   }
 
-  onMenuItemClick (menu) {
+  onMenuItemClick(menu) {
     // this.context.messages.pushRouter(this.props.router, menu.link)
   }
 
-  renderLeftPanel () {
+  renderLeftPanel() {
     const {loggedUserMenu} = this.state
 
     return (
@@ -74,12 +76,11 @@ class UsersProfile extends Component {
             const className = 'text_3Wjo0 default_tBeAo base_3CbW2' + (this.getMenuType() === menu.type ? ' active_1bUET' : '')
             return (
               <li key={key}>
-                <a id={'user_profile_' + menu.type}
-                   className={className}
-                   onClick={this.onMenuItemClick.bind(this, menu)}>
+                <Link id={'user_profile_' + menu.type}
+                      className={className} to={menu.link}>
                   <em className="user_left_menu_number">{menu.value}</em>
                   <span>{menu.title}</span>
-                </a>
+                </Link>
               </li>
             )
           })}
@@ -88,7 +89,7 @@ class UsersProfile extends Component {
     )
   }
 
-  renderRecentComments () {
+  renderRecentComments() {
     const {user} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
 
     // const terms = {view: 'postComments', userId: user._id, listId: 'comments.recent.list', limit: 5}
@@ -117,7 +118,7 @@ class UsersProfile extends Component {
     )
   }
 
-  renderSharePanel () {
+  renderSharePanel() {
     return (
       <div className="paddedBox_2UY-S box_c4OJj sidebarBox_1-7Yk">
         <div className="content_DcBqe">
@@ -158,7 +159,7 @@ class UsersProfile extends Component {
     )
   }
 
-  renderRightPanel () {
+  renderRightPanel() {
     return (
       <aside className="sidebar_74Fq4">
         {/*TODO: 10/02/2017: (issue78)Please remove the share your profile (facebook + twitter) widget on the user profile pages*/}
@@ -168,7 +169,7 @@ class UsersProfile extends Component {
     )
   }
 
-  renderCommon () {
+  renderCommon() {
     const {currentUser} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
     return (
       <div>
@@ -178,7 +179,7 @@ class UsersProfile extends Component {
           {this.renderLeftPanel()}
 
           <main className="content_36o4C">
-
+            {this.props.children}
           </main>
 
           {this.renderRightPanel()}
@@ -187,17 +188,7 @@ class UsersProfile extends Component {
     )
   }
 
-  // renderPostSingle () {
-  //   const {location} = this.props
-  //   return (
-  //     <div className="constraintWidth_ZyYbM container_3aBgK">
-  //       <Telescope.components.PostsSingle
-  //         params={{'slug': location.query.title, '_id': location.query.postId}}/>
-  //     </div>
-  //   )
-  // }
-
-  render () {
+  render() {
     const {isLoggedIn} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
     if (!isLoggedIn) {
       return (<div/>)
@@ -219,9 +210,9 @@ class UsersProfile extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
     currentUser: store.user

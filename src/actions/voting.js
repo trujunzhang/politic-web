@@ -25,53 +25,55 @@
 'use strict'
 
 const Parse = require('parse')
-const {updateInstallation} = require('./installation')
 
-import type { Action, ThunkAction } from './types'
-
+import type {Action, ThunkAction} from './types'
 
 async function _upvotePost(postId: string, userId: string): Promise<Array<Action>> {
-    const user = new Parse.User();
-    user.set('username', username);
-    user.set('password', password);
+  const user = new Parse.User();
+  user.set('username', username);
+  user.set('password', password);
 
   var callBackObject = null;
-    await user.logIn().then((result) => {
-        callBackObject = result;
-      });
+  await user.logIn().then((result) => {
+    callBackObject = result;
+  });
 
 
-    const userData = {
-        id: callBackObject.id,
-        name: callBackObject.get("username"),
-        loginType: callBackObject.get("loginType"),
-        email:callBackObject.get("email")
-    };
+  const userData = {
+    id: callBackObject.id,
+    name: callBackObject.get("username"),
+    loginType: callBackObject.get("loginType"),
+    email: callBackObject.get("email")
+  };
 
-    // console.log("userData: " + JSON.stringify(userData));
+  // console.log("userData: " + JSON.stringify(userData));
 
-    const action = {
-      type: 'LOGGED_IN',
-      payload: userData
-    };
+  const action = {
+    type: 'LOGGED_IN',
+    payload: userData
+  };
 
-    return Promise.all([
-        Promise.resolve(action)
-    ]);
+  return Promise.all([
+    Promise.resolve(action)
+  ]);
 }
 
 function upvotePost(postId: string, userId: string): ThunkAction {
-    return (dispatch) => {
-        const login = _upvotePost(username, password);
+  return (dispatch) => {
+    const login = _upvotePost(username, password);
 
-        // Loading friends schedules shouldn't block the login process
-        login.then(
-            ([result]) => {
-                dispatch(result);
-            }
-        );
-        return login;
-    };
+    // Loading friends schedules shouldn't block the login process
+    login.then(
+      ([result]) => {
+        dispatch(result);
+      }
+    );
+    return login;
+  };
 }
 
-export default {upvotePost,downvotePost,upvoteComment,downvoteComment,flagPost}
+export default {
+  upvotePost,
+  // downvotePost, upvoteComment, downvoteComment, flagPost
+
+}

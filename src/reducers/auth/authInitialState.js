@@ -29,10 +29,10 @@ const Form = Record({
   isValid: false,
   isFetching: false,
   fields: new (Record({
-    username: 'trujunzhang',
+    username: 'djzhang',
     usernameHasError: false,
     usernameErrorMsg: '',
-    email: 'trujunzhang@gmail.com',
+    email: 'wanghaomspace@gmail.com',
     emailHasError: false,
     emailErrorMsg: '',
     password: 'djzhang@123',

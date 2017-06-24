@@ -25,9 +25,9 @@
 
 const Parse = require('parse')
 
-import type { ThunkAction } from './types'
+import type {ThunkAction} from './types'
 
-let Objects = require('./objects').default
+let {Post, Folder} = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
@@ -35,100 +35,106 @@ const PostsParameters = require('../parameters').Posts
  * The states were interested in
  */
 const {
-    LIST_VIEW_LOADED_POSTS,
-    DASHBOARD_LOADED_POSTS,
-    OVERLAY_LOADED_POSTS_PAGE
+  LIST_VIEW_LOADED_POSTS,
+  DASHBOARD_LOADED_POSTS,
+  OVERLAY_LOADED_POSTS_PAGE
 } = require('../lib/constants').default
 
-function loadParseObject (type: string, query: Parse.Query, objectId: string): ThunkAction {
-    return (dispatch) => {
-        return query.get(objectId, {
-            success: (object) => {
-                // Flow can't guarantee {type, list} is a valid action
-                const data = {
-                    objectId: objectId,
-                    object: object
-                }
-                dispatch({type, data})
-            },
-            error: (error) => {
-                debugger
-            }
-        })
+function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
+  return (dispatch) => {
+    return query.get(objectId, {
+      success: (object) => {
+        // Flow can't guarantee {type, list} is a valid action
+        const data = {
+          objectId: objectId,
+          object: object
+        }
+        dispatch({type, data})
+      },
+      error: (error) => {
+        debugger
+      }
+    })
 
-    }
+  }
 
 }
 
-function loadParseQuery (type: string, query: Parse.Query, listTask: Any, listId: string, limit: int): ThunkAction {
-    return (dispatch) => {
-        let queryFind = (() => {
-            return query.find({
-                success: (list) => {
-                    // debugger
-                    // debugger
-                    // Flow can't guarantee {type, list} is a valid action
-                    const payload = {
-                        list: list,
-                        listTask: listTask,
-                        listId: listId,
-                        limit: limit,
-                        totalCount: totalCount
-                    }
-                    dispatch({type, payload})
-                },
-                error: (error) => {
-                    debugger
-                }
-            })
-        })
+function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10): ThunkAction {
+  return (dispatch) => {
+    let queryFind = (() => {
+      return query.find({
+        success: (list) => {
+          // debugger
+          // debugger
+          // Flow can't guarantee {type, list} is a valid action
+          const payload = {
+            list: list,
+            listTask: listTask,
+            listId: listId,
+            limit: limit,
+            totalCount: totalCount
+          }
+          dispatch({type, payload})
+        },
+        error: (error) => {
+          debugger
+        }
+      })
+    })
 
-        let totalCount = 0
-        return query.count({
-            success: function (count) {
-                totalCount = count
-                // queryFind()
-            },
-            error: function (error) {
-                debugger
-                // queryFind()
-                console.log('failure')
-            }
-        }).then(() => {
-            // debugger
-            return queryFind()
-        })
+    let totalCount = 0
+    return query.count({
+      success: function (count) {
+        totalCount = count
+        // queryFind()
+      },
+      error: function (error) {
+        debugger
+        // queryFind()
+        console.log('failure')
+      }
+    }).then(() => {
+      // debugger
+      return queryFind()
+    })
 
-    }
+  }
 }
 
 export default {
-    loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-        const {pageIndex, limit} = listTask
-        const skipCount = (pageIndex - 1) * limit
+  loadUserFolders: (userId: string): ThunkAction => {
+    let query = new Parse.Query(Folder).equalTo('user', Parse.User.createWithoutData(userId))
 
-        let postQuery = new PostsParameters(new Parse.Query(Objects.Post).include('topics'))
-            .addParameters(terms)
-            .end()
+    return loadParseQuery(LOADED_USER_FOLDERS, query)
+  },
 
-        return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
-    },
+  loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    const skipCount = (pageIndex - 1) * limit
 
-    loadPostPage: (objectId: string): ThunkAction => {
-        let pageQuery = new Parse.Query(Objects.Post).include('topics')
+    let postQuery = new PostsParameters(new Parse.Query(Post).include('topics'))
+      .addParameters(terms)
+      .end()
 
-        return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
-    },
+    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
+  },
 
-    statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-        const {pageIndex, limit} = listTask
-        const skipCount = (pageIndex - 1) * limit
+  loadPostPage: (objectId: string): ThunkAction => {
+    let pageQuery = new Parse.Query(Post).include('topics')
 
-        let postQuery = new PostsParameters(new Parse.Query(Objects.Post).include('topics'))
-            .addParameters(terms)
-            .end()
+    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
+  },
 
-        return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
-    }
+  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
+    const {pageIndex, limit} = listTask
+    const skipCount = (pageIndex - 1) * limit
+
+    let postQuery = new PostsParameters(new Parse.Query(Post).include('topics'))
+      .addParameters(terms)
+      .end()
+
+    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
+  }
 
 }

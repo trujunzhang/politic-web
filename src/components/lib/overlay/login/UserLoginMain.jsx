@@ -1,52 +1,76 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+
+const {logInWithFacebook, logInWithTwitter, dismissPopModel} = require('../../../../actions').default
 
 class UserLoginMain extends Component {
 
-  oauthSignIn (serviceName) {
+  async loginViaSocial(type) {
+    this.props.actions.loginRequest()
 
+    let loginEvent = (type === 'twitter') ? logInWithTwitter : logInWithFacebook
+
+    var errorMessage = null
+
+    try {
+      await Promise.race([
+        this.props.dispatch(loginEvent()),
+        timeout(15000),
+      ])
+    } catch (e) {
+      this.props.actions.loginFailure(e)
+      const message = e.message || e
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        errorMessage = message
+        // alert(message);
+        // console.warn(e);
+      }
+    } finally {
+      if (!!errorMessage) {
+        this.setState({errorMessage: errorMessage})
+      } else {
+        this.props.dispatch(dismissPopModel())
+        this.props.actions.loginSuccess()
+      }
+    }
   }
 
-  loginTwitter () {
-
-  }
-
-  loginFacebook () {
-
-  }
-
-  renderLoginFooterLinks () {
+  renderLoginFooterLinks() {
     return (
       <div className='login_footer_links light' id='__w2_VNnJBb6_social_signup_links'>
-        <a onClick={(e) => { this.props.toggleEvent(e, 'SIGNIN')}}>
+        <a onClick={(e) => {
+          this.props.toggleEvent(e, 'SIGNIN')
+        }}>
           I Have a Politicl Account
         </a>
         <span className='bullet'> · </span>
-        <a onClick={(e) => {this.props.toggleEvent(e, 'REGISTER')}}>
+        <a onClick={(e) => {
+          this.props.toggleEvent(e, 'REGISTER')
+        }}>
           Sign Up With Email
         </a>
       </div>
     )
   }
 
-  renderLoginForm () {
+  renderLoginForm() {
     return (
       <div className='buttonGroup_1mB5C'>
         <a rel='login-with-twitter'
            className='button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d twitterSolidColor_G22Bs solidVariant_2wWrf'
-           onClick={this.loginTwitter.bind(this)}>
+           onClick={this.loginViaSocial.bind(this, 'twitter')}>
           <div className='buttonContainer_wTYxi'>Log in with twitter</div>
         </a>
         <a rel='login-with-facebook'
            className='button_2I1re mediumSize_10tzU secondaryBoldText_1PBCf secondaryText_PM80d facebookSolidColor_pdgXp solidVariant_2wWrf'
-           onClick={this.loginFacebook.bind(this)}>
+           onClick={this.loginViaSocial.bind(this, 'facebook')}>
           <div className='buttonContainer_wTYxi'>Log in with facebook</div>
         </a>
       </div>
     )
   }
 
-  render () {
+  render() {
     return (
       <div id='login_main_section'>
         <span>
@@ -61,4 +85,18 @@ class UserLoginMain extends Component {
   }
 }
 
-export default UserLoginMain
+async function timeout(ms: number): Promise {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Timed out')), ms)
+  })
+}
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+export default connect()(UserLoginMain)
+

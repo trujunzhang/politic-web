@@ -163,7 +163,7 @@ class AppAdminPostsList extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 function select (store) {
   return {

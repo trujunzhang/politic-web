@@ -73,7 +73,7 @@ class PopoverPostsLayout extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 /**
  * Connect the properties

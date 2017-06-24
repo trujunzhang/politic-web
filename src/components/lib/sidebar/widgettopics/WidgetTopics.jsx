@@ -21,7 +21,7 @@ class WidgetTopics extends Component {
             <div className="tags tags--postTags tags--light">
                 {!!results && results.map((item, key) => {
                     return (
-                        <a key={item._id}
+                        <a key={item.id}
                            className="link u-baseColor--link"
                            onClick={this.onTagClick.bind(this, item)}>
                             {/*{Topics.getTopicsTitle(item.name)}*/}

@@ -4,7 +4,7 @@ import CoreLayout from './layouts/PageLayout/PageLayout'
 
 import Home from './routes/Home'
 
-export function requireAuth (store) {
+export function requireAuth(store) {
   return (nextState, replace) => {
 
     const state = store.getState()
@@ -33,22 +33,27 @@ const createRoutes = (store) => {
           // http://localhost:3000/users/zhang-trujun
           path: 'users/(:slug)',
           component: Telescope.components.UsersProfile,
-          indexRoute: {component: Telescope.components.Error404},
+          indexRoute: {component: Telescope.components.UsersUpvote},
           childRoutes: [
             {
               // http://localhost:3000/users/zhang-trujun/downvotes
               path: 'downvotes',
-              component: Telescope.components.AppAdminPostsList,
+              component: Telescope.components.UsersDownvote,
             },
             {
               // http://localhost:3000/users/zhang-trujun/posts
               path: 'posts',
-              component: Telescope.components.AppAdminPostsList,
+              component: Telescope.components.UsersSubmittedPostsList,
             },
             {
               // http://localhost:3000/users/zhang-trujun/collections
               path: 'collections',
-              component: Telescope.components.AppAdminPostsList,
+              component: Telescope.components.UsersCollectionFoldersList,
+            },
+            {
+              // http://localhost:3000/users/zhang-trujun/collections/
+              path: 'collections/(:fid)/(:fslug)',
+              component: Telescope.components.UsersSingleFolder,
             }
           ]
         },

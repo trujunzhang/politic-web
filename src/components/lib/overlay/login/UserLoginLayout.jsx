@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 const {dismissPopModel} = require('../../../../actions').default
 
 class UserLoginLayout extends Component {
 
-  onClosePress (e) {
+  onClosePress(e) {
     e.preventDefault()
 
     this.props.dispatch(dismissPopModel())
   }
 
-  renderCloseIcon () {
+  renderCloseIcon() {
     return (
       <a className='modal--close v-desktop' onClick={this.onClosePress.bind(this)} title='Close'>
         <span>
@@ -23,7 +23,7 @@ class UserLoginLayout extends Component {
     )
   }
 
-  render () {
+  render() {
     const {title, showCloseIcon, child, formState} = this.props
     const intro = 'Politicl is a news platform that brings together high quality news from across India. '
     return (
@@ -50,6 +50,6 @@ class UserLoginLayout extends Component {
  *
  * Redux
  */
-import { connect } from 'react-redux'
+var {connect} = require('react-redux')
 
 export default connect()(UserLoginLayout)
