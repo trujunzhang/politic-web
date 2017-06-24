@@ -88,7 +88,7 @@ class PostItemDownvote extends Component {
   }
 
   render() {
-    const {post, currentUser, voteCount, hasVoted} = this.props,
+    const {voteCount, hasVoted, voteClass} = this.props,
       {fade} = this.state
 
     const buttonClass =
@@ -96,7 +96,7 @@ class PostItemDownvote extends Component {
         "button_2I1re active_2heMV smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W" :
         "button_2I1re smallSize_1da-r secondaryText_PM80d simpleVariant_1Nl54 button_2n20W";
 
-    let postVoteClass = "postDownvoteArrow_2xABl" + (hasVoted ? " upvoted_172lX" : "");
+    let postVoteClass = voteClass + (hasVoted ? " upvoted_172lX" : "");
     if (fade) {
       postVoteClass = postVoteClass + ' animate_asuDN';
     }
