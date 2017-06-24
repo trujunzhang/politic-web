@@ -85,7 +85,8 @@ function paginationReducer(state: State = initialState, action): State {
       //   }
       // )
 
-      const {user, post} = action.payload
+      const {user, post, listId} = action.payload
+      var nextTask = state.get(listId)
       debugger
       return Map({})
     }

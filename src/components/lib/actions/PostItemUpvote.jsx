@@ -63,7 +63,7 @@ class PostItemUpvote extends Component {
 
     this.setState({isWaiting: true})
 
-    const {dispatch, post, currentUser} = this.props
+    const {dispatch, post, currentUser, listId} = this.props
 
     let postId = post.id
     let userId = currentUser.id
@@ -72,7 +72,7 @@ class PostItemUpvote extends Component {
 
     try {
       await Promise.race([
-        dispatch(postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)),
+        dispatch(postsItemVoting(postId, userId, operation, listId, isUpvoted, isDownvoted)),
         timeout(15000),
       ])
     } catch (e) {
