@@ -80,12 +80,12 @@ class PostsItemActions extends Component {
     return (
       <div className={panelClass} ref="saveButton">
         <div className="actionButtons_2mJsw">
-          <Telescope.components.Upvote
+          <Telescope.components.PostItemUpvote
             post={post}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
-          <Telescope.components.Downvote
+          <Telescope.components.PostItemDownvote
             post={post}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}

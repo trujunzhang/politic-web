@@ -3,14 +3,15 @@ import Telescope from './config'
 // actions
 Telescope.registerComponent('ArticleDownvote',                require('./actions/ArticleDownvote.jsx').default)
 Telescope.registerComponent('ArticleUpvote',                  require('./actions/ArticleUpvote.jsx').default)
-Telescope.registerComponent('Downvote',                       require('./actions/Downvote.jsx').default)
+Telescope.registerComponent('PostItemDownvote',               require('./actions/PostItemDownvote.jsx').default)
+Telescope.registerComponent('PostItemUpvote',                 require('./actions/PostItemUpvote.jsx').default)
 Telescope.registerComponent('PostsCommenters',                require('./actions/PostsCommenters.jsx').default)
 Telescope.registerComponent('PostsReadMore',                  require('./actions/PostsReadMore.jsx').default)
 Telescope.registerComponent('PostsSingleHeaderRight',         require('./actions/PostsSingleHeaderRight.jsx').default)
 Telescope.registerComponent('RelatedPostDownvote',            require('./actions/RelatedPostDownvote.jsx').default)
 Telescope.registerComponent('RelatedPostUpvote',              require('./actions/RelatedPostUpvote.jsx').default)
 Telescope.registerComponent('TopicItem',                      require('./actions/TopicItem.jsx').default)
-Telescope.registerComponent('Upvote',                         require('./actions/Upvote.jsx').default)
+
 
 // extensions
 Telescope.registerComponent('AvatarBlurryImage',                require('./extensions/AvatarBlurryImage.jsx').default)

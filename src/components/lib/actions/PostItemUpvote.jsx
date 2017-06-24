@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Users from '../../../lib/users';
 
-class Upvote extends Component {
+class PostItemUpvote extends Component {
 
   constructor(props) {
     super(props);
@@ -77,4 +77,4 @@ class Upvote extends Component {
 }
 
 
-export default Upvote;
+export default PostItemUpvote
