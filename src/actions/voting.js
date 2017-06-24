@@ -106,7 +106,6 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
 
   const user = await Parse.User.currentAsync()
-
   operateUsersOnItem(user, postId, operation)
 
   const post = await new Parse.Query(ParsePost).get(postId)
