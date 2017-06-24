@@ -51,13 +51,8 @@ describe('voting', () => {
   let postId = 'ELxe8ZjTWL'
   let userId = 'RqlbSRQRAU'
 
-  let userJson = {
-    className: 'User',
-    createdAt: '2013-12-14T04:51:19Z',
-    objectId: userId,
-    username: 'medium'
-  };
   let user = ParseUser.createWithoutData(userId)
+  let post = ParsePost.createWithoutData(postId)
 
 
   /**
@@ -65,7 +60,7 @@ describe('voting', () => {
    *
    */
   describe('test method called "operateUsersOnItem"', () => {
-    it('down vote a post', () => {
+    it('down vote by user', () => {
       operateUsersOnItem(user, postId, POSTS_DOWNVOTE)
       expect(user.get('downvotedPosts').length).toBe(1)
       operateUsersOnItem(user, postId, POSTS_DOWNVOTE_CACEL)
@@ -73,12 +68,30 @@ describe('voting', () => {
 
     })
 
-    it('up vote a post', () => {
+    it('up vote by user', () => {
       operateUsersOnItem(user, postId, POSTS_UPVOTE)
       expect(user.get('upvotedPosts').length).toBe(1)
       operateUsersOnItem(user, postId, POSTS_UPVOTE_CACEL)
       expect(user.get('upvotedPosts').length).toBe(0)
     })
   })// operateUsersOnItem
+
+
+  describe('test method called "operatePostsOnItem"', () => {
+    it('down vote for a post', () => {
+      operatePostsOnItem(post, userId, POSTS_DOWNVOTE)
+      expect(post.get('downvoters').length).toBe(1)
+      operatePostsOnItem(post, userId, POSTS_DOWNVOTE_CACEL)
+      expect(post.get('downvoters').length).toBe(0)
+    })
+
+    it('up vote for a post', () => {
+      operatePostsOnItem(post, userId, POSTS_UPVOTE)
+      expect(post.get('upvoters').length).toBe(1)
+      operatePostsOnItem(post, userId, POSTS_UPVOTE_CACEL)
+      expect(post.get('upvoters').length).toBe(0)
+    })
+  })// operatePostsOnItem
+
 
 })// voting

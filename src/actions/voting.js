@@ -49,7 +49,9 @@ function operatePostsOnItem(post: ParsePost, userId: string, operation: string) 
   let pointers = []
   switch (operation) {
     case POSTS_UPVOTE:
-
+      pointers = (post.get('upvoters') || [])
+      pointers.push(ParseUser.createWithoutData(userId))
+      post.set('upvoters', pointers)
       break;
     case POSTS_DOWNVOTE:
       pointers = (post.get('downvoters') || [])
@@ -57,13 +59,15 @@ function operatePostsOnItem(post: ParsePost, userId: string, operation: string) 
       post.set('downvoters', pointers)
       break;
     case POSTS_UPVOTE_CACEL:
-
+      pointers = _.filter((post.get('upvoters') || []), function (item) {
+        return item.id !== userId
+      })
+      post.set('upvoters', pointers)
       break;
     case POSTS_DOWNVOTE_CACEL:
-      pointers = (post.get('downvoters') || []).map((item, index) => {
-        if (item.id !== userId) {
-          return item
-        }
+      debugger
+      pointers = _.filter((post.get('downvoters') || []), function (item) {
+        return item.id !== userId
       })
       post.set('downvoters', pointers)
       break;
