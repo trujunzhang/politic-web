@@ -13,71 +13,23 @@ class UsersProfile extends Component {
 
     const {currentUser} = props
 
-    const upvotedPosts = currentUser.upvotedPosts || [],
-      downvotedPosts = currentUser.downvotedPosts || [],
-      folders = currentUser.folders || [],
-      upvotedPostsCount = upvotedPosts.length,
-      downvotedPostsCount = downvotedPosts.length,
-      postCount = currentUser.postCount || 0,
-      foldersCount = folders.length
-
-    const loggedUserMenu = [
-      {type: 'upvotes', title: 'Upvotes', value: upvotedPostsCount, link: Users.getLinkObject('profile', currentUser)},
-      {
-        type: 'downvotes',
-        title: 'Downvotes',
-        value: downvotedPostsCount,
-        link: Users.getLinkObject('downvotes', currentUser)
-      },
-      {
-        type: 'submittedPosts',
-        title: 'Curated',
-        value: postCount,
-        link: Users.getLinkObject('submittedPosts', currentUser)
-      },
-      {
-        type: 'collections',
-        title: 'Collections',
-        value: foldersCount,
-        link: Users.getLinkObject('collections', currentUser)
-      }
-    ]
-
     this.state = this.initialState = {
-      loggedUserMenu: loggedUserMenu
+      userSidebarMenu: Users.userSidebarMenu(currentUser)
     }
   }
 
-  getMenuType() {
-    const {location, params} = this.props,
-      {loggedUserMenu} = this.state,
-      currentPathName = location.pathname
-    let type = loggedUserMenu[0].type
-    loggedUserMenu.forEach(function (menu) {
-      if (currentPathName === menu.link.pathname) {
-        type = menu.type
-      }
-    })
-
-    return type
-  }
-
-  onMenuItemClick(menu) {
-    // this.context.messages.pushRouter(this.props.router, menu.link)
-  }
 
   renderLeftPanel() {
-    const {loggedUserMenu} = this.state
-
+    const {userSidebarMenu} = this.state,
+      currentMenuType = Users.getMenuType(this.props.location, userSidebarMenu)
     return (
       <nav className="navigation_3_Vku">
         <ol>
-          {loggedUserMenu.map((menu, key) => {
-            const className = 'text_3Wjo0 default_tBeAo base_3CbW2' + (this.getMenuType() === menu.type ? ' active_1bUET' : '')
+          {userSidebarMenu.map((menu, key) => {
+            const className = 'text_3Wjo0 default_tBeAo base_3CbW2' + (currentMenuType === menu.type ? ' active_1bUET' : '')
             return (
               <li key={key}>
-                <Link id={'user_profile_' + menu.type}
-                      className={className} to={menu.link}>
+                <Link id={'user_profile_' + menu.type} className={className} to={menu.link}>
                   <em className="user_left_menu_number">{menu.value}</em>
                   <span>{menu.title}</span>
                 </Link>
@@ -170,7 +122,7 @@ class UsersProfile extends Component {
   }
 
   renderCommon() {
-    const {currentUser} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
+    const {currentUser} = this.props
     return (
       <div>
         <Telescope.components.UserProfileHeader user={currentUser}/>
@@ -189,11 +141,6 @@ class UsersProfile extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props // Important: <* props.user (Maybe user is not Logged user)*>
-    if (!isLoggedIn) {
-      return (<div/>)
-    }
-
     const {location} = this.props
     // const isShowPopoverPosts = this.context.messages.isShowPopoverPosts()
     // Refresh the page, show the single post detail page.

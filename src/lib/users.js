@@ -19,6 +19,55 @@ Users.isAdmin = function (user) {
 
 Users.isAdminById = Users.isAdmin
 
+Users.getMenuType = function (location, userSidebarMenu) {
+  let type = userSidebarMenu[0].type
+  userSidebarMenu.forEach(function (menu) {
+    if (location.pathname === menu.link.pathname) {
+      type = menu.type
+    }
+  })
+
+  return type
+}
+
+Users.userSidebarMenu = function (user) {
+
+  const upvotedPosts = user.upvotedPosts || [],
+    downvotedPosts = user.downvotedPosts || [],
+    folders = user.folders || [],
+    upvotedPostsCount = upvotedPosts.length,
+    downvotedPostsCount = downvotedPosts.length,
+    postCount = user.postCount || 0,
+    foldersCount = folders.length
+
+  return [
+    {
+      type: 'upvotes',
+      title: 'Upvotes',
+      value: upvotedPostsCount,
+      link: Users.getLinkObject('profile', user)
+    },
+    {
+      type: 'downvotes',
+      title: 'Downvotes',
+      value: downvotedPostsCount,
+      link: Users.getLinkObject('downvotes', user)
+    },
+    {
+      type: 'submittedPosts',
+      title: 'Curated',
+      value: postCount,
+      link: Users.getLinkObject('submittedPosts', user)
+    },
+    {
+      type: 'collections',
+      title: 'Collections',
+      value: foldersCount,
+      link: Users.getLinkObject('collections', user)
+    }
+  ]
+}
+
 Users.getLinkObject = function (type, user = null, folder = null) {
   const userLink = !!user ? `/users/${user.slug}` : null
   switch (type) {
