@@ -22,10 +22,9 @@ class UsersSingle extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let userProfile = nextProps.userProfileTask
+    let {userProfile} = nextProps.userProfileTask
     if (!!userProfile) {
       if (userProfile.id === this.state.userId) {
-        debugger
         this.setState({
           ready: true,
           userProfile: userProfile
@@ -51,7 +50,6 @@ class UsersSingle extends Component {
         </div>
       )
     }
-    debugger
     return (
       <Telescope.components.UsersProfile {...this.props} userProfile={userProfile}/>
     )
