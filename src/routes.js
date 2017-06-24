@@ -32,7 +32,7 @@ const createRoutes = (store) => {
         {
           // http://localhost:3000/users/zhang-trujun
           path: 'users/(:slug)',
-          component: Telescope.components.UsersProfile,
+          component: Telescope.components.UsersSingle,
           indexRoute: {component: Telescope.components.UsersUpvote},
           childRoutes: [
             {

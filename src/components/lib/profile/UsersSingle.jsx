@@ -17,12 +17,12 @@ class UsersSingle extends Component {
   }
 
   render() {
-    const terms = {"telescope.slug": props.params.slug};
-    const path = props.location.pathname;
+    const terms = {"telescope.slug": this.props.params.slug};
+    const path = this.props.location.pathname;
 
 
     return (
-      <UsersProfile/>
+      <Telescope.components.UsersProfile {...this.props}/>
     )
   }
 }
