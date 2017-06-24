@@ -77,9 +77,9 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
       break;
     case "cancelDownvote":
       pointers = (user.get('downvotedPosts') || [])
-      pointers = _.without(pointers, _.findWhere(pointers, {
-        id: postId
-      }))
+      pointers = _.filter(pointers, function (item) {
+        return item.id !== postId
+      })
       user.set('downvotedPosts', pointers)
       break;
   }
