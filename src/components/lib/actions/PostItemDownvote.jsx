@@ -77,9 +77,8 @@ class PostItemDownvote extends Component {
   }
 
   render() {
-    const {post} = this.props;
-    const currentUser = null;
-    const {fade} = this.state;
+    const {post, currentUser} = this.props,
+      {fade} = this.state
 
     const hasDownvoted = Users.hasDownvoted(currentUser, post);
     const buttonClass =
@@ -96,7 +95,7 @@ class PostItemDownvote extends Component {
       <button className={buttonClass} rel="vote-button" onClick={this.onDownvoteClick.bind(this)}>
         <div className="buttonContainer_wTYxi">
           <div ref='button' className={postVoteClass}/>
-          {post.downvotes || 0}
+          {post.downvoters.length || 0}
         </div>
       </button>
     )

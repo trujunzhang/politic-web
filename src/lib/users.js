@@ -134,7 +134,7 @@ Users.hasUpvoted = function (user, document) {
  * @param {Object} document
  */
 Users.hasDownvoted = function (user, document) {
-  return user && _.include(document.downvoters, user._id)
+  return user && _.include(document.downvoters, user.id)
 }
 
 Users.renderWithSideBar = function (children) {

@@ -131,7 +131,7 @@ export function fromParsePost(map: Object): Post {
     cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary),
     postedAt: map.get('postedAt'),
     upvoters: (map.get('upvotedPosts') || []).map(fromParsePointer),
-    downvoters: (map.get('upvotedPosts') || []).map(fromParsePointer)
+    downvoters: (map.get('downvoters') || []).map(fromParsePointer)
   };
 }
 
