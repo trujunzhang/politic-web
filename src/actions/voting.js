@@ -127,7 +127,7 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
 function postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): ThunkAction {
   return (dispatch) => {
     const action = _postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)
-    // Loading friends schedules shouldn't block the login process
+
     action.then(
       ([result]) => {
         dispatch(result);

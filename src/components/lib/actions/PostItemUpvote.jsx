@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Users from '../../../lib/users';
 
+const {timeout, postsItemVoting} = require('../../../actions').default
 
 /**
  * The states were interested in
@@ -71,7 +72,7 @@ class PostItemUpvote extends Component {
 
     try {
       await Promise.race([
-        dispatch(postsItemVoting(postId, userId, operation)),
+        dispatch(postsItemVoting(postId, userId, operation,isUpvoted,isDownvoted)),
         timeout(15000),
       ])
     } catch (e) {
@@ -117,4 +118,12 @@ class PostItemUpvote extends Component {
 }
 
 
-export default PostItemUpvote
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+export default connect()(PostItemUpvote)
+

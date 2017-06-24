@@ -73,7 +73,7 @@ class PostItemDownvote extends Component {
 
     try {
       await Promise.race([
-        dispatch(postsItemVoting(postId, userId, operation)),
+        dispatch(postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)),
         timeout(15000),
       ])
     } catch (e) {
