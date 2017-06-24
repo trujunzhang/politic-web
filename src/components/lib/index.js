@@ -59,6 +59,7 @@ Telescope.registerComponent('PostsSingleHeader',                  require('./pos
 // profile
 Telescope.registerComponent('UserProfileHeader',                   require('./profile/UserProfileHeader.jsx').default)
 Telescope.registerComponent('UsersProfile',                        require('./profile/UsersProfile.jsx').default)
+Telescope.registerComponent('UsersSingle',                         require('./profile/UsersSingle.jsx').default)
 
 // profile(list)
 Telescope.registerComponent('UserProfilePostsList',                require('./profile/list/UserProfilePostsList.jsx').default)
