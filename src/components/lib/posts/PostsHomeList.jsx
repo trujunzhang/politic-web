@@ -1,10 +1,10 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class PostsHomeList extends Component {
 
-  renderNormal () {
-    const {results, hasMore, ready, title, showHeader, showClose, dismissBanner, loadMore} = this.props
+  renderNormal() {
+    const {results, hasMore, ready, title, showHeader, showClose, dismissBanner, loadMore, listId} = this.props
     return (
       <section className="results_37tfm">
         <div>
@@ -19,6 +19,7 @@ class PostsHomeList extends Component {
                 <ul className="postsList_3n2Ck">
                   {results.map((post, index) =>
                     <Telescope.components.PostsItem
+                      listId={listId}
                       key={post.id}
                       post={post}
                       type="save"
@@ -35,7 +36,7 @@ class PostsHomeList extends Component {
     )
   }
 
-  render () {
+  render() {
     return this.renderNormal()
   }
 }

@@ -73,28 +73,31 @@ class PostsItemActions extends Component {
   }
 
   renderActionButtons() {
-    const {post, currentUser, isLoggedIn} = this.props,
+    const {post, currentUser, isLoggedIn, listId} = this.props,
       imageSet = Posts.getThumbnailSet(post),
       panelClass = 'meta_2lIV- ' + (!!imageSet.small ? 'meta_2lIV-thumbnail' : 'meta_2lIV-no_thumbnail')
+
 
     return (
       <div className={panelClass} ref="saveButton">
         <div className="actionButtons_2mJsw">
           <Telescope.components.PostItemUpvote
             post={post}
+            listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
             voteCount={post.upvoters.length || 0}
             hasVoted={Users.hasUpvoted(currentUser, post)}
-            voteClass ={"postUpvoteArrow_2xABl"}
+            voteClass={"postUpvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
           <Telescope.components.PostItemDownvote
             post={post}
+            listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
             voteCount={post.downvoters.length || 0}
             hasVoted={Users.hasDownvoted(currentUser, post)}
-            voteClass ={"postDownvoteArrow_2xABl"}
+            voteClass={"postDownvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
           <Telescope.components.PostsCommenters post={post} event={this.onPopupDetailPress.bind(this)}/>
           <div className="additionalActionButtons_BoErh">

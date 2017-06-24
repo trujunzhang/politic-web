@@ -70,6 +70,23 @@ function paginationReducer(state: State = initialState, action): State {
     }
 
     case POSTS_VOTING_DONE: {
+
+      // https://stackoverflow.com/questions/29589753/how-to-update-element-inside-list-with-immutablejs
+
+      // let current = state.get('results')
+      // debugger
+
+
+      // list.update(
+      //   list.findIndex(function(item) {
+      //     return item.get("name") === "third";
+      //   }), function(item) {
+      //     return item.set("count", 4);
+      //   }
+      // )
+
+      const {user, post} = action.payload
+      debugger
       return Map({})
     }
     case LIST_VIEW_RESET_ALL_POSTS: {
