@@ -72,7 +72,7 @@ class PostItemUpvote extends Component {
 
     try {
       await Promise.race([
-        dispatch(postsItemVoting(postId, userId, operation,isUpvoted,isDownvoted)),
+        dispatch(postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)),
         timeout(15000),
       ])
     } catch (e) {
@@ -87,10 +87,8 @@ class PostItemUpvote extends Component {
   }
 
   render() {
-
-    const currentUser = null;
-    const {post} = this.props;
-    const {fade} = this.state;
+    const {post, currentUser} = this.props,
+      {fade} = this.state;
 
     const hasUpvoted = Users.hasUpvoted(currentUser, post);
 
