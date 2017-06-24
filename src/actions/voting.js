@@ -131,7 +131,7 @@ async function _postsItemVoting(postId: string, userId: string, operation: strin
   const post = await new Parse.Query(ParsePost).get(postId)
   operatePostsOnItem(post, userId, operation)
   if (!!preOperation) {
-    operatePostsOnItem(user, postId, preOperation)
+    operatePostsOnItem(post, userId, preOperation)
   }
 
   await user.save()
