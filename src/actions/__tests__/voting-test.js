@@ -42,7 +42,7 @@ describe('voting', () => {
    * ### Signup failure will have an error associated with it
    *
    */
-  describe('downvote', () => {
+  describe('test method called "operateUsersOnItem"', () => {
     let postId = 'ELxe8ZjTWL'
     let userId = 'RqlbSRQRAU'
 
@@ -70,7 +70,6 @@ describe('voting', () => {
       expect(user.get('upvotedPosts').length).toBe(1)
       operateUsersOnItem(user, postId, 'cancelUpvote')
       expect(user.get('upvotedPosts').length).toBe(0)
-
     })
   })// downvote
 
