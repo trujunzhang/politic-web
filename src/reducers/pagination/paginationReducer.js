@@ -82,29 +82,28 @@ function paginationReducer(state: State = initialState, action): State {
 
       let list = List(results)
 
-      debugger
 
       list.update(
         list.findIndex(function (item) {
           return item.id === postId;
         }), function (item) {
-          debugger
           item['upvoters'] = post.upvoters
           item['downvoters'] = post.downvoters
-          debugger
           return item
         }
       )
 
-      debugger
       let newResult = list.toJS()
       nextTask.set('results', newResult)
 
       debugger
 
       let nextState = state
-        .set(listId, nextTask)
+        .update(listId, nextTask)
 
+      debugger
+      let xxx = nextState.toJS()
+      debugger
       return nextState
     }
     case LIST_VIEW_RESET_ALL_POSTS: {
