@@ -65,7 +65,6 @@ function operatePostsOnItem(post: ParsePost, userId: string, operation: string) 
       post.set('upvoters', pointers)
       break;
     case POSTS_DOWNVOTE_CACEL:
-      debugger
       pointers = _.filter((post.get('downvoters') || []), function (item) {
         return item.id !== userId
       })
