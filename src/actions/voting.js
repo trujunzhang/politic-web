@@ -30,11 +30,31 @@ var _ = require('underscore')
 
 import type {Action, ThunkAction} from './types'
 
-const {User, fromParseUser} = require('../reducers/parseModels')
+const {User, Post, fromParseUser, fromParsePost} = require('../reducers/parseModels')
 
 let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
-function operateOnItem(user: ParseUser, userInstance: User, postId: string, operation: string) {
+function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string, operation: string) {
+  switch (operation) {
+    case "upvote":
+
+      break;
+    case "downvote":
+      let _downvotedUsers = post.get('downvoters') || []
+      _downvotedUsers.push(ParseUser.createWithoutData(userId))
+      post.set('downvoters', _downvotedUsers)
+      break;
+    case "cancelUpvote":
+
+      break;
+    case "cancelDownvote":
+
+      break;
+  }
+
+}
+
+function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string, operation: string) {
   switch (operation) {
     case "upvote":
 
@@ -55,16 +75,20 @@ function operateOnItem(user: ParseUser, userInstance: User, postId: string, oper
 }
 
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
-  const post = await new Parse.Query(ParsePost).get(postId)
-  // post.set('upvoters', ParseUser.createWithoutData(userId))
 
   debugger
-  const user = await Parse.User.currentAsync();
+
+  const user = await Parse.User.currentAsync()
   const userInstance = fromParseUser(user)
 
-  operateOnItem(user, userInstance, postId, operation)
+  operateUsersOnItem(user, userInstance, postId, operation)
 
-  // await user.save()
+  const post = await new Parse.Query(ParsePost).get(postId)
+  const postInstance = fromParsePost(post)
+  operatePostsOnItem(post, postInstance, userId, operation)
+
+  await user.save()
+  await post.save()
 
   const action = {
     type: 'LOGGED_INxxx',
