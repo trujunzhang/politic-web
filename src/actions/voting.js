@@ -67,6 +67,7 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
 
       break;
     case "downvote":
+      debugger
       pointers = (user.get('downvotedPosts') || [])
       pointers.push(ParsePost.createWithoutData(postId))
       user.set('downvotedPosts', pointers)
@@ -123,5 +124,9 @@ function postsItemVoting(postId: string, userId: string, operation: string, isUp
 
 export default {
   postsItemVoting,
+
+  // The following is just for testing
+  operateUsersOnItem,
+  operatePostsOnItem
 
 }

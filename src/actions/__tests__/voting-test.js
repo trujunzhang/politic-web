@@ -27,7 +27,9 @@
  * as well
  */
 
-const voingtActions = require('../voting').default
+const Parse = require('parse')
+const {operatePostsOnItem, operateUsersOnItem} = require('../voting').default
+let {ParsePost, ParseFolder, ParseUser} = require('../objects').default
 
 /**
  * ## Tests
@@ -41,22 +43,30 @@ describe('voting', () => {
    *
    */
   describe('downvote', () => {
-    let gameValue = 123
+    let postId = 'ELxe8ZjTWL'
+    let userId = 'RqlbSRQRAU'
+
+    let userJson = {
+      className: 'User',
+      createdAt: '2013-12-14T04:51:19Z',
+      objectId: userId,
+      username: 'medium'
+    };
+    let user = Parse.Object.fromJSON(userJson)
 
     beforeEach(() => {
-      gameValue = 234
+      let xxx = user
+      // debugger
     });
 
     it('down vote a post', () => {
-      // var json = {
-      //   className: 'Item',
-      //   createdAt: '2013-12-14T04:51:19Z',
-      //   objectId: 'I1',
-      //   size: 'medium'
-      // };
+      let operation = 'downvote'
+
+      operateUsersOnItem(user, postId, operation)
+      debugger
       // var o = ParseObject.fromJSON(json);
 
-      expect(gameValue).toBe(234)
+      // expect(gameValue).toBe(234)
     })
   })// downvote
 
