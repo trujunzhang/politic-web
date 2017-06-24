@@ -41,10 +41,22 @@ describe('voting', () => {
    *
    */
   describe('downvote', () => {
+    let gameValue = 123
+
+    beforeEach(() => {
+      gameValue = 234
+    });
+
     it('down vote a post', () => {
+      // var json = {
+      //   className: 'Item',
+      //   createdAt: '2013-12-14T04:51:19Z',
+      //   objectId: 'I1',
+      //   size: 'medium'
+      // };
+      // var o = ParseObject.fromJSON(json);
 
-
-      expect(2 + 2).toBe(14)
+      expect(gameValue).toBe(234)
     })
   })// downvote
 

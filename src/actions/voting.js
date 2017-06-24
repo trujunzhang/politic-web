@@ -34,7 +34,7 @@ const {User, Post, fromParseUser, fromParsePost} = require('../reducers/parseMod
 
 let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
-function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string, operation: string) {
+function operatePostsOnItem(post: ParsePost, userId: string, operation: string) {
   let pointers = []
   switch (operation) {
     case "upvote":
@@ -60,7 +60,7 @@ function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string,
 
 }
 
-function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string, operation: string) {
+function operateUsersOnItem(user: ParseUser, postId: string, operation: string) {
   let pointers = []
   switch (operation) {
     case "upvote":
@@ -89,13 +89,11 @@ function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string,
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
 
   const user = await Parse.User.currentAsync()
-  const userInstance = fromParseUser(user)
 
-  operateUsersOnItem(user, userInstance, postId, operation)
+  operateUsersOnItem(user, postId, operation)
 
   const post = await new Parse.Query(ParsePost).get(postId)
-  const postInstance = fromParsePost(post)
-  operatePostsOnItem(post, postInstance, userId, operation)
+  operatePostsOnItem(post, userId, operation)
 
   await user.save()
   await post.save()
