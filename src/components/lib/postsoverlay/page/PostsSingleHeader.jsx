@@ -1,12 +1,12 @@
 import Telescope from '../../../lib'
-import React, { Component } from 'react'
-import { FormattedMessage, FormattedRelative } from 'react-intl'
+import React, {Component} from 'react'
+import {FormattedMessage, FormattedRelative} from 'react-intl'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
 class PostsSingleHeader extends Component {
 
-  renderAction () {
+  renderAction() {
     const {post} = this.props
     return (
       <div className="actions_vQA0Z">
@@ -19,7 +19,7 @@ class PostsSingleHeader extends Component {
     )
   }
 
-  renderMobileBlock () {
+  renderMobileBlock() {
     const {post} = this.props,
       isMobileDevice = Users.isMobileDevice()
     if (!isMobileDevice) {
@@ -44,7 +44,7 @@ class PostsSingleHeader extends Component {
     )
   }
 
-  render () {
+  render() {
     const {post} = this.props,
       imageSet = Posts.getThumbnailSet(post)
 
