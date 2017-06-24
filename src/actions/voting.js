@@ -48,7 +48,7 @@ function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string,
 
       break;
     case "cancelDownvote":
-
+      debugger
       break;
   }
 
@@ -68,15 +68,13 @@ function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string,
 
       break;
     case "cancelDownvote":
-
+      debugger
       break;
   }
 
 }
 
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
-
-  debugger
 
   const user = await Parse.User.currentAsync()
   const userInstance = fromParseUser(user)
