@@ -88,7 +88,11 @@ function paginationReducer(state: State = initialState, action): State {
         list.findIndex(function (item) {
           return item.id === postId;
         }), function (item) {
-          return item.set('upvoters', post.get('upvoters')).set('downvoters', post.get('downvoters'))
+          debugger
+          item['upvoters'] = post.upvoters
+          item['downvoters'] = post.downvoters
+          debugger
+          return item
         }
       )
 
