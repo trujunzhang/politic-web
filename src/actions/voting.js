@@ -50,10 +50,11 @@ function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string,
       break;
     case "cancelDownvote":
       pointers = (post.get('downvoters') || []).map((item, index) => {
-        if (item.id === userId) {
-          debugger
+        if (item.id !== userId) {
+          return item
         }
       })
+      post.set('downvoters', pointers)
       break;
   }
 
@@ -75,10 +76,11 @@ function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string,
       break;
     case "cancelDownvote":
       pointers = (user.get('downvotedPosts') || []).map((item, index) => {
-        if (item.id === postId) {
-          debugger
+        if (item.id !== postId) {
+          return item
         }
       })
+      user.set('downvotedPosts', pointers)
       break;
   }
 
