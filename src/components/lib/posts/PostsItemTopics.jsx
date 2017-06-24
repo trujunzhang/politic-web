@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 
 var {pushForTopic} = require('../../../lib/link')
+const {pushModel} = require('../../../actions').default
 
 class PostsItemTopics extends Component {
 
@@ -12,7 +13,7 @@ class PostsItemTopics extends Component {
    * 3) No user should be able to add the banned topics/tags on Submit an Article page.
    * @returns {XML}
    */
-  render () {
+  render() {
     const {topics} = this.props.post,
       tagsMoreCount = topics.length > 0 ? topics.length - 1 : 0
 
@@ -29,7 +30,7 @@ class PostsItemTopics extends Component {
               <span ref="moreTopicsButton"
                     className="moreAssociations_28e7H"
                     id="moreTopicsButton"
-                    onClick={this.props.onMoreTopicsClick}>
+                    onClick={this.onMoreTopicsClick.bind(this)}>
                 <span className="secondaryText_PM80d subtle_1BWOT base_3CbW2 margin_left4">
                   {`+${tagsMoreCount}`}
                 </span>
@@ -43,7 +44,7 @@ class PostsItemTopics extends Component {
     return null
   }
 
-  onTagClick (event) {
+  onTagClick(event) {
     event.preventDefault()
 
     const {post, router} = this.props,
@@ -55,6 +56,37 @@ class PostsItemTopics extends Component {
 
     event.stopPropagation()
   }
+
+
+  onMoreTopicsClick(e) {
+    e.preventDefault()
+
+    // let clientRect = this.refs.saveButton.getBoundingClientRect()
+    // let position = {
+    //   top: clientRect.top + window.pageYOffset,
+    //   left: clientRect.left + window.pageXOffset,
+    //   width: this.refs.saveButton.offsetWidth,
+    //   height: this.refs.saveButton.offsetHeight
+    // }
+    let position = {
+      top: 100,
+      left: 100,
+      width: 100,
+      height: 100
+    }
+    this.props.dispatch(pushModel('moreTopicsList', position, {moreTopics: this.props.post.topics.slice(1)}))
+
+    e.stopPropagation()
+  }
+
 }
 
-export default withRouter(PostsItemTopics)
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+
+export default withRouter(connect()(PostsItemTopics))
