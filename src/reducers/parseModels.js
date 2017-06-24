@@ -1,3 +1,5 @@
+var slugify = require('slugify')
+
 export type Cloudinary = {
   name: string;
   url: string;
@@ -52,6 +54,7 @@ export function fromParseUser(map: Object): User {
   return {
     id: map.id,
     name: map.get('username'),
+    slug: map.get('slug'),
     loginType: map.get('loginType'),
     email: map.get('email'),
     defaultFolderId: fromParseFolder(map.get('folders')[0]).id,

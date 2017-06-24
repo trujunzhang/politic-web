@@ -31,7 +31,6 @@ Users.getMenuType = function (location, userSidebarMenu) {
 }
 
 Users.userSidebarMenu = function (user) {
-
   const upvotedPosts = user.upvotedPosts || [],
     downvotedPosts = user.downvotedPosts || [],
     folders = user.folders || [],
