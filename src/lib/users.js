@@ -134,10 +134,10 @@ Users.hasUpvoted = function (user, document) {
  * @param {Object} document
  */
 Users.hasDownvoted = function (user, document) {
-  if(document.id === 'ELxe8ZjTWL'){
+  if (document.id === 'ELxe8ZjTWL') {
     // debugger
   }
-  return user && _.include(_.pluck(document.downvoters, 'id'), user.id)
+  return user && _.include(document.downvoters, user.id)
 }
 
 Users.renderWithSideBar = function (children) {

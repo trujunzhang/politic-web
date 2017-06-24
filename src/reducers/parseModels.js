@@ -1,4 +1,5 @@
 var slugify = require('slugify')
+let _ = require('underscore')
 
 export type Cloudinary = {
   name: string;
@@ -17,10 +18,10 @@ export type User = {
   slug: string,
   defaultFolderId: string,
   folders: Array<Folder>,
-  upvotedPosts: Array, // PostId array
-  downvotedPosts: Array, // PostId array
-  upvotedComments: Array, // commentId array
-  downvotedComments: Array, // commentId array
+  upvotedPosts: Array<string>, // PostId array
+  downvotedPosts: Array<string>, // PostId array
+  upvotedComments: Array<string>, // commentId array
+  downvotedComments: Array<string>, // commentId array
 }
 
 export type Topic = {
@@ -55,8 +56,8 @@ export type Post = {
   author: string;
   status: int;
   postedAt: Date;
-  upvoters: Array, // UserId array
-  downvoters: Array // UserId array
+  upvoters: Array<string>, // UserId array
+  downvoters: Array<string> // UserId array
 };
 
 export function fromParsePointer(map: Object): Pointer {
@@ -75,11 +76,10 @@ export function fromParseUser(map: Object): User {
     defaultFolderId: fromParseFolder(map.get('folders')[0]).id,
     folders: (map.get('folders') || []).map(fromParseFolder),
 
-    upvotedPosts: (map.get('upvotedPosts') || []).map(fromParsePointer),
-    downvotedPosts: (map.get('downvotedPosts') || []).map(fromParsePointer),
-    upvotedComments: (map.get('upvotedComments') || []).map(fromParsePointer),
-    downvotedComments: (map.get('downvotedComments') || []).map(fromParsePointer)
-
+    upvotedPosts: _.pluck((map.get('upvotedPosts') || []).map(fromParsePointer), 'id'),
+    downvotedPosts: _.pluck((map.get('downvotedPosts') || []).map(fromParsePointer), 'id'),
+    upvotedComments: _.pluck((map.get('upvotedComments') || []).map(fromParsePointer), 'id'),
+    downvotedComments: _.pluck((map.get('downvotedComments') || []).map(fromParsePointer), 'id')
   };
 }
 
@@ -130,8 +130,8 @@ export function fromParsePost(map: Object): Post {
     topics: (map.get('topics') || []).map(fromParseTopic),
     cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary),
     postedAt: map.get('postedAt'),
-    upvoters: (map.get('upvotedPosts') || []).map(fromParsePointer),
-    downvoters: (map.get('downvoters') || []).map(fromParsePointer)
+    upvoters: _.pluck((map.get('upvotedPosts') || []).map(fromParsePointer), 'id'),
+    downvoters: _.pluck((map.get('downvoters') || []).map(fromParsePointer), 'id')
   };
 }
 

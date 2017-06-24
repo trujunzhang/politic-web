@@ -35,40 +35,50 @@ const {User, Post, fromParseUser, fromParsePost} = require('../reducers/parseMod
 let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
 function operatePostsOnItem(post: ParsePost, postInstance: Post, userId: string, operation: string) {
+  let pointers = []
   switch (operation) {
     case "upvote":
 
       break;
     case "downvote":
-      let _downvotedUsers = post.get('downvoters') || []
-      _downvotedUsers.push(ParseUser.createWithoutData(userId))
-      post.set('downvoters', _downvotedUsers)
+      pointers = (post.get('downvoters') || [])
+      pointers.push(ParseUser.createWithoutData(userId))
+      post.set('downvoters', pointers)
       break;
     case "cancelUpvote":
 
       break;
     case "cancelDownvote":
-      debugger
+      pointers = (post.get('downvoters') || []).map((item, index) => {
+        if (item.id === userId) {
+          debugger
+        }
+      })
       break;
   }
 
 }
 
 function operateUsersOnItem(user: ParseUser, userInstance: User, postId: string, operation: string) {
+  let pointers = []
   switch (operation) {
     case "upvote":
 
       break;
     case "downvote":
-      let _downvotedPosts = user.get('downvotedPosts') || []
-      _downvotedPosts.push(ParsePost.createWithoutData(postId))
-      user.set('downvotedPosts', _downvotedPosts)
+      pointers = (user.get('downvotedPosts') || [])
+      pointers.push(ParsePost.createWithoutData(postId))
+      user.set('downvotedPosts', pointers)
       break;
     case "cancelUpvote":
 
       break;
     case "cancelDownvote":
-      debugger
+      pointers = (user.get('downvotedPosts') || []).map((item, index) => {
+        if (item.id === postId) {
+          debugger
+        }
+      })
       break;
   }
 
