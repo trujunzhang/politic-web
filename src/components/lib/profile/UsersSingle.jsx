@@ -16,7 +16,7 @@ class UsersSingle extends Component {
     this.state = this.initialState = {
       ready: false,
       userProfile: null,
-      userId: props.param.uid,
+      userId: props.params.uid,
       userSlug: props.params.uslug
     }
   }
@@ -35,7 +35,7 @@ class UsersSingle extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(loadUserProfile(this.props.param.uid, this.props.param.uslug))
+    this.props.dispatch(loadUserProfile(this.props.params.uid, this.props.params.uslug))
   }
 
   render() {
