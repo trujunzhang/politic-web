@@ -27,7 +27,7 @@
 // ========================
 // For Web Apps
 // ========================
-
+const Parse = require('parse')
 
 var OAuth2 = require('oauth').OAuth2;
 
@@ -88,8 +88,9 @@ async function _logInWithTwitter(source: ? object): Promise<Array<Action>> {
 
   let user = twitterUser
 
-  user.set('username', profile.name);
-  user.set('email', profile.email);
+  user.set('username', profile.name)
+  user.set('slug', slugify(username, '_'))
+  user.set('email', profile.email)
   user.set('loginType', 'twitter')
   await user.save();
 
@@ -160,7 +161,7 @@ const {
   ADDED_NEW_FOLDER_WITH_POST
 } = require('../lib/constants').default
 
-const Parse = require('parse')
+var slugify = require('slugify')
 // const FacebookSDK = require('FacebookSDK')
 const {updateInstallation} = require('./installation')
 
@@ -203,8 +204,10 @@ async function _logInWithFacebook(source: ? object): Promise<Array<Action>> {
   let user = facebookUser
 
   user.set('username', profile.name)
+  user.set('slug', slugify(username, '_'))
   user.set('email', profile.email)
   user.set('loginType', 'facebook')
+
   if ((user.get('folders') || []).length === 0) {
     const defaultFolder = await  makeNewFolderForUser(user)
     user.set('folders', [defaultFolder])
@@ -273,6 +276,7 @@ function logInWithPassword(username: string, password: string): ThunkAction {
 async function _signUpWithPassword(username: string, email: string, password: string): Promise<Array<Action>> {
   const user = new Parse.User()
   user.set('username', username)
+  user.set('slug', slugify(username, '_'))
   user.set('password', password)
   user.set('email', email)
 
