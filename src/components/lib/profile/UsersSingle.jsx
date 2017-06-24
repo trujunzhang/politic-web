@@ -22,8 +22,15 @@ class UsersSingle extends Component {
 
 
     return (
-      <Telescope.components.UsersProfile {...this.props}/>
+      <div className="placeholder_1WOC3">
+        <div className="loader_54XfI animationRotate loader_OEQVm">
+        </div>
+      </div>
     )
+
+    // return (
+    //   <Telescope.components.UsersProfile {...this.props}/>
+    // )
   }
 }
 
