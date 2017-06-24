@@ -42,16 +42,15 @@ const {
 } = require('../lib/constants').default
 
 function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
-  debugger
   return (dispatch) => {
     return query.get(objectId, {
       success: (object) => {
         // Flow can't guarantee {type, list} is a valid action
-        const data = {
+        const payload = {
           objectId: objectId,
           object: object
         }
-        dispatch({type, data})
+        dispatch({type, payload})
       },
       error: (error) => {
         debugger

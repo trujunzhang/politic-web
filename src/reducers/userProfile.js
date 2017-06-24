@@ -28,12 +28,8 @@
  * The states were interested in
  */
 const {
-  LOGGED_IN,
-  LOGGED_OUT,
-  SET_SHARING,
-  LOADED_USER_FOLDERS,
-  SELECTED_USER_FOLDER,
-  ADDED_NEW_FOLDER_WITH_POST
+  USERPROFILE_RESET,
+  USERPROFILE_LOADED,
 } = require('../lib/constants').default
 
 const {User, fromParseUser} = require('./parseModels')
@@ -54,23 +50,14 @@ const initialState = {
 function userProfileTask(state: State = initialState, action: Action): State {
   switch (action.type) {
     case USERPROFILE_LOADED: {
-      debugger
       let {objectId, object} = action.payload
       return {
         ready: true,
         userProfile: fromParseUser(object)
       }
     }
-    case  LOADED_USER_FOLDERS: {
+    case  USERPROFILE_RESET: {
       return initialState
-    }
-    case LOGGED_OUT: {
-      return initialState
-    }
-    case SET_SHARING: {
-      return {
-        ...state
-      }
     }
   }
 
