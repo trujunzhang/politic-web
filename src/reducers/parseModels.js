@@ -17,10 +17,10 @@ export type User = {
   slug: string,
   defaultFolderId: string,
   folders: Array<Folder>,
-  upvotedPosts: Array,
-  downvotedPosts: Array,
-  upvotedComments: Array,
-  downvotedComments: Array,
+  upvotedPosts: Array, // PostId array
+  downvotedPosts: Array, // PostId array
+  upvotedComments: Array, // commentId array
+  downvotedComments: Array, // commentId array
 }
 
 export type Topic = {
@@ -55,6 +55,8 @@ export type Post = {
   author: string;
   status: int;
   postedAt: Date;
+  upvoters: Array, // UserId array
+  downvoters: Array // UserId array
 };
 
 export function fromParsePointer(map: Object): Pointer {
@@ -128,6 +130,8 @@ export function fromParsePost(map: Object): Post {
     topics: (map.get('topics') || []).map(fromParseTopic),
     cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary),
     postedAt: map.get('postedAt'),
+    upvoters: (map.get('upvotedPosts') || []).map(fromParsePointer),
+    downvoters: (map.get('upvotedPosts') || []).map(fromParsePointer)
   };
 }
 

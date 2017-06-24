@@ -55,12 +55,16 @@ function operateOnItem(user: ParseUser, userInstance: User, postId: string, oper
 }
 
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
+  const post = await new Parse.Query(ParsePost).get(postId)
+  // post.set('upvoters', ParseUser.createWithoutData(userId))
+
+  debugger
   const user = await Parse.User.currentAsync();
   const userInstance = fromParseUser(user)
 
   operateOnItem(user, userInstance, postId, operation)
 
-  await user.save()
+  // await user.save()
 
   const action = {
     type: 'LOGGED_INxxx',
