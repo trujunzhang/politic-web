@@ -103,13 +103,36 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
 
 }
 
+function removeLastVoting(operation: string, isUpvoted: boolean, isDownvoted: boolean) {
+  switch (operation) {
+    case POSTS_UPVOTE:
+      if (isDownvoted) {
+        return POSTS_DOWNVOTE_CACEL
+      }
+      break;
+    case POSTS_DOWNVOTE:
+      if (isUpvoted) {
+        return POSTS_UPVOTE_CACEL
+      }
+      break;
+  }
+  return null
+}
+
 async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
+  let preOperation = removeLastVoting(operation, isUpvoted, isDownvoted)
 
   const user = await Parse.User.currentAsync()
   operateUsersOnItem(user, postId, operation)
+  if (!!preOperation) {
+    operateUsersOnItem(user, postId, preOperation)
+  }
 
   const post = await new Parse.Query(ParsePost).get(postId)
   operatePostsOnItem(post, userId, operation)
+  if (!!preOperation) {
+    operatePostsOnItem(user, postId, preOperation)
+  }
 
   await user.save()
   await post.save()
