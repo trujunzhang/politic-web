@@ -36,7 +36,7 @@ const {
   ADDED_NEW_FOLDER_WITH_POST
 } = require('../lib/constants').default
 
-const {User, fromParseFolder} = require('./parseModels')
+const {User, fromParseUser} = require('./parseModels')
 
 import type {Action} from '../actions/types'
 var slugify = require('slugify')
@@ -53,19 +53,12 @@ const initialState = {
 
 function userProfileTask(state: State = initialState, action: Action): State {
   switch (action.type) {
-    case LOGGED_IN:
-    case ADDED_NEW_FOLDER_WITH_POST: {
-      let {id, name, loginType, email, defaultFolderId, folders} = action.payload
+    case USERPROFILE_LOADED: {
+      debugger
+      let {objectId, object} = action.payload
       return {
-        isLoggedIn: true,
-        hasSkippedLogin: false,
-        id,
-        name,
-        loginType,
-        email,
-        defaultFolderId,
-        folders,
-        slug: slugify(name, '_')
+        ready: true,
+        userProfile: fromParseUser(object)
       }
     }
     case  LOADED_USER_FOLDERS: {

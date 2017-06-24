@@ -42,6 +42,7 @@ const {
 } = require('../lib/constants').default
 
 function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
+  debugger
   return (dispatch) => {
     return query.get(objectId, {
       success: (object) => {
@@ -105,12 +106,9 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
 
 export default {
   loadUserProfile: (userId: string, slug: string): ThunkAction => {
-    debugger
-    
-    let user = new Parse.Query(User).get(userId)
+    let pageQuery = new Parse.Query(User).equalTo('objectId', userId)
 
-    debugger
-    return loadParseQuery(USERPROFILE_LOADED, null)
+    return loadParseObject(USERPROFILE_LOADED, pageQuery, userId)
   },
 
   loadUserFolders: (userId: string): ThunkAction => {
