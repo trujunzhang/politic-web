@@ -55,8 +55,6 @@ describe('voting', () => {
     let user = ParseUser.createWithoutData(userId)
 
     beforeEach(() => {
-      let xxx = user
-      // debugger
     });
 
     it('down vote a post', () => {
@@ -64,6 +62,14 @@ describe('voting', () => {
       expect(user.get('downvotedPosts').length).toBe(1)
       operateUsersOnItem(user, postId, 'cancelDownvote')
       expect(user.get('downvotedPosts').length).toBe(0)
+
+    })
+
+    it('up vote a post', () => {
+      operateUsersOnItem(user, postId, 'upvote')
+      expect(user.get('upvotedPosts').length).toBe(1)
+      operateUsersOnItem(user, postId, 'cancelUpvote')
+      expect(user.get('upvotedPosts').length).toBe(0)
 
     })
   })// downvote

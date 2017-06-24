@@ -64,20 +64,23 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
   let pointers = []
   switch (operation) {
     case "upvote":
-
+      pointers = (user.get('upvotedPosts') || [])
+      pointers.push(ParsePost.createWithoutData(postId))
+      user.set('upvotedPosts', pointers)
       break;
     case "downvote":
-      // debugger
       pointers = (user.get('downvotedPosts') || [])
       pointers.push(ParsePost.createWithoutData(postId))
       user.set('downvotedPosts', pointers)
       break;
     case "cancelUpvote":
-
+      pointers = _.filter((user.get('upvotedPosts') || []), function (item) {
+        return item.id !== postId
+      })
+      user.set('upvotedPosts', pointers)
       break;
     case "cancelDownvote":
-      pointers = (user.get('downvotedPosts') || [])
-      pointers = _.filter(pointers, function (item) {
+      pointers = _.filter((user.get('downvotedPosts') || []), function (item) {
         return item.id !== postId
       })
       user.set('downvotedPosts', pointers)

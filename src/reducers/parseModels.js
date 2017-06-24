@@ -130,7 +130,7 @@ export function fromParsePost(map: Object): Post {
     topics: (map.get('topics') || []).map(fromParseTopic),
     cloudinaryUrls: (map.get('cloudinaryUrls') || []).map(fromParseCloudinary),
     postedAt: map.get('postedAt'),
-    upvoters: _.pluck((map.get('upvotedPosts') || []).map(fromParsePointer), 'id'),
+    upvoters: _.pluck((map.get('upvoters') || []).map(fromParsePointer), 'id'),
     downvoters: _.pluck((map.get('downvoters') || []).map(fromParsePointer), 'id')
   };
 }
