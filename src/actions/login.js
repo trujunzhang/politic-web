@@ -165,7 +165,7 @@ var slugify = require('slugify')
 // const FacebookSDK = require('FacebookSDK')
 const {updateInstallation} = require('./installation')
 
-let {Folder, Post} = require('./objects').default
+let {ParseFolder, ParsePost} = require('./objects').default
 
 const {fromParseUser} = require('../reducers/parseModels')
 
@@ -183,9 +183,9 @@ async function makeNewFolderForUser(user: Any, foldName: string = 'Read Later', 
     posts: []
   }
   if (!!postId) {
-    data['posts'] = [Post.createWithoutData(postId)]
+    data['posts'] = [ParsePost.createWithoutData(postId)]
   }
-  return await new Folder(data).save()
+  return await new ParseFolder(data).save()
 }
 
 async function ParseFacebookLogin(scope): Promise {
@@ -335,9 +335,9 @@ async function _newUserFolderWithPost(folder: object, postId: string, userId: st
   let newFolder = null
   if (folderId !== '') {// Exist
     if (postExist === false) {
-      newFolder = await new Parse.Query(Folder).get(folderId)
+      newFolder = await new Parse.Query(ParseFolder).get(folderId)
       let _posts = newFolder.get('posts')
-      _posts.push(Post.createWithoutData(postId))
+      _posts.push(ParsePost.createWithoutData(postId))
       newFolder.set('posts', _posts)
       await newFolder.save()
       await user.save()

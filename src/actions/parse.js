@@ -27,7 +27,7 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {Post, Folder, User} = require('./objects').default
+let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
@@ -105,13 +105,13 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
 
 export default {
   loadUserProfile: (userId: string, slug: string): ThunkAction => {
-    let pageQuery = new Parse.Query(User).equalTo('objectId', userId)
+    let pageQuery = new Parse.Query(ParseUser).equalTo('objectId', userId)
 
     return loadParseObject(USERPROFILE_LOADED, pageQuery, userId)
   },
 
   loadUserFolders: (userId: string): ThunkAction => {
-    let query = new Parse.Query(Folder).equalTo('user', Parse.User.createWithoutData(userId))
+    let query = new Parse.Query(ParseFolder).equalTo('user', Parse.User.createWithoutData(userId))
 
     return loadParseQuery(LOADED_USER_FOLDERS, query)
   },
@@ -120,7 +120,7 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(new Parse.Query(Post).include('topics'))
+    let postQuery = new PostsParameters(new Parse.Query(ParsePost).include('topics'))
       .addParameters(terms)
       .end()
 
@@ -128,7 +128,7 @@ export default {
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    let pageQuery = new Parse.Query(Post).include('topics')
+    let pageQuery = new Parse.Query(ParsePost).include('topics')
 
     return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
   },
@@ -137,7 +137,7 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(new Parse.Query(Post).include('topics'))
+    let postQuery = new PostsParameters(new Parse.Query(ParsePost).include('topics'))
       .addParameters(terms)
       .end()
 

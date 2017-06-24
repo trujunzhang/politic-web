@@ -32,30 +32,35 @@ import type {Action, ThunkAction} from './types'
 
 const {User, fromParseUser} = require('../reducers/parseModels')
 
+let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
-function operateOnItem(userInstance: User, postId: string, operation: string) {
-  debugger
+function operateOnItem(user: ParseUser, userInstance: User, postId: string, operation: string) {
   switch (operation) {
     case "upvote":
 
+      break;
     case "downvote":
-
+      let _downvotedPosts = user.get('downvotedPosts') || []
+      _downvotedPosts.push(ParsePost.createWithoutData(postId))
+      user.set('downvotedPosts', _downvotedPosts)
+      break;
     case "cancelUpvote":
 
+      break;
     case "cancelDownvote":
+
+      break;
   }
 
 }
 
-async function _postsItemVoting(postId: string, userId: string, operation: string): Promise<Array<Action>> {
-debugger
+async function _postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): Promise<Array<Action>> {
   const user = await Parse.User.currentAsync();
-  debugger
   const userInstance = fromParseUser(user)
 
-  operateOnItem(userInstance, postId, operation)
+  operateOnItem(user, userInstance, postId, operation)
 
-  // await user.save()
+  await user.save()
 
   const action = {
     type: 'LOGGED_INxxx',
@@ -67,9 +72,9 @@ debugger
   ]);
 }
 
-function postsItemVoting(postId: string, userId: string, operation: string): ThunkAction {
+function postsItemVoting(postId: string, userId: string, operation: string, isUpvoted: boolean, isDownvoted: boolean): ThunkAction {
   return (dispatch) => {
-    const action = _postsItemVoting(postId, userId, operation);
+    const action = _postsItemVoting(postId, userId, operation, isUpvoted, isDownvoted)
     // Loading friends schedules shouldn't block the login process
     action.then(
       ([result]) => {

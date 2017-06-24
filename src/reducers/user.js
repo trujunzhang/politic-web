@@ -44,6 +44,7 @@ var slugify = require('slugify')
 export type State = {
   isLoggedIn: boolean,
   hasSkippedLogin: boolean,
+  // User Instance
   id: ? string,
   name: ? string,
   loginType: ? string,
@@ -51,12 +52,18 @@ export type State = {
   slug: ? string,
   defaultFolderId: ? string,
   folders: ? Array<Folder>,
+  upvotedPosts: ? Array,
+  downvotedPosts: ? Array,
+  upvotedComments: ? Array,
+  downvotedComments: ? Array,
+  // The following is for collection Folder
   selectedFolder: Folder
 }
 
 const initialState = {
   isLoggedIn: false,
   hasSkippedLogin: false,
+  // User Instance
   id: null,
   name: null,
   loginType: null,
@@ -64,6 +71,11 @@ const initialState = {
   slug: null,
   defaultFolderId: null,
   folders: [],
+  upvotedPosts: [],
+  downvotedPosts: [],
+  upvotedComments: [],
+  downvotedComments: [],
+  // The following is for collection Folder
   selectedFolder: null
 }
 
@@ -71,7 +83,7 @@ function user(state: State = initialState, action: Action): State {
   switch (action.type) {
     case LOGGED_IN:
     case ADDED_NEW_FOLDER_WITH_POST: {
-      let {id, name, loginType, email, defaultFolderId, folders} = action.payload
+      let {id, name, loginType, email, defaultFolderId, folders, upvotedPosts, downvotedPosts, upvotedComments, downvotedComments} = action.payload
       return {
         isLoggedIn: true,
         hasSkippedLogin: false,
@@ -81,6 +93,10 @@ function user(state: State = initialState, action: Action): State {
         email,
         defaultFolderId,
         folders,
+        upvotedPosts,
+        downvotedPosts,
+        upvotedComments,
+        downvotedComments,
         slug: slugify(name, '_')
       }
     }

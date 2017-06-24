@@ -26,12 +26,12 @@
 const Parse = require('parse')
 
 export default {
-  User: Parse.Object.extend('User'),
-  Cache: Parse.Object.extend('Cache'),
-  History: Parse.Object.extend('History'),
-  Topic: Parse.Object.extend('Topic'),
-  Post: Parse.Object.extend('Post'),
-  Folder: Parse.Object.extend('Folder'),
-  Comment: Parse.Object.extend('Comment'),
-  Message: Parse.Object.extend('Message')
+  ParseUser: Parse.Object.extend('User'),
+  ParseCache: Parse.Object.extend('Cache'),
+  ParseHistory: Parse.Object.extend('History'),
+  ParseTopic: Parse.Object.extend('Topic'),
+  ParsePost: Parse.Object.extend('Post'),
+  ParseFolder: Parse.Object.extend('Folder'),
+  ParseComment: Parse.Object.extend('Comment'),
+  ParseMessage: Parse.Object.extend('Message')
 }

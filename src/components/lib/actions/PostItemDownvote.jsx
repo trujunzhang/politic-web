@@ -56,6 +56,9 @@ class PostItemDownvote extends Component {
 
     let postId = post.id
     let userId = currentUser.id
+    let isDownvoted = Users.hasDownvoted(currentUser, post)
+    let isUpvoted = Users.hasUpvoted(currentUser, post)
+
     try {
       await Promise.race([
         dispatch(postsItemVoting(postId, userId, operation)),
@@ -64,11 +67,11 @@ class PostItemDownvote extends Component {
     } catch (e) {
       const message = e.message || e
       if (message !== 'Timed out' && message !== 'Canceled by user') {
-         alert(message);
-         console.warn(e);
+        alert(message);
+        console.warn(e);
       }
     } finally {
-        debugger
+      debugger
       this.setState({isWaiting: false})
     }
   }
