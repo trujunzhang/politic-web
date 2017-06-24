@@ -33,7 +33,6 @@ class PostsCommenters extends Component {
     e.preventDefault()
 
     let {router, post} = this.props
-    debugger
     showDetailedPagePath(router, post)
     this.props.dispatch(pushOverlayDetailedPost(post))
 
@@ -41,5 +40,13 @@ class PostsCommenters extends Component {
   }
 }
 
-export default withRouter(PostsCommenters)
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+export default withRouter(connect()(PostsCommenters))
 
