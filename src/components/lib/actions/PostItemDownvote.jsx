@@ -3,6 +3,18 @@ import Users from '../../../lib/users';
 
 const {timeout, postsItemVoting} = require('../../../actions').default
 
+
+/**
+ * The states were interested in
+ */
+const {
+  POSTS_UPVOTE,
+  POSTS_DOWNVOTE,
+  POSTS_UPVOTE_CACEL,
+  POSTS_DOWNVOTE_CACEL,
+} = require('../../../lib/constants').default
+
+
 class PostItemDownvote extends Component {
 
   constructor(props) {
@@ -36,16 +48,16 @@ class PostItemDownvote extends Component {
     if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
     } else if (Users.hasDownvoted(currentUser, post)) {
-      this.onVotingPress('cancelDownvote')
+      this.onVotingPress(POSTS_DOWNVOTE_CACEL)
     } else {
       this.setState({fade: true});
-      this.onVotingPress('downvote')
+      this.onVotingPress(POSTS_DOWNVOTE)
     }
 
     event.stopPropagation();
   }
 
-  async onVotingPress(operation: string) {
+  async onVotingPress(operation) {
     if (this.state.isWaiting) {
       return
     }
