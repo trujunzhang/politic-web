@@ -3,6 +3,18 @@ import React, {Component} from 'react'
 
 const {timeout, logInWithFacebook, logInWithTwitter, dismissPopModel} = require('../../../../actions').default
 
+
+/**
+ * States of login display
+ */
+const {
+  LOGIN_FORM_TYPE_LOGIN,
+  LOGIN_FORM_TYPE_REGISTER =,
+  LOGIN_FORM_TYPE_FORGOTPASSWORD,
+  LOGIN_FORM_TYPE_RESET_PASSWD,
+} = require('../../../../lib/constants').default
+
+
 class UserLoginMain extends Component {
 
   async loginViaSocial(type) {
@@ -39,13 +51,13 @@ class UserLoginMain extends Component {
     return (
       <div className='login_footer_links light' id='__w2_VNnJBb6_social_signup_links'>
         <a onClick={(e) => {
-          this.props.toggleEvent(e, 'SIGNIN')
+          this.props.toggleEvent(e, LOGIN_FORM_TYPE_LOGIN)
         }}>
           I Have a Politicl Account
         </a>
         <span className='bullet'> · </span>
         <a onClick={(e) => {
-          this.props.toggleEvent(e, 'REGISTER')
+          this.props.toggleEvent(e, LOGIN_FORM_TYPE_REGISTER)
         }}>
           Sign Up With Email
         </a>

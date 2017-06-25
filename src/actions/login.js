@@ -204,7 +204,7 @@ async function _logInWithFacebook(source: ? object): Promise<Array<Action>> {
   let user = facebookUser
 
   user.set('username', profile.name)
-  user.set('slug', slugify(username, '_'))
+  user.set('slug', slugify(profile.name, '_'))
   user.set('email', profile.email)
   user.set('loginType', 'facebook')
 
