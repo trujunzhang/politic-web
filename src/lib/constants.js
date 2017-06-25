@@ -1,6 +1,15 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  // Voting button types
+  VOTE_BUTTON_LIST_UPVOTE: null,
+  VOTE_BUTTON_LIST_DOWNVOTE: null,
+  VOTE_BUTTON_ARTICLE_UPVOTE: null,
+  VOTE_BUTTON_ARTICLE_DOWNVOTE: null,
+  VOTE_BUTTON_RELATED_UPVOTE: null,
+  VOTE_BUTTON_RELATED_DOWNVOTE: null,
+
+
   // Voting
   POSTS_UPVOTE: null,
   POSTS_DOWNVOTE: null,

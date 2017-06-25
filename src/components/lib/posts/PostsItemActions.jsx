@@ -5,6 +5,15 @@ import Users from '../../../lib/users'
 
 const {pushModel} = require('../../../actions').default
 
+
+/**
+ * The states were interested in
+ */
+const {
+  VOTE_BUTTON_LIST_UPVOTE,
+  VOTE_BUTTON_LIST_DOWNVOTE
+} = require('../../../lib/constants').default
+
 class PostsItemActions extends Component {
 
 
@@ -68,6 +77,7 @@ class PostsItemActions extends Component {
         <div className="actionButtons_2mJsw">
           <Telescope.components.PostItemUpvote
             post={post}
+            voteType={VOTE_BUTTON_LIST_UPVOTE}
             listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
@@ -77,6 +87,7 @@ class PostsItemActions extends Component {
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
           <Telescope.components.PostItemDownvote
             post={post}
+            voteType={VOTE_BUTTON_LIST_DOWNVOTE}
             listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}

@@ -7,10 +7,14 @@ const {timeout, postsItemVoting} = require('../../../actions').default
  * The states were interested in
  */
 const {
+  // Event Type
   POSTS_UPVOTE,
   POSTS_DOWNVOTE,
   POSTS_UPVOTE_CACEL,
   POSTS_DOWNVOTE_CACEL,
+  // Type
+  VOTE_BUTTON_LIST_UPVOTE,
+  VOTE_BUTTON_LIST_DOWNVOTE
 } = require('../../../lib/constants').default
 
 
