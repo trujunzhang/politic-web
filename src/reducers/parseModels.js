@@ -52,7 +52,7 @@ export type Post = {
   body: string;
   sourceFrom: string;
   thumbnailUrl: string;
-  userId: string;
+  postAuthor: User;
   author: string;
   status: int;
   postedAt: Date;
@@ -124,7 +124,7 @@ export function fromParsePost(map: Object): Post {
     body: map.get('body'),
     sourceFrom: map.get('sourceFrom'),
     thumbnailUrl: map.get('thumbnailUrl'),
-    userId: map.get('userId'),
+    postAuthor: fromParseUser((map.get('postAuthor') || {})),
     author: map.get('author'),
     status: map.get('status') || 2,
     topics: (map.get('topics') || []).map(fromParseTopic),

@@ -1,11 +1,14 @@
 import Telescope from '../../../lib'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
+import Avatar from 'react-avatar'
+import {Link} from 'react-router'
+
 class PostsPage extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     // const {post} = this.props
@@ -14,10 +17,10 @@ class PostsPage extends Component {
     // }
   }
 
-  componentDidMount () {
+  componentDidMount() {
   }
 
-  onFlagClick () {
+  onFlagClick() {
     const {post} = this.props,
       {currentUser, messages} = this.context
 
@@ -37,11 +40,7 @@ class PostsPage extends Component {
     // }
   }
 
-  onTagClick (topic) {
-    // this.context.messages.pushForTopic(this.props.router, topic)
-  }
-
-  renderFlag () {
+  renderFlag() {
     return (
       <div className="actions_1GPvO title_2vHSk subtle_1BWOT base_3CbW2" id="post-detail-submit-flag"
            ref="submitFlagButton">
@@ -56,7 +55,7 @@ class PostsPage extends Component {
     )
   }
 
-  renderSideRelatedList () {
+  renderSideRelatedList() {
     return (
       <div className="relatedPosts_3XCIU" rel="related-posts">
         <h2 className="heading_woLg1 heading_AsD8K title_2vHSk subtle_1BWOT base_3CbW2">
@@ -67,26 +66,21 @@ class PostsPage extends Component {
     )
   }
 
-  showUserProfile (curator) {
-    this.context.messages.dismissAllPopoverPosts()
-    this.context.messages.pushRouter(this.props.router, {pathname: '/users/' + curator.telescope.slug})
-  }
 
-  renderCuratorAvator (curator) {
+  renderCuratorAvator(curator) {
+    const avatarObj = Users.getAvatarObj(curator)
     return (
       <button ref="userProfile"
               id="user-menu"
               className="button button--small button--chromeless u-baseColor--buttonNormal is-inSiteNavBar js-userActions">
-        {/*<Telescope.components.UsersBlurryImageAvatar*/}
-        {/*avatarObj={Users.getAvatarObj(curator)}*/}
-        {/*size={32}/>*/}
+        <Avatar {...avatarObj.avatar} size={32} round={true}/>
       </button>
     )
   }
 
-  renderCuratorSection () {
+  renderCuratorSection() {
     const {post} = this.props,
-      curator = post.user || {},
+      curator = post.postAuthor || {},
       displayName = Users.getDisplayName(curator)
 
     // 18/12/2016
@@ -99,13 +93,17 @@ class PostsPage extends Component {
               <span
                 className="title_xMyDK secondaryBoldText_1PBCf secondaryText_PM80d subtle_1BWOT base_3CbW2">Curator</span>
               <div className="item_x2MDC">
-                <a className="link_j6xU_"><span className="user-image">{this.renderCuratorAvator(curator)}</span></a>
-                <a onClick={this.showUserProfile.bind(this, curator)}
-                   className="userName_35k43 text_3Wjo0 default_tBeAo base_3CbW2">{displayName}</a>
+                <a className="link_j6xU_">
+                  <span className="user-image">{this.renderCuratorAvator(curator)}</span>
+                </a>
+                <Link className="userName_35k43 text_3Wjo0 default_tBeAo base_3CbW2"
+                      to={Users.getLinkObject('profile', curator).pathname}>
+                  {displayName}
+                </Link>
               </div>
             </div>
           </section>
-        </div>
+        </div >
       )
     }
     return (
@@ -113,7 +111,7 @@ class PostsPage extends Component {
     )
   }
 
-  renderContent () {
+  renderContent() {
     const {post} = this.props,
       admin = false
 
@@ -125,7 +123,7 @@ class PostsPage extends Component {
           {/*middle left*/}
           <Telescope.components.PostDetail post={post}/>
           {/*Curator*/}
-          {/*{this.renderCuratorSection()}*/}
+          {this.renderCuratorSection()}
           {/*comments*/}
           {/*<Telescope.components.PostsCommentsThread document={post}/>*/}
         </main>
@@ -138,7 +136,7 @@ class PostsPage extends Component {
     )
   }
 
-  render () {
+  render() {
     return (
       <div className="page_content_3X9xi" id="overlay-article">
         <section className="postSection_1iIbk">
