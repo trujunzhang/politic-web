@@ -132,8 +132,7 @@ export default {
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    let postQuery = getPostQuery();
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, postQuery, objectId)
+    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getPostQuery(), objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
