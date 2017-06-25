@@ -19,6 +19,10 @@ export default class PostsParameters {
   addParameters(terms: Any) {
 
     if (terms.userProfileType) {
+      let userId = terms.userId
+      if (typeof userId === 'undefined') {
+        throw new Error('You need to set a proper User Id before query posts')
+      }
       switch (terms.userProfileType) {
         case USERPROFILE_TYPE_UPVOTE:
 
