@@ -18,7 +18,7 @@ const {
 } = require('../../../lib/constants').default
 
 
-class PostItemUpvote extends Component {
+class PostItemVoteButton extends Component {
 
   constructor(props) {
     super(props);
@@ -127,5 +127,5 @@ class PostItemUpvote extends Component {
  */
 var {connect} = require('react-redux')
 
-export default connect()(PostItemUpvote)
+export default connect()(PostItemVoteButton)
 

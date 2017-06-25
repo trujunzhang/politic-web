@@ -75,7 +75,7 @@ class PostsItemActions extends Component {
     return (
       <div className={panelClass} ref="saveButton">
         <div className="actionButtons_2mJsw">
-          <Telescope.components.PostItemUpvote
+          <Telescope.components.PostItemVoteButton
             post={post}
             voteType={VOTE_BUTTON_LIST_UPVOTE}
             listId={listId}
@@ -85,7 +85,7 @@ class PostsItemActions extends Component {
             hasVoted={Users.hasUpvoted(currentUser, post)}
             voteClass={"postUpvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
-          <Telescope.components.PostItemDownvote
+          <Telescope.components.PostItemVoteButton
             post={post}
             voteType={VOTE_BUTTON_LIST_DOWNVOTE}
             listId={listId}

@@ -3,8 +3,7 @@ import Telescope from './config'
 // actions
 Telescope.registerComponent('ArticleDownvote',                require('./actions/ArticleDownvote.jsx').default)
 Telescope.registerComponent('ArticleUpvote',                  require('./actions/ArticleUpvote.jsx').default)
-Telescope.registerComponent('PostItemDownvote',               require('./actions/PostItemDownvote.jsx').default)
-Telescope.registerComponent('PostItemUpvote',                 require('./actions/PostItemUpvote.jsx').default)
+Telescope.registerComponent('PostItemVoteButton',             require('./actions/PostItemVoteButton.jsx').default)
 Telescope.registerComponent('PostsCommenters',                require('./actions/PostsCommenters.jsx').default)
 Telescope.registerComponent('PostsReadMore',                  require('./actions/PostsReadMore.jsx').default)
 Telescope.registerComponent('PostsSingleHeaderRight',         require('./actions/PostsSingleHeaderRight.jsx').default)
