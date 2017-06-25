@@ -3,16 +3,28 @@ import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
-const UsersSubmittedPostsList = (props, context) => {
-  const {currentUser} = props
 
-  const postCount = currentUser.postCount || 0
+/**
+ * The states were interested in
+ */
+const {
+  USERPROFILE_TYPE_UPVOTE,
+  USERPROFILE_TYPE_DOWNVOTE,
+  USERPROFILE_TYPE_SUBMITTED_POSTS,
+  USERPROFILE_TYPE_FOLDER_LIST
+} = require('../../../../lib/constants').default
+
+
+const UsersSubmittedPostsList = (props, context) => {
+  const {userProfile} = props,
+    postCount = currentUser.postCount || 0
 
   const terms = {
     view: 'userPosts',
     postsType: 'user.posts',
-    userId: currentUser.id,
-    submitter: currentUser.id,
+    userProfileType: USERPROFILE_TYPE_SUBMITTED_POSTS,
+    userId: userProfile.id,
+    submitter: userProfile.id,
     listId: "user.profile.submitted.posts.list",
     limit: 10
   };
@@ -22,7 +34,7 @@ const UsersSubmittedPostsList = (props, context) => {
     <Telescope.components.UserProfilePostsList
       title={postCount + " articles submitted "}
       emptyHint={"No submitted posts yet."}
-      user={currentUser}
+      user={userProfile}
       terms={terms}
       canEdit={true}
       listId={terms.listId}
@@ -32,20 +44,6 @@ const UsersSubmittedPostsList = (props, context) => {
 }
 
 
-/**
- * ## Imports
- *
- * Redux
- */
-var {connect} = require('react-redux')
-
-function select(store) {
-  return {
-    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    currentUser: store.user
-  }
-}
-
-export default connect(select)(UsersSubmittedPostsList)
+export default UsersSubmittedPostsList
 
 

@@ -24,6 +24,7 @@ const UsersDownvote = (props, context) => {
     view: 'userVotePosts',
     postsType: 'user.posts',
     userProfileType: USERPROFILE_TYPE_DOWNVOTE,
+    userId: userProfile.id,
     listId: "user.profile.downvote.posts.list",
     limit: 10
   }

@@ -24,6 +24,7 @@ const UsersUpvote = (props, context) => {
     view: 'userVotePosts',
     postsType: 'user.posts',
     userProfileType: USERPROFILE_TYPE_UPVOTE,
+    userId: userProfile.id,
     listId: "user.profile.upvote.posts.list",
     limit: 10
   };
