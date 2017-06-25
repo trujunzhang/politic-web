@@ -47,32 +47,35 @@ class PostItemUpvote extends Component {
   onUpvoteClick(event) {
     event.preventDefault();
 
-    const {post, currentUser, isLoggedIn} = this.props
+    const {post, currentUser, isLoggedIn, hasVoted} = this.props
     if (isLoggedIn === false) {
       this.props.onShowLoginOverlay()
-    } else if (Users.hasUpvoted(currentUser, post)) {
-      this.onVotingPress(POSTS_UPVOTE_CACEL)
+    } else if (hasVoted) {
+      this.onVotingPress()
     } else {
       this.setState({fade: true});
-      this.onVotingPress(POSTS_UPVOTE)
+      this.onVotingPress()
     }
 
     event.stopPropagation();
   }
 
-  async onVotingPress(operation) {
+  async onVotingPress() {
     if (this.state.isWaiting) {
       return
     }
+    const {dispatch, post, currentUser, listId, voteType, hasVoted} = this.props
+
+    let operations = [POSTS_UPVOTE, POSTS_UPVOTE_CACEL, POSTS_DOWNVOTE, POSTS_DOWNVOTE_CACEL]
+    let actionIndex = ((voteType === VOTE_BUTTON_LIST_UPVOTE) ? 0 : 1) * 2 + (hasVoted ? 1 : 0)
+    let operation = operations[actionIndex]
 
     this.setState({isWaiting: true})
 
-    const {dispatch, post, currentUser, listId} = this.props
-
     let postId = post.id
     let userId = currentUser.id
-    let isDownvoted = Users.hasDownvoted(currentUser, post)
     let isUpvoted = Users.hasUpvoted(currentUser, post)
+    let isDownvoted = Users.hasDownvoted(currentUser, post)
 
     try {
       await Promise.race([
