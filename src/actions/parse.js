@@ -125,7 +125,7 @@ export default {
     const skipCount = (pageIndex - 1) * limit
 
     let postQuery = new PostsParameters(getPostQuery())
-    // .addParameters(terms)
+     .addParameters(terms)
       .end()
 
     return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
