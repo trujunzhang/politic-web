@@ -88,7 +88,9 @@ class PostsItemActions extends Component {
             {this.renderSaveRemoveArticleButton()}
           </div>
         </div>
-        <Telescope.components.PostsItemTopics post={post}/>
+        <Telescope.components.PostsItemTopics
+          post={post}
+          onMoreTopicsClick={this.onMoreTopicsClick.bind(this)}/>
       </div>
     )
   }
@@ -125,6 +127,20 @@ class PostsItemActions extends Component {
 
   onRemoveButtonClick(e) {
     e.preventDefault()
+
+    e.stopPropagation()
+  }
+
+  onMoreTopicsClick(e) {
+    e.preventDefault()
+
+    let clientRect = this.refs.saveButton.getBoundingClientRect()
+    this.props.dispatch(pushModel('moreTopicsList', {
+      top: clientRect.top + window.pageYOffset,
+      left: clientRect.left + window.pageXOffset,
+      width: this.refs.saveButton.offsetWidth,
+      height: this.refs.saveButton.offsetHeight
+    }, {moreTopics: this.props.post.topics.slice(1)}))
 
     e.stopPropagation()
   }

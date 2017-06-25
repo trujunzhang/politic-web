@@ -1,8 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router'
-
-var {pushForTopic} = require('../../../lib/link')
-const {pushModel} = require('../../../actions').default
 
 class PostsItemTopics extends Component {
 
@@ -30,7 +26,7 @@ class PostsItemTopics extends Component {
               <span ref="moreTopicsButton"
                     className="moreAssociations_28e7H"
                     id="moreTopicsButton"
-                    onClick={this.onMoreTopicsClick.bind(this)}>
+                    onClick={this.props.onMoreTopicsClick}>
                 <span className="secondaryText_PM80d subtle_1BWOT base_3CbW2 margin_left4">
                   {`+${tagsMoreCount}`}
                 </span>
@@ -58,35 +54,6 @@ class PostsItemTopics extends Component {
   }
 
 
-  onMoreTopicsClick(e) {
-    e.preventDefault()
-
-    // let clientRect = this.refs.saveButton.getBoundingClientRect()
-    // let position = {
-    //   top: clientRect.top + window.pageYOffset,
-    //   left: clientRect.left + window.pageXOffset,
-    //   width: this.refs.saveButton.offsetWidth,
-    //   height: this.refs.saveButton.offsetHeight
-    // }
-    let position = {
-      top: 100,
-      left: 100,
-      width: 100,
-      height: 100
-    }
-    this.props.dispatch(pushModel('moreTopicsList', position, {moreTopics: this.props.post.topics.slice(1)}))
-
-    e.stopPropagation()
-  }
-
 }
 
-/**
- * ## Imports
- *
- * Redux
- */
-var {connect} = require('react-redux')
-
-
-export default withRouter(connect()(PostsItemTopics))
+export default PostsItemTopics
