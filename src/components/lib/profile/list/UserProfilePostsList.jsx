@@ -50,13 +50,13 @@ class UserProfilePostsList extends Component {
 
     const {
       results,
-      hasMore,
       ready,
       totalCount,
       limit,
       firstPagination,
     } = listTask
 
+    let hasMore = !ready && totalCount !== results.length
 
     if (!!results.length) {
       return (

@@ -23,11 +23,11 @@
  */
 'use strict'
 
-var {convertToObject} = require('../../lib/utils')
+let {convertToObject} = require('../../lib/utils')
 
-function byListId (listContainerTasks: Any, listId: string, limit: int) {
+function byListId(listContainerTasks: Any, listId: string, limit: int) {
 
-  var taskObject = convertToObject(listContainerTasks)
+  let taskObject = convertToObject(listContainerTasks)
 
   let task = taskObject[listId]
 
@@ -37,7 +37,6 @@ function byListId (listContainerTasks: Any, listId: string, limit: int) {
 
   return {
     id: listId,
-    hasMore: true,
     ready: false,
     totalCount: 0,
     limit: limit,

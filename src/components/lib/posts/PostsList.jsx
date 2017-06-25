@@ -47,13 +47,13 @@ class PostsList extends Component {
 
     const {
       results,
-      hasMore,
       ready,
       totalCount,
       limit,
       firstPagination,
     } = listTask
 
+    let hasMore = !ready && totalCount !== results.length
 
     const showReady = Posts.showReady(results, hasMore, ready, totalCount, limit, firstPagination)
     const headerView =
