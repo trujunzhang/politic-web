@@ -16,9 +16,8 @@ const {
 
 
 const UsersUpvote = (props, context) => {
-  const {currentUser} = props
-
-  const posts = currentUser.upvotedPosts || [],
+  const {userProfile} = props,
+    posts = userProfile.upvotedPosts || [],
     count = posts.length
 
   const terms = {
@@ -28,37 +27,20 @@ const UsersUpvote = (props, context) => {
     listId: "user.profile.upvote.posts.list",
     limit: 10
   };
-  // const {selector, options} = Posts.parameters.get(terms);
 
   return (
-    <div>
-      <Telescope.components.UserProfilePostsList
-        title={count + " Upvotes"}
-        emptyHint={"No upvotes yet."}
-        user={currentUser}
-        terms={terms}
-        listId={terms.listId}
-        limit={terms.limit}
-      />
-    </div>
+    <Telescope.components.UserProfilePostsList
+      title={count + " Upvotes"}
+      emptyHint={"No upvotes yet."}
+      user={userProfile}
+      terms={terms}
+      listId={terms.listId}
+      limit={terms.limit}
+    />
   )
 
 }
 
 
-/**
- * ## Imports
- *
- * Redux
- */
-var {connect} = require('react-redux')
-
-function select(store) {
-  return {
-    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    currentUser: store.user
-  }
-}
-
-export default connect(select)(UsersUpvote)
+export default UsersUpvote
 

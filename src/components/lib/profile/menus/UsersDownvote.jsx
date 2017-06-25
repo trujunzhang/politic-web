@@ -16,9 +16,8 @@ const {
 
 
 const UsersDownvote = (props, context) => {
-  const {currentUser} = props
-
-  const posts = currentUser.downvotedPosts || [],
+  const {userProfile} = props,
+    posts = userProfile.downvotedPosts || [],
     count = posts.length
 
   const terms = {
@@ -27,37 +26,20 @@ const UsersDownvote = (props, context) => {
     userProfileType: USERPROFILE_TYPE_DOWNVOTE,
     listId: "user.profile.downvote.posts.list",
     limit: 10
-  };
-  // const {selector, options} = Posts.parameters.get(terms);
+  }
 
   return (
-    <div>
-      <Telescope.components.UserProfilePostsList
-        title={count + " Downvotes"}
-        emptyHint={"No downvotes yet."}
-        user={currentUser}
-        terms={terms}
-        listId={terms.listId}
-        limit={terms.limit}
-      />
-    </div>
+    <Telescope.components.UserProfilePostsList
+      title={count + " Downvotes"}
+      emptyHint={"No downvotes yet."}
+      user={userProfile}
+      terms={terms}
+      listId={terms.listId}
+      limit={terms.limit}
+    />
   )
-};
-
-
-/**
- * ## Imports
- *
- * Redux
- */
-var {connect} = require('react-redux')
-
-function select(store) {
-  return {
-    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    currentUser: store.user
-  }
 }
 
-export default connect(select)(UsersDownvote)
+
+export default UsersDownvote
 

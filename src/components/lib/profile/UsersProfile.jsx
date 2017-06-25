@@ -123,6 +123,13 @@ class UsersProfile extends Component {
 
   renderCommon() {
     const {userProfile} = this.props
+
+    const childrenWithProps = React.Children.map(this.props.children,
+      (child) => React.cloneElement(child, {
+        userProfile: userProfile
+      })
+    )
+
     return (
       <div>
         <Telescope.components.UserProfileHeader userProfile={userProfile}/>
@@ -131,7 +138,7 @@ class UsersProfile extends Component {
           {this.renderLeftPanel()}
 
           <main className="content_36o4C">
-            {this.props.children}
+            {childrenWithProps}
           </main>
 
           {this.renderRightPanel()}
