@@ -1,6 +1,8 @@
 const Parse = require('parse')
 import moment from 'moment'
 
+let {ParsePost, ParseFolder, ParseUser} = require('../actions/objects').default
+
 /**
  * The states were interested in
  */
@@ -25,7 +27,8 @@ export default class PostsParameters {
       }
       switch (terms.userProfileType) {
         case USERPROFILE_TYPE_UPVOTE:
-          this.query.containedIn('upvotedPosts', userId)
+          // debugger
+          this.query.containedIn('upvoters', [ParseUser.createWithoutData(userId)])
           break
         case USERPROFILE_TYPE_DOWNVOTE:
 
