@@ -3,6 +3,18 @@ import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 
+
+/**
+ * The states were interested in
+ */
+const {
+  USERPROFILE_TYPE_UPVOTE,
+  USERPROFILE_TYPE_DOWNVOTE,
+  USERPROFILE_TYPE_SUBMITTED_POSTS,
+  USERPROFILE_TYPE_FOLDER_LIST
+} = require('../../../../lib/constants').default
+
+
 const UsersUpvote = (props, context) => {
   const {currentUser} = props
 
@@ -12,6 +24,7 @@ const UsersUpvote = (props, context) => {
   const terms = {
     view: 'userVotePosts',
     postsType: 'user.posts',
+    userProfileType: USERPROFILE_TYPE_UPVOTE,
     listId: "user.profile.upvote.posts.list",
     limit: 10
   };

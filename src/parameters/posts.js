@@ -1,12 +1,40 @@
 const Parse = require('parse')
 import moment from 'moment'
 
+/**
+ * The states were interested in
+ */
+const {
+  USERPROFILE_TYPE_UPVOTE,
+  USERPROFILE_TYPE_DOWNVOTE,
+  USERPROFILE_TYPE_SUBMITTED_POSTS,
+  USERPROFILE_TYPE_FOLDER_LIST
+} = require('../lib/constants').default
+
 export default class PostsParameters {
-  constructor (query: Parse.Query) {
+  constructor(query: Parse.Query) {
     this.query = query
   }
 
-  addParameters (terms: Any) {
+  addParameters(terms: Any) {
+
+    if (terms.userProfileType) {
+      switch (terms.userProfileType) {
+        case USERPROFILE_TYPE_UPVOTE:
+
+          break
+        case USERPROFILE_TYPE_DOWNVOTE:
+
+          break
+        case USERPROFILE_TYPE_SUBMITTED_POSTS:
+
+          break
+        case USERPROFILE_TYPE_FOLDER_LIST:
+
+          break
+      }
+    }
+
     if (terms.related) { // related posts
       // this.query.notContainedIn('objectId', terms.related.id)
       // this.query.equalTo('author', terms.related.author)
@@ -38,7 +66,7 @@ export default class PostsParameters {
     return this
   }
 
-  end () {
+  end() {
     return this.query
   }
 
