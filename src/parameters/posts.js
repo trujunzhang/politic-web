@@ -25,7 +25,7 @@ export default class PostsParameters {
       }
       switch (terms.userProfileType) {
         case USERPROFILE_TYPE_UPVOTE:
-
+          this.query.containedIn('upvotedPosts', userId)
           break
         case USERPROFILE_TYPE_DOWNVOTE:
 

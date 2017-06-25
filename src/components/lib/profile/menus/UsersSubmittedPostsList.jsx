@@ -17,7 +17,7 @@ const {
 
 const UsersSubmittedPostsList = (props, context) => {
   const {userProfile} = props,
-    postCount = currentUser.postCount || 0
+    postCount = userProfile.postCount || 0
 
   const terms = {
     view: 'userPosts',
