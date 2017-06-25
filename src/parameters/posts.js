@@ -27,11 +27,10 @@ export default class PostsParameters {
       }
       switch (terms.userProfileType) {
         case USERPROFILE_TYPE_UPVOTE:
-          // debugger
           this.query.containedIn('upvoters', [ParseUser.createWithoutData(userId)])
           break
         case USERPROFILE_TYPE_DOWNVOTE:
-
+          this.query.containedIn('downvoters', [ParseUser.createWithoutData(userId)])
           break
         case USERPROFILE_TYPE_SUBMITTED_POSTS:
 
