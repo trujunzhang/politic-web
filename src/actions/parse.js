@@ -103,6 +103,10 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
   }
 }
 
+function getPostQuery() {
+  return new Parse.Query(ParsePost).include('topics').include('postAuthor')
+}
+
 export default {
   loadUserProfile: (userId: string, slug: string): ThunkAction => {
     let pageQuery = new Parse.Query(ParseUser).equalTo('objectId', userId)
@@ -120,24 +124,23 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(new Parse.Query(ParsePost).include('topics'))
-      .addParameters(terms)
+    let postQuery = new PostsParameters(getPostQuery())
+    // .addParameters(terms)
       .end()
 
     return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    let pageQuery = new Parse.Query(ParsePost).include('topics')
-
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, pageQuery, objectId)
+    let postQuery = getPostQuery();
+    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, postQuery, objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(new Parse.Query(ParsePost).include('topics'))
+    let postQuery = new PostsParameters(getPostQuery())
       .addParameters(terms)
       .end()
 
