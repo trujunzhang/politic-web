@@ -42,7 +42,8 @@ class UserProfilePostsList extends Component {
       showClose = false,
       canEdit = false,
       emptyHint = '',
-      user
+      user,
+      listId
     } = this.props
 
     const {listTask} = this.state
@@ -79,6 +80,7 @@ class UserProfilePostsList extends Component {
                         let _canEdit = canEdit && (post.status === Posts.config.STATUS_APPROVED);
                         return (
                           <Telescope.components.PostsItem
+                            listId={listId}
                             key={post.id}
                             post={post}
                             user={user}

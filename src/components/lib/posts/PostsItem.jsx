@@ -63,6 +63,10 @@ class PostsItem extends Component {
   }
 
   render() {
+    const {listId} = this.props
+    if (typeof listId === 'undefined') {
+      throw new Error('You need to set a proper List Id before using PostsItem')
+    }
     const showActionButtons = false
     const itemDisabled = false//post.status !== Posts.config.STATUS_APPROVED;
 
