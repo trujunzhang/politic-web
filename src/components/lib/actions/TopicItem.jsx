@@ -1,13 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-const {dismissPopModel} = require('../../../actions').default
+const {resetOverlayDetailedPosts} = require('../../../actions').default
 
-const TopicItem = ({topic}) => {
+const TopicItem = ({topic, dispatch}) => {
+
   return (
     <Link title={topic.name}
           onClick={(e) => {
-            this.props.dispatch(dismissPopModel())
+            dispatch(resetOverlayDetailedPosts())
           }}
           className="button_2I1re smallSize_1da-r secondaryText_PM80d greySolidColor_270pZ solidVariant_2wWrf"
           to={`/topic/${topic.id}/${topic.name}`}>
