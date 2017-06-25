@@ -4,7 +4,14 @@ const {
   LOGIN_VIA_SOCIAL,
   LOGIN,
   REGISTER,
-  FORGOT_PASSWORD
+  FORGOT_PASSWORD,
+
+  LOGIN_FORM_TYPE_MAIN,
+  LOGIN_FORM_TYPE_LOGIN,
+  LOGIN_FORM_TYPE_REGISTER,
+  LOGIN_FORM_TYPE_FORGOTPASSWORD,
+  LOGIN_FORM_TYPE_RESET_PASSWD,
+
 } = require('../../../../lib/constants').default
 
 const I18n = require('./Translate').default
@@ -88,8 +95,8 @@ class UserEmailSignUp extends Component {
           loginButtonText={I18n.t('Register.register')}
           onButtonPress={this.onButtonPress.bind(this)}
           footerLink={{
-            left: {title: 'Continue with Facebook and Twitter', tag: 'MAIN'},
-            right: {title: 'Login', tag: 'SIGNIN'}
+            left: {title: 'Continue with Facebook and Twitter', tag: LOGIN_FORM_TYPE_MAIN},
+            right: {title: 'Login', tag: LOGIN_FORM_TYPE_LOGIN}
           }}
           displayPasswordCheckbox
           auth={this.props.auth}

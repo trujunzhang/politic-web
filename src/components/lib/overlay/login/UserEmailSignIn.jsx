@@ -6,9 +6,16 @@ import React, {Component} from 'react'
 import LoginRender from './LoginRender'
 
 const {
-  LOGIN,
-  REGISTER,
-  FORGOT_PASSWORD
+    LOGIN,
+    REGISTER,
+    FORGOT_PASSWORD,
+
+    LOGIN_FORM_TYPE_MAIN,
+    LOGIN_FORM_TYPE_LOGIN,
+    LOGIN_FORM_TYPE_REGISTER,
+    LOGIN_FORM_TYPE_FORGOTPASSWORD,
+    LOGIN_FORM_TYPE_RESET_PASSWD,
+
 } = require('../../../../lib/constants').default
 
 const I18n = require('./Translate').default
@@ -73,8 +80,8 @@ class UserEmailSignIn extends Component {
           onButtonPress={this.onButtonPress.bind(this)}
           onForgotPasswordPress={this.onForgotPasswordPress.bind(this)}
           footerLink={{
-            left: {title: 'Sign In', tag: 'MAIN'},
-            right: {title: 'Sign Up With Email', tag: 'REGISTER'}
+            left: {title: 'Sign In', tag: LOGIN_FORM_TYPE_MAIN},
+            right: {title: 'Sign Up With Email', tag: LOGIN_FORM_TYPE_REGISTER}
           }}
           auth={this.props.auth}
           toggleEvent={this.props.toggleEvent}

@@ -2,6 +2,7 @@ import keyMirror from 'key-mirror'
 
 export default keyMirror({
   // Login UI
+  LOGIN_FORM_TYPE_MAIN: null,
   LOGIN_FORM_TYPE_LOGIN: null,
   LOGIN_FORM_TYPE_REGISTER: null,
   LOGIN_FORM_TYPE_FORGOTPASSWORD: null,

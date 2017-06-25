@@ -1,13 +1,27 @@
 import Telescope from '../../index'
 import React, { Component } from 'react'
 
+
+/**
+ * States of login display
+ */
+const {
+  LOGIN_FORM_TYPE_MAIN,
+  LOGIN_FORM_TYPE_LOGIN,
+  LOGIN_FORM_TYPE_REGISTER,
+  LOGIN_FORM_TYPE_FORGOTPASSWORD,
+  LOGIN_FORM_TYPE_RESET_PASSWD,
+} = require('../../../../lib/constants').default
+
+
+
 class UserLoginPopup extends Component {
   constructor (props) {
     super(props)
 
     const {comp} = this.props
     const {model} = comp
-    var _formState = 'MAIN'
+    var _formState = LOGIN_FORM_TYPE_MAIN
     if (model && Object.keys(model).indexOf('formState') !== -1) {
       _formState = model['formState']
     }
@@ -29,7 +43,7 @@ class UserLoginPopup extends Component {
 
   renderLoginPanel () {
     switch (this.state.formState) {
-      case 'MAIN':
+      case LOGIN_FORM_TYPE_MAIN:
         return (
           <div className='tcomb_panel'>
             <Telescope.components.UserLoginMain
@@ -38,7 +52,7 @@ class UserLoginPopup extends Component {
               toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
-      case 'SIGNIN':
+      case LOGIN_FORM_TYPE_LOGIN: 
         return (
           <div className='tcomb_panel'>
             <Telescope.components.UserEmailSignIn
@@ -47,7 +61,7 @@ class UserLoginPopup extends Component {
               toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
-      case 'REGISTER':
+      case LOGIN_FORM_TYPE_REGISTER:
         return (
           <div className='tcomb_panel'>
             <Telescope.components.UserEmailSignUp

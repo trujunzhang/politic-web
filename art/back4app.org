@@ -1,3 +1,9 @@
+DEFAULT CRAWLER USER:
+  * ObjectId: ['ihpyosUwph']
+  .1 Name: [crawler]
+  .2 Email: [trujunzhang@gmail.com]
+  .3 password: [politicl@123]
+
 Below you can find the details of your Parse app.
 
 
