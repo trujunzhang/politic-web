@@ -17,8 +17,6 @@ class PostsPage extends Component {
     // }
   }
 
-  componentDidMount() {
-  }
 
   onFlagClick() {
     const {post} = this.props,
