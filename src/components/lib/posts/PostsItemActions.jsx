@@ -7,6 +7,7 @@ const {pushModel} = require('../../../actions').default
 
 class PostsItemActions extends Component {
 
+
   /**
    * Rendering the post's e button, such as 'save' or 'remove'
    * @returns {XML}
@@ -58,7 +59,7 @@ class PostsItemActions extends Component {
   }
 
   render() {
-    const {post, currentUser, isLoggedIn, listId} = this.props,
+    const {post, currentUser, isLoggedIn, listId, upVoteCount, downVoteCount} = this.props,
       imageSet = Posts.getThumbnailSet(post),
       panelClass = 'meta_2lIV- ' + (!!imageSet.small ? 'meta_2lIV-thumbnail' : 'meta_2lIV-no_thumbnail')
 
@@ -70,7 +71,7 @@ class PostsItemActions extends Component {
             listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
-            voteCount={post.upvoters.length || 0}
+            voteCount={upVoteCount}
             hasVoted={Users.hasUpvoted(currentUser, post)}
             voteClass={"postUpvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>
@@ -79,7 +80,7 @@ class PostsItemActions extends Component {
             listId={listId}
             currentUser={currentUser}
             isLoggedIn={isLoggedIn}
-            voteCount={post.downvoters.length || 0}
+            voteCount={downVoteCount}
             hasVoted={Users.hasDownvoted(currentUser, post)}
             voteClass={"postDownvoteArrow_2xABl"}
             onShowLoginOverlay={this.onShowLoginOverlay.bind(this)}/>

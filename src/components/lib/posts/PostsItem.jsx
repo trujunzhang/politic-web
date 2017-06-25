@@ -10,7 +10,9 @@ class PostsItem extends Component {
   // A: YES
 
   renderContent(showActionButtons) {
-    const {post} = this.props
+    const {post, listId} = this.props
+
+    // debugger
     return (
       <div className={'row ' + (showActionButtons ? 'posts_content row_margin_bottom30' : '')}>
         <div>
@@ -25,7 +27,11 @@ class PostsItem extends Component {
           {Posts.getLimitedContent(post.body, 150)}
         </div>
 
-        <Telescope.components.PostsItemActions {...this.props}/>
+        <Telescope.components.PostsItemActions
+          post={post}
+          upVoteCount={post.upvoters.length || 0}
+          downVoteCount={post.downvoters.length || 0}
+          listId={listId}/>
 
       </div>
     )
