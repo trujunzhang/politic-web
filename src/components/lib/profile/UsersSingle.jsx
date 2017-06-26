@@ -23,13 +23,11 @@ class UsersSingle extends Component {
 
   componentWillReceiveProps(nextProps) {
     let {userProfile} = nextProps.userProfileTask
-    if (!!userProfile) {
-      if (userProfile.id === this.state.userId) {
-        this.setState({
-          ready: true,
-          userProfile: userProfile
-        })
-      }
+    if (!!userProfile && userProfile.id === this.state.userId) {
+      this.setState({
+        ready: true,
+        userProfile: userProfile
+      })
     }
   }
 
@@ -38,9 +36,19 @@ class UsersSingle extends Component {
   }
 
   render() {
-    const terms = {"telescope.slug": this.props.params.slug};
-    const path = this.props.location.pathname;
     const {ready, userProfile, userId, userSlug} = this.state
+
+    //debugger
+
+    if (!!this.props.params.fid) {// Detailed Folder item's List
+      const childrenWithProps = React.Children.map(this.props.children,
+        (child) => React.cloneElement(child, {
+          userProfile: userProfile
+        })
+      )
+
+      return (<div>{childrenWithProps}</div>)
+    }
 
     if (!ready) {
       return (
