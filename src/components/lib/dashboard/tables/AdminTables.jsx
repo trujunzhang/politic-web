@@ -1,24 +1,24 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import moment from 'moment'
 
 var {convertToObject} = require('../../../../lib/utils')
 
 class AdminTables extends Component {
 
-  constructor (props, context) {
+  constructor(props, context) {
     super(props)
   }
 
-  onCheckRowChanged (id, value) {
+  onCheckRowChanged(id, value) {
     this.props.actions.toggleCheckbox(id)
   }
 
-  toggleCheckAll () {
+  toggleCheckAll() {
     this.props.actions.toggleAllCheckbox()
   }
 
-  renderTableHeaderFooter () {
+  renderTableHeaderFooter() {
     const {data} = this.props,
       {canSelectAllRows, rows} = data,
       checkAll = false
@@ -36,7 +36,7 @@ class AdminTables extends Component {
     )
   }
 
-  generateRowHeader (itemId, rowIndex) {
+  generateRowHeader(itemId, rowIndex) {
     const {dashboard} = this.props,
       {checkRows} = dashboard,
       checkKeys = Object.keys(checkRows)
@@ -54,7 +54,7 @@ class AdminTables extends Component {
     )
   }
 
-  generateRow (row, item, index) {
+  generateRow(row, item, index) {
     const {name, tag, field, isText} = row,
       customRender = row.customRender || false
     if (customRender) {
@@ -76,11 +76,11 @@ class AdminTables extends Component {
     )
   }
 
-  onRowClick (tag, value) {
+  onRowClick(tag, value) {
     // this.context.messages.appManagement.appendQuery(this.props.router, tag, value)
   }
 
-  generateRowBody (item, rowIndex) {
+  generateRowBody(item, rowIndex) {
     const {data} = this.props,
       {canSelectAllRows, rows} = data
 
@@ -95,7 +95,7 @@ class AdminTables extends Component {
     )
   }
 
-  renderTableRows () {
+  renderTableRows() {
     const {data, renderRowsEditAll} = this.props,
       {canEditSingle, canEditAll, tableType} = data,
       {dashboard} = this.props,
@@ -134,7 +134,7 @@ class AdminTables extends Component {
     )
   }
 
-  renderLoading () {
+  renderLoading() {
     return (
       <tbody id="the-list">
       <tr>
@@ -148,7 +148,7 @@ class AdminTables extends Component {
     )
   }
 
-  renderLeftBar (position) {
+  renderLeftBar(position) {
     const Component = this.props.componentLeftActionBar,
       {renderFilter} = this.props,
       filterBlock = (renderFilter ? renderFilter() : null)
@@ -161,7 +161,7 @@ class AdminTables extends Component {
     )
   }
 
-  renderToolbar (position = 'top') {
+  renderToolbar(position = 'top') {
     const {tableCount} = this.props
 
     return (
@@ -179,7 +179,7 @@ class AdminTables extends Component {
     )
   }
 
-  onLeftActionBarEventClick (type, cb) {
+  onLeftActionBarEventClick(type, cb) {
     // const checkedIds = this.context.messages.appManagement.getCheckedIds(this.state.rowState)
     const self = this
     // this.props.onLeftActionBarEventClick(type, checkedIds, null, function (error, result) {
@@ -188,17 +188,18 @@ class AdminTables extends Component {
     // })
   }
 
-  resetTable () {
+  resetTable() {
     // let rowState = this.context.messages.appManagement.resetSelectRowState(this.props.results, [])
     // this.setState({checkAll: false, checkIds: [], rowState: rowState})
   }
 
-  renderTopbar () {
+  renderTopbar() {
+    // debugger
     const Component = this.props.componentTopActionBar
-    return (<Component {...this.props.countsProps} />)
+    return (<Component countKeys={this.props.dashboard.countKeys}/>)
   }
 
-  renderTitle () {
+  renderTitle() {
     const {renderTitleActionButton} = this.props
     return (
       <h1 className="admin-posts-title">{this.props.data.tableType}
@@ -208,7 +209,7 @@ class AdminTables extends Component {
     )
   }
 
-  render () {
+  render() {
     const {renderTableCustomTitle} = this.props
     return (
       <div className="wrap" id="admin-posts-ui">
@@ -224,7 +225,7 @@ class AdminTables extends Component {
     )
   }
 
-  renderTable () {
+  renderTable() {
     const {data} = this.props,
       {tableType} = data,
       {dashboard} = this.props
@@ -250,17 +251,17 @@ class AdminTables extends Component {
  */
 var {connect} = require('react-redux')
 
-import { bindActionCreators } from 'redux'
+import {bindActionCreators} from 'redux'
 
 import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
 
-function select (store) {
+function select(store) {
   return {
     dashboard: store.dashboard
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(dashboardActions, dispatch)
   }

@@ -1,5 +1,5 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 const {loadPosts} = require('../../../../actions').default
 
@@ -8,7 +8,7 @@ let numeral = require('numeral')
 
 class AppAdminPostsTopAction extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     const location = props.location || {},
@@ -19,11 +19,11 @@ class AppAdminPostsTopAction extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
   }
 
-  onSearchChange (e) {
+  onSearchChange(e) {
     let value = e.target.value
     this.setState({query: value})
 
@@ -34,21 +34,22 @@ class AppAdminPostsTopAction extends Component {
     // }, 400)
   }
 
-  onTopActionStatusClick (status) {
+  onTopActionStatusClick(status) {
     // this.setState({query: ''})
     // this.props.toggleEvent()
     // this.context.messages.appManagement.pushAdminFilterStatus(this.props.router, 'posts', status)
   }
 
-  getStatusRows () {
-    let allCount = (this.props.allCount || 0)
-    let trashCount = (this.props.trashCount || 0)
+  getStatusRows() {
+    const countKeys = this.props.countKeys || {},
+      allCount = (countKeys.allCount || 0),
+      trashCount = (countKeys.trashCount || 0)
     const rows = [
       {title: 'All', status: 'all', count: allCount},
-      {title: 'Published', status: 'publish', count: (this.props.publishCount || 0)},
-      {title: 'Pending', status: 'pending', count: (this.props.pendingCount || 20)},
-      {title: 'Rejected', status: 'reject', count: (this.props.rejectedCount || 30)},
-      {title: 'Drafts', status: 'draft', count: (this.props.draftCount || 0)},
+      {title: 'Published', status: 'publish', count: (countKeys.publishCount || 0)},
+      {title: 'Pending', status: 'pending', count: (countKeys.pendingCount || 20)},
+      {title: 'Rejected', status: 'reject', count: (countKeys.rejectedCount || 30)},
+      {title: 'Drafts', status: 'draft', count: (countKeys.draftCount || 0)},
       {title: 'Trash', status: 'trash', count: trashCount},
     ]
 
@@ -77,7 +78,7 @@ class AppAdminPostsTopAction extends Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="top-action-panel">
         <div className="col-sm-8">
@@ -110,17 +111,17 @@ class AppAdminPostsTopAction extends Component {
  */
 var {connect} = require('react-redux')
 
-import { bindActionCreators } from 'redux'
+import {bindActionCreators} from 'redux'
 
 import * as dashboardActions from '../../../../reducers/dashboard/dashboardActions'
 
-function select (store) {
+function select(store) {
   return {
     dashboard: store.dashboard
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(dashboardActions, dispatch)
   }
