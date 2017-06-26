@@ -162,7 +162,8 @@ class AdminTables extends Component {
   }
 
   renderToolbar(position = 'top') {
-    const {tableCount} = this.props
+    const countKeys = this.props.dashboard.countKeys || {},
+      tableCount = countKeys.tableCount || 0
 
     return (
       <div className={`tablenav ${position}`}>
@@ -194,7 +195,6 @@ class AdminTables extends Component {
   }
 
   renderTopbar() {
-    // debugger
     const Component = this.props.componentTopActionBar
     return (<Component countKeys={this.props.dashboard.countKeys}/>)
   }
