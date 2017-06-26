@@ -20,3 +20,6 @@
 
 * Relatation
   [https://github.com/parse-community/Parse-SDK-JS/issues/258]
+
+* Parse.com Multiple Count Queries in one Call
+  [https://stackoverflow.com/questions/24507989/parse-com-multiple-count-queries-in-one-call]

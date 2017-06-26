@@ -31,6 +31,8 @@ let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
+import Posts from '../lib/posts'
+
 /**
  * The states were interested in
  */
@@ -114,11 +116,31 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
-  let postQuery = new PostsParameters(getPostQuery())
+  let dashboardQuery = getPostQuery()
+  let postQuery = new PostsParameters(dashboardQuery)
     .addParameters(terms)
     .end()
 
-  let totalCount = await  postQuery.count()
+  let totalCount = await  new Parse.Query(ParsePost).count()
+
+  let allCount = totalCount //dashboardQuery.equalTo("status": {$in: Posts.config.PUBLISH_STATUS}}), {noReady: true});
+  let publishCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_APPROVED).count()
+  let pendingCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_PENDING).count()
+  let rejectedCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_REJECTED).count()
+  let draftCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_SPAM).count()
+  let trashCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_DELETED).count()
+
+  let tableCount = await  postQuery.count()
+
+  let countKeys = {
+    allCount: allCount,
+    publishCount: publishCount,
+    pendingCount: pendingCount,
+    rejectedCount: rejectedCount,
+    draftCount: draftCount,
+    trashCount: trashCount,
+    tableCount: tableCount
+  }
 
   let results = await postQuery.skip(skipCount).limit(limit).find({
     success: (list) => {
@@ -132,12 +154,13 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
 
   const payload = {
     list: results,
-    listTask: listTask,
-    listId: listId,
-    limit: limit,
-    totalCount: totalCount
+    listTask,
+    listId,
+    limit,
+    countKeys,
+    totalCount
   }
-
+  debugger
   const action = {
     type: DASHBOARD_LOADED_PAGINATION,
     payload: payload
