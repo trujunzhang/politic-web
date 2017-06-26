@@ -14,6 +14,7 @@ export type User = {
   id: string,
   name: string,
   loginType: string,
+  isAdmin: string,
   email: string,
   slug: string,
   defaultFolderId: string,
@@ -72,6 +73,8 @@ export function fromParseUser(map: Object): User {
     name: map.get('username'),
     slug: map.get('slug'),
     loginType: map.get('loginType'),
+    isAdmin: map.get('isAdmin'),
+
     email: map.get('email'),
     defaultFolderId: fromParseFolder(map.get('folders')[0]).id,
     folders: (map.get('folders') || []).map(fromParseFolder),
