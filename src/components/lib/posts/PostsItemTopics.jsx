@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router'
+
+var {pushForTopic} = require('../../../lib/link')
 
 class PostsItemTopics extends Component {
 
@@ -56,4 +59,4 @@ class PostsItemTopics extends Component {
 
 }
 
-export default PostsItemTopics
+export default withRouter(PostsItemTopics)

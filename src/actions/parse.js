@@ -131,7 +131,7 @@ export default {
       .end()
 
     return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
-      return query.skip(skipCount).limit(1)
+      return query.skip(skipCount).limit(limit)
     })
   },
 
