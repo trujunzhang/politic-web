@@ -27,8 +27,8 @@ class UsersEditForm extends Component {
     const {user} = this.props;
     const displayName = Users.getDisplayName(user),
       biography = user.bio || "",
-      isSubscribed = Users.getSetting(user, 'newsletter.subscribed', false),
-      email = Users.getEmail(user);
+      isSubscribed = user.newsletter_subscribed || false,
+      email = user.email || ''
 
     this.state = this.initialState = {
       // Detail
@@ -79,7 +79,7 @@ class UsersEditForm extends Component {
     }
     this.setState({isSaving: true, message: {message: '', type: ''}});
     const {isSubscribed} = this.state,
-      subscribed = Users.getSetting(user, 'newsletter.subscribed', false);
+      subscribed = user.newsletter_subscribed || false
 
     const needUpdateSubscription = isSubscribed !== subscribed;
 

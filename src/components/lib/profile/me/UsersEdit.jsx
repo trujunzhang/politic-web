@@ -8,18 +8,13 @@ import Folders from '../../../../lib/folder'
 class UsersEdit extends Component {
 
   render() {
-    const {user, currentUser} = props;
+    const {isLoggedIn, currentUser} = this.props;
 
-    const children = (<Telescope.components.UsersEditForm user={currentUser}/>);
+    if (!isLoggedIn) {
+      return (<Telescope.components.UserLoginPopup comp={{MODEL: {showCloseIcon: false, title: '', subtitle: ''}}}/>)
+    }
 
-    return (
-      <Telescope.components.CanDo
-        action="users.edit"
-        document={user}
-        displayNoPermissionMessage={true}>
-        {children}
-      </Telescope.components.CanDo>
-    )
+    return (<Telescope.components.UsersEditForm user={currentUser}/>)
   }
 
 }
