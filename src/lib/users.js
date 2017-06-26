@@ -67,6 +67,12 @@ Users.userSidebarMenu = function (user) {
   ]
 }
 
+Users.getMessagesLength = function (user) {
+  if (!!user.messages) {
+    return user.messages.length;
+  }
+  return 0;
+}
 
 Users.isLoggedUser = function (userProfile, currentUser) {
   if (!!currentUser && !!userProfile && userProfile.id === currentUser.id) {

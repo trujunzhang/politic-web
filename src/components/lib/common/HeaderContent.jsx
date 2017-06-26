@@ -77,11 +77,7 @@ class HeaderContent extends Component {
   }
 
   renderNotification() {
-    const {currentUser} = this.context
-    if (!currentUser)
-      return null
-
-    // const messagesLength = Users.getMessagesLength(currentUser);
+    const messagesLength = Users.getMessagesLength(currentUser);
     // if (messagesLength !== 0) {
     //     return (
     //         <a id="messagesButton"
@@ -170,7 +166,7 @@ class HeaderContent extends Component {
           {this.renderSearchIcon()}
 
           {/*Notification Icon*/}
-          {this.renderNotification()}
+          {isLoggedIn ? this.renderNotification() : null}
 
           {isLoggedIn ? this.renderBookmarkIcon() : null}
 
