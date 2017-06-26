@@ -13,7 +13,7 @@ class UsersFolderProfile extends Component {
     super(props);
 
 
-    const {userProfile, fid} = props
+    const {userProfile, fid, currentUser} = props
     const folder = _.find(userProfile.folders, function (item) {
       return item.id == fid
     })
@@ -91,5 +91,18 @@ class UsersFolderProfile extends Component {
 
 }
 
-export default withRouter(UsersFolderProfile);
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+function select(store) {
+  return {
+    currentUser: store.user
+  }
+}
+
+export default withRouter(connect(select)(UsersFolderProfile))
 
