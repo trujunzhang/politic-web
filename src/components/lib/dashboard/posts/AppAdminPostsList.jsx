@@ -118,7 +118,6 @@ class AppAdminPostsList extends Component {
   }
 
   render() {
-    const props = this.props
     const data = {
       canSelectAllRows: true,
       canEditSingle: true,
@@ -132,15 +131,6 @@ class AppAdminPostsList extends Component {
         {name: 'Date', field: 'date', tag: 'date', sort: true}
       ]
     }
-    const countsProps = {
-      allCount: (props.allCount || 0),
-      trashCount: (props.trashCount || 0),
-      publishCount: (props.publishCount || 0),
-      pendingCount: (props.pendingCount || 0),
-      rejectedCount: (props.rejectedCount || 0),
-      draftCount: (props.draftCount || 0),
-    }
-
     return (
       <Telescope.components.AdminTables
         data={data}
@@ -161,7 +151,6 @@ class AppAdminPostsList extends Component {
         componentLeftActionBar={Telescope.components.AppAdminPostsAction}
         renderFilter={this.renderFilter.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminPostsTopAction}
-        countsProps={countsProps}
         customRowRender={this.customRowRender.bind(this)}
       />
     )

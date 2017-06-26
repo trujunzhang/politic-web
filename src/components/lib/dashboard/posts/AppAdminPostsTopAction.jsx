@@ -47,8 +47,8 @@ class AppAdminPostsTopAction extends Component {
     const rows = [
       {title: 'All', status: 'all', count: allCount},
       {title: 'Published', status: 'publish', count: (countKeys.publishCount || 0)},
-      {title: 'Pending', status: 'pending', count: (countKeys.pendingCount || 20)},
-      {title: 'Rejected', status: 'reject', count: (countKeys.rejectedCount || 30)},
+      {title: 'Pending', status: 'pending', count: (countKeys.pendingCount || 0)},
+      {title: 'Rejected', status: 'reject', count: (countKeys.rejectedCount || 0)},
       {title: 'Drafts', status: 'draft', count: (countKeys.draftCount || 0)},
       {title: 'Trash', status: 'trash', count: trashCount},
     ]
