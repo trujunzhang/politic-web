@@ -20,12 +20,6 @@ class HeaderContent extends Component {
     //}
   }
 
-  onBookmarkClick() {
-    // const {currentUser} = this.context,
-    //   path = "/users/" + currentUser.telescope.slug + "/collections/" + currentUser.telescope.folderBookmarkId + "/" + Folders.getDefaultFolderName();
-    // this.context.messages.pushRouter(this.props.router, {pathname: path});
-  }
-
   renderLeft() {
     return (
       <div className="metabar-block metabar-block--left u-floatLeft u-height65 u-xs-height56">
@@ -39,10 +33,15 @@ class HeaderContent extends Component {
   }
 
   renderBookmarkIcon() {
-    return (
-      <a onClick={this.onBookmarkClick.bind(this)}
-         className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
-         title="Bookmark this story to read later">
+    const {currentUser} = this.props,
+      return
+    (
+      <Link to={Users.getLinkObject('folderItem', currentUser, {
+        id: currentUser.folderBookmarkId,
+        name: Folders.getDefaultFolderName()
+      })}
+            className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
+            title="Bookmark this story to read later">
                   <span className="button-defaultState">
                     <span className="svgIcon svgIcon--bookmark svgIcon--25px">
                       <svg className="svgIcon-use" width="25" height="25" viewBox="0 0 25 25">
@@ -61,8 +60,8 @@ class HeaderContent extends Component {
                 d="M19 7c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 17.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V7z"/>
             </svg>
           </span>
-                  </span>
-      </a>
+        </span>
+      </Link>
     )
   }
 
