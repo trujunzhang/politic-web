@@ -101,9 +101,9 @@ class UserFolderProfileHeader extends Component {
     return (
       <span>
               {folder.name}
-        <Telescope.components.CanDo action="folders.edit.own" document={folder}>
+        {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
               {editButton}
-              </Telescope.components.CanDo>
+              {/*</Telescope.components.CanDo>*/}
             </span>
     )
   }
@@ -145,9 +145,9 @@ class UserFolderProfileHeader extends Component {
     return (
       <span>
               {folder.description ? folder.description : "Describe the collection briefly"}
-        <Telescope.components.CanDo action="folders.edit.own" document={folder}>
-              {editButton}
-              </Telescope.components.CanDo>
+        {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
+        {editButton}
+        {/*</Telescope.components.CanDo>*/}
           </span>
     )
   }
@@ -198,14 +198,14 @@ class UserFolderProfileHeader extends Component {
           <div className="collection-detail--header--curator">
             <a onClick={this.onUserNameClick.bind(this)}>
               {/*Logged user avatar*/}
-              <Telescope.components.UserFolderProfileHeaderUserAvatar user={user}/>
+              {/*<Telescope.components.UserFolderProfileHeaderUserAvatar user={user}/>*/}
               by {userName}
             </a>
           </div>
 
-          <Telescope.components.CanDo action="folders.edit.own" document={folder}>
-            {this.renderDeleteButton()}
-          </Telescope.components.CanDo>
+          {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
+          {/*{this.renderDeleteButton()}*/}
+          {/*</Telescope.components.CanDo>*/}
 
 
         </div>

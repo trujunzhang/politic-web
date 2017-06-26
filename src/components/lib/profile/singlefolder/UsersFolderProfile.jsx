@@ -26,12 +26,12 @@ class UsersFolderProfile extends Component {
   }
 
   onBackToCollectionClick() {
-    const {userProfile} = props,
+    const {userProfile} = this.props,
       {folder} = this.state
   }
 
   renderFolderProfile() {
-    const {userProfile} = props,
+    const {userProfile} = this.props,
       {folder} = this.state
 
     const terms = {
@@ -40,7 +40,6 @@ class UsersFolderProfile extends Component {
       listId: "user.folder.posts.list",
       limit: 10
     };
-    // const {selector, options} = Posts.parameters.get(terms);
 
     return (
       <div className="collection-detail">
@@ -53,7 +52,7 @@ class UsersFolderProfile extends Component {
           <div className="constraintWidth_ZyYbM">
             {/*back button section*/}
             <Telescope.components.UserFolderProfileBackButtonSection
-              user={user}
+              user={userProfile}
               callBack={this.onBackToCollectionClick.bind(this)}/>
             {/*<Telescope.components.NewsListContainer*/}
             {/*collection={Posts}*/}
