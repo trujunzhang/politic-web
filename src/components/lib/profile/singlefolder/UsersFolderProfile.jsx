@@ -4,6 +4,7 @@ import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 import Folders from '../../../../lib/folder'
 
+var _ = require('underscore')
 import {withRouter} from 'react-router';
 
 
@@ -11,26 +12,27 @@ class UsersFolderProfile extends Component {
   constructor(props, context) {
     super(props);
 
-    debugger
-    const {userProfile, fid} = props,
-      folder = {},
-      canAccess = Folders.checkAccessPermission(folder, folder.userId, currentUser);
+
+    const {userProfile, fid} = props
+    const folder = _.find(userProfile.folders, function (item) {
+      return item.id == fid
+    })
+    const canAccess = Folders.checkAccessPermission(folder, userProfile, currentUser);
 
     this.state = this.initialState = {
+      folder: folder,
       canAccess: canAccess
     };
   }
 
   onBackToCollectionClick() {
-    const {folder} = this.props,
-      user = folder.folderUser,
-      path = "/users/" + user.telescope.slug + "/collections";
-    // this.context.messages.pushRouter(this.props.router, {pathname: path});
+    const {userProfile} = props,
+      {folder} = this.state
   }
 
   renderFolderProfile() {
-    const {folder} = this.props;
-    let user = folder.folderUser;
+    const {userProfile} = props,
+      {folder} = this.state
 
     const terms = {
       view: 'new',
@@ -38,13 +40,13 @@ class UsersFolderProfile extends Component {
       listId: "user.folder.posts.list",
       limit: 10
     };
-    const {selector, options} = Posts.parameters.get(terms);
+    // const {selector, options} = Posts.parameters.get(terms);
 
     return (
       <div className="collection-detail">
         {/*header section*/}
         <Telescope.components.UserFolderProfileHeader
-          user={user}
+          user={userProfile}
           folder={folder}
           callBack={this.onBackToCollectionClick.bind(this)}/>
         <div className="container">

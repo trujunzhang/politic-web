@@ -4,10 +4,16 @@ var _ = require('underscore');
 const Folders = {};
 
 
-Folders.checkAccessPermission = function (folder, userId, currentUser) {
-  if (folder.visible === "Lock" && userId !== currentUser.id) {
-    return false;
+Folders.checkAccessPermission = function (folder, folderUser, currentUser) {
+  if (folder.visible === "Lock") {
+    if (((typeof currentUser) === 'undefined')) { // No logged User.
+      return false;
+    }
+    if (folderUser.id !== currentUser.id) { // Different Users
+      return false;
+    }
   }
+
   return true;
 };
 
