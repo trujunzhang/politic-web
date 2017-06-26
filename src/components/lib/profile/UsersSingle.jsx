@@ -40,16 +40,6 @@ class UsersSingle extends Component {
 
     //debugger
 
-    if (!!this.props.params.fid) {// Detailed Folder item's List
-      const childrenWithProps = React.Children.map(this.props.children,
-        (child) => React.cloneElement(child, {
-          userProfile: userProfile
-        })
-      )
-
-      return (<div>{childrenWithProps}</div>)
-    }
-
     if (!ready) {
       return (
         <div className="placeholder_1WOC3">
@@ -57,7 +47,16 @@ class UsersSingle extends Component {
           </div>
         </div>
       )
+    } else if (!!this.props.params.fid) {// Detailed Folder item's List
+      const childrenWithProps = React.Children.map(this.props.children,
+        (child) => React.cloneElement(child, {
+          userProfile: userProfile,
+          fid: this.props.params.fid
+        })
+      )
+      return (<div>{childrenWithProps}</div>)
     }
+
     return (
       <Telescope.components.UsersProfile {...this.props} userProfile={userProfile}/>
     )

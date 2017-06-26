@@ -11,13 +11,12 @@ class UsersFolderProfile extends Component {
   constructor(props, context) {
     super(props);
 
-    const {folder} = props,
-      {currentUser} = context,
+    debugger
+    const {userProfile, fid} = props,
+      folder = {},
       canAccess = Folders.checkAccessPermission(folder, folder.userId, currentUser);
-    const cachedIds = !!folder ? folder.posts : [];
 
     this.state = this.initialState = {
-      cachedIds: cachedIds,
       canAccess: canAccess
     };
   }
@@ -26,19 +25,16 @@ class UsersFolderProfile extends Component {
     const {folder} = this.props,
       user = folder.folderUser,
       path = "/users/" + user.telescope.slug + "/collections";
-    this.context.messages.pushRouter(this.props.router, {pathname: path});
+    // this.context.messages.pushRouter(this.props.router, {pathname: path});
   }
 
   renderFolderProfile() {
     const {folder} = this.props;
     let user = folder.folderUser;
 
-    const {cachedIds} = this.state;
-
     const terms = {
       view: 'new',
       postsType: 'user.posts',
-      cachedIds: cachedIds,
       listId: "user.folder.posts.list",
       limit: 10
     };
@@ -57,23 +53,23 @@ class UsersFolderProfile extends Component {
             <Telescope.components.UserFolderProfileBackButtonSection
               user={user}
               callBack={this.onBackToCollectionClick.bind(this)}/>
-            <Telescope.components.NewsListContainer
-              collection={Posts}
-              publication="posts.list"
-              selector={selector}
-              options={options}
-              terms={terms}
-              joins={Posts.getJoins()}
-              component={Telescope.components.FolderPostsList}
-              componentProps={
-                {
-                  folder: folder,
-                  limit: terms.limit
-                }
-              }
-              listId={"user.folder.posts.list"}
-              limit={terms.limit}
-            />
+            {/*<Telescope.components.NewsListContainer*/}
+            {/*collection={Posts}*/}
+            {/*publication="posts.list"*/}
+            {/*selector={selector}*/}
+            {/*options={options}*/}
+            {/*terms={terms}*/}
+            {/*joins={Posts.getJoins()}*/}
+            {/*component={Telescope.components.FolderPostsList}*/}
+            {/*componentProps={*/}
+            {/*{*/}
+            {/*folder: folder,*/}
+            {/*limit: terms.limit*/}
+            {/*}*/}
+            {/*}*/}
+            {/*listId={"user.folder.posts.list"}*/}
+            {/*limit={terms.limit}*/}
+            {/*/>*/}
           </div>
         </div>
       </div>
@@ -87,7 +83,6 @@ class UsersFolderProfile extends Component {
     if (!canAccess) {
       return (<Telescope.components.Error404/>)
     }
-
 
     return this.renderFolderProfile();
   }

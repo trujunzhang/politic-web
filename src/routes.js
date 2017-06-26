@@ -53,7 +53,7 @@ const createRoutes = (store) => {
             {
               // http://localhost:3000/users/zhang-trujun/collections/
               path: 'collections/(:fid)/(:fslug)',
-              component: Telescope.components.UsersSingleFolder,
+              component: Telescope.components.UsersFolderProfile,
             }
           ]
         },
