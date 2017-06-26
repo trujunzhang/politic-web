@@ -92,7 +92,7 @@ Users.getLinkObject = function (type, user = null, folder = null) {
     case 'collections':
       return {pathname: `${userLink}/collections`}
     case 'folderItem':
-      return {pathname: `${userLink}/collections/${folder._id}/${folder.name}`}
+      return {pathname: `${userLink}/collections/${folder.id}/${folder.name}`}
   }
 }
 
