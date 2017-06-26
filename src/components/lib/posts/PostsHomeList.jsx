@@ -5,6 +5,7 @@ class PostsHomeList extends Component {
 
   renderNormal() {
     const {results, hasMore, ready, title, showHeader, showClose, dismissBanner, loadMore, listId} = this.props
+
     return (
       <section className="results_37tfm">
         <div>
