@@ -6,8 +6,12 @@ var {convertToObject} = require('../../../../lib/utils')
 
 class AdminTables extends Component {
 
-  constructor(props, context) {
+  constructor(props) {
     super(props)
+
+    this.state = this.initialState = {
+      postsPerPage: 10
+    }
   }
 
   onCheckRowChanged(id, value) {
@@ -172,7 +176,7 @@ class AdminTables extends Component {
 
         {tableCount > 0 ? <Telescope.components.PaginationContainer
           tableCount={tableCount}
-          countPerPage={this.state.postsPerPage}/>
+          countPerPage={this.state.postsPerPage }/>
           : null}
         <br className="clear"/>
 

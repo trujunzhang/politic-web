@@ -1,11 +1,13 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+
+import { withRouter } from 'react-router'
 
 let numeral = require('numeral')
 
 class PaginationContainer extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     const current = this.getCurrentPage()
@@ -14,12 +16,12 @@ class PaginationContainer extends Component {
     }
   }
 
-  setRouterPagedValue (newPaged) {
+  setRouterPagedValue(newPaged) {
     this.setState({'currentPage': newPaged})
     // this.context.messages.appManagement.appendQuery(this.props.router, 'paged', newPaged)
   }
 
-  onCurrentPageChange (e) {
+  onCurrentPageChange(e) {
     const totalPages = this.getTotalPages()
     let value = e.target.value
     value = Math.min(value, totalPages)
@@ -34,25 +36,25 @@ class PaginationContainer extends Component {
     }, 400)
   }
 
-  getTotalPages () {
+  getTotalPages() {
     const tableCount = this.props.tableCount ? this.props.tableCount : 0
     const totoalPage = Math.floor(tableCount / this.props.countPerPage) + 1
     return Math.max(totoalPage, 1)
   }
 
-  getCurrentPage () {
-    if (!!this.props.router.location.query && this.props.router.location.query.paged) {
-      var paged = this.props.router.location.query.paged
-      return parseInt(paged)
-    }
-    return 1
+  getCurrentPage() {
+    const {location} = this.props,
+      query = location.query || {},
+      paged = query.paged || '1'
+
+    return parseInt(paged)
   }
 
-  onFirstPageClick () {
+  onFirstPageClick() {
     this.setRouterPagedValue(1)
   }
 
-  onLastPageClick () {
+  onLastPageClick() {
     const totalPages = this.getTotalPages()
     if (totalPages === 0) {
       return
@@ -60,14 +62,14 @@ class PaginationContainer extends Component {
     this.setRouterPagedValue(totalPages)
   }
 
-  onPreviousPageClick () {
+  onPreviousPageClick() {
     const currentPage = this.getCurrentPage()
     const previousPage = Math.max(currentPage - 1, 1)
 
     this.setRouterPagedValue(previousPage)
   }
 
-  onNextPageClick () {
+  onNextPageClick() {
     const totalPages = this.getTotalPages()
     if (totalPages === 0) {
       return
@@ -79,7 +81,7 @@ class PaginationContainer extends Component {
     this.setRouterPagedValue(nextPage)
   }
 
-  renderFirstArrow () {
+  renderFirstArrow() {
     const currentPage = this.getCurrentPage()
 
     if (currentPage <= 2) {
@@ -95,7 +97,7 @@ class PaginationContainer extends Component {
     )
   }
 
-  renderPreviousArrow () {
+  renderPreviousArrow() {
     const currentPage = this.getCurrentPage()
 
     if (currentPage === 1) {
@@ -111,7 +113,7 @@ class PaginationContainer extends Component {
     )
   }
 
-  renderNextArrow () {
+  renderNextArrow() {
     const currentPage = this.getCurrentPage()
     const totalPages = this.getTotalPages()
 
@@ -128,7 +130,7 @@ class PaginationContainer extends Component {
     )
   }
 
-  renderLastArrow () {
+  renderLastArrow() {
     const currentPage = this.getCurrentPage()
     const totalPages = this.getTotalPages()
 
@@ -145,7 +147,7 @@ class PaginationContainer extends Component {
     )
   }
 
-  renderPagination () {
+  renderPagination() {
     const tableCount = this.props.tableCount ? this.props.tableCount : 0
     const currentPage = this.getCurrentPage()
     const totalPages = this.getTotalPages()
@@ -176,7 +178,7 @@ class PaginationContainer extends Component {
     )
   }
 
-  render () {
+  render() {
     const tableCount = this.props.tableCount ? this.props.tableCount : 0
     const totalPages = this.getTotalPages()
     const onePage = (tableCount <= this.props.countPerPage)
@@ -190,4 +192,4 @@ class PaginationContainer extends Component {
   }
 }
 
-export default PaginationContainer
+export default withRouter(PaginationContainer)
