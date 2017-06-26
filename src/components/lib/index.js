@@ -80,6 +80,10 @@ Telescope.registerComponent('UserFolderProfileBackButtonSection',      require('
 Telescope.registerComponent('UserFolderProfileHeader',                 require('./profile/singlefolder/UserFolderProfileHeader.jsx').default)
 Telescope.registerComponent('UsersFolderProfile',                      require('./profile/singlefolder/UsersFolderProfile.jsx').default)
 
+// profile(me)
+Telescope.registerComponent('UsersEdit',                         require('./profile/me/UsersEdit.jsx').default)
+Telescope.registerComponent('UsersEditForm',                     require('./profile/me/UsersEditForm.jsx').default)
+
 // Sidebar
 Telescope.registerComponent('AppSideBar',           require('./sidebar/AppSideBar.jsx').default)
 Telescope.registerComponent('WidgetHeader',         require('./sidebar/WidgetHeader.jsx').default)
