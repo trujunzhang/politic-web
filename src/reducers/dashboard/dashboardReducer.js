@@ -55,18 +55,12 @@ function dashboardReducer(state = initialState, action): State {
     case DASHBOARD_LOADED_PAGINATION: {
       // console.log('Dashboard loaded posts: ')
 
-      debugger
-      const {list, listTask, listId, limit} = action.payload
+      const {list, listTask, listId, limit, countKeys} = action.payload
 
-      const objects = list.map(fromParsePost)
-
-      // let nextState = state
-      //   .set('pageIndex', listTask.pageIndex + 1)
-      //   .set('ready', true)
-      //   .set('results',)
+      const results = list.map(fromParsePost)
 
       return {
-        results: objects,
+        results,
         pageIndex: listTask.pageIndex + 1,
         limit: state.limit,
         ready: true,
@@ -76,7 +70,7 @@ function dashboardReducer(state = initialState, action): State {
         editSingleId: '',
         checkAll: false,
         checkRows: {},
-        countKeys: {}
+        countKeys
       }
     }
 

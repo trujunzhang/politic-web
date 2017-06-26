@@ -160,7 +160,7 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
     countKeys,
     totalCount
   }
-  debugger
+
   const action = {
     type: DASHBOARD_LOADED_PAGINATION,
     payload: payload
