@@ -4,6 +4,9 @@ import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 import Folders from '../../../../lib/folder'
 
+import Avatar from 'react-avatar'
+import {Link} from 'react-router'
+
 import {withRouter} from 'react-router'
 
 class UserFolderProfileHeader extends Component {
@@ -62,11 +65,6 @@ class UserFolderProfileHeader extends Component {
     }
   }
 
-  onUserNameClick() {
-    const {user, router} = this.props;
-    this.context.messages.pushRouter(router, Users.getLinkObject("profile", user));
-  }
-
   renderFolderName() {
     const {folder} = this.props,
       {isEditingFolderName, folderNameValue} = this.state;
@@ -102,8 +100,8 @@ class UserFolderProfileHeader extends Component {
       <span>
               {folder.name}
         {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
-              {editButton}
-              {/*</Telescope.components.CanDo>*/}
+        {editButton}
+        {/*</Telescope.components.CanDo>*/}
             </span>
     )
   }
@@ -184,6 +182,7 @@ class UserFolderProfileHeader extends Component {
 
   render() {
     const {user, folder} = this.props,
+      avatarObj = Users.getAvatarObj(user),
       userName = Users.getDisplayName(user);
 
     return (
@@ -196,11 +195,11 @@ class UserFolderProfileHeader extends Component {
             {this.renderFolderDescription()}
           </h2>
           <div className="collection-detail--header--curator">
-            <a onClick={this.onUserNameClick.bind(this)}>
+            <Link to={Users.getLinkObject('profile', user).pathname}>
               {/*Logged user avatar*/}
-              {/*<Telescope.components.UserFolderProfileHeaderUserAvatar user={user}/>*/}
-              by {userName}
-            </a>
+              <Avatar {...avatarObj.avatar} size={32} round={true}/>
+              {` by ${userName}`}
+            </Link>
           </div>
 
           {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
