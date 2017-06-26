@@ -61,10 +61,14 @@ function loadParseObject(type: string, query: Parse.Query, objectId: string): Th
 
 }
 
-function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10): ThunkAction {
+function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10, beforeQuery = null): ThunkAction {
   return (dispatch) => {
     let queryFind = (() => {
-      return query.find({
+      let _query = query
+      if (!!beforeQuery) {
+        _query = beforeQuery(_query)
+      }
+      return _query.find({
         success: (list) => {
           // debugger
           // debugger
@@ -88,11 +92,9 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
     return query.count({
       success: function (count) {
         totalCount = count
-        // queryFind()
       },
       error: function (error) {
         debugger
-        // queryFind()
         console.log('failure')
       }
     }).then(() => {
@@ -125,10 +127,12 @@ export default {
     const skipCount = (pageIndex - 1) * limit
 
     let postQuery = new PostsParameters(getPostQuery())
-     .addParameters(terms)
+      .addParameters(terms)
       .end()
 
-    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
+    return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
+      return query.skip(skipCount).limit(limit)
+    })
   },
 
   loadPostPage: (objectId: string): ThunkAction => {

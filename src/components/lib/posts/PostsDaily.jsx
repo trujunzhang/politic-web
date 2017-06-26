@@ -1,5 +1,5 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 var _ = require('underscore')
 
@@ -7,7 +7,7 @@ import moment from 'moment'
 
 class PostsDaily extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     // const showPopularPostsThisWeek = Cookie.load('showPopularPostsThisWeek') !== "no";
@@ -18,20 +18,20 @@ class PostsDaily extends Component {
   }
 
   // for a number of days "n" return dates object for the past n days
-  getLastNDates (n) {
+  getLastNDates(n) {
     let map = _.range(n).map(
       i => moment().subtract(i, 'days').startOf('day').toDate()
     )
     return map
   }
 
-  loadMoreDays () {
+  loadMoreDays() {
     this.setState({
       days: this.state.days + this.props.increment
     })
   }
 
-  render () {
+  render() {
     let postsDays = []
     if (this.state.showPopularPostsThisWeek) {
       postsDays.push(<Telescope.components.PostsPopularThisWeek
