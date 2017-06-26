@@ -115,7 +115,6 @@ export function fromParseCloudinary(map: Object): Cloudinary {
 }
 
 export function fromParsePost(map: Object): Post {
-  // console.log("after post: " + JSON.stringify(map));
   return {
     id: map.id,
     url: map.get('url'),

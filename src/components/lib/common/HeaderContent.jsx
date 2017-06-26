@@ -2,6 +2,9 @@ import Telescope from '../index'
 import React, {Component} from 'react'
 import {Link} from 'react-router'
 
+import Users from '../../../lib/users'
+import Folders from '../../../lib/folder'
+
 const {pushModel} = require('../../../actions').default
 
 class HeaderContent extends Component {
@@ -33,16 +36,15 @@ class HeaderContent extends Component {
   }
 
   renderBookmarkIcon() {
-    const {currentUser} = this.props,
-      return
-    (
+    const {currentUser} = this.props
+    return (
       <Link to={Users.getLinkObject('folderItem', currentUser, {
-        id: currentUser.folderBookmarkId,
+        id: currentUser.defaultFolderId,
         name: Folders.getDefaultFolderName()
       })}
             className="button button--chromeless is-touchIconFadeInPulse u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--bookmark js-bookmarkButton"
             title="Bookmark this story to read later">
-                  <span className="button-defaultState">
+        <span className="button-defaultState">
                     <span className="svgIcon svgIcon--bookmark svgIcon--25px">
                       <svg className="svgIcon-use" width="25" height="25" viewBox="0 0 25 25">
                         <path
