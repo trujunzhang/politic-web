@@ -382,9 +382,42 @@ function skipLogin(): Action {
 }
 
 
+async function _updateFolder(username: string, password: string): Promise<Array<Action>> {
+  const user = new Parse.User()
+  user.set('username', username)
+  user.set('password', password)
+
+  await user.logIn()
+
+  const action = {
+    type: LOGGED_IN,
+    payload: getUserCallback(user)
+  };
+
+  return Promise.all([
+    Promise.resolve(action)
+  ]);
+}
+
+function updateFolder(username: string, password: string): ThunkAction {
+  return (dispatch) => {
+    const login = _logInWithPassword(username, password);
+
+    // Loading friends schedules shouldn't block the login process
+    login.then(
+      ([result]) => {
+        dispatch(result);
+      }
+    );
+    return login;
+  };
+}
+
+
 export default {
   signUpWithPassword, logInWithFacebook, logInWithTwitter,
   logInWithPassword,
   skipLogin, logOut,
-  newUserFolderWithPost
+  newUserFolderWithPost,
+  updateFolder
 }
