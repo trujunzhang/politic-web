@@ -144,8 +144,8 @@ class UsersEditForm extends Component {
           <span className="list-itemDescription">
                       {"To change your email address please write to us at "}
             <Telescope.components.MailTo email="contact@politicl.com"/>
-                      .
-                  </span>
+            {'.'}
+          </span>
         </div>
         <hr className="ruler_1ti8u"/>
       </label>

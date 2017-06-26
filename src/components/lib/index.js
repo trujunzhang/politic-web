@@ -3,6 +3,7 @@ import Telescope from './config'
 // actions
 Telescope.registerComponent('ArticleDownvote',                require('./actions/ArticleDownvote.jsx').default)
 Telescope.registerComponent('ArticleUpvote',                  require('./actions/ArticleUpvote.jsx').default)
+Telescope.registerComponent('MailTo',                         require('./actions/MailTo.jsx').default)
 Telescope.registerComponent('PostItemVoteButton',             require('./actions/PostItemVoteButton.jsx').default)
 Telescope.registerComponent('PostsCommenters',                require('./actions/PostsCommenters.jsx').default)
 Telescope.registerComponent('PostsReadMore',                  require('./actions/PostsReadMore.jsx').default)
@@ -81,8 +82,9 @@ Telescope.registerComponent('UserFolderProfileHeader',                 require('
 Telescope.registerComponent('UsersFolderProfile',                      require('./profile/singlefolder/UsersFolderProfile.jsx').default)
 
 // profile(me)
-Telescope.registerComponent('UsersEdit',                         require('./profile/me/UsersEdit.jsx').default)
-Telescope.registerComponent('UsersEditForm',                     require('./profile/me/UsersEditForm.jsx').default)
+Telescope.registerComponent('UsersEdit',                                    require('./profile/me/UsersEdit.jsx').default)
+Telescope.registerComponent('UsersEditConnections',                         require('./profile/me/UsersEditConnections.jsx').default)
+Telescope.registerComponent('UsersEditForm',                                require('./profile/me/UsersEditForm.jsx').default)
 
 // Sidebar
 Telescope.registerComponent('AppSideBar',           require('./sidebar/AppSideBar.jsx').default)

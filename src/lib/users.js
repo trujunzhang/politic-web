@@ -74,6 +74,18 @@ Users.getMessagesLength = function (user) {
   return 0;
 }
 
+Users.getServiceInformation = function (user, service) {
+  const authData = user.authData || {};
+  if (true) {
+    return null;
+  }
+  const url = Users.avatar.getUrlByService(user, service);
+  if (!!url) {
+    return {haveAvatar: true, url: url, title: Users.getUserNameByService(user, service)};
+  }
+  return {haveAvatar: false, url: Users.avatar.getInitials(user), title: Users.getUserNameByService(user, service)};
+}
+
 Users.isLoggedUser = function (userProfile, currentUser) {
   if (!!currentUser && !!userProfile && userProfile.id === currentUser.id) {
     return true;
