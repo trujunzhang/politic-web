@@ -77,24 +77,26 @@ class HeaderContent extends Component {
   }
 
   renderNotification() {
-    const messagesLength = Users.getMessagesLength(currentUser);
-    // if (messagesLength !== 0) {
-    //     return (
-    //         <a id="messagesButton"
-    //            ref="messagesButton"
-    //            onClick={this.onMessageButtonClick.bind(this)}
-    //            className="button button--small button--circle button--chromeless is-touchIconBlackPulse is-inSiteNavBar u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--activity js-notificationsButton"
-    //            title="Notifications">
-    //
-    //           <span className="svgIcon svgIcon--bell svgIcon--25px">
-    //               <span
-    //                   className="activityFeedLabelUnseen_2t9sf menuLink_1h9ZN secondaryText_PM80d default_tBeAo base_3CbW2">
-    //                   {messagesLength}
-    //               </span>
-    //           </span>
-    //         </a>
-    //     )
-    // }
+    const {currentUser} = this.props,
+      messagesLength = Users.getMessagesLength(currentUser)
+
+    if (messagesLength !== 0) {
+      return (
+        <a id="messagesButton"
+           ref="messagesButton"
+           onClick={this.onMessageButtonClick.bind(this)}
+           className="button button--small button--circle button--chromeless is-touchIconBlackPulse is-inSiteNavBar u-baseColor--buttonNormal button--withIcon button--withSvgIcon button--activity js-notificationsButton"
+           title="Notifications">
+
+               <span className="svgIcon svgIcon--bell svgIcon--25px">
+                   <span
+                     className="activityFeedLabelUnseen_2t9sf menuLink_1h9ZN secondaryText_PM80d default_tBeAo base_3CbW2">
+                       {messagesLength}
+                   </span>
+               </span>
+        </a>
+      )
+    }
 
     return (
       <a id="messagesButton"
