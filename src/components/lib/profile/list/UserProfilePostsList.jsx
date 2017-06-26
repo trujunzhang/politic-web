@@ -56,7 +56,7 @@ class UserProfilePostsList extends Component {
       firstPagination,
     } = listTask
 
-    let hasMore = !ready && totalCount !== results.length
+    let hasMore = ready && totalCount !== results.length
 
     if (!!results.length) {
       return (
