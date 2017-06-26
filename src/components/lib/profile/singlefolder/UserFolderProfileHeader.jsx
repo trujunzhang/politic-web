@@ -66,7 +66,7 @@ class UserFolderProfileHeader extends Component {
   }
 
   renderFolderName() {
-    const {folder} = this.props,
+    const {folder, canEditFolder} = this.props,
       {isEditingFolderName, folderNameValue} = this.state;
 
     if (isEditingFolderName) {
@@ -99,13 +99,13 @@ class UserFolderProfileHeader extends Component {
     return (
       <span>
         {folder.name}
-        {editButton}
+        {canEditFolder ? editButton : null}
       </span>
     )
   }
 
   renderFolderDescription() {
-    const {folder} = this.props,
+    const {folder, canEditFolder} = this.props,
       titleDescription = folder.description || "Describe the collection briefly",
       editedDescription = folder.description || "",
       {isEditingFolderDescription, folderDescriptionValue} = this.state;
@@ -142,7 +142,7 @@ class UserFolderProfileHeader extends Component {
     return (
       <span>
         {titleDescription}
-        {editButton}
+        {canEditFolder ? editButton : null}
       </span>
     )
   }
@@ -178,19 +178,15 @@ class UserFolderProfileHeader extends Component {
   }
 
   render() {
-    const {user, folder} = this.props,
+    const {user, folder, canEditFolder} = this.props,
       avatarObj = Users.getAvatarObj(user),
       userName = Users.getDisplayName(user);
 
     return (
       <header className="backgroundImage_1hK9M collection-detail--header">
         <div className="collection-detail--header--heading">
-          <h1>
-            {this.renderFolderName()}
-          </h1>
-          <h2>
-            {this.renderFolderDescription()}
-          </h2>
+          <h1>{this.renderFolderName()}</h1>
+          <h2>{this.renderFolderDescription()}</h2>
           <div className="collection-detail--header--curator">
             <Link to={Users.getLinkObject('profile', user).pathname}>
               {/*Logged user avatar*/}
@@ -199,10 +195,7 @@ class UserFolderProfileHeader extends Component {
             </Link>
           </div>
 
-          {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
-          {/*{this.renderDeleteButton()}*/}
-          {/*</Telescope.components.CanDo>*/}
-
+          {canEditFolder ? this.renderDeleteButton() : null}
 
         </div>
       </header>

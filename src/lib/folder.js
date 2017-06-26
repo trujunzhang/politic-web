@@ -17,6 +17,17 @@ Folders.checkAccessPermission = function (folder, folderUser, currentUser) {
   return true;
 };
 
+Folders.checkEditPermission = function (folder, folderUser, currentUser) {
+  if (((typeof currentUser) === 'undefined')) { // No logged User.
+    return false;
+  }
+  if (folderUser.id === currentUser.id) { // Users themself
+    return true;
+  }
+
+  return false;
+};
+
 Folders.getDefaultFolderName = function () {
   return "Read Later";
 };

@@ -18,10 +18,12 @@ class UsersFolderProfile extends Component {
       return item.id == fid
     })
     const canAccess = Folders.checkAccessPermission(folder, userProfile, currentUser);
+    const canEditFolder = Folders.checkEditPermission(folder, userProfile, currentUser);
 
     this.state = this.initialState = {
       folder: folder,
-      canAccess: canAccess
+      canAccess: canAccess,
+      canEditFolder: canEditFolder
     };
   }
 
@@ -32,7 +34,7 @@ class UsersFolderProfile extends Component {
 
   renderFolderProfile() {
     const {userProfile} = this.props,
-      {folder} = this.state
+      {folder, canAccess, canEditFolder} = this.state
 
     const terms = {
       view: 'new',
@@ -47,6 +49,7 @@ class UsersFolderProfile extends Component {
         <Telescope.components.UserFolderProfileHeader
           user={userProfile}
           folder={folder}
+          canEditFolder={canEditFolder}
           callBack={this.onBackToCollectionClick.bind(this)}/>
         <div className="container">
           <div className="constraintWidth_ZyYbM">
