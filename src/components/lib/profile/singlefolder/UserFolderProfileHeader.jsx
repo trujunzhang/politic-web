@@ -98,17 +98,16 @@ class UserFolderProfileHeader extends Component {
 
     return (
       <span>
-              {folder.name}
-        {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
+        {folder.name}
         {editButton}
-        {/*</Telescope.components.CanDo>*/}
-            </span>
+      </span>
     )
   }
 
   renderFolderDescription() {
     const {folder} = this.props,
-      editedDescription = folder.description ? folder.description : "",
+      titleDescription = folder.description || "Describe the collection briefly",
+      editedDescription = folder.description || "",
       {isEditingFolderDescription, folderDescriptionValue} = this.state;
 
     if (isEditingFolderDescription) {
@@ -142,11 +141,9 @@ class UserFolderProfileHeader extends Component {
 
     return (
       <span>
-              {folder.description ? folder.description : "Describe the collection briefly"}
-        {/*<Telescope.components.CanDo action="folders.edit.own" document={folder}>*/}
+        {titleDescription}
         {editButton}
-        {/*</Telescope.components.CanDo>*/}
-          </span>
+      </span>
     )
   }
 
