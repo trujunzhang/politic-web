@@ -182,10 +182,10 @@ Posts.getLimitedContent = function (content, limit) {
 }
 
 Posts.getDefaultImageFromType = (post) => {
-  if (post.userId === Telescope.settings.get('scraped_user_id', 'yv57iwi6Zq8jaM7uD')) {
+  if (post.postAuthor.name === 'crawler') {
     const author = post.author
     if (!!author) {
-      return 'default/' + author + '.jpg'
+      return '/default/' + author + '.jpg'
     }
   }
 
