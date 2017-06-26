@@ -5,14 +5,14 @@
  */
 'use strict'
 
-import type { Action } from '../../actions/types'
+import type {Action} from '../../actions/types'
 import update from 'immutability-helper'
 
 /**
  * ## Dashboard actions
  */
 const {
-  DASHBOARD_LOADED_POSTS,
+  DASHBOARD_LOADED_PAGINATION,
   DASHBOARD_RESET,
   TOGGLE_TABLE_ROW_CHECKBOX,
   TOGGLE_TABLE_ROW_ALL_CHECKBOXS,
@@ -44,7 +44,7 @@ const initialState = {
  * @param {Object} state - initialState
  * @param {Object} action - type and payload
  */
-function dashboardReducer (state = initialState, action): State {
+function dashboardReducer(state = initialState, action): State {
   // if (!(state instanceof InitialState)) return initialState.mergeDeep(state)
 
   switch (action.type) {
@@ -52,10 +52,12 @@ function dashboardReducer (state = initialState, action): State {
      * ### Requests start
      * set the form to fetching and clear any errors
      */
-    case DASHBOARD_LOADED_POSTS: {
+    case DASHBOARD_LOADED_PAGINATION: {
       // console.log('Dashboard loaded posts: ')
 
+      debugger
       const {list, listTask, listId, limit} = action.payload
+
       const objects = list.map(fromParsePost)
 
       // let nextState = state

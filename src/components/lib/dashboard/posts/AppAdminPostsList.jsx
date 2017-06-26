@@ -1,19 +1,19 @@
 import Telescope from '../../index'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
-import { Link } from 'react-router'
+import {Link} from 'react-router'
 
-const {loadPosts} = require('../../../../actions').default
+const {loadPaginationDashboard} = require('../../../../actions').default
 
 const {
-  DASHBOARD_LOADED_POSTS
+  DASHBOARD_LOADED_PAGINATION
 } = require('../../../../lib/constants').default
 
 var {convertToObject} = require('../../../../lib/utils')
 
 class AppAdminPostsList extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     const {location} = props,
@@ -26,22 +26,31 @@ class AppAdminPostsList extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.loadMore()
   }
 
-  loadMore () {
+  loadMore() {
     const {location} = this.props,
       terms = {
         ...location.query,
         listId: 'admin.posts.list',
         limit: 10
       }
+    const countKeys = [
+      "allCount",
+      "publishCount",
+      "pendingCount",
+      "rejectedCount",
+      "draftCount",
+      "trashCount",
+      "tableCount"
+    ]
     const nextDashboard = convertToObject(this.props.dashboard)
-    this.props.dispatch(loadPosts(nextDashboard, terms.listId, terms, DASHBOARD_LOADED_POSTS))
+    this.props.dispatch(loadPaginationDashboard(nextDashboard, terms.listId, terms))
   }
 
-  onDateSelectorChange (event) {
+  onDateSelectorChange(event) {
     let value = event.target.value
     this.setState({dateSelector: value})
 
@@ -51,7 +60,7 @@ class AppAdminPostsList extends Component {
     router.push({pathname: pathname, query: nextQuery})
   }
 
-  renderFilter () {
+  renderFilter() {
     const {dateSelectors} = this.state
     const dateOptions = []
     dateOptions.push(<option key="all" selected="selected" value="0">All dates</option>)
@@ -75,7 +84,7 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  renderTitle (item) {
+  renderTitle(item) {
     const {location} = this.props,
       query = location.query || {},
       postStatus = Posts.getPostStatus(item, ( query.status || 'all'))
@@ -93,7 +102,7 @@ class AppAdminPostsList extends Component {
     )
   }
 
-  customRowRender (row, item, index) {
+  customRowRender(row, item, index) {
     const {name, tag, field, isText} = row
     switch (tag) {
       case 'title':
@@ -108,7 +117,7 @@ class AppAdminPostsList extends Component {
     }
   }
 
-  render () {
+  render() {
     const props = this.props
     const data = {
       canSelectAllRows: true,
@@ -135,7 +144,9 @@ class AppAdminPostsList extends Component {
     return (
       <Telescope.components.AdminTables
         data={data}
-        renderTitleActionButton={() => {return (<Link className="page-title-action" to="/article/new">Add New</Link>)}}
+        renderTitleActionButton={() => {
+          return (<Link className="page-title-action" to="/article/new">Add New</Link>)
+        }}
         renderRowsEditSingle={(item) => {
           return (<Telescope.components.AppAdminPostsEditSingle key={item.id} item={item}/>)
         }}
@@ -165,7 +176,7 @@ class AppAdminPostsList extends Component {
  */
 var {connect} = require('react-redux')
 
-function select (store) {
+function select(store) {
   return {
     dashboard: store.dashboard
   }

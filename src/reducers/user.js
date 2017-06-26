@@ -49,6 +49,7 @@ export type State = {
   id: ? string,
   name: ? string,
   loginType: ? string,
+  isAdmin: ? boolean,
   email: ? string,
   slug: ? string,
   defaultFolderId: ? string,
@@ -64,6 +65,7 @@ const initialState = {
   id: null,
   name: null,
   loginType: null,
+  isAdmin: false,
   email: null,
   slug: null,
   defaultFolderId: null,
@@ -76,13 +78,14 @@ function user(state: State = initialState, action: Action): State {
   switch (action.type) {
     case LOGGED_IN:
     case ADDED_NEW_FOLDER_WITH_POST: {
-      let {id, name, loginType, email, defaultFolderId, folders, upvotedPosts, downvotedPosts, upvotedComments, downvotedComments} = action.payload
+      let {id, name, loginType, isAdmin,email, defaultFolderId, folders, upvotedPosts, downvotedPosts, upvotedComments, downvotedComments} = action.payload
       return {
         isLoggedIn: true,
         hasSkippedLogin: false,
         id,
         name,
         loginType,
+        isAdmin,
         email,
         defaultFolderId,
         folders,
