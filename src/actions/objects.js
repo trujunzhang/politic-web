@@ -25,13 +25,28 @@
 
 const Parse = require('parse')
 
+function getQueryByType(type: string = 'post') {
+  return new Parse.Query(ParsePost).include('topics').include('postAuthor')
+}
+
+let ParseUser = Parse.Object.extend('User')
+let ParseCache = Parse.Object.extend('Cache')
+let ParseHistory = Parse.Object.extend('History')
+let ParseTopic = Parse.Object.extend('Topic')
+let ParsePost = Parse.Object.extend('Post')
+let ParseFolder = Parse.Object.extend('Folder')
+let ParseComment = Parse.Object.extend('Comment')
+let ParseMessage = Parse.Object.extend('Message')
+
+
 export default {
-  ParseUser: Parse.Object.extend('User'),
-  ParseCache: Parse.Object.extend('Cache'),
-  ParseHistory: Parse.Object.extend('History'),
-  ParseTopic: Parse.Object.extend('Topic'),
-  ParsePost: Parse.Object.extend('Post'),
-  ParseFolder: Parse.Object.extend('Folder'),
-  ParseComment: Parse.Object.extend('Comment'),
-  ParseMessage: Parse.Object.extend('Message')
+  ParseUser,
+  ParseCache,
+  ParseHistory,
+  ParseTopic,
+  ParsePost,
+  ParseFolder,
+  ParseComment,
+  ParseMessage,
+  getQueryByType
 }

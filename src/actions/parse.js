@@ -27,7 +27,7 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
+let {getQueryByType, ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
 const PostsParameters = require('../parameters').Posts
 
@@ -107,16 +107,12 @@ function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, li
   }
 }
 
-function getPostQuery() {
-  return new Parse.Query(ParsePost).include('topics').include('postAuthor')
-}
-
 
 async function _loadPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
-  let dashboardQuery = getPostQuery()
+  let dashboardQuery = getQueryByType()
   let postQuery = new PostsParameters(dashboardQuery)
     .addParameters(terms)
     .end()
@@ -202,7 +198,7 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(getPostQuery())
+    let postQuery = new PostsParameters(getQueryByType())
       .addParameters(terms)
       .end()
 
@@ -212,14 +208,14 @@ export default {
   },
 
   loadPostPage: (objectId: string): ThunkAction => {
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getPostQuery(), objectId)
+    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getQueryByType(), objectId)
   },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(getPostQuery())
+    let postQuery = new PostsParameters(getQueryByType())
       .addParameters(terms)
       .end()
 
