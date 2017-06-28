@@ -1,7 +1,9 @@
 import Telescope from './config'
 
 // actions
-Telescope.registerComponent('TComb',                require('./playground/TComb.jsx').default)
+
+Telescope.registerComponent('SendEmails',                require('./playground/SendEmails.jsx').default)
+Telescope.registerComponent('TComb',                     require('./playground/TComb.jsx').default)
 
 // actions
 Telescope.registerComponent('ArticleDownvote',                require('./actions/ArticleDownvote.jsx').default)
