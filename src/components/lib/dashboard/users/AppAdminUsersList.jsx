@@ -6,6 +6,7 @@ import Users from '../../../../lib/users'
 
 import {withRouter} from 'react-router'
 
+import Avatar from 'react-avatar'
 
 const {loadUsersPaginationDashboard} = require('../../../../actions').default
 
@@ -90,27 +91,21 @@ class AppAdminUsersList extends Component {
   }
 
     renderRowTitleWithAction(item, index) {
-        debugger
     const displayName = Users.getDisplayName(item),
-          email = item.email || '',
-          avatarObj = Users.getAvatarObj(item)
+      avatarObj = Users.getAvatarObj(item),
+          email = item.email || ''
 
     return (
       <td key={index} className="username column-username has-row-actions column-primary">
         <div className="admin-users-item-section">
           <div className="admin-users-item-left-panel">
-            <img alt={displayName}
-                 id="admin-users-item-avator"
-                 src={avatarObj.url}
-                 className="avatar avatar-32 photo"
-                 height="32" width="32"/>
+        <Avatar {...avatarObj.avatar} size={32} round={true}/>
           </div>
           <div id="admin-users-item-right-panel" className="row">
             <div><strong>{ displayName }</strong></div>
             <div><Telescope.components.MailTo email={email}/></div>
             <div>
-                <Telescope.components.AppAdminUserItemAction
-user={item}/>
+                <Telescope.components.AppAdminUserItemAction user={item}/>
             </div>
           </div>
         </div>
@@ -127,16 +122,16 @@ user={item}/>
             return this.renderRowTitleWithAction(item,index)
         case 'role':
             return(
-      <td key={index} className="comments column-loginType">
-        <strong>{ item.roleType}</strong>
-      </td>
+                <td key={index} className="comments column-loginType">
+                    <strong>{ item.roleType}</strong>
+                </td>
             )
         case 'loginType':
-    return (
-      <td key={index} className="comments column-loginType">
-        <strong>{Users.getLoginType(item)}</strong>
-      </td>
-    )
+            return (
+                <td key={index} className="comments column-loginType">
+                    <strong>{Users.getLoginType(item)}</strong>
+                </td>
+            )
         case 'messages':
             return this.renderRowForMessagesCount()
     }
@@ -161,10 +156,8 @@ user={item}/>
     return (
       <Telescope.components.AdminTables
         data={data}
-        renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
         componentLeftActionBar={Telescope.components.AppAdminUsersAction}
         componentTopActionBar={Telescope.components.AppAdminUsersTopAction}
-
         customRowRender={this.customRowRender.bind(this)}
       />
     )
