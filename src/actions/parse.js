@@ -113,7 +113,7 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
   const skipCount = (pageIndex - 1) * limit
 
   let dashboardQuery = getQueryByType()
-  let postQuery = new PostsParameters(dashboardQuery)
+  let objectsQuery = new PostsParameters(dashboardQuery)
     .addParameters(terms)
     .end()
 
@@ -126,7 +126,7 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
   let draftCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_SPAM).count()
   let trashCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_DELETED).count()
 
-  let tableCount = await  postQuery.count()
+  let tableCount = await  objectsQuery.count()
 
   let countKeys = {
     allCount: allCount,
@@ -138,7 +138,7 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
     tableCount: tableCount
   }
 
-  let results = await postQuery.skip(skipCount).limit(limit).find({
+  let results = await objectsQuery.skip(skipCount).limit(limit).find({
     success: (list) => {
       // debugger
       // Flow can't guarantee {type, list} is a valid action
