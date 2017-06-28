@@ -1,0 +1,4 @@
+* mailUrl
+  "mailUrl": "smtp://politiclmailsender:Politicl@123@smtp.sendgrid.net:465/",
+
+*
