@@ -27,8 +27,8 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {getPostsParameters, getQueryByType, ParsePost, ParseFolder, ParseUser} = require('./objects').default
-
+let {ParsePost, ParseFolder, ParseUser} = require('../parse/objects').default
+let {getPostsParameters, getQueryByType} = require('../parse/parseUtiles').default
 
 import Posts from '../lib/posts'
 

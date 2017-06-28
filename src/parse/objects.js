@@ -25,8 +25,6 @@
 
 const Parse = require('parse')
 
-const Parameters = require('../parameters')
-
 
 let ParseUser = Parse.Object.extend('User')
 let ParseCache = Parse.Object.extend('Cache')
@@ -38,16 +36,6 @@ let ParseComment = Parse.Object.extend('Comment')
 let ParseMessage = Parse.Object.extend('Message')
 
 
-function getQueryByType(type: string = 'post') {
-  return new Parse.Query(ParsePost).include('topics').include('postAuthor')
-}
-
-function getPostsParameters(terms) {
-  return new Parameters.Posts(getQueryByType())
-    .addParameters(terms)
-    .end()
-}
-
 export default {
   ParseUser,
   ParseCache,
@@ -56,7 +44,5 @@ export default {
   ParsePost,
   ParseFolder,
   ParseComment,
-  ParseMessage,
-  getQueryByType,
-  getPostsParameters
+  ParseMessage
 }

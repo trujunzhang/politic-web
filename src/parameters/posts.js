@@ -1,7 +1,7 @@
 const Parse = require('parse')
 import moment from 'moment'
 
-let {ParsePost, ParseFolder, ParseUser} = require('../actions/objects').default
+let {ParsePost, ParseFolder, ParseUser} = require('../parse/objects').default
 
 /**
  * The states were interested in

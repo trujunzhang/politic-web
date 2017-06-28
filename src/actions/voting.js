@@ -32,7 +32,7 @@ import type {Action, ThunkAction} from './types'
 
 const {User, Post, fromParseUser, fromParsePost} = require('../reducers/parseModels')
 
-let {ParsePost, ParseFolder, ParseUser} = require('./objects').default
+let {ParsePost, ParseFolder, ParseUser} = require('../parse/objects').default
 
 
 /**

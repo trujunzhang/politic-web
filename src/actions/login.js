@@ -165,7 +165,7 @@ var slugify = require('slugify')
 // const FacebookSDK = require('FacebookSDK')
 const {updateInstallation} = require('./installation')
 
-let {ParseFolder, ParsePost} = require('./objects').default
+let {ParseFolder, ParsePost} = require('../parse/objects').default
 
 const {fromParseUser} = require('../reducers/parseModels')
 
