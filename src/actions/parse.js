@@ -27,9 +27,8 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {getQueryByType, ParsePost, ParseFolder, ParseUser} = require('./objects').default
+let {getPostsParameters, getQueryByType, ParsePost, ParseFolder, ParseUser} = require('./objects').default
 
-const PostsParameters = require('../parameters').Posts
 
 import Posts from '../lib/posts'
 
@@ -113,9 +112,7 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
   const skipCount = (pageIndex - 1) * limit
 
   let dashboardQuery = getQueryByType()
-  let objectsQuery = new PostsParameters(dashboardQuery)
-    .addParameters(terms)
-    .end()
+  let objectsQuery = getPostsParameters(terms)
 
   let totalCount = await  new Parse.Query(ParsePost).count()
 
@@ -198,9 +195,7 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(getQueryByType())
-      .addParameters(terms)
-      .end()
+    let postQuery = getPostsParameters(terms)
 
     return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
       return query.skip(skipCount).limit(li)
@@ -215,9 +210,7 @@ export default {
     const {pageIndex, limit} = listTask
     const skipCount = (pageIndex - 1) * limit
 
-    let postQuery = new PostsParameters(getQueryByType())
-      .addParameters(terms)
-      .end()
+    let postQuery = getPostsParameters(terms)
 
     return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
   },
