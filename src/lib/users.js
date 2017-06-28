@@ -30,6 +30,11 @@ Users.config.TYPE_TITLES = [
 ];
 
 
+Users.getLoginType = function (user) {
+    const loginType = user.loginType
+    return Users.config.TYPE_TITLES[loginType]
+}
+
 /**
  * @summary Check if a user is an admin
  * @param {Object|string} user - The user or their userId

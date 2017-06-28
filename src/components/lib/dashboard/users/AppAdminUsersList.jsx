@@ -108,8 +108,10 @@ class AppAdminUsersList extends Component {
           <div id="admin-users-item-right-panel" className="row">
             <div><strong>{ displayName }</strong></div>
             <div><Telescope.components.MailTo email={email}/></div>
-            <div><Telescope.components.AppAdminUserItemAction actionEvent={this.onRowItemActionEventClick.bind(this)}
-                                                              user={item}/></div>
+            <div>
+                <Telescope.components.AppAdminUserItemAction
+user={item}/>
+            </div>
           </div>
         </div>
       </td>
@@ -126,7 +128,7 @@ class AppAdminUsersList extends Component {
         case 'role':
             return(
       <td key={index} className="comments column-loginType">
-        <strong>{ Users.getRole(item)}</strong>
+        <strong>{ item.roleType}</strong>
       </td>
             )
         case 'loginType':
