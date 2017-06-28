@@ -43,7 +43,7 @@ const {
 } = require('../lib/constants').default
 
 
-async function _loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
+async function _loadUsersPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
@@ -100,9 +100,9 @@ async function _loadPostsPaginationDashboard(listTask: Any, listId: string, term
   ])
 }
 
-function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
+function loadUsersPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
   return (dispatch) => {
-    const action = _loadPostsPaginationDashboard(listTask, listId, terms)
+    const action = _loadUsersPaginationDashboard(listTask, listId, terms)
 
     // Loading friends schedules shouldn't block the login process
     action.then(
@@ -115,6 +115,6 @@ function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any)
 }
 
 export default {
-  loadPostsPaginationDashboard
+  loadUsersPaginationDashboard
 
 }

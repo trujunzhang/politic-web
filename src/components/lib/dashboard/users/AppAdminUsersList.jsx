@@ -7,7 +7,7 @@ import Users from '../../../../lib/users'
 import {withRouter} from 'react-router'
 
 
-const {loadPostsPaginationDashboard} = require('../../../../actions').default
+const {loadUsersPaginationDashboard} = require('../../../../actions').default
 
 const {
   DASHBOARD_LOADED_PAGINATION
@@ -44,7 +44,7 @@ class AppAdminUsersList extends Component {
       "tableCount"
     ]
     const nextDashboard = convertToObject(this.props.dashboard)
-    this.props.dispatch(loadPostsPaginationDashboard(nextDashboard, terms.listId, terms))
+    this.props.dispatch(loadUsersPaginationDashboard(nextDashboard, terms.listId, terms))
   }
 
 
