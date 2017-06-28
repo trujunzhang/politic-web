@@ -9,13 +9,17 @@ class SendEmails extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmit.bind(this)}>
-
+      <div className="placeholder_1WOC3">
+        <div >
+          <h4>Send an email</h4>
           <div className="form-group">
-            <button type="submit" className="btn btn-primary">Save</button>
+            <button type="submit"
+                    onClick={this.onSubmit.bind(this)}
+                    className="btn btn-primary">
+              Send
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     )
   }

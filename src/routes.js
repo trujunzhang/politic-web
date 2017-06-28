@@ -32,7 +32,7 @@ const createRoutes = (store) => {
         {
           // http://localhost:3000/playground
           path: 'playground',
-          component: Telescope.components.TComb,
+          component: Telescope.components.SendEmails,
         },
         {
           // http://localhost:3000/users/my/edit
