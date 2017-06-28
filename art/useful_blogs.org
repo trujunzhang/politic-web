@@ -23,3 +23,9 @@
 
 * Parse.com Multiple Count Queries in one Call
   [https://stackoverflow.com/questions/24507989/parse-com-multiple-count-queries-in-one-call]
+
+* Parse cloud code - Removing a pointer from array of pointers
+  [https://stackoverflow.com/questions/26315038/parse-cloud-code-removing-a-pointer-from-array-of-pointers]
+
+   songs[i].remove("tags",request.object);
+
