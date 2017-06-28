@@ -28,7 +28,7 @@ const Parse = require('parse')
 import type {ThunkAction} from './types'
 
 let {ParsePost, ParseFolder, ParseUser} = require('../parse/objects').default
-let {getPostsParameters, getQueryByType} = require('../parse/parseUtiles').default
+let {getUsersParameters, getQueryByType} = require('../parse/parseUtiles').default
 
 import Posts from '../lib/posts'
 
@@ -47,8 +47,8 @@ async function _loadUsersPaginationDashboard(listTask: Any, listId: string, term
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
-  let dashboardQuery = getQueryByType()
-  let objectsQuery = getPostsParameters(terms)
+  let dashboardQuery = getQueryByType('USERS')
+  let objectsQuery = getUsersParameters(terms)
 
   let totalCount = await  new Parse.Query(ParsePost).count()
 
