@@ -125,16 +125,14 @@ class AppAdminUsersList extends Component {
         {name: "Username", field: "withAction", tag: "username", sort: true, primary: true},
         {name: "Role", field: "withRoleType", tag: "role"},
         {name: "Login Type", field: "withLoginType", tag: "type"},
-        {name: "Messages", field: "withMessagesCount", tag: "messages"},
-        {name: "Posts", field: "withPostsCount", tag: "posts", sort: true,},
+        // {name: "Messages", field: "withMessagesCount", tag: "messages"},
+        // {name: "Posts", field: "withPostsCount", tag: "posts", sort: true,},
         {name: "Date", field: "date", tag: "date", sort: true}
       ]
     };
-    const countsProps = this.context.messages.appManagement.getAllUsersCountsProps(this.props);
     return (
       <Telescope.components.AdminTables
         data={data}
-        onCheckIdsChanged={this.onCheckIdsChanged.bind(this)}
         renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
         renderRowForRoleType={this.renderRowForRoleType.bind(this)}
         renderRowForLoginType={this.renderRowForLoginType.bind(this)}
@@ -144,9 +142,6 @@ class AppAdminUsersList extends Component {
         componentLeftActionBar={Telescope.components.AppAdminUsersAction}
         onLeftActionBarEventClick={this.listActionEvent.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminUsersTopAction}
-        countsProps={countsProps}
-        toggleEvent={this.onToggleEvent.bind(this)}
-
       />
     )
   }
