@@ -146,4 +146,19 @@ class AppAdminUsersList extends Component {
   }
 }
 
-export default withRouter(AppAdminUsersList)
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+function select(store) {
+  return {
+    dashboard: store.dashboard
+  }
+}
+
+export default connect(select)(AppAdminUsersList)
+
