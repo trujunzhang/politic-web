@@ -27,10 +27,10 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {ParsePost, ParseFolder, ParseUser} = require('../parse/objects').default
+let {ParseFolder, ParseUser} = require('../parse/objects').default
 let {getUsersParameters, getQueryByType} = require('../parse/parseUtiles').default
 
-import Posts from '../lib/posts'
+import Users from '../lib/users'
 
 /**
  * The states were interested in
@@ -50,25 +50,24 @@ async function _loadUsersPaginationDashboard(listTask: Any, listId: string, term
   let dashboardQuery = getQueryByType('USERS')
   let objectsQuery = getUsersParameters(terms)
 
-  let totalCount = await  new Parse.Query(ParsePost).count()
+  let totalCount = await  new Parse.Query(ParseUser).count()
 
-  let allCount = totalCount //dashboardQuery.equalTo("status": {$in: Posts.config.PUBLISH_STATUS}}), {noReady: true});
-  let publishCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_APPROVED).count()
-  let pendingCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_PENDING).count()
-  let rejectedCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_REJECTED).count()
-  let draftCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_SPAM).count()
-  let trashCount = await  new Parse.Query(ParsePost).equalTo("status", Posts.config.STATUS_DELETED).count()
+  let allCount = totalCount
+  let adminCount = await  new Parse.Query(ParseUser).equalTo("isAdmin", true).count()
+  let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TWITTER).count()
+  let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_FACEBOOK).count()
+  let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_EMAIL).count()
+
 
   let tableCount = await  objectsQuery.count()
 
   let countKeys = {
-    allCount: allCount,
-    publishCount: publishCount,
-    pendingCount: pendingCount,
-    rejectedCount: rejectedCount,
-    draftCount: draftCount,
-    trashCount: trashCount,
-    tableCount: tableCount
+    allCount,
+    tableCount,
+    adminCount,
+    twitterCount,
+    facebookCount,
+    emailCount
   }
 
   let results = await objectsQuery.skip(skipCount).limit(limit).find({

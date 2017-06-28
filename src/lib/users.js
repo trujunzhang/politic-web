@@ -5,6 +5,25 @@ let md5 = require('blueimp-md5')
 
 const Users = {}
 
+
+Users.config.TYPE_EMAIL = 1;
+Users.config.TYPE_TWITTER = 2;
+Users.config.TYPE_FACEBOOK = 3;
+Users.config.TYPE_GOOGLE = 4;
+Users.config.TYPE_GITHUB = 5;
+Users.config.TYPE_LINKEDIN = 6;
+
+Users.config.TYPE_TITLES = [
+  "",
+  "email",
+  "twiter",
+  "facebook",
+  "google",
+  "github",
+  "linkedin"
+];
+
+
 /**
  * @summary Check if a user is an admin
  * @param {Object|string} user - The user or their userId
