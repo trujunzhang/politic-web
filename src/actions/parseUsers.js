@@ -42,72 +42,8 @@ const {
   USERPROFILE_LOADED
 } = require('../lib/constants').default
 
-function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
-  return (dispatch) => {
-    return query.get(objectId, {
-      success: (object) => {
-        // Flow can't guarantee {type, list} is a valid action
-        const payload = {
-          objectId: objectId,
-          object: object
-        }
-        dispatch({type, payload})
-      },
-      error: (error) => {
-        debugger
-      }
-    })
 
-  }
-
-}
-
-function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10, beforeQuery = null): ThunkAction {
-  return (dispatch) => {
-    let queryFind = (() => {
-      let _query = query
-      if (!!beforeQuery) {
-        _query = beforeQuery(_query)
-      }
-      return _query.find({
-        success: (list) => {
-          // debugger
-          // debugger
-          // Flow can't guarantee {type, list} is a valid action
-          const payload = {
-            list: list,
-            listTask: listTask,
-            listId: listId,
-            limit: limit,
-            totalCount: totalCount
-          }
-          dispatch({type, payload})
-        },
-        error: (error) => {
-          debugger
-        }
-      })
-    })
-
-    let totalCount = 0
-    return query.count({
-      success: function (count) {
-        totalCount = count
-      },
-      error: function (error) {
-        debugger
-        console.log('failure')
-      }
-    }).then(() => {
-      // debugger
-      return queryFind()
-    })
-
-  }
-}
-
-
-async function _loadPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
+async function _loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
@@ -164,9 +100,9 @@ async function _loadPaginationDashboard(listTask: Any, listId: string, terms: An
   ])
 }
 
-function loadPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
+function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
   return (dispatch) => {
-    const action = _loadPaginationDashboard(listTask, listId, terms)
+    const action = _loadPostsPaginationDashboard(listTask, listId, terms)
 
     // Loading friends schedules shouldn't block the login process
     action.then(
@@ -179,42 +115,6 @@ function loadPaginationDashboard(listTask: Any, listId: string, terms: Any): Thu
 }
 
 export default {
-  loadUserProfile: (userId: string, slug: string): ThunkAction => {
-    let pageQuery = new Parse.Query(ParseUser).equalTo('objectId', userId)
-
-    return loadParseObject(USERPROFILE_LOADED, pageQuery, userId)
-  },
-
-  loadUserFolders: (userId: string): ThunkAction => {
-    let query = new Parse.Query(ParseFolder).equalTo('user', Parse.User.createWithoutData(userId))
-
-    return loadParseQuery(LOADED_USER_FOLDERS, query)
-  },
-
-  loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    const skipCount = (pageIndex - 1) * limit
-
-    let postQuery = getPostsParameters(terms)
-
-    return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
-      return query.skip(skipCount).limit(li)
-    })
-  },
-
-  loadPostPage: (objectId: string): ThunkAction => {
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getQueryByType(), objectId)
-  },
-
-  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    const skipCount = (pageIndex - 1) * limit
-
-    let postQuery = getPostsParameters(terms)
-
-    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
-  },
-
-  loadPaginationDashboard
+  loadPostsPaginationDashboard
 
 }

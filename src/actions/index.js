@@ -22,16 +22,16 @@
  * @flow
  */
 
-const parseActions = require('./parse').default
+const parsePostsActions = require('./parsePosts').default
 const loginActions = require('./login').default
 const voingtActions = require('./voting').default
 const shipmentActions = require('./shipment').default
 const golbalActions = require('./global').default
 
 export default {
+  ...parsePostsActions,
   ...loginActions,
   ...voingtActions,
-  ...parseActions,
   ...shipmentActions,
   ...golbalActions
 }

@@ -138,9 +138,8 @@ class AppAdminUsersList extends Component {
         renderRowForLoginType={this.renderRowForLoginType.bind(this)}
         renderRowForMessagesCount={this.renderRowForMessagesCount.bind(this)}
         renderRowForPostsCount={this.renderRowForPostsCount.bind(this)}
-        tableCount={!!this.props.tableCount ? this.props.tableCount : 0}
+        tableCount={this.props.tableCount || 0}
         componentLeftActionBar={Telescope.components.AppAdminUsersAction}
-        onLeftActionBarEventClick={this.listActionEvent.bind(this)}
         componentTopActionBar={Telescope.components.AppAdminUsersTopAction}
       />
     )
