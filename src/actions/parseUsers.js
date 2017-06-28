@@ -30,7 +30,7 @@ import type {ThunkAction} from './types'
 let {ParseFolder, ParseUser} = require('../parse/objects').default
 let {getUsersParameters, getQueryByType} = require('../parse/parseUtiles').default
 
-import Users from '../lib/users'
+// import Users from '../lib/users'
 
 /**
  * The states were interested in
@@ -53,20 +53,20 @@ async function _loadUsersPaginationDashboard(listTask: Any, listId: string, term
   let totalCount = await  new Parse.Query(ParseUser).count()
 
   let allCount = totalCount
-  let adminCount = await  new Parse.Query(ParseUser).equalTo("isAdmin", true).count()
-  let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
-  let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
-  let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
+  // let adminCount = await  new Parse.Query(ParseUser).equalTo("isAdmin", true).count()
+  // let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
+  // let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
+  // let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
 
   let tableCount = await  objectsQuery.count()
 
   let countKeys = {
     allCount,
     tableCount,
-    adminCount,
-    twitterCount,
-    facebookCount,
-    emailCount
+    // adminCount,
+    // twitterCount,
+    // facebookCount,
+    // emailCount
   }
 
   let results = await objectsQuery.skip(skipCount).limit(limit).find({

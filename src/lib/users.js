@@ -1,4 +1,4 @@
-import Telescope from '../components/lib'
+import Telescope from './settings'
 
 import React from 'react'
 let _ = require('underscore')
@@ -6,13 +6,18 @@ let md5 = require('blueimp-md5')
 
 const Users = {}
 
+/**
+ * @summary Users config namespace
+ * @type {Object}
+ */
+Users.config = {}
 
-Users.config.TYPE_EMAIL = 1;
-Users.config.TYPE_TWITTER = 2;
-Users.config.TYPE_FACEBOOK = 3;
-Users.config.TYPE_GOOGLE = 4;
-Users.config.TYPE_GITHUB = 5;
-Users.config.TYPE_LINKEDIN = 6;
+Users.config.TYPE_EMAIL = 1
+Users.config.TYPE_TWITTER = 2
+Users.config.TYPE_FACEBOOK = 3
+Users.config.TYPE_GOOGLE = 4
+Users.config.TYPE_GITHUB = 5
+Users.config.TYPE_LINKEDIN = 6
 
 Users.config.TYPE_TITLES = [
   "",

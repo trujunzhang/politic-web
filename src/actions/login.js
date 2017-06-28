@@ -415,7 +415,7 @@ function updateFolder(username: string, password: string): ThunkAction {
 
 
 async function _sendEmail(username: string, password: string): Promise<Array<Action>> {
-  debugger
+  // debugger
 
   await Parse.Cloud.run("email",
     {param1: "quantity1", param2: "quantity2"}

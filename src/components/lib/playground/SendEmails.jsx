@@ -1,27 +1,27 @@
 import React from 'react'
 
 
-const {timeout, sendEmail} = require('../../../actions').default
+// const {timeout, sendEmail} = require('../../../actions').default
 
 class SendEmails extends React.Component {
   async onButtonPress() {
-    debugger
-    const {dispatch} = this.props
-
-    try {
-      await Promise.race([
-        dispatch(sendEmail('djzhang', 'password')),
-        timeout(15000),
-      ])
-    } catch (e) {
-      this.props.actions.loginFailure(e)
-      const message = e.message || e
-      if (message !== 'Timed out' && message !== 'Canceled by user') {
-        alert(message);
-        console.warn(e);
-      }
-    } finally {
-    }
+    // debugger
+    //   const {dispatch} = this.props
+    //
+    //   try {
+    //     await Promise.race([
+    //       dispatch(sendEmail('djzhang', 'password')),
+    //       timeout(15000),
+    //     ])
+    //   } catch (e) {
+    //     this.props.actions.loginFailure(e)
+    //     const message = e.message || e
+    //     if (message !== 'Timed out' && message !== 'Canceled by user') {
+    //       alert(message);
+    //       console.warn(e);
+    //     }
+    //   } finally {
+    //   }
   }
 
 
