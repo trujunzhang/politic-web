@@ -414,10 +414,50 @@ function updateFolder(username: string, password: string): ThunkAction {
 }
 
 
+async function _sendEmail(username: string, password: string): Promise<Array<Action>> {
+  debugger
+
+  await Parse.Cloud.run("email",
+    {param1: "quantity1", param2: "quantity2"}
+  ).then(function (result) {
+    // make sure the set the enail sent flag on the object
+    debugger
+    console.log("result :" + JSON.stringify(result))
+  }, function (error) {
+    // error
+    debugger
+  })
+
+  debugger
+  const action = {
+    type: 'xxx',
+    payload: {}
+  };
+
+  return Promise.all([
+    Promise.resolve(action)
+  ]);
+}
+
+function sendEmail(username: string, password: string): ThunkAction {
+  return (dispatch) => {
+    const action = _sendEmail(username, password);
+
+    // Loading friends schedules shouldn't block the login process
+    action.then(
+      ([result]) => {
+        dispatch(result);
+      }
+    );
+    return action;
+  };
+}
+
 export default {
   signUpWithPassword, logInWithFacebook, logInWithTwitter,
   logInWithPassword,
   skipLogin, logOut,
   newUserFolderWithPost,
+  sendEmail,
   updateFolder
 }

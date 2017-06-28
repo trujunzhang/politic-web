@@ -1,11 +1,29 @@
 import React from 'react'
 
 
-class SendEmails extends React.Component {
+const {timeout, sendEmail} = require('../../../actions').default
 
-  onSubmit() {
+class SendEmails extends React.Component {
+  async onButtonPress() {
     debugger
+    const {dispatch} = this.props
+
+    try {
+      await Promise.race([
+        dispatch(sendEmail('djzhang', 'password')),
+        timeout(15000),
+      ])
+    } catch (e) {
+      this.props.actions.loginFailure(e)
+      const message = e.message || e
+      if (message !== 'Timed out' && message !== 'Canceled by user') {
+        alert(message);
+        console.warn(e);
+      }
+    } finally {
+    }
   }
+
 
   render() {
     return (
@@ -14,7 +32,7 @@ class SendEmails extends React.Component {
           <h4>Send an email</h4>
           <div className="form-group">
             <button type="submit"
-                    onClick={this.onSubmit.bind(this)}
+                    onClick={this.onButtonPress.bind(this)}
                     className="btn btn-primary">
               Send
             </button>
@@ -26,5 +44,13 @@ class SendEmails extends React.Component {
 
 }
 
-export default SendEmails
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+export default connect()(SendEmails)
 
