@@ -54,10 +54,9 @@ async function _loadUsersPaginationDashboard(listTask: Any, listId: string, term
 
   let allCount = totalCount
   let adminCount = await  new Parse.Query(ParseUser).equalTo("isAdmin", true).count()
-  let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TWITTER).count()
-  let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_FACEBOOK).count()
-  let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_EMAIL).count()
-
+  let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
+  let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
+  let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
 
   let tableCount = await  objectsQuery.count()
 
