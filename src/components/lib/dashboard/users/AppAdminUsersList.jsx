@@ -47,7 +47,6 @@ class AppAdminUsersList extends Component {
     this.props.dispatch(loadUsersPaginationDashboard(nextDashboard, terms.listId, terms))
   }
 
-
   renderRowForMessagesCount(item, index) {
     const messagesCounterKeyName = Users.getMessagesCounterKeyName(),
       messagesCount = item[messagesCounterKeyName] ? item[messagesCounterKeyName] : 0;
@@ -90,10 +89,12 @@ class AppAdminUsersList extends Component {
     )
   }
 
-  renderRowTitleWithAction(item, index) {
+    renderRowTitleWithAction(item, index) {
+        debugger
     const displayName = Users.getDisplayName(item),
-      email = Users.getUserEmail(item),
-      avatarObj = Users.getAvatarObj(item);
+          email = item.email || '',
+          avatarObj = Users.getAvatarObj(item)
+
     return (
       <td key={index} className="username column-username has-row-actions column-primary">
         <div className="admin-users-item-section">
@@ -115,6 +116,31 @@ class AppAdminUsersList extends Component {
     )
   }
 
+
+  customRowRender(row, item, index) {
+    const {name, tag, field, isText} = row
+
+    switch (tag) {
+      case 'username':
+            return this.renderRowTitleWithAction(item,index)
+        case 'role':
+            return(
+      <td key={index} className="comments column-loginType">
+        <strong>{ Users.getRole(item)}</strong>
+      </td>
+            )
+        case 'loginType':
+    return (
+      <td key={index} className="comments column-loginType">
+        <strong>{Users.getLoginType(item)}</strong>
+      </td>
+    )
+        case 'messages':
+            return this.renderRowForMessagesCount()
+    }
+  }
+
+
   render() {
     const data = {
       selectAll: true,
@@ -122,9 +148,9 @@ class AppAdminUsersList extends Component {
       hasEditAll: false,
       tableType: 'Users',
       rows: [
-        {name: "Username", field: "withAction", tag: "username", sort: true, primary: true},
-        {name: "Role", field: "withRoleType", tag: "role"},
-        {name: "Login Type", field: "withLoginType", tag: "type"},
+        {name: "Username", field: "username", tag: "username", sort: true, primary: true,customRender: true},
+        {name: "Role", field: "roleType", tag: "role",customRender: true},
+        {name: "Login Type", field: "loginType", tag: "loginType",customRender: true},
         // {name: "Messages", field: "withMessagesCount", tag: "messages"},
         // {name: "Posts", field: "withPostsCount", tag: "posts", sort: true,},
         {name: "Date", field: "date", tag: "date", sort: true}
@@ -134,13 +160,10 @@ class AppAdminUsersList extends Component {
       <Telescope.components.AdminTables
         data={data}
         renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
-        renderRowForRoleType={this.renderRowForRoleType.bind(this)}
-        renderRowForLoginType={this.renderRowForLoginType.bind(this)}
-        renderRowForMessagesCount={this.renderRowForMessagesCount.bind(this)}
-        renderRowForPostsCount={this.renderRowForPostsCount.bind(this)}
-        tableCount={this.props.tableCount || 0}
         componentLeftActionBar={Telescope.components.AppAdminUsersAction}
         componentTopActionBar={Telescope.components.AppAdminUsersTopAction}
+
+        customRowRender={this.customRowRender.bind(this)}
       />
     )
   }
