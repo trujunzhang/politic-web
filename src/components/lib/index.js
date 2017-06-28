@@ -170,5 +170,11 @@ Telescope.registerComponent('AppAdminPostsEditSingle',             require('./da
 Telescope.registerComponent('AppAdminPostsList',                   require('./dashboard/posts/AppAdminPostsList.jsx').default)
 Telescope.registerComponent('AppAdminPostsTopAction',              require('./dashboard/posts/AppAdminPostsTopAction.jsx').default)
 
+// dashboard(users)
+Telescope.registerComponent('AppAdminUserItemAction',                require('./dashboard/users/AppAdminUserItemAction.jsx').default)
+Telescope.registerComponent('AppAdminUsersAction',                   require('./dashboard/users/AppAdminUsersAction.jsx').default)
+Telescope.registerComponent('AppAdminUsersList',                     require('./dashboard/users/AppAdminUsersList.jsx').default)
+Telescope.registerComponent('AppAdminUsersTopAction',                require('./dashboard/users/AppAdminUsersTopAction.jsx').default)
+
 
 export default Telescope
