@@ -6,6 +6,15 @@ import Users from '../../../../lib/users'
 
 import {withRouter} from 'react-router'
 
+
+const {loadPaginationDashboard} = require('../../../../actions').default
+
+const {
+  DASHBOARD_LOADED_PAGINATION
+} = require('../../../../lib/constants').default
+
+var {convertToObject} = require('../../../../lib/utils')
+
 class AppAdminUsersList extends Component {
 
   constructor(props) {
@@ -13,6 +22,31 @@ class AppAdminUsersList extends Component {
 
     this.state = this.initialState = {};
   }
+
+
+  componentDidMount() {
+    this.loadMore()
+  }
+
+  loadMore() {
+    const {location} = this.props,
+      terms = {
+        ...location.query,
+        listId: 'admin.users.list',
+        limit: 10
+      }
+    const countKeys = [
+      "allCount",
+      "adminCount",
+      "twitterCount",
+      "facebookCount",
+      "emailCount",
+      "tableCount"
+    ]
+    const nextDashboard = convertToObject(this.props.dashboard)
+    this.props.dispatch(loadPaginationDashboard(nextDashboard, terms.listId, terms))
+  }
+
 
   renderRowForMessagesCount(item, index) {
     const messagesCounterKeyName = Users.getMessagesCounterKeyName(),
