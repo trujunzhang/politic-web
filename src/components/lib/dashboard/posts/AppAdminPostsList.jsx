@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import {Link} from 'react-router'
 
-const {loadPaginationDashboard} = require('../../../../actions').default
+const {loadPostsPaginationDashboard} = require('../../../../actions').default
 
 const {
   DASHBOARD_LOADED_PAGINATION
@@ -47,7 +47,7 @@ class AppAdminPostsList extends Component {
       "tableCount"
     ]
     const nextDashboard = convertToObject(this.props.dashboard)
-    this.props.dispatch(loadPaginationDashboard(nextDashboard, terms.listId, terms))
+    this.props.dispatch(loadPostsPaginationDashboard(nextDashboard, terms.listId, terms))
   }
 
   onDateSelectorChange(event) {
