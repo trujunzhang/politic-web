@@ -1,4 +1,5 @@
-import Telescope from '../components/lib/index'
+import Telescope from '../components/lib'
+
 import React from 'react'
 let _ = require('underscore')
 let md5 = require('blueimp-md5')
