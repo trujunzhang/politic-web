@@ -107,13 +107,13 @@ class AppAdminUsersList extends Component {
             case 'role':
                 return(
                     <td key={index} className="comments column-loginType">
-                        <strong>{ item.roleType}</strong>
+                        <strong>{Users.getRole(item)}</strong>
                     </td>
                 )
             case 'loginType':
                 return (
                     <td key={index} className="comments column-loginType">
-                        <strong>{Users.getLoginType(item)}</strong>
+                        <strong>{item.loginType}</strong>
                     </td>
                 )
             case 'messages':

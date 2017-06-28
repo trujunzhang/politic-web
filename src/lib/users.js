@@ -27,12 +27,19 @@ Users.config.TYPE_TITLES = [
   "google",
   "github",
   "linkedin"
-];
+]
 
 
-Users.getLoginType = function (user) {
-    const loginType = user.loginType
-    return Users.config.TYPE_TITLES[loginType]
+/**
+ * @summary Get a user's email
+ * @param {Object} user
+ */
+Users.getRole = function (user) {
+    if (user.isAdmin) {
+        return "Administrator";
+    } else {
+        return "Role";
+    }
 }
 
 /**
