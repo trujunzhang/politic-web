@@ -10,7 +10,7 @@ const FormSchema = t.struct({
 
 class TComb extends React.Component {
 
-  onSubmit (evt) {
+  onSubmit(evt) {
     evt.preventDefault()
     const value = this.refs.form.getValue()
     if (value) {
@@ -18,7 +18,7 @@ class TComb extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         <form onSubmit={this.onSubmit}>

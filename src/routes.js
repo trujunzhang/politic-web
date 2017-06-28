@@ -30,6 +30,11 @@ const createRoutes = (store) => {
 
       childRoutes: [
         {
+          // http://localhost:3000/playground
+          path: 'playground',
+          component: Telescope.components.TComb,
+        },
+        {
           // http://localhost:3000/users/my/edit
           path: 'users/my/edit',
           component: Telescope.components.UsersEdit,
