@@ -6,16 +6,21 @@ import Users from '../../../../lib/users'
 
 import {withRouter} from 'react-router'
 
-let numeral = require('numeral');
+let _ = require('underscore')
+let numeral = require('numeral')
 
 class AppAdminUsersTopAction extends Component {
 
   constructor(props) {
-    super(props);
+      super(props)
+
+
+    const location = props.location || {},
+      query = location.query || {}
 
     this.state = this.initialState = {
-      query: this.props.location.query.query ? this.props.location.query.query : '',
-    };
+      query: query.query || ''
+    }
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
@@ -35,11 +40,14 @@ class AppAdminUsersTopAction extends Component {
     this.context.messages.appManagement.pushUserStatus(this.props.router, "users", login);
   }
 
-  getLoginRows() {
-    const adminCount = this.props.adminCount ? this.props.adminCount : 0;
-    const twitterCount = this.props.twitterCount ? this.props.twitterCount : 0;
-    const facebookCount = this.props.facebookCount ? this.props.facebookCount : 0;
-    const emailCount = this.props.emailCount ? this.props.emailCount : 0;
+    getLoginRows() {
+
+        const {countKeys} = this.props
+
+    const adminCount = countKeys.adminCount || 0;
+    const twitterCount = countKeys.twitterCount || 0;
+    const facebookCount = countKeys.facebookCount || 0;
+    const emailCount = countKeys.emailCount || 0;
 
     const allCount = twitterCount + facebookCount + emailCount;
     if (allCount === 0) {
@@ -62,18 +70,22 @@ class AppAdminUsersTopAction extends Component {
 
     let length = countRows.length;
 
-    let querylogin = !!this.props.router.location.query.login ? this.props.router.location.query.login : "all";
+
+    const location = this.props.location || {},
+      query = location.query || {},
+      queryLogin = query.login|| 'all'
+
     const loginRows = [];
     for (let i = 0; i < length; i++) {
       const row = countRows[i];
       loginRows.push(
         <li key={i} className={row.login}>
-          <a className={querylogin === row.login ? "current" : ""}
+          <a className={queryLogin === row.login ? "current" : ""}
              onClick={this.onTopActionloginClick.bind(this, row.login)}>
             {row.title + " "}
             <span className="count">
-                          {"(" + numeral(row.count).format('0,0') + ")" }
-                      </span>
+                {"(" + numeral(row.count).format('0,0') + ")" }
+            </span>
           </a>
           {(i < length - 1 ) ? <span>{" |"}</span> : null  }
         </li>)

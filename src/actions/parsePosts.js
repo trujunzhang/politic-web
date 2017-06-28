@@ -32,6 +32,8 @@ let {getPostsParameters, getQueryByType} = require('../parse/parseUtiles').defau
 
 import Posts from '../lib/posts'
 
+const {fromParsePost} = require('../reducers/parseModels')
+
 /**
  * The states were interested in
  */
@@ -146,7 +148,7 @@ async function _loadPostsPaginationDashboard(listTask: Any, listId: string, term
   })
 
   const payload = {
-    list: results,
+      list: (results||[]).map(fromParseUser),
     listTask,
     listId,
     limit,

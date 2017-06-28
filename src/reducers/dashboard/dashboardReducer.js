@@ -57,8 +57,7 @@ function dashboardReducer(state = initialState, action): State {
 
       const {list, listTask, listId, limit, countKeys} = action.payload
 
-      const results = list.map(fromParsePost)
-
+      const results = list
       return {
         results,
         pageIndex: listTask.pageIndex + 1,
