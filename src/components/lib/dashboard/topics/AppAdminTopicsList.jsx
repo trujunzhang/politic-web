@@ -3,7 +3,17 @@ import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import {Link} from 'react-router'
 import Users from '../../../../lib/users'
-import {withRouter} from 'react-router';
+import {withRouter} from 'react-router'
+
+
+const {loadTopicsPaginationDashboard} = require('../../../../actions').default
+
+const {
+  DASHBOARD_LOADED_PAGINATION
+} = require('../../../../lib/constants').default
+
+var {convertToObject} = require('../../../../lib/utils')
+
 
 class AppAdminTopicsList extends Component {
 
@@ -12,6 +22,36 @@ class AppAdminTopicsList extends Component {
 
     this.state = this.initialState = {};
 
+  }
+
+
+  constructor(props) {
+    super(props);
+
+    this.state = this.initialState = {};
+  }
+
+
+  componentDidMount() {
+    this.loadMore()
+  }
+
+  loadMore() {
+    const {location} = this.props,
+      terms = {
+        ...location.query,
+        listId: 'admin.users.list',
+        limit: 10
+      }
+    const countKeys = [
+      "allCount",
+      "publishCount",
+      "filterCount",
+      "trashCount",
+      "tableCount"
+    ]
+    const nextDashboard = convertToObject(this.props.dashboard)
+    this.props.dispatch(loadTopicsPaginationDashboard(nextDashboard, terms.listId, terms))
   }
 
   renderRowTitleWithAction(topic, index) {
@@ -27,14 +67,10 @@ class AppAdminTopicsList extends Component {
                   className="post-state">{status + (index < topicStatus.length - 1 ? ", " : "")}</span>
           )))}
         </strong>
-        <Telescope.components.AppAdminTopicItemAction actionEvent={this.onRowItemActionEventClick.bind(this)}
-                                                      topic={topic}/>
+        <Telescope.components.AppAdminTopicItemAction
+          topic={topic}/>
       </td>
     )
-  }
-
-  onCheckIdsChanged(checkIds) {
-    this.setState({checkIds: checkIds})
   }
 
   renderRowForCount(item, index) {
@@ -71,7 +107,6 @@ class AppAdminTopicsList extends Component {
         {name: "Count", field: "withCount", tag: "count"},
       ]
     };
-    const countsProps = this.context.messages.appManagement.getAllTopicsCountsProps(this.props);
     return (
       < Telescope.components.AdminTables
         data={data}
@@ -87,4 +122,18 @@ class AppAdminTopicsList extends Component {
   }
 }
 
-export default withRouter(AppAdminTopicsList)
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+var {connect} = require('react-redux')
+
+function select(store) {
+  return {
+    dashboard: store.dashboard
+  }
+}
+
+export default connect(select)(AppAdminTopicsList)
