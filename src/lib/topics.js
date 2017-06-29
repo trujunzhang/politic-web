@@ -1,8 +1,13 @@
-import Telescope from '../components/lib/index';
-import React from 'react';
+import Telescope from './settings'
+
 let _ = require('underscore');
 const Topics = {};
 
+/**
+ * @summary Topics config namespace
+ * @type {Object}
+ */
+Topics.config = {};
 
 Topics.config.STATUS_APPROVED = 1;
 Topics.config.STATUS_DELETED = 2;
