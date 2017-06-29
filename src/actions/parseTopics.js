@@ -27,13 +27,13 @@ const Parse = require('parse')
 
 import type {ThunkAction} from './types'
 
-let {ParseFolder, ParseUser} = require('../parse/objects').default
+let {ParseFolder, ParseTopic} = require('../parse/objects').default
 let {getUsersParameters, getQueryByType} = require('../parse/parseUtiles').default
 
 import Users from '../lib/users'
 
 
-const {fromParseUser} = require('../reducers/parseModels')
+const {fromParseTopic} = require('../reducers/parseModels')
 
 /**
  * The states were interested in
@@ -53,13 +53,13 @@ async function _loadTopicsPaginationDashboard(listTask: Any, listId: string, ter
   let dashboardQuery = getQueryByType('USERS')
   let objectsQuery = getUsersParameters(terms)
 
-  let totalCount = await  new Parse.Query(ParseUser).count()
+  let totalCount = await  new Parse.Query(ParseTopic).count()
 
   let allCount = totalCount
-  let adminCount = await  new Parse.Query(ParseUser).equalTo("isAdmin", true).count()
-  let twitterCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
-  let facebookCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
-  let emailCount = await  new Parse.Query(ParseUser).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
+  let adminCount = await  new Parse.Query(ParseTopic).equalTo("isAdmin", true).count()
+  let twitterCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
+  let facebookCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
+  let emailCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
 
   let tableCount = await  objectsQuery.count()
 
@@ -84,7 +84,7 @@ async function _loadTopicsPaginationDashboard(listTask: Any, listId: string, ter
 
 
   const payload = {
-    list: (results || []).map(fromParseUser),
+    list: (results || []).map(fromParseTopic),
     listTask,
     listId,
     limit,
@@ -102,7 +102,7 @@ async function _loadTopicsPaginationDashboard(listTask: Any, listId: string, ter
   ])
 }
 
-function loadUsersPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
+function loadTopicsPaginationDashboard(listTask: Any, listId: string, terms: Any): ThunkAction {
   return (dispatch) => {
     const action = _loadTopicsPaginationDashboard(listTask, listId, terms)
 
@@ -118,5 +118,4 @@ function loadUsersPaginationDashboard(listTask: Any, listId: string, terms: Any)
 
 export default {
   loadTopicsPaginationDashboard
-
 }
