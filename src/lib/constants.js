@@ -1,6 +1,12 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+  // Parse Object
+  PARSE_USERS:null,
+  PARSE_TOPICS:null,
+  PARSE_POSTS:null,
+  PARSE_COMMENTS:null,
+
   // Login UI
   LOGIN_FORM_TYPE_MAIN: null,
   LOGIN_FORM_TYPE_LOGIN: null,

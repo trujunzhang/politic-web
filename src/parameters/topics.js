@@ -13,7 +13,7 @@ const {
   USERPROFILE_TYPE_FOLDER_LIST
 } = require('../lib/constants').default
 
-export default class PostsParameters {
+export default class TopicsParameters {
   constructor(query: Parse.Query) {
     this.query = query
   }

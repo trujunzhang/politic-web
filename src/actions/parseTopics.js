@@ -28,7 +28,7 @@ const Parse = require('parse')
 import type {ThunkAction} from './types'
 
 let {ParseFolder, ParseTopic} = require('../parse/objects').default
-let {getUsersParameters, getQueryByType} = require('../parse/parseUtiles').default
+let {getTopicsParameters, getQueryByType} = require('../parse/parseUtiles').default
 
 import Users from '../lib/users'
 
