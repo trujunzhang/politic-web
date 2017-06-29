@@ -2,15 +2,10 @@ import React, {Component} from 'react'
 import Users from '../../../../lib/users'
 import Folders from '../../../../lib/folder'
 
-const {loadUserFolders} = require('../../../../actions').default
 
 class CollectionsResult extends Component {
 
   componentDidMount() {
-    // const nextListTask = this.state.listTask
-    // nextListTask['ready'] = false
-    // this.setState({listTask: nextListTask})
-    // this.props.dispatch(loadUserFolders(nextListTask, this.props.listId, this.props.terms))
   }
 
   render() {
@@ -65,7 +60,7 @@ class CollectionsResult extends Component {
  *
  * Redux
  */
-var {connect} = require('react-redux')
+let {connect} = require('react-redux')
 
 
 /**

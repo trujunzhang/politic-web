@@ -52,7 +52,7 @@ class UserLoginPopup extends Component {
               toggleEvent={this.switchFormState.bind(this)}/>
           </div>
         )
-      case LOGIN_FORM_TYPE_LOGIN: 
+      case LOGIN_FORM_TYPE_LOGIN:
         return (
           <div className='tcomb_panel'>
             <Telescope.components.UserEmailSignIn
@@ -96,7 +96,7 @@ class UserLoginPopup extends Component {
  *
  * Redux
  */
-var {connect} = require('react-redux')
+let {connect} = require('react-redux')
 
 import * as authActions from '../../../../reducers/auth/authActions'
 import { bindActionCreators } from 'redux'

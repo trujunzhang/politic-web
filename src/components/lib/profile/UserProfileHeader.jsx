@@ -8,7 +8,7 @@ import Avatar from 'react-avatar'
 import {Link} from 'react-router'
 
 class UserProfileHeader extends Component {
-  
+
   renderTwitterIcon(userName) {
     return (
       <a className="twitter_3_mOY" href={'https://twitter.com/' + userName} rel="user-twitter" target="_blank">
@@ -94,7 +94,7 @@ class UserProfileHeader extends Component {
  *
  * Redux
  */
-var {connect} = require('react-redux')
+let {connect} = require('react-redux')
 
 function select(store) {
   return {
