@@ -2,7 +2,7 @@ import Telescope from '../../index'
 import React, {Component} from 'react'
 import moment from 'moment'
 
-var {convertToObject} = require('../../../../lib/utils')
+let {convertToObject} = require('../../../../lib/utils')
 
 class AdminTables extends Component {
 

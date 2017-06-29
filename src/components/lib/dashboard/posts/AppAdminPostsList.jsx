@@ -9,7 +9,7 @@ const {
   DASHBOARD_LOADED_PAGINATION
 } = require('../../../../lib/constants').default
 
-var {convertToObject} = require('../../../../lib/utils')
+let {convertToObject} = require('../../../../lib/utils')
 
 class AppAdminPostsList extends Component {
 

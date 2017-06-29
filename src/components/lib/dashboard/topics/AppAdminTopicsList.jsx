@@ -12,18 +12,10 @@ const {
   DASHBOARD_LOADED_PAGINATION
 } = require('../../../../lib/constants').default
 
-var {convertToObject} = require('../../../../lib/utils')
+let {convertToObject} = require('../../../../lib/utils')
 
 
 class AppAdminTopicsList extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = this.initialState = {};
-
-  }
-
 
   constructor(props) {
     super(props);
