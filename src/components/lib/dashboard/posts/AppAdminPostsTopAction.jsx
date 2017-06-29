@@ -19,9 +19,6 @@ class AppAdminPostsTopAction extends Component {
     }
   }
 
-  componentDidMount() {
-    // this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
-  }
 
   onSearchChange(e) {
     let value = e.target.value

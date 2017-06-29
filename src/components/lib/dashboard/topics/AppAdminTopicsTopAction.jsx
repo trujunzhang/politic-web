@@ -5,6 +5,7 @@ import {Link} from 'react-router'
 import Users from '../../../../lib/users'
 import {withRouter} from 'react-router';
 
+let _ = require('underscore')
 let numeral = require('numeral');
 
 class AppAdminTopicsTopAction extends Component {
@@ -12,8 +13,11 @@ class AppAdminTopicsTopAction extends Component {
   constructor(props) {
     super(props);
 
+    const location = props.location || {},
+      query = location.query || {}
+
     this.state = this.initialState = {
-      query: this.props.location.query.query ? this.props.location.query.query : '',
+      query: query.query || ''
     };
     this.onSearchChange = this.onSearchChange.bind(this);
   }
@@ -24,24 +28,24 @@ class AppAdminTopicsTopAction extends Component {
 
     const appManagement = this.context.messages.appManagement;
     const router = this.props.router;
-    this.context.messages.delayEvent(function () {
-      appManagement.appendQuery(router, "query", value);
-    }, 400);
+    // this.context.messages.delayEvent(function () {
+    //   appManagement.appendQuery(router, "query", value);
+    // }, 400);
   }
 
   onTopActionStatusClick(status) {
     this.setState({query: ""});
     this.props.toggleEvent();
-    this.context.messages.appManagement.pushAdminFilterStatus(this.props.router, "topics", status);
+    // this.context.messages.appManagement.pushAdminFilterStatus(this.props.router, "topics", status);
   }
 
   getStatusRows() {
-    let allCount = (this.props.allCount ? this.props.allCount : 0);
-    let trashCount = (this.props.trashCount ? this.props.trashCount : 0);
+    let allCount = (this.props.allCount || 0);
+    let trashCount = (this.props.trashCount || 0);
     const rows = [
       {title: "All", status: "all", count: allCount},
-      {title: "Published", status: "publish", count: (this.props.publishCount ? this.props.publishCount : 0)},
-      {title: "Filtered", status: "filter", count: (this.props.filterCount ? this.props.filterCount : 0)},
+      {title: "Published", status: "publish", count: (this.props.publishCount || 0)},
+      {title: "Filtered", status: "filter", count: (this.props.filterCount || 0)},
       {title: "Trash", status: "trash", count: trashCount},
     ];
 
@@ -63,8 +67,8 @@ class AppAdminTopicsTopAction extends Component {
           <a className={queryStatus === row.status ? "current" : ""}
              onClick={this.onTopActionStatusClick.bind(this, row.status)}>{row.title + " "}
             <span className="count">
-                          {"(" + numeral(row.count).format('0,0') + ")" }
-                      </span>
+              {"(" + numeral(row.count).format('0,0') + ")" }
+            </span>
           </a>
           {(i < length - 1 ) ? <span>{" |"}</span> : null  }
         </li>)

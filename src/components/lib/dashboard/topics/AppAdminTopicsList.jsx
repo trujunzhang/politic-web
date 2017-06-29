@@ -87,6 +87,10 @@ class AppAdminTopicsList extends Component {
     )
   }
 
+  listActionEvent() {
+
+  }
+
   render() {
     const data = {
       selectAll: true,
