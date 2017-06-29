@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Messages from '../../../../lib/users';
 import Users from "../../../../lib/users";
 
-var Dimensions = require('react-dimensions');
+let Dimensions = require('react-dimensions');
 
 class MessagesListPopover extends Component {
 

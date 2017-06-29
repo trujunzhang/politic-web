@@ -1,4 +1,4 @@
-var Users = require('./users').default
+let Users = require('./users').default
 
 /**
  * @summary Users.groups object

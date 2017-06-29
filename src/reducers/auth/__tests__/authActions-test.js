@@ -31,7 +31,7 @@ const mockStore = configureStore(middlewares)
  * ## Class under test
  *
  */
-var actions = require('../authActions')
+let actions = require('../authActions')
 
 /**
  * ## Imports

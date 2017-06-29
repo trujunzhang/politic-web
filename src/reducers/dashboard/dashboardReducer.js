@@ -116,9 +116,9 @@ function dashboardReducer(state = initialState, action): State {
      * Set all the field values from the payload
      */
     case DASHBOARD_RESET:
-      var form = JSON.parse(action.payload).auth.form
+      let form = JSON.parse(action.payload).auth.form
 
-      var next = state.setIn(['form', 'state'], form.state)
+      let next = state.setIn(['form', 'state'], form.state)
         .setIn(['form', 'disabled'], form.disabled)
 
       return next

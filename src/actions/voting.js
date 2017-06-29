@@ -26,7 +26,7 @@
 
 const Parse = require('parse')
 
-var _ = require('underscore')
+let _ = require('underscore')
 
 import type {Action, ThunkAction} from './types'
 

@@ -152,7 +152,7 @@ class UserCollectionsPopover extends Component {
     let userId = this.props.currentUser.id
 
     this.setState({errorMessage: null})
-    var errorMessage = null
+    let errorMessage = null
 
     try {
       await Promise.race([

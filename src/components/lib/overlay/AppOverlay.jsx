@@ -1,7 +1,7 @@
 import Telescope from '../index'
 import React, {Component} from 'react'
 
-var {Modal} = require('../../vendor/react-overlays')
+let {Modal} = require('../../vendor/react-overlays')
 
 const {dismissPopModel} = require('../../../actions').default
 

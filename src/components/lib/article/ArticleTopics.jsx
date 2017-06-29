@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Topics from '../../../lib/topics'
 
 import Select from 'react-select'
-var _ = require('underscore')
+let _ = require('underscore')
 
 class ArticleTopics extends Component {
 

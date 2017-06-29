@@ -130,7 +130,7 @@ Posts.getDateSelectors = function () {
   let currentYear = REFERENCE.format('YYYY')
 
   const dateSelectors = []
-  for (var i = 0; i < size; i++) {
+  for (let i = 0; i < size; i++) {
     const date = REFERENCE.clone().subtract(i, 'months')
     const queryString = moment(date).format('YYYY-MM')
     const year = moment(date).format('YYYY')

@@ -48,14 +48,14 @@ export default class PostsParameters {
 
     if (terms.before && terms.after) { // Calendar posts
 
-      var mAfter = moment(terms.after, 'YYYY-MM-DD')
-      var startOfDay = mAfter.startOf('day')
+      let mAfter = moment(terms.after, 'YYYY-MM-DD')
+      let startOfDay = mAfter.startOf('day')
 
       // from the start of the date (inclusive)
       this.query.greaterThanOrEqualTo('postedAt', startOfDay.toDate())
 
-      var mBefore = moment(terms.before, 'YYYY-MM-DD')
-      var endOfDay = mBefore.endOf('day')
+      let mBefore = moment(terms.before, 'YYYY-MM-DD')
+      let endOfDay = mBefore.endOf('day')
 
       // till the start of tomorrow (non-inclusive)
       this.query.lessThan('postedAt', endOfDay.toDate())

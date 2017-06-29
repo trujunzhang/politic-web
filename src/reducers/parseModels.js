@@ -1,4 +1,4 @@
-var slugify = require('slugify')
+let slugify = require('slugify')
 let _ = require('underscore')
 
 export type Cloudinary = {

@@ -20,7 +20,7 @@ class AppAdminUsersAction extends Component {
   }
 
   onActionTypeChange(event) {
-    var value = event.target.value;
+    let value = event.target.value;
     this.setState({actionType: value});
   }
 

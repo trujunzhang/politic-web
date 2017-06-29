@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 import { withRouter } from 'react-router'
 
-var {showDetailedPagePath} = require('../../../../lib/link')
+let {showDetailedPagePath} = require('../../../../lib/link')
 const {pushOverlayDetailedPost} = require('../../../../actions').default
 
 class PostsRelatedItem extends Component {

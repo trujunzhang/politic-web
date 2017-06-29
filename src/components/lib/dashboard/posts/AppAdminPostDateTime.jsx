@@ -2,7 +2,7 @@ import Telescope from '../../index'
 import React, { Component } from 'react'
 import moment from 'moment'
 
-var _ = require('underscore')
+let _ = require('underscore')
 
 class AppAdminPostDateTime extends Component {
 

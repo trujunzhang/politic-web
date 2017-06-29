@@ -22,7 +22,7 @@ class UserLoginMain extends Component {
 
     let loginEvent = (type === 'twitter') ? logInWithTwitter : logInWithFacebook
 
-    var errorMessage = null
+    let errorMessage = null
 
     try {
       await Promise.race([

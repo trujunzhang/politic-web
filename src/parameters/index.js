@@ -1,4 +1,4 @@
-var Parameters = {}
+let Parameters = {}
 
 Parameters.Posts = require('./posts').default
 Parameters.Users = require('./users').default

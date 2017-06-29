@@ -1,7 +1,7 @@
 import Telescope from '../index'
 import React, {Component} from 'react'
 
-var _ = require('underscore')
+let _ = require('underscore')
 
 import moment from 'moment'
 

@@ -43,7 +43,7 @@ class UserEmailSignUp extends Component {
     let password = this.props.auth.form.fields.password
 
     this.setState({errorMessage: null})
-    var errorMessage = null
+    let errorMessage = null
 
     this.props.actions.signupRequest()
 

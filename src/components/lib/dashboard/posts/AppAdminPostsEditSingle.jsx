@@ -2,7 +2,7 @@ import Telescope from '../../index'
 import React, { Component } from 'react'
 import Posts from '../../../../lib/posts'
 
-var _ = require('underscore')
+let _ = require('underscore')
 
 class AppAdminPostsEditSingle extends Component {
 

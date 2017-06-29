@@ -1,6 +1,6 @@
 import Telescope from '../index'
 import React, {Component} from 'react'
-var Users = require('../../../lib/users').default
+let Users = require('../../../lib/users').default
 import Avatar from 'react-avatar'
 
 const {pushModel} = require('../../../actions').default

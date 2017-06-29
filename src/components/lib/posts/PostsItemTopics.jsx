@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 
-var {pushForTopic} = require('../../../lib/link')
+let {pushForTopic} = require('../../../lib/link')
 
 class PostsItemTopics extends Component {
 

@@ -52,7 +52,7 @@ class AppAdminPostsTopAction extends Component {
       query = location.query || {},
       queryStatus = query.status || 'all'
 
-    var length = 0
+    let length = 0
     _.forEach(rows, function (row) {
       if (row.count !== 0 || row.title === 'All') {
         length++

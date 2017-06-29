@@ -29,11 +29,11 @@
 // ========================
 const Parse = require('parse')
 
-var OAuth2 = require('oauth').OAuth2;
+let OAuth2 = require('oauth').OAuth2;
 
-var Twitter = require('twitter-node-client').Twitter;
+let Twitter = require('twitter-node-client').Twitter;
 //Get this data from your twitter apps dashboard
-var twitterAPI = {
+let twitterAPI = {
   'consumerKey': 'rkBigq6to0XYLpn81HwfkvweJ',
   'consumerSecret': '30D0x2SOCHaU5bzyRWPfw8DCRleOFVyIRmQjRBfzvk4QV2xz6N',
   'accessToken': '2940065714-kE1sBFQj1KCG7TI7UzBGTwgDsTR7JwOM8alLVH3',
@@ -48,8 +48,8 @@ async function ParseTwitterLogin(scope): Promise {
 
 
     //TWITTER AUTHENICATION
-    var token = null;
-    var oauth2 = new OAuth2(
+    let token = null;
+    let oauth2 = new OAuth2(
       twitterAPI.consumerKey,
       twitterAPI.consumerSecret,
       'https://api.twitter.com/',
@@ -161,7 +161,7 @@ const {
   ADDED_NEW_FOLDER_WITH_POST
 } = require('../lib/constants').default
 
-var slugify = require('slugify')
+let slugify = require('slugify')
 // const FacebookSDK = require('FacebookSDK')
 const {updateInstallation} = require('./installation')
 

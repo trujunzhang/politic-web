@@ -21,7 +21,7 @@ class UserLoginPopup extends Component {
 
     const {comp} = this.props
     const {model} = comp
-    var _formState = LOGIN_FORM_TYPE_MAIN
+    let _formState = LOGIN_FORM_TYPE_MAIN
     if (model && Object.keys(model).indexOf('formState') !== -1) {
       _formState = model['formState']
     }

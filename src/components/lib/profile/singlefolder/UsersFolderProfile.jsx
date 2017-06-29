@@ -4,7 +4,7 @@ import Posts from '../../../../lib/posts'
 import Users from '../../../../lib/users'
 import Folders from '../../../../lib/folder'
 
-var _ = require('underscore')
+let _ = require('underscore')
 import {withRouter} from 'react-router';
 
 

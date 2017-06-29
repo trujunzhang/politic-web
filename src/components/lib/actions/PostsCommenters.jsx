@@ -5,7 +5,7 @@ import Users from '../../../lib/users'
 
 import {withRouter} from 'react-router'
 
-var {showDetailedPagePath} = require('../../../lib/link')
+let {showDetailedPagePath} = require('../../../lib/link')
 const {pushOverlayDetailedPost} = require('../../../actions').default
 
 class PostsCommenters extends Component {

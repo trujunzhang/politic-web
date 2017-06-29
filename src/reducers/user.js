@@ -40,7 +40,7 @@ const {
 const {Folder, fromParseFolder} = require('./parseModels')
 
 import type {Action} from '../actions/types'
-var slugify = require('slugify')
+let slugify = require('slugify')
 
 export type State = {
   isLoggedIn: boolean,

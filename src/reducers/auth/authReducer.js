@@ -147,9 +147,9 @@ function authReducer (state = initialState, action) {
      * Set all the field values from the payload
      */
     case SET_STATE:
-      var form = JSON.parse(action.payload).auth.form
+      let form = JSON.parse(action.payload).auth.form
 
-      var next = state.setIn(['form', 'state'], form.state)
+      let next = state.setIn(['form', 'state'], form.state)
         .setIn(['form', 'disabled'], form.disabled)
         .setIn(['form', 'error'], form.error)
         .setIn(['form', 'isValid'], form.isValid)

@@ -73,7 +73,7 @@ function paginationReducer(state: State = initialState, action): State {
         listId = action.payload.listId,
         postId = post.id
 
-      var nextTask = state.get(listId),
+      let nextTask = state.get(listId),
         results = nextTask.get('results')
 
       let list = List(results)

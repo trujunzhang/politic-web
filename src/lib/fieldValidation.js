@@ -140,7 +140,7 @@ export default function fieldValidation(state, action) {
          * set the form field error
          */
         case ('passwordAgain'):
-            var validPasswordAgain =
+            let validPasswordAgain =
                 _.isUndefined(validate({
                     password: state.form.fields.password,
                     confirmPassword: value

@@ -49,7 +49,7 @@ const Form = Record({
  * ## InitialState
  * The form is set
  */
-var InitialState = Record({
+let InitialState = Record({
   form: new Form()
 })
 export default InitialState

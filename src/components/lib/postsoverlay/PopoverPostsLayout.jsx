@@ -2,7 +2,7 @@ import Telescope from '../../lib'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
-var {cleanUpQuery} = require('../../../lib/link')
+let {cleanUpQuery} = require('../../../lib/link')
 const {resetOverlayDetailedPosts} = require('../../../actions').default
 
 class PopoverPostsLayout extends Component {
