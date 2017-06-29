@@ -24,6 +24,7 @@
 
 const parsePostsActions = require('./parsePosts').default
 const parseUsersActions = require('./parseUsers').default
+const parseTopicsActions = require('./parseTopics').default
 const loginActions = require('./login').default
 const voingtActions = require('./voting').default
 const shipmentActions = require('./shipment').default
@@ -32,6 +33,7 @@ const golbalActions = require('./global').default
 export default {
   ...parsePostsActions,
   ...parseUsersActions,
+  ...parseTopicsActions,
   ...loginActions,
   ...voingtActions,
   ...shipmentActions,
