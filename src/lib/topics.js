@@ -9,9 +9,9 @@ const Topics = {};
  */
 Topics.config = {};
 
-Topics.config.STATUS_APPROVED = 1;
-Topics.config.STATUS_DELETED = 2;
-Topics.config.STATUS_FILTER = 3;
+Topics.config.STATUS_APPROVED = 1
+Topics.config.STATUS_DELETED = 2
+Topics.config.STATUS_FILTER = 3
 
 Topics.config.PUBLISH_STATUS = [
   Topics.config.STATUS_APPROVED,
