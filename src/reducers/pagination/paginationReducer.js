@@ -26,7 +26,6 @@ const {
   POSTS_VOTING_DONE
 } = require('../../lib/constants').default
 
-const {fromParsePost} = require('../parseModels')
 
 /**
  * ## authReducer function

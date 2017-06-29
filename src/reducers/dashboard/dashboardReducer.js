@@ -21,8 +21,6 @@ const {
   DASHBOARD_EDIT_SINGLE_ROW_CANCEL
 } = require('../../lib/constants').default
 
-const {fromParsePost} = require('../parseModels')
-
 const {Map} = require('immutable')
 
 const initialState = {
@@ -57,9 +55,8 @@ function dashboardReducer(state = initialState, action): State {
 
       const {list, listTask, listId, limit, countKeys} = action.payload
 
-      const results = list
       return {
-        results,
+        results: list,
         pageIndex: listTask.pageIndex + 1,
         limit: state.limit,
         ready: true,
