@@ -48,25 +48,7 @@ const {
   PARSE_COMMENTS,
 } = require('../lib/constants').default
 
-function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
-  return (dispatch) => {
-    return query.get(objectId, {
-      success: (object) => {
-        // Flow can't guarantee {type, list} is a valid action
-        const payload = {
-          objectId: objectId,
-          object: object
-        }
-        dispatch({type, payload})
-      },
-      error: (error) => {
-        debugger
-      }
-    })
 
-  }
-
-}
 
 function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10, beforeQuery = null): ThunkAction {
   return (dispatch) => {
@@ -185,12 +167,6 @@ function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any)
 }
 
 export default {
-  loadUserProfile: (userId: string, slug: string): ThunkAction => {
-    let pageQuery = new Parse.Query(ParseUser).equalTo('objectId', userId)
-
-    return loadParseObject(USERPROFILE_LOADED, pageQuery, userId)
-  },
-
   loadUserFolders: (userId: string): ThunkAction => {
     let query = new Parse.Query(ParseFolder).equalTo('user', Parse.User.createWithoutData(userId))
 
@@ -208,9 +184,6 @@ export default {
     })
   },
 
-  loadPostPage: (objectId: string): ThunkAction => {
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getQueryByType(), objectId)
-  },
 
   statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
     const {pageIndex, limit} = listTask

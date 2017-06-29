@@ -22,6 +22,7 @@
  * @flow
  */
 
+const parseSingleActions = require('./parseSingle').default
 const parsePostsActions = require('./parsePosts').default
 const parseUsersActions = require('./parseUsers').default
 const parseTopicsActions = require('./parseTopics').default
@@ -31,6 +32,7 @@ const shipmentActions = require('./shipment').default
 const golbalActions = require('./global').default
 
 export default {
+  ...parseSingleActions,
   ...parsePostsActions,
   ...parseUsersActions,
   ...parseTopicsActions,
