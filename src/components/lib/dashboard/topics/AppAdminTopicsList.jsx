@@ -3,6 +3,8 @@ import React, {Component} from 'react'
 import Posts from '../../../../lib/posts'
 import {Link} from 'react-router'
 import Users from '../../../../lib/users'
+import Topics from '../../../../lib/topics'
+
 import {withRouter} from 'react-router'
 
 
@@ -32,7 +34,7 @@ class AppAdminTopicsList extends Component {
     const {location} = this.props,
       terms = {
         ...location.query,
-        listId: 'admin.users.list',
+        listId: 'admin.topics.list',
         limit: 10
       }
     const countKeys = [
@@ -100,11 +102,11 @@ class AppAdminTopicsList extends Component {
       rows: [
         {name: "Title", field: "withAction", tag: "title", sort: true, primary: true},
         {name: "Slug", field: "slug", tag: "slug"},
-        {name: "Count", field: "withCount", tag: "count"},
+        // {name: "Count", field: "withCount", tag: "count"},
       ]
     };
     return (
-      < Telescope.components.AdminTables
+      <Telescope.components.AdminTables
         data={data}
         renderRowForTitleWithAction={this.renderRowTitleWithAction.bind(this)}
         renderRowForCount={this.renderRowForCount.bind(this)}

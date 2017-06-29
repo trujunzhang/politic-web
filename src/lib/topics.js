@@ -25,5 +25,20 @@ Topics.config.STATUS_TITLES = [
   'Filter'
 ];
 
+Topics.getTopicStatus = (topic, state) => {
+  let statusArray = [];
+  if (topic.active) {
+    statusArray.push("active");
+  }
+  let topicStatus = Topics.config.STATUS_TITLES[topic.status];
+  if (state.toLowerCase() !== topicStatus.toLowerCase()) {
+    if (topic.status !== Topics.config.STATUS_APPROVED) {
+      statusArray.push(topicStatus);
+    }
+  }
+
+  return statusArray;
+};
+
 
 export default Topics
