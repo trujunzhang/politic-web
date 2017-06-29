@@ -48,52 +48,6 @@ const {
   PARSE_COMMENTS,
 } = require('../lib/constants').default
 
-
-function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10, beforeQuery = null): ThunkAction {
-  return (dispatch) => {
-    let queryFind = (() => {
-      let _query = query
-      if (!!beforeQuery) {
-        _query = beforeQuery(_query)
-      }
-      return _query.find({
-        success: (list) => {
-          // debugger
-          // debugger
-          // Flow can't guarantee {type, list} is a valid action
-          const payload = {
-            list: list,
-            listTask: listTask,
-            listId: listId,
-            limit: limit,
-            totalCount: totalCount
-          }
-          dispatch({type, payload})
-        },
-        error: (error) => {
-          debugger
-        }
-      })
-    })
-
-    let totalCount = 0
-    return query.count({
-      success: function (count) {
-        totalCount = count
-      },
-      error: function (error) {
-        debugger
-        console.log('failure')
-      }
-    }).then(() => {
-      // debugger
-      return queryFind()
-    })
-
-  }
-}
-
-
 async function _loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any): Promise<Array<Action>> {
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
@@ -210,17 +164,6 @@ function loadPostsList(listTask: Any, listId: string, terms: Any, type: string =
     )
     return action
   }
-}
-
-function loadPostsListxxx(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction {
-  const {pageIndex, limit} = listTask
-  const skipCount = (pageIndex - 1) * limit
-
-  let postQuery = getPostsParameters(terms)
-
-  return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
-    return query.skip(skipCount).limit(li)
-  })
 }
 
 export default {
