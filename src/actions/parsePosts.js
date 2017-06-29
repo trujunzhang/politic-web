@@ -224,13 +224,6 @@ function loadPostsListxxx(listTask: Any, listId: string, terms: Any, type: strin
 }
 
 export default {
-  loadUserFolders: (userId: string): ThunkAction => {
-    let query = new Parse.Query(ParseFolder).equalTo('user', Parse.User.createWithoutData(userId))
-
-    return loadParseQuery(LOADED_USER_FOLDERS, query)
-  },
-
   loadPostsList,
   loadPostsPaginationDashboard
-
 }
