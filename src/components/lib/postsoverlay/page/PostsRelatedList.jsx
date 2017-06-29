@@ -1,7 +1,7 @@
 import Telescope from '../../../lib'
 import React, { Component } from 'react'
 
-const {loadPosts} = require('../../../../actions').default
+const {loadPostsList} = require('../../../../actions').default
 
 const {
   OVERLAY_LOADED_RELATED_POSTS
@@ -19,7 +19,7 @@ class PostsRelatedList extends Component {
     const terms = {
       related: {id: this.props.post.id, author: this.props.post.author}
     }
-    this.props.dispatch(loadPosts(listTask, 'posts.related.list', terms, OVERLAY_LOADED_RELATED_POSTS))
+    this.props.dispatch(loadPostsList(listTask, 'posts.related.list', terms, OVERLAY_LOADED_RELATED_POSTS))
   }
 
   render () {

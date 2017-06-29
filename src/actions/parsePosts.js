@@ -49,7 +49,6 @@ const {
 } = require('../lib/constants').default
 
 
-
 function loadParseQuery(type: string, query: Parse.Query, listTask: Any = {}, listId: string = 'list_id', limit: int = 10, beforeQuery = null): ThunkAction {
   return (dispatch) => {
     let queryFind = (() => {
@@ -166,6 +165,21 @@ function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any)
   }
 }
 
+async function _loadPostsList(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): Promise<Array<Action>> {
+
+}
+
+function loadPostsList(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction {
+  const {pageIndex, limit} = listTask
+  const skipCount = (pageIndex - 1) * limit
+
+  let postQuery = getPostsParameters(terms)
+
+  return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
+    return query.skip(skipCount).limit(li)
+  })
+}
+
 export default {
   loadUserFolders: (userId: string): ThunkAction => {
     let query = new Parse.Query(ParseFolder).equalTo('user', Parse.User.createWithoutData(userId))
@@ -173,27 +187,7 @@ export default {
     return loadParseQuery(LOADED_USER_FOLDERS, query)
   },
 
-  loadPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    const skipCount = (pageIndex - 1) * limit
-
-    let postQuery = getPostsParameters(terms)
-
-    return loadParseQuery(type, postQuery, listTask, listId, limit, function (query) {
-      return query.skip(skipCount).limit(li)
-    })
-  },
-
-
-  statisticPosts: (listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction => {
-    const {pageIndex, limit} = listTask
-    const skipCount = (pageIndex - 1) * limit
-
-    let postQuery = getPostsParameters(terms)
-
-    return loadParseQuery(type, postQuery.skip(skipCount).limit(limit), listTask, listId, limit)
-  },
-
+  loadPostsList,
   loadPostsPaginationDashboard
 
 }

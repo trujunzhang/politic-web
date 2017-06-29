@@ -1,8 +1,6 @@
 import Telescope from '../../index'
 import React, {Component} from 'react'
 
-const {loadPosts} = require('../../../../actions').default
-
 let _ = require('underscore')
 let numeral = require('numeral')
 

@@ -63,7 +63,7 @@ PostsDaily.propTypes = {
 }
 
 PostsDaily.defaultProps = {
-  days: 3,
+  days: 1,
   increment: 3
 }
 

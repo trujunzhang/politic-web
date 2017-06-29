@@ -2,7 +2,7 @@ import Telescope from '../index'
 import React, {Component} from 'react'
 import Posts from '../../../lib/posts'
 
-const {loadPosts} = require('../../../actions').default
+const {loadPostsList} = require('../../../actions').default
 const {byListId} = require('../../filter/filterPosts').default
 
 class PostsList extends Component {
@@ -30,7 +30,7 @@ class PostsList extends Component {
     const nextListTask = this.state.listTask
     nextListTask['ready'] = false
     this.setState({listTask: nextListTask})
-    this.props.dispatch(loadPosts(nextListTask, this.props.listId, this.props.terms))
+    this.props.dispatch(loadPostsList(nextListTask, this.props.listId, this.props.terms))
   }
 
   render() {
