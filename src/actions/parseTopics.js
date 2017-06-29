@@ -30,7 +30,7 @@ import type {ThunkAction} from './types'
 let {ParseFolder, ParseTopic} = require('../parse/objects').default
 let {getTopicsParameters, getQueryByType} = require('../parse/parseUtiles').default
 
-import Users from '../lib/users'
+import Topics from '../lib/topics'
 
 
 const {fromParseTopic} = require('../reducers/parseModels')
@@ -60,20 +60,19 @@ async function _loadTopicsPaginationDashboard(listTask: Any, listId: string, ter
   let totalCount = await  new Parse.Query(ParseTopic).count()
 
   let allCount = totalCount
-  let adminCount = await  new Parse.Query(ParseTopic).equalTo("isAdmin", true).count()
-  let twitterCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_TWITTER]).count()
-  let facebookCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_FACEBOOK]).count()
-  let emailCount = await  new Parse.Query(ParseTopic).equalTo("loginType", Users.config.TYPE_TITLES[Users.config.TYPE_EMAIL]).count()
+
+  let publishCount = await  new Parse.Query(ParseTopic).equalTo('status', Topics.config.STATUS_APPROVED).count()
+  let trashCount = await  new Parse.Query(ParseTopic).equalTo('status', Topics.config.STATUS_DELETED).count()
+  let filterCount = await  new Parse.Query(ParseTopic).equalTo('status', Topics.config.STATUS_FILTER).count()
 
   let tableCount = await  objectsQuery.count()
 
   let countKeys = {
     allCount,
     tableCount,
-    adminCount,
-    twitterCount,
-    facebookCount,
-    emailCount
+    publishCount,
+    trashCount,
+    filterCount
   }
 
   let results = await objectsQuery.skip(skipCount).limit(limit).find({
