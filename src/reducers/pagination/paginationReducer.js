@@ -41,7 +41,9 @@ function paginationReducer(state: State = initialState, action): State {
      */
     case LIST_VIEW_LOADED_POSTS: {
       const {list, listTask, listId, limit, totalCount} = action.payload
-      const objects = list.map(fromParsePost)
+      const objects = list
+
+      debugger
 
       let nextTask = state.get(listId)
       if (!!nextTask) {

@@ -166,10 +166,53 @@ function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any)
 }
 
 async function _loadPostsList(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): Promise<Array<Action>> {
+  const {pageIndex, limit} = listTask
+  const skipCount = (pageIndex - 1) * limit
 
+  let objectsQuery = getPostsParameters(terms)
+
+  let totalCount = await  objectsQuery.count()
+
+  let results = await objectsQuery.skip(skipCount).limit(limit).find({
+    success: (list) => {
+      // debugger
+      // Flow can't guarantee {type, list} is a valid action
+    },
+    error: (error) => {
+      debugger
+    }
+  })
+
+  const payload = {
+    list: (results || []).map(fromParsePost),
+    listTask: listTask,
+    listId: listId,
+    limit: limit,
+    totalCount: totalCount
+  }
+
+  const action = {type, payload}
+
+  return Promise.all([
+    Promise.resolve(action)
+  ])
 }
 
 function loadPostsList(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction {
+  return (dispatch) => {
+    const action = _loadPostsList(listTask, listId, terms, type)
+
+    // Loading friends schedules shouldn't block the login process
+    action.then(
+      ([result]) => {
+        dispatch(result)
+      }
+    )
+    return action
+  }
+}
+
+function loadPostsListxxx(listTask: Any, listId: string, terms: Any, type: string = LIST_VIEW_LOADED_POSTS): ThunkAction {
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
