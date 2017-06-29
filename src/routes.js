@@ -102,6 +102,11 @@ const createRoutes = (store) => {
               // http://localhost:3000/management/users
               path: 'users',
               component: Telescope.components.AppAdminUsersList,
+            },
+            {
+              // http://localhost:3000/management/topics
+              path: 'topics',
+              component: Telescope.components.AppAdminTopicsList,
             }
           ]
         },
