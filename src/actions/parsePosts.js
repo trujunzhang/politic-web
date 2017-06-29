@@ -41,7 +41,11 @@ const {
   LIST_VIEW_LOADED_POSTS,
   DASHBOARD_LOADED_PAGINATION,
   OVERLAY_LOADED_POSTS_PAGE,
-  USERPROFILE_LOADED
+  USERPROFILE_LOADED,
+  PARSE_USERS,
+  PARSE_TOPICS,
+  PARSE_POSTS,
+  PARSE_COMMENTS,
 } = require('../lib/constants').default
 
 function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
@@ -148,7 +152,7 @@ async function _loadPostsPaginationDashboard(listTask: Any, listId: string, term
   })
 
   const payload = {
-      list: (results||[]).map(fromParseUser),
+    list: (results || []).map(fromParseUser),
     listTask,
     listId,
     limit,

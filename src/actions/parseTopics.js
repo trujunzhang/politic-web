@@ -42,7 +42,11 @@ const {
   LIST_VIEW_LOADED_POSTS,
   DASHBOARD_LOADED_PAGINATION,
   OVERLAY_LOADED_POSTS_PAGE,
-  USERPROFILE_LOADED
+  USERPROFILE_LOADED,
+  PARSE_USERS,
+  PARSE_TOPICS,
+  PARSE_POSTS,
+  PARSE_COMMENTS,
 } = require('../lib/constants').default
 
 
@@ -50,8 +54,8 @@ async function _loadTopicsPaginationDashboard(listTask: Any, listId: string, ter
   const {pageIndex, limit} = listTask
   const skipCount = (pageIndex - 1) * limit
 
-  let dashboardQuery = getQueryByType('USERS')
-  let objectsQuery = getUsersParameters(terms)
+  let dashboardQuery = getQueryByType(PARSE_TOPICS)
+  let objectsQuery = getTopicsParameters(terms)
 
   let totalCount = await  new Parse.Query(ParseTopic).count()
 
