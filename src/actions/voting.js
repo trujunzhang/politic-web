@@ -49,27 +49,17 @@ const {
 function operatePostsOnItem(post: ParsePost, userId: string, operation: string) {
   let pointers = []
   switch (operation) {
-    case POSTS_UPVOTE:
-      pointers = (post.get('upvoters') || [])
-      pointers.push(ParseUser.createWithoutData(userId))
-      post.set('upvoters', pointers)
+  case POSTS_UPVOTE:
+      post.add('upvoters', ParseUser.createWithoutData(userId))
       break;
     case POSTS_DOWNVOTE:
-      pointers = (post.get('downvoters') || [])
-      pointers.push(ParseUser.createWithoutData(userId))
-      post.set('downvoters', pointers)
+      post.add('downvoters', ParseUser.createWithoutData(userId))
       break;
     case POSTS_UPVOTE_CACEL:
-      pointers = _.filter((post.get('upvoters') || []), function (item) {
-        return item.id !== userId
-      })
-      post.set('upvoters', pointers)
+      post.remove('upvoters', ParseUser.createWithoutData(userId))
       break;
     case POSTS_DOWNVOTE_CACEL:
-      pointers = _.filter((post.get('downvoters') || []), function (item) {
-        return item.id !== userId
-      })
-      post.set('downvoters', pointers)
+      post.remove('downvoters', ParseUser.createWithoutData(userId))
       break;
   }
 
@@ -79,26 +69,16 @@ function operateUsersOnItem(user: ParseUser, postId: string, operation: string) 
   let pointers = []
   switch (operation) {
     case POSTS_UPVOTE:
-      pointers = (user.get('upvotedPosts') || [])
-      pointers.push(ParsePost.createWithoutData(postId))
-      user.set('upvotedPosts', pointers)
+      user.add('upvotedPosts', ParsePost.createWithoutData(postId))
       break;
     case POSTS_DOWNVOTE:
-      pointers = (user.get('downvotedPosts') || [])
-      pointers.push(ParsePost.createWithoutData(postId))
-      user.set('downvotedPosts', pointers)
+      user.add('downvotedPosts', ParsePost.createWithoutData(postId))
       break;
     case POSTS_UPVOTE_CACEL:
-      pointers = _.filter((user.get('upvotedPosts') || []), function (item) {
-        return item.id !== postId
-      })
-      user.set('upvotedPosts', pointers)
+      user.remove('upvotedPosts', ParsePost.createWithoutData(postId))
       break;
     case POSTS_DOWNVOTE_CACEL:
-      pointers = _.filter((user.get('downvotedPosts') || []), function (item) {
-        return item.id !== postId
-      })
-      user.set('downvotedPosts', pointers)
+      user.remove('downvotedPosts', ParsePost.createWithoutData(postId))
       break;
   }
 
