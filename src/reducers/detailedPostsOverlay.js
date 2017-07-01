@@ -48,6 +48,7 @@ const initialState = {
 
 function detailedPostsOverlay (state: State = initialState, action: Action): State {
   if (action.type === OVERLAY_LOADED_POSTS_PAGE) {
+
     let {objectId, object} = action.payload
 
     const nextState = Object.assign({}, state, {
@@ -61,7 +62,7 @@ function detailedPostsOverlay (state: State = initialState, action: Action): Sta
     const {list, listTask, listId, limit, totalCount} = action.payload
 
     const nextState = Object.assign({}, state, {
-      currentRelatedPosts: list.map(fromParsePost),
+      currentRelatedPosts: list,
       isFetchingRelated: false,
     })
     return nextState
