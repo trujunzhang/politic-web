@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router'
 
-let {pushForTopic} = require('../../../lib/link')
 
 class PostsItemTopics extends Component {
 
@@ -22,7 +20,7 @@ class PostsItemTopics extends Component {
           <div>
             <span
               className="button_2I1re smallSize_1da-r secondaryText_PM80d greySolidColor_270pZ solidletiant_2wWrf"
-              onClick={this.onTagClick.bind(this)}>
+              onClick={this.props.onFirstTopicClick}>
               <div className="buttonContainer_wTYxi">{topics[0].name}</div>
             </span>
             {tagsMoreCount === 0 ? null : (
@@ -43,20 +41,6 @@ class PostsItemTopics extends Component {
     return null
   }
 
-  onTagClick(event) {
-    event.preventDefault()
-
-    const {post, router} = this.props,
-      {topics} = post
-
-    if (topics.length > 0) {
-      pushForTopic(router, topics[0])
-    }
-
-    event.stopPropagation()
-  }
-
-
 }
 
-export default withRouter(PostsItemTopics)
+export default PostsItemTopics

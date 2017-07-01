@@ -27,10 +27,7 @@ const {dismissPopModel, resetOverlayDetailedPosts, resetPostsDaily} = require('.
  * https://github.com/reactGo/reactGo/blob/master/app/client.jsx
  */
 function onUpdate () {
-  // debugger
-  if (!!store.getState().detailedPostsOverlay.currentModel) {
-    store.dispatch(resetPostsDaily())
-  }
+   //debugger
   store.dispatch(dismissPopModel())
   // store.dispatch(resetOverlayDetailedPosts())
 

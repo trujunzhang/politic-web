@@ -73,7 +73,6 @@ function resetPostsDaily(): Action {
   return {type: LIST_VIEW_RESET_ALL_POSTS}
 }
 
-
 async function timeout(ms: number): Promise {
   return new Promise((resolve, reject) => {
     setTimeout(() => reject(new Error('Timed out')), ms)
