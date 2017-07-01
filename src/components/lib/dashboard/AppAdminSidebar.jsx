@@ -1,10 +1,10 @@
 import Telescope from '../index'
-import React, { Component } from 'react'
-import { Link } from 'react-router'
+import React, {Component} from 'react'
+import {Link} from 'react-router'
 
 class AppAdminSidebar extends Component {
 
-  render () {
+  render() {
     const {location} = this.props,
       pathname = location.pathname || '',
       type = pathname.replace('/management', '').replace('/', '')
@@ -38,7 +38,9 @@ class AppAdminSidebar extends Component {
         <section className="sidebar admin-sidebar">
           <ul className="sidebar-menu" id="adminmenu">
             {menus1.map((item, index) =>
-              <li key={item.tag} className={'treeview ' + (type === item.tag ? 'active' : '')}>
+              <li key={item.tag}
+                  onClick={this.onSideMenuClick.bind(this)}
+                  className={'treeview ' + (type === item.tag ? 'active' : '')}>
                 <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
@@ -48,7 +50,9 @@ class AppAdminSidebar extends Component {
           </ul>
           <ul className="sidebar-menu" id="adminmenu">
             {menus2.map((item, index) =>
-              <li key={item.tag} className={'treeview ' + (type === item.tag ? 'active' : '')}>
+              <li key={item.tag}
+                  onClick={this.onSideMenuClick.bind(this)}
+                  className={'treeview ' + (type === item.tag ? 'active' : '')}>
                 <Link to={`/management${item.link}`}>
                   <i className={item.icon}/>
                   <span>{item.title}</span>
@@ -60,6 +64,10 @@ class AppAdminSidebar extends Component {
       </aside>
     )
 
+  }
+
+  onSideMenuClick(e) {
+    debugger
   }
 }
 
