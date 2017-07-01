@@ -87,7 +87,7 @@ async function _loadPostsPaginationDashboard(listTask: Any, listId: string, term
   })
 
   const payload = {
-    list: (results || []).map(fromParseUser),
+    list: (results || []).map(fromParsePost),
     listTask,
     listId,
     limit,
@@ -109,7 +109,6 @@ function loadPostsPaginationDashboard(listTask: Any, listId: string, terms: Any)
   return (dispatch) => {
     const action = _loadPostsPaginationDashboard(listTask, listId, terms)
 
-    // Loading friends schedules shouldn't block the login process
     action.then(
       ([result]) => {
         dispatch(result)
