@@ -2,6 +2,8 @@ import Telescope from '../index'
 import React, {Component} from 'react'
 import {Link} from 'react-router'
 
+const {resetDashboard} = require('../../../actions').default
+
 class AppAdminSidebar extends Component {
 
   render() {
@@ -67,8 +69,16 @@ class AppAdminSidebar extends Component {
   }
 
   onSideMenuClick(e) {
-    debugger
+      this.props.dispatch(resetDashboard())
   }
 }
 
-export default AppAdminSidebar
+
+/**
+ * ## Imports
+ *
+ * Redux
+ */
+let {connect} = require('react-redux')
+
+export default connect()(AppAdminSidebar)
