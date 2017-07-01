@@ -39,46 +39,80 @@ const {fromParseUser} = require('../reducers/parseModels')
  * The states were interested in
  */
 const {
-  LIST_VIEW_LOADED_POSTS,
-  DASHBOARD_LOADED_PAGINATION,
-  OVERLAY_LOADED_POSTS_PAGE,
-  USERPROFILE_LOADED,
-  PARSE_USERS,
-  PARSE_TOPICS,
-  PARSE_POSTS,
-  PARSE_COMMENTS,
+    LIST_VIEW_LOADED_POSTS,
+    DASHBOARD_LOADED_PAGINATION,
+    OVERLAY_LOADED_POSTS_PAGE,
+    USERPROFILE_LOADED,
+    PARSE_USERS,
+    PARSE_TOPICS,
+    PARSE_POSTS,
+    PARSE_COMMENTS,
 } = require('../lib/constants').default
 
 
 function loadParseObject(type: string, query: Parse.Query, objectId: string): ThunkAction {
-  return (dispatch) => {
-    return query.get(objectId, {
-      success: (object) => {
-        // Flow can't guarantee {type, list} is a valid action
-        const payload = {
-          objectId: objectId,
-          object: object
-        }
-        dispatch({type, payload})
-      },
-      error: (error) => {
-        debugger
-      }
-    })
+    return (dispatch) => {
+        return query.get(objectId, {
+            success: (object) => {
+                // Flow can't guarantee {type, list} is a valid action
+                const payload = {
+                    objectId: objectId,
+                    object: object
+                }
+                dispatch({type, payload})
+            },
+            error: (error) => {
+                debugger
+            }
+        })
 
-  }
+    }
 
 }
 
+
+async function _loadUserProfile(userId : string, slug: string): Promise<Array<Action>> {
+    let object = await getQueryByType(PARSE_USERS).get(userId)
+
+    const payload = {
+        objectId: userId,
+        object: fromParseUser(object) 
+    }
+
+    const action = {
+        type: USERPROFILE_LOADED,
+        payload: payload
+    }
+
+    return Promise.all([
+        Promise.resolve(action)
+    ])
+
+}
+
+
+function loadUserProfile(userId: string, slug: string): ThunkAction {
+    return (dispatch) => {
+        const action = _loadUserProfile(userId, slug)
+
+        // Loading friends schedules shouldn't block the login process
+        action.then(
+            ([result]) => {
+                dispatch(result)
+            }
+        )
+        return action
+    }
+}
+
+
+
 export default {
-  loadUserProfile: (userId: string, slug: string): ThunkAction => {
-    let pageQuery = new Parse.Query(ParseUser).equalTo('objectId', userId)
+    loadUserProfile,
 
-    return loadParseObject(USERPROFILE_LOADED, pageQuery, userId)
-  },
-
-  loadPostPage: (objectId: string): ThunkAction => {
-    return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getQueryByType(), objectId)
-  }
+    loadPostPage: (objectId: string): ThunkAction => {
+        debugger
+        return loadParseObject(OVERLAY_LOADED_POSTS_PAGE, getQueryByType(), objectId)
+    }
 
 }

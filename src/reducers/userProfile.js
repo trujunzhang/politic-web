@@ -28,8 +28,8 @@
  * The states were interested in
  */
 const {
-  USERPROFILE_RESET,
-  USERPROFILE_LOADED,
+    USERPROFILE_RESET,
+    USERPROFILE_LOADED,
 } = require('../lib/constants').default
 
 const {User, fromParseUser} = require('./parseModels')
@@ -38,30 +38,30 @@ import type {Action} from '../actions/types'
 let slugify = require('slugify')
 
 export type State = {
-  ready: boolean,
-  userProfile: User
+    ready: boolean,
+    userProfile: User
 }
 
 const initialState = {
-  ready: false,
-  userProfile: null
+    ready: false,
+    userProfile: null
 }
 
 function userProfileTask(state: State = initialState, action: Action): State {
-  switch (action.type) {
+    switch (action.type) {
     case USERPROFILE_LOADED: {
-      let {objectId, object} = action.payload
-      return {
-        ready: true,
-        userProfile: fromParseUser(object)
-      }
+        let {objectId, object} = action.payload
+        return {
+            ready: true,
+            userProfile: object
+        }
     }
     case  USERPROFILE_RESET: {
-      return initialState
+        return initialState
     }
-  }
+    }
 
-  return state
+    return state
 }
 
 export default userProfileTask
