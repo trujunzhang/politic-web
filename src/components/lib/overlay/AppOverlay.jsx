@@ -1,22 +1,9 @@
 import Telescope from '../index'
 import React, {Component} from 'react'
 
-let {Modal} = require('../../vendor/react-overlays')
+import onClickOutside from 'react-onclickoutside'
 
 const {dismissPopModel} = require('../../../actions').default
-
-const modalStyle = {
-  position: 'absolute',
-  zIndex: 1040,
-  top: 0, bottom: 0, left: 0, right: 0
-}
-
-const backdropStyle = {
-  ...modalStyle,
-  zIndex: 'auto',
-  backgroundColor: 'transparent',
-  opacity: 0.5
-}
 
 class AppOverlay extends Component {
 
@@ -43,11 +30,8 @@ class AppOverlay extends Component {
     }
   }
 
-
-  close() {
+  handleClickOutside(event) {
     this.props.dispatch(dismissPopModel())
-    // debugger
-    // this.setState({showModal: false});
   }
 
   render() {
@@ -55,15 +39,7 @@ class AppOverlay extends Component {
 
     return (showOverlay ? (
       <div id='show_popover_menu'>
-        <Modal
-          aria-labelledby='modal-label'
-          style={modalStyle}
-          backdropStyle={backdropStyle}
-          show={true}
-          onHide={this.close.bind(this)}>
-          {this.renderMenu(currentModel)}
-        </Modal>
-
+        {this.renderMenu(currentModel)}
       </div>
     ) : null)
   }
@@ -86,4 +62,4 @@ function select(store) {
 /**
  * Connect the properties
  */
-export default connect(select)(AppOverlay)
+export default connect(select)(onClickOutside(AppOverlay))
