@@ -18,6 +18,8 @@ async function makeNewFolderForUser(user: Any, foldName: string = 'Read Later', 
   return await new ParseFolder(data).save()
 }
 
+
+
 async function bodyOf(requestPromise) {
   try {
     const response = await requestPromise;
