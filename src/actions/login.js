@@ -44,19 +44,6 @@ function logOut(): ThunkAction {
   }
 }
 
-async function queryFacebookAPI(path, ...args): Promise {
-  return new Promise((resolve, reject) => {
-    FB.api('/me?fields=id,name,email,permissions', function (response) {
-      if (response && !response.error) {
-        resolve(response);
-      } else {
-        reject(response && response.error);
-      }
-    })
-  })
-}
-
-
 /**
  * The states were interested in
  */
@@ -80,62 +67,6 @@ const {fromParseUser} = require('../reducers/parseModels')
 
 import type {Action, ThunkAction} from './types'
 
-function getUserCallback(user) {
-  return fromParseUser(user)
-}
-async function ParseFacebookLogin(scope): Promise {
-  return new Promise((resolve, reject) => {
-    Parse.FacebookUtils.logIn(null, {
-      success: resolve,
-      error: (user, error) => reject(error && error.error || error),
-    })
-  })
-}
-
-async function _logInWithFacebook(source: ? object): Promise<Array<Action>> {
-  const facebookUser = await ParseFacebookLogin('public_profile,email,name,user_friends');
-  const profile = await queryFacebookAPI('/me', {fields: 'name,email'});
-
-  let user = facebookUser
-
-  user.set('username', profile.name)
-  user.set('slug', slugify(profile.name, '_'))
-  user.set('email', profile.email)
-  user.set('loginType', 'facebook')
-
-  if ((user.get('folders') || []).length === 0) {
-    const defaultFolder = await  makeNewFolderForUser(user)
-    user.set('folders', [defaultFolder])
-  }
-  await user.save();
-
-  // await updateInstallation({user})
-
-  const action = {
-    type: LOGGED_IN,
-    payload: getUserCallback(user)
-  }
-
-  return Promise.all([
-    Promise.resolve(action)
-  ])
-}
-
-function logInWithFacebook(source: ?object): ThunkAction {
-  return (dispatch) => {
-    const login = _logInWithFacebook(source)
-
-    // Loading friends schedules shouldn't block the login process
-    login.then(
-      ([result]) => {
-        dispatch(result)
-      }
-    )
-    return login
-  }
-}
-
-
 async function _logInWithPassword(username: string, password: string): Promise<Array<Action>> {
   const user = new Parse.User()
   user.set('username', username)
@@ -145,7 +76,7 @@ async function _logInWithPassword(username: string, password: string): Promise<A
 
   const action = {
     type: LOGGED_IN,
-    payload: getUserCallback(user)
+    payload: fromParseUser(user)
   };
 
   return Promise.all([
@@ -187,7 +118,7 @@ async function _signUpWithPassword(username: string, email: string, password: st
 
   const action = {
     type: LOGGED_IN,
-    payload: getUserCallback(user)
+    payload: fromParseUser(user)
   }
 
   return Promise.all([
@@ -247,7 +178,7 @@ async function _newUserFolderWithPost(folder: object, postId: string, userId: st
 
   const action = {
     type: ADDED_NEW_FOLDER_WITH_POST,
-    payload: getUserCallback(user)
+    payload: fromParseUser(user)
   }
 
   return Promise.all([
@@ -286,7 +217,7 @@ async function _updateFolder(username: string, password: string): Promise<Array<
 
   const action = {
     type: LOGGED_IN,
-    payload: getUserCallback(user)
+    payload: fromParseUser(user)
   };
 
   return Promise.all([
@@ -349,7 +280,7 @@ function sendEmail(username: string, password: string): ThunkAction {
 }
 
 export default {
-  signUpWithPassword, logInWithFacebook,
+  signUpWithPassword,
   logInWithPassword,
   skipLogin, logOut,
   newUserFolderWithPost,
