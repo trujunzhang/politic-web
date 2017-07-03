@@ -56,7 +56,6 @@ class UserProfilePostsList extends Component {
       firstPagination,
     } = listTask
 
-      debugger
     let hasMore = totalCount !== results.length
 
     if (!!results.length) {

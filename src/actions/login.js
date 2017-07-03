@@ -166,6 +166,7 @@ let slugify = require('slugify')
 const {updateInstallation} = require('./installation')
 
 let {ParseFolder, ParsePost} = require('../parse/objects').default
+let {makeNewFolderForUser} = require('../parse/api').default
 
 const {fromParseUser} = require('../reducers/parseModels')
 
@@ -174,20 +175,6 @@ import type {Action, ThunkAction} from './types'
 function getUserCallback(user) {
   return fromParseUser(user)
 }
-
-async function makeNewFolderForUser(user: Any, foldName: string = 'Read Later', postId: string = null): Promise {
-  let data = {
-    'name': foldName,
-    'visible': (foldName === 'Read Later') ? 'Lock' : '',
-    'user': user,
-    posts: []
-  }
-  if (!!postId) {
-    data['posts'] = [ParsePost.createWithoutData(postId)]
-  }
-  return await new ParseFolder(data).save()
-}
-
 async function ParseFacebookLogin(scope): Promise {
   return new Promise((resolve, reject) => {
     Parse.FacebookUtils.logIn(null, {
