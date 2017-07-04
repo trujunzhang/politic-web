@@ -29,21 +29,6 @@
 // ========================
 const Parse = require('parse')
 
-function logOut(): ThunkAction {
-  return (dispatch) => {
-    Parse.User.logOut()
-    // FB.logout()
-    //FacebookSDK.logout()
-
-    //updateInstallation({user: null, channels: []})
-
-    // TODO: Make sure reducers clear their state
-    return dispatch({
-      type: 'LOGGED_OUT',
-    })
-  }
-}
-
 /**
  * The states were interested in
  */
@@ -201,13 +186,6 @@ function newUserFolderWithPost(folderName: string, postId: string, userId: strin
 }
 
 
-function skipLogin(): Action {
-  return {
-    type: 'SKIPPED_LOGIN',
-  }
-}
-
-
 async function _updateFolder(username: string, password: string): Promise<Array<Action>> {
   const user = new Parse.User()
   user.set('username', username)
@@ -282,7 +260,6 @@ function sendEmail(username: string, password: string): ThunkAction {
 export default {
   signUpWithPassword,
   logInWithPassword,
-  skipLogin, logOut,
   newUserFolderWithPost,
   sendEmail,
   updateFolder

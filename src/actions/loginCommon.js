@@ -11,7 +11,7 @@
  * Policies [http://developers.facebook.com/policy/]. This copyright notice
  * shall be included in all copies or substantial portions of the software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -22,22 +22,52 @@
  * @flow
  */
 
-const parseSingleActions = require('./parseSingle').default
-const parsePostsActions = require('./parsePosts').default
-const parseUsersActions = require('./parseUsers').default
-const parseTopicsActions = require('./parseTopics').default
-const loginActions = require('./login').default
-const loginCommonActions = require('./loginCommon').default
-const voingtActions = require('./voting').default
-const golbalActions = require('./global').default
+'use strict'
+
+// ========================
+// For Web Apps
+// ========================
+const Parse = require('parse')
+
+
+/**
+ * The states were interested in
+ */
+const {
+  LOGGED_IN,
+  LOGGED_OUT,
+  SET_SHARING,
+  LOADED_USER_FOLDERS,
+  SELECTED_USER_FOLDER,
+  ADDED_NEW_FOLDER_WITH_POST
+} = require('../lib/constants').default
+
+// const FacebookSDK = require('FacebookSDK')
+const {updateInstallation} = require('./installation')
+
+import type {Action, ThunkAction} from './types'
+
+function logOut(): ThunkAction {
+  return (dispatch) => {
+    Parse.User.logOut()
+    // FB.logout()
+    //FacebookSDK.logout()
+
+    //updateInstallation({user: null, channels: []})
+
+    // TODO: Make sure reducers clear their state
+    return dispatch({
+      type: 'LOGGED_OUT',
+    })
+  }
+}
+
+function skipLogin(): Action {
+  return {
+    type: 'SKIPPED_LOGIN',
+  }
+}
 
 export default {
-  ...parseSingleActions,
-  ...parsePostsActions,
-  ...parseUsersActions,
-  ...parseTopicsActions,
-  ...loginActions,
-  ...loginCommonActions,
-  ...voingtActions,
-  ...golbalActions
+  skipLogin, logOut
 }
